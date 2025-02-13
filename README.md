@@ -4,7 +4,6 @@ Collection of AI related tools to investigate.
 ## Jason's List of Tools To Explore
 
 ### **1. AI-Powered Coding Assistants & Developer Tools**
-- [Microsoft CoPilot](https://www.theverge.com/news/603149/microsoft-openai-o1-model-copilot-think-deeper-free) – AI coding assistant integrated with Microsoft products.
 - [Cursor](https://www.cursor.com/) – AI-powered code editor for developers.
 - [OpenRouter](https://openrouter.ai/) – API routing for AI models, allowing access to various AI models via a single interface.
 - [Web Dev Arena](https://web.lmarena.ai/) – AI-powered development environment.
