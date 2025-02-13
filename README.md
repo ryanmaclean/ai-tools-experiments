@@ -69,7 +69,4 @@ Collection of AI related tools to investigate.
 ---
 
 ### 7. AI Tools for SRE & DevOps Engineers
-- [Shoreline.io](https://www.shoreline.io/) – AI-powered incident automation and remediation for DevOps.
-- [Lightstep](https://lightstep.com/) – AI-driven observability and tracing platform for complex microservices.
 - [Monitaur](https://monitaur.ai/) – AI-powered reliability and compliance monitoring for machine learning in production.
-- [Opsani](https://www.opsani.com/) – AI-driven continuous optimization for cloud application performance..
