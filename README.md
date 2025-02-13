@@ -18,10 +18,6 @@ Collection of AI related tools to investigate.
 ### 2. AI Model Benchmarking & Optimization
 - [LlamaBench](https://github.com/ggerganov/llama.cpp/blob/master/examples/llama-bench/README.md) – A benchmarking tool for evaluating Llama-based AI models.
 - [LiveBench.ai](https://livebench.ai) – Real-time AI model performance benchmarking.
-- [OctoAI](https://octoai.cloud/) – AI model acceleration and deployment platform.
-- [MLPerf](https://mlcommons.org/en/) – Benchmarking suite for evaluating ML performance across hardware and software.
-- [DeepSparse](https://neuralmagic.com/deepsparse/) – AI model optimization for efficiency on CPU.
-- [AutoBench](https://autobench.dev/) – AI performance and benchmarking automation.
 
 ---
 
@@ -29,10 +25,7 @@ Collection of AI related tools to investigate.
 - [FloWise.AI](https://flowiseai.com/) – No-code/low-code tool for AI workflow automation.
 - [MindPal AI](https://mindpal.space/) – AI-powered automation similar to Zapier, facilitating AI agent workflows.
 - [Jina.ai](https://jina.ai) – AI-powered search and multimodal application framework.
-- [SuperAGI](https://superagi.com/) – Open-source framework for AI agents with automation capabilities.
-- [AirOps](https://www.airops.com/) – AI-powered workflow automation for business processes.
 - [AgentGPT](https://agentgpt.reworkd.ai/) – Deploy and run autonomous AI agents in a browser.
-- [Hugging Face Transformers Agents](https://huggingface.co/docs/transformers/main/en/transformers_agents) – Framework for creating AI-powered task automation.
 
 ---
 
@@ -42,7 +35,6 @@ Collection of AI related tools to investigate.
 - [Napkin.ai](https://www.napkin.ai/) – AI-assisted tool for organizing ideas and creative thought processes.
 - [SciSpace](https://typeset.io/) – AI-powered research assistant for academic papers and literature review.
 - [Consensus](https://consensus.app/) – AI search engine that finds research-backed answers.
-- [Perplexity AI](https://www.perplexity.ai/) – AI-powered research assistant for natural language queries.
 - [Semantic Scholar](https://www.semanticscholar.org/) – AI-driven search and recommendation engine for academic research.
 
 ---
@@ -50,9 +42,7 @@ Collection of AI related tools to investigate.
 ### 5. AI Chatbots & Conversational Models
 - [Claude](https://claude.ai/login?returnTo=%2F%3F) – AI chatbot developed by Anthropic.
 - [Abacus.ai](https://abacus.ai/) – AI platform for enterprise-level applications, including conversational AI and predictive analytics.
-- [ChatGPT](https://chat.openai.com/) – OpenAI’s advanced conversational AI assistant.
 - [Pi AI](https://heypi.com/) – AI chatbot designed for friendly and engaging conversations.
-- [HuggingChat](https://huggingface.co/chat/) – Open-source chatbot alternative to ChatGPT.
 - [YouChat](https://you.com/chat) – AI conversational assistant with web search capabilities.
 
 ---
