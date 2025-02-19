@@ -1,4 +1,4 @@
-# AI Related Tools
+# AI Lab Experiments & Related Tools
 Collection of AI related tools to investigate.
 
 ## Jason's List of Tools To Explore
