@@ -1,6 +1,8 @@
 # AI Lab Experiments & Related Tools
 Collection of AI related tools to investigate.
 
+- [Recording 1](ep01.md)
+
 ## Jason's List of Tools To Explore
 
 ### 1. AI-Powered Coding Assistants & Developer Tools
