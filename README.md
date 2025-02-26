@@ -5,7 +5,7 @@ Collection of AI related tools to investigate.
 
 ### 1. AI-Powered Coding Assistants & Developer Tools
 - [Cursor](https://www.cursor.com/) – AI-powered code editor for developers.
-- [Claude Code](https://github.com/anthropics/claude-code)
+- [Claude Code](https://github.com/anthropics/claude-code) - Anthropic's latest AI-powered code editor (from a CLI app)
 - [OpenRouter](https://openrouter.ai/) – API routing for AI models, allowing access to various AI models via a single interface.
 - [Web Dev Arena](https://web.lmarena.ai/) – AI-powered development environment.
 - [LMArena.ai](https://lmarena.ai) – AI benchmarking and development tool.
