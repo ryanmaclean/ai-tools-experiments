@@ -2,6 +2,7 @@
 Collection of AI related tools to investigate.
 
 - [Recording 1](ep01.md)
+- [Recording 2](ep02.md)
 
 ## Jason's List of Tools To Explore
 
