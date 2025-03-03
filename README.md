@@ -1,8 +1,8 @@
 # AI Lab Experiments & Related Tools
 Collection of AI related tools to investigate.
 
-- [Recording 1](ep01.md)
-- [Recording 2](ep02.md)
+- [Recording 1](ep01.md) - Gradio
+- [Recording 2](ep02.md) - Warp Terminal (for Windows) AI Agent using Claude Sonnet 3.7 + Cursor
 
 ## Jason's List of Tools To Explore
 
