@@ -1,13 +1,12 @@
 # AI Lab Experiments & Related Tools
 Collection of AI related tools to investigate.
 
-- [Recording 1](ep01.md) - Gradio
-- [Recording 2](ep02.md) - Warp Terminal (for Windows) AI Agent using Claude Sonnet 3.7 + Cursor
+- [Recording 1](ep01.md) - [Gradio](https://gradio.app)
+- [Recording 2](ep02.md) - [Warp Terminal (for Windows)](https://www.warp.dev/blog/launching-warp-on-windows) AI Agent using Anthropic's Claude Sonnet 3.7 + [Cursor](https://www.cursor.com/)
 
 ## Jason's List of Tools To Explore
 
 ### 1. AI-Powered Coding Assistants & Developer Tools
-- [Cursor](https://www.cursor.com/) – AI-powered code editor for developers.
 - [Claude Code](https://github.com/anthropics/claude-code) - Anthropic's latest AI-powered code editor (from a CLI app)
 - [OpenRouter](https://openrouter.ai/) – API routing for AI models, allowing access to various AI models via a single interface.
 - [Web Dev Arena](https://web.lmarena.ai/) – AI-powered development environment.
