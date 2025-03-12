@@ -27,43 +27,99 @@ document.addEventListener('DOMContentLoaded', function() {
                 timestamp: new Date().toISOString()
             };
             
-            // Send to Datadog Logs API
+            // Send to Datadog Logs API via our proxy
             sendToDatadog(payload);
         });
     }
     
     function sendToDatadog(payload) {
-        // The actual API key and Application key will be injected by the GitHub Action
-        // This is just a placeholder that will be replaced during build
-        const DD_API_KEY = '__DD_API_KEY__';
-        const DD_APP_KEY = '__DD_APP_KEY__';
+        console.log('Preparing to send data to Datadog via proxy...');
         
-        // Don't actually send if we're using placeholder keys (development mode)
-        if (DD_API_KEY.startsWith('__') || DD_APP_KEY.startsWith('__')) {
-            console.log('Development mode - would have sent to Datadog:', payload);
-            alert('Feedback submitted (development mode)!');
-            clearForm();
+        // Display sending state
+        const submitButton = document.querySelector('#datadog-form button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
+        // Log what we're sending
+        console.log('Payload being sent:', payload);
+
+        // We'll use a proxy endpoint to avoid CORS issues
+        // This requires deploying to Netlify with the serverless function
+        let proxyUrl;
+        
+        // Determine if we're in development or production
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            // For local development testing (will be mocked)
+            console.log('Development mode - simulating successful send');
+            
+            // Simulate a successful response after a delay
+            setTimeout(() => {
+                console.log('Development mode - simulated successful response');
+                
+                // Reset button
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+                
+                // Show success message and clear form
+                alert('Feedback submitted (development mode)!');
+                clearForm();
+            }, 1000);
+            
             return;
+        } else {
+            // For production - use the deployed Netlify function
+            proxyUrl = '/api/datadog';
         }
         
-        fetch('https://http-intake.logs.datadoghq.com/api/v2/logs', {
+        fetch(proxyUrl, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'DD-API-KEY': DD_API_KEY,
-                'DD-APPLICATION-KEY': DD_APP_KEY
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify([payload])
         })
         .then(response => {
-            if (response.ok) {
+            console.log('Proxy response status:', response.status);
+            
+            // Try to get response text even if not OK
+            return response.text().then(text => {
+                console.log('Proxy response text:', text);
+                
+                // Try to parse as JSON if possible
+                let jsonResponse = null;
+                try {
+                    jsonResponse = JSON.parse(text);
+                } catch (e) {
+                    // Not JSON, that's fine
+                }
+                
+                return { 
+                    ok: response.ok, 
+                    status: response.status, 
+                    text: text,
+                    json: jsonResponse
+                };
+            });
+        })
+        .then(result => {
+            // Reset button state
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            
+            if (result.ok) {
+                console.log('Successfully sent to Datadog via proxy!');
                 alert('Thank you for your feedback!');
                 clearForm();
             } else {
-                throw new Error('Failed to submit feedback');
+                throw new Error(`Failed to submit feedback: ${result.status} - ${result.text}`);
             }
         })
         .catch(error => {
+            // Reset button state
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            
             console.error('Error submitting feedback:', error);
             alert('There was a problem submitting your feedback. Please try again later.');
         });

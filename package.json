@@ -1,0 +1,27 @@
+{
+  "name": "ai-tools-experiments",
+  "version": "1.0.0",
+  "description": "AI Lab Experiments & Tools",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/ai-tools-experiments.git"
+  },
+  "keywords": [
+    "ai",
+    "tools",
+    "experiments"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yourusername/ai-tools-experiments/issues"
+  },
+  "homepage": "https://github.com/yourusername/ai-tools-experiments#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}

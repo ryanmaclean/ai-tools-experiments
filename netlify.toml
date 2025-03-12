@@ -1,0 +1,11 @@
+[build]
+  functions = "proxy"
+
+[dev]
+  functions = "proxy"
+  
+[[redirects]]
+  from = "/api/datadog/*"
+  to = "/.netlify/functions/datadog-proxy"
+  status = 200
+  force = true
