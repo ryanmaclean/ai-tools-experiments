@@ -3,6 +3,7 @@ Collection of AI related tools to investigate.
 
 - [Recording 1](ep01.md) - [Gradio](https://gradio.app)
 - [Recording 2](ep02.md) - [Warp Terminal (for Windows)](https://www.warp.dev/blog/launching-warp-on-windows) AI Agent using Anthropic's Claude Sonnet 3.7 + [Cursor](https://www.cursor.com/)
+- [Recording 3](ep03.md) - [Automatic1111]
 
 ## Jason's List of Tools To Explore
 
