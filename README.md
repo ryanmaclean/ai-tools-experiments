@@ -19,8 +19,8 @@ This repository has been converted to a GitHub Pages website. You can visit the 
    - Under "Build and deployment", select "GitHub Actions" as the source
 
 3. For the Datadog Logging integration, add the following secrets in your GitHub repository:
-   - `DATADOG_API_KEY`: Your Datadog API key
-   - `DATADOG_APP_KEY`: Your Datadog Application key
+   - `DD_API_KEY`: Your Datadog API key
+   - `DD_APP_KEY`: Your Datadog Application key
 
    These will be automatically injected into the JavaScript during the build process.
 
