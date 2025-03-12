@@ -9,29 +9,53 @@ Collection of AI related tools to investigate.
 
 This repository has been converted to a GitHub Pages website. You can visit the website to view the content in a more user-friendly format.
 
-### Setting Up GitHub Pages
+### Setting Up GitHub Pages with Datadog Logging
 
-1. The repository is already configured to deploy to GitHub Pages using the GitHub Actions workflow in `.github/workflows/deploy.yml`.
+Due to browser CORS restrictions, the feedback form with Datadog integration requires a server-side component. We use Netlify to host both the website and a serverless function that acts as a proxy to Datadog.
 
-2. To enable GitHub Pages for this repository:
-   - Go to the repository settings
-   - Navigate to the "Pages" section
-   - Under "Build and deployment", select "GitHub Actions" as the source
+#### Setting up with Netlify
 
-3. For the Datadog Logging integration, add the following secrets in your GitHub repository:
-   - `DD_API_KEY`: Your Datadog API key
-   - `DD_APP_KEY`: Your Datadog Application key
+1. Fork or clone this repository to your GitHub account
 
-   These will be automatically injected into the JavaScript during the build process.
+2. Connect your GitHub repository to Netlify:
+   - Sign up for a free Netlify account if you don't have one
+   - Click "New site from Git" and select your repository
+   - Configure the build settings (leave build command empty, publish directory should be ".")
+   - Deploy the site
 
-4. After pushing to the main branch, the GitHub Action will automatically build and deploy the site.
+3. Set up the Datadog API keys in Netlify:
+   - Go to Site settings > Environment variables
+   - Add the following environment variables:
+     - `DD_API_KEY`: Your Datadog API key
+     - `DD_APP_KEY`: Your Datadog Application key
+
+4. After deploying, the feedback form will send data to Datadog through the Netlify serverless function proxy.
 
 ### Local Development
 
 To test the website locally:
+
 1. Clone the repository
-2. Open `index.html` in your browser
-3. Note that the feedback form will run in "development mode" locally, which means it won't actually send data to Datadog.
+2. If you have Node.js installed, you can use a local server:
+   ```
+   npx http-server
+   ```
+3. Open your browser to the local server URL (typically http://localhost:8080)
+4. Note that the feedback form will run in "development mode" locally, which means it won't actually send data to Datadog.
+
+### Troubleshooting the Datadog Integration
+
+If logs aren't appearing in Datadog:
+
+1. Check the Netlify function logs:
+   - Go to your Netlify dashboard > Your site > Functions
+   - Look at the logs for the "datadog-proxy" function
+
+2. Verify that your Datadog API keys have the correct permissions:
+   - API key should have "Logs Write" permission
+   - App key should have appropriate permissions
+
+3. Open your browser console when submitting the form to see detailed logs on the request and response.
 
 ## Jason's List of Tools To Explore
 

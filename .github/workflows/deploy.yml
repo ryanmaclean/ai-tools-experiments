@@ -32,9 +32,27 @@ jobs:
           
       - name: Inject Datadog API Keys
         run: |
+          # Check if secrets are available (will be masked in logs)
+          if [ -n "${{ secrets.DD_API_KEY }}" ]; then
+            echo "DD_API_KEY is available"
+          else
+            echo "WARNING: DD_API_KEY is not set in repository secrets!"
+          fi
+          
+          if [ -n "${{ secrets.DD_APP_KEY }}" ]; then
+            echo "DD_APP_KEY is available"
+          else
+            echo "WARNING: DD_APP_KEY is not set in repository secrets!"
+          fi
+          
           # Replace placeholder values with secrets in script.js
           sed -i "s|__DD_API_KEY__|${{ secrets.DD_API_KEY }}|g" script.js
           sed -i "s|__DD_APP_KEY__|${{ secrets.DD_APP_KEY }}|g" script.js
+          
+          # Check if replacements were made (don't show actual values)
+          echo "Checking if placeholders were replaced:"
+          grep -c "__DD_API_KEY__" script.js || echo "API Key placeholder was replaced"
+          grep -c "__DD_APP_KEY__" script.js || echo "APP Key placeholder was replaced"
       
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
