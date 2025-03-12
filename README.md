@@ -5,6 +5,34 @@ Collection of AI related tools to investigate.
 - [Recording 2](ep02.md) - [Warp Terminal (for Windows)](https://www.warp.dev/blog/launching-warp-on-windows) AI Agent using Anthropic's Claude Sonnet 3.7 + [Cursor](https://www.cursor.com/)
 - [Recording 3](ep03.md) - [Automatic1111]
 
+## GitHub Pages Website
+
+This repository has been converted to a GitHub Pages website. You can visit the website to view the content in a more user-friendly format.
+
+### Setting Up GitHub Pages
+
+1. The repository is already configured to deploy to GitHub Pages using the GitHub Actions workflow in `.github/workflows/deploy.yml`.
+
+2. To enable GitHub Pages for this repository:
+   - Go to the repository settings
+   - Navigate to the "Pages" section
+   - Under "Build and deployment", select "GitHub Actions" as the source
+
+3. For the Datadog Logging integration, add the following secrets in your GitHub repository:
+   - `DATADOG_API_KEY`: Your Datadog API key
+   - `DATADOG_APP_KEY`: Your Datadog Application key
+
+   These will be automatically injected into the JavaScript during the build process.
+
+4. After pushing to the main branch, the GitHub Action will automatically build and deploy the site.
+
+### Local Development
+
+To test the website locally:
+1. Clone the repository
+2. Open `index.html` in your browser
+3. Note that the feedback form will run in "development mode" locally, which means it won't actually send data to Datadog.
+
 ## Jason's List of Tools To Explore
 
 ### 1. AI-Powered Coding Assistants & Developer Tools
