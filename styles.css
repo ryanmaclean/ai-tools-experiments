@@ -303,3 +303,37 @@ footer {
     background-color: var(--primary-color);
     color: white;
 }
+
+/* Episode Navigation */
+.episode-navigation {
+    margin-top: 3rem;
+    border-top: 1px solid #dee2e6;
+    padding-top: 2rem;
+}
+
+.episode-navigation h2 {
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.episode-nav-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.episode-nav-links .nav-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.episode-nav-links .nav-direction {
+    font-size: 0.9rem;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.episode-nav-links .recording-card {
+    margin: 0;
+    width: 100%;
+}
