@@ -20,7 +20,8 @@
         <div class="episode-content">
             <h1>Episode Notes: Claude Code</h1>
             
-            <p>This session focused on Claude Code</p>
+            <h2>Summary</h2>
+            <p>In this two-part episode, Jason Hand explores using Claude Code to build a website with a feedback form for the AI Lab Experiments project. In part one, Jason explains his goal to convert the GitHub repository into a static website hosted on GitHub Pages, with a form that submits feedback data to Datadog as structured logs. He walks through setting up Claude Code to assist with this task, emphasizing the challenge of securely handling API keys through GitHub secrets. Jason also briefly mentions a previous Claude Code project where he created a chat interface with a Rover-like assistant. In part two, Jason continues his work, discovering that GitHub Pages has CORS limitations that prevent direct API calls to Datadog. With Claude's help, he pivots to deploying the site on Netlify instead, which allows him to securely store environment variables for the Datadog API keys. By the end of the session, Jason successfully creates a working website with a functional feedback form that sends data to Datadog, demonstrating Claude Code's ability to help solve complex web development challenges.</p>
             
             <h2>Video</h2>
             <div class="video-container">
@@ -37,12 +38,441 @@
             </div>
             
             <h2>Resources</h2>
-            <p>Resources will be added soon.</p>
+            <ul>
+                <li><a href="https://github.com/anthropics/claude-code" target="_blank">Claude Code GitHub</a></li>
+                <li><a href="https://docs.netlify.com/" target="_blank">Netlify Documentation</a></li>
+                <li><a href="https://docs.datadoghq.com/api/latest/" target="_blank">Datadog API Documentation</a></li>
+            </ul>
             
             <h2>Key Takeaways</h2>
             <ul>
-                <li>Coming soon</li>
+                <li>Claude Code can effectively help build functional websites and solve complex integration challenges</li>
+                <li>GitHub Pages has CORS limitations for API calls, while Netlify offers better support for dynamic functionality</li>
+                <li>Environment variables in Netlify provide a secure way to store API keys</li>
+                <li>Static websites can be enhanced with third-party services through secure API integrations</li>
+                <li>Datadog can be used in creative ways, such as capturing form submissions as logs</li>
             </ul>
+            
+            <h2>Full Transcript</h2>
+            <div class="transcript">
+<pre>
+PART 1
+
+[00:00:00] **Jason Hand:** Hey everyone. I have about a 30 minute window to work on something that I have been thinking about all morning, and I thought I would just hit record and see what we can do in that time. And let me explain to you what it is I'm thinking about. Ryan McClain and I recently have been doing episodes.
+
+Where we or these little recordings where we go out and we talk about some different tools that we're interested in. And you can go into my, one of my repos on GitHub up here at the AI tools experiments and get a link straight to the recording where you can watch. You can watch that recording on YouTube.
+
+But so this is just a project that we've recently started working on to not only educate ourselves, but others within our sphere within our community, and, colleagues and peers of some of these different tools. Okay. And we decided to put it all on GitHub. It's real easy that way, but however 
+
+we wanted to have a feedback form of some sort so people can suggest tools for us to look [00:01:00] into or just give us feedback in general. And, there's a lot of different ways you can implement a feedback form. So I was trying to come up with something different this morning and I decided that.
+
+What I'd like to do is actually take the GitHub page that we're using now, which is really just this Read me, and I'd like to convert this to a GitHub page.
+
+Now there's a lot of caveats that go along with that. It has to be a static website, so only H tm L JavaScript and CSS is what we're gonna be doing . So anyway, we can create a website super easy. Like I could do that with literally any tool in probably 10 minutes.
+
+And that's what we're gonna try to do today. But it's not just the HTML and then converting that to a webpage. That's pretty straightforward how to do that. However, what I wanna do with my form is actually.
+
+Use Datadog. And that sounds weird because Datadog doesn't have a form per se. But I think what I want to [00:02:00] do is actually and I don't know if this is gonna work, this is all just experimenting here. I'm going to create a form and actually I'm gonna have Claude using Claude Code. I'm gonna have it create the code for me.
+
+But what I want to happen is just a standard post. Action standard H-T-T-P-S post action is how we will send over the form data in the format of a structured log to Datadog. So that's just gonna be A-J-S-O-N file that has. All the stuff that we've collected from the form person's name there's, there'll be a handful of required fields that we need to get but then also optional fields.
+
+But we'll just send all of that over as a log to Datadog. And then from there I can display that, we'll set up some queries. That'll probably be a different step, but I thought for the rest of this time, I would play with Claude [00:03:00] Code. And I'm gonna point it to this repo that I've already got running locally.
+
+Of course, this is just where we're tracking our episodes. So I think if I tell Claude code to look at this repo and then tell it what I'm trying to do, I. With some clear directions. I think that, that should get the job done, or at least it'll get me like, really close. So I've got a little bit of a to-do thing here starting.
+
+So we're gonna, what I wanna do is build a static website to host it on GitHub pages. Okay? So for the ai experiments. And then in that. GitHub page's, implementation of a website. I want to add a form to that HTML that will submit data to Datadog as a log, and that's going to be the contents of the form.
+
+And then the other element of this though, is that for me to send stuff over to Datadog, I'm gonna have to go in a Datadog and set up a new API key and a Datadog app key. So we've got two secrets [00:04:00] that we're gonna have to. See if we can handle, I've never tried this. I don't know if it'll even work, but we're gonna, we're gonna see if we can get Claude code to help us do this.
+
+Now, one of the caveats of a GitHub page is
+
+there's a lot of functionality you can't really do in a static website. So I'm a little curious to see how Claude handles this problem where we want to send the. Form data to Datadog using our API key and app key. However, we want to obfuscate that. We don't want to put that out on our repo, even though I can go and rotate my keys, like it's just bad behavior.
+
+You should never put your API keys or any keys in there, but GitHub has a way of handling that. They've got GitHub secrets, so I think if we tell Claude Code. That. Another element of this is I need to deploy my website to GitHub [00:05:00] pages using a GitHub action.
+
+It might be able to, it might be able to give us what we need. So that's where. That's where my head's been all morning is we need, I've discovered we need our own website for this GitHub page. GitHub has been fine. Let's just change this to GitHub pages for now and not go overboard with creating a whole website.
+
+I'm gonna have Claude code create me something simple. But for today, I want to see if it'll create a form and if it can help me. Get, a good portion of the way to Sullivan that. All right let's now Oh and before, before we get too far too I wanna say that I have spent some time with Claude code already, which I will go over another time.
+
+But I can give you a little bit of a preview of what what I was able to build on. Pretty much my second shot, not, or I guess it's the first shot. Nah, I don't know how that math works out. It wasn't the zero shot, but it was the it was somewhere in between one and two. Essentially [00:06:00] what I've got here is a way for me to chat with Claude.
+
+And I, you know what? I think there's still one other thing that I might have to enable for this to work, but this actually, you'll have to, trust me, in this situation this does work. It's. It's talking to Claude. I can chat with it. However, there's a few things that aren't, don't quite make sense to me.
+
+Because I thought I specified Claude Sonnet 3.7, yet it seems to be using a different model. If you saw the little character down in the right hand side here this is intended to be Rover and Rover is actually part of Clippy. If you remember the Microsoft Clippy stuff there's a package out there.
+
+Clippy js which I need to look into to see if it's still actually being maintained. 'cause that might have been part of my problems here. But I wanted to actually be able to talk with Rover, chat with Rover. But on the back end it's Claude. And so that's what I was trying to get Claude code to help me build and we got pretty close, although it couldn't pull in the rover pa rover [00:07:00] assets.
+
+And it ended up just building its own little vector dog, which kudos really. So anyway, I'm gonna do a deeper dive into that another time. Okay. So we're really just gonna focus on seeing if we can turn this into a webpage with a form for feedback. Okay. Now let me.
+
+Pull down my terminal here. I'm just trying to get back to the,
+
+okay. I'm zoom in a little here and, alright, so this, the code base for our site here, okay. The AI labs experiments. Is this AI tools. Okay? So we're gonna go in there.
+
+Alright? And you can see I've already, everything's already been set up for GitHub here to pull things in and we will list all that way to see things so that aligns with what we have. Over here, right? Read me three episode files. And then there's the, this hidden file in there.
+
+This doc [00:08:00] yet. All right code Claude Code's already installed here, so I believe I can just hit Claude and it's gonna ask me for some permission things here, and I'll just say yes. And it tells me what this is the Claude Code Research preview. Okay. Alright. So what I think I need to do now is basically just give it the full instructions of exactly what's on my mind, what I'm trying to do.
+
+So some of that's just the stuff that we saw in my terminal, or I'm sorry, vs. Code here. So lemme just put this up here so I can reference it pretty easy. And then I'm gonna say, I'm just gonna talk. Talk to it here. Okay I want to convert the current GitHub repository from a [00:09:00] standard let's just say to a GitHub pages deployment.
+
+So it can host a website, and I want you to create the HTML JavaScript and CSS required
+
+that captures all of the existing information in the Read me.
+
+And what else did we want? We want at the bottom of the HTML add a submission form that will send.
+
+JSON [00:10:00] to a, I wanna say the Datadog log. Yeah. Logging API Endpoint, which requires a Datadog, API key and app. I'm being pretty specific as you can see. Just because first of all, that, that project with the chatting with Claude, that was a pretty complex ask that I gave it, and I'm not gonna lie, it was actually pretty much pretty successful pretty quickly.
+
+I had to do a lot of massaging to get the dog stuff, like working, but it was talking to Claude pretty much. First, like first time, so it got 90 something percent of it right. But I had given it a lot of details. So we'll go into that in another time. So that's kinda what I'm doing here is just trying to be super specific.
+
+Okay, so the logging API endpoint, which requires Datadog API key and [00:11:00] use GitHub actions to build and deploy the site. So that we can use GitHub Secrets to store the API and app Keys,
+
+and I think that covers everything. If we look at our list here, build a static website. Add a form and hide the secrets, but be specific using GitHub actions. All right. Let's just go with this. Let's see. Let's see what happens. Let's cooking. I.
+
+One of the things I noticed, I don't see anything happen just yet, but. One of the things I noticed in my previous project is, as Claude Code is cooking in this instance or it throws up different phone words here, but it's doing things and a lot of times it's creating files [00:12:00] and you'll be able to see that those files, start to populate in here and change.
+
+And it's it's very interactive. Oh and here we go. Oh. Yeah. And before it'll do it, it always makes sure that you, unless you just this option here, don't ask again for the session. Which I think I'm going to go ahead and choose just so I don't have to I'm just noticing this auto update failed too here in the truck, in the cla.
+
+I'll have to do that doctor step later. But it seems to be working just fine so far.
+
+I'm still not seeing any codes, or sorry, any files.
+
+Okay. Now we're starting to see something. There's our index file status style file.
+
+Here's a look at our index file. So far, pretty straightforward.
+
+Now the creation of HTML, JavaScript, CSS that's all like table stakes at this point, because [00:13:00] I've been doing that. We've probably all been doing that with the different tools for a while, since Chad GPT came out. It's the stuff about the secrets and the GitHub actions. Which is a little bit new twist that I've, I haven't tried to add to any of my experiments so far.
+
+But a very realistic scenario. I have a couple of ap, a couple of keys for Datadog that are not something I, can expose. So I need to find a way. To get those safely integrated into the form, but not expose them. So anyway, as you can see here, we are still waiting and I have just a little bit of time left.
+
+I got about [00:14:00] 10 minutes left.
+
+Some steps do tend to take a little while.
+
+Okay, so what do we got here?
+
+Scroll up. I've completed the conversion of your GitHub repository to a GitHub pages deployment. Here's what I've created, index files plus individual episode files. Okay. I actually don't see the individual episode files. Just quickly looking up here. I'm missing something. Oh, they're over here though.
+
+That's interesting.
+
+Okay. All right, so we got those. It has added CSS for us with some responsive styling. That's great. And I didn't ask for that, but that's awesome. Handles feedback submission to Datadog. Okay. We've got our deployment file.
+
+And
+
+it's updated, the Read [00:15:00] Me, which, okay. Again, I don't really see changes to the Read me wondering if I'm having some kind of issue with VS code because clearly over here there's been some new. Changes. So what I'm gonna do is just yolo this over into GitHub.
+
+Oh, there's our, interesting, okay. There's our deployment file that just came up. Now I wonder what this looks like. Oh, okay. This is this is all good here actually, because these are first times, the first time I'm doing any of this stuff. Okay. I gotta sign in real quick
+
+and believe that should take care of that.
+
+Okay. Now I am, yeah, here we go. I don't have any of the key stuff yet, so if I were to [00:16:00] push this and it tried to build it, it's gonna fail.
+
+I'm not really an expert in GI actions. I've built a handful in the past and these, look, this looks correct. It looks like everything I am expecting. So I think the next thing I wanna do is go get my this will actually be, this always happens. It's not Datadog. It's dd. Yeah. And
+
+change that, which means also
+
+in the scripts file, it's probably column four.
+
+The same.
+
+Okay. This looks right,
+
+we're getting his name, email, and tool. That's fine for now. Let me go over to Datadog
+
+and which time do we have six minutes. Let's see. I'm [00:17:00] gonna create
+
+in here. A new key and this will be, we'll call this I guess just AI experiments page.
+
+Okay. Copy that. And
+
+I'm going to. Move this out of the way real quick. Take care of getting this in here.
+
+I should ask it where?
+
+Yes. This is something that's a little new to me, I think.
+
+I think it's just over in GitHub Secrets that I gotta go set this up next. Let's get into to get hub seekers. I think, I feel like I'm gonna run out of time. I might just pause and come back.
+
+All right, so let's go to my repositories. [00:18:00] I need to do, there's a few things I need to do already. I'm just remembering. Inside settings we will con. It. So here's our secrets and variables, actions, and we're gonna create
+
+okay, sorry. Got all the secret stuff taken care of here. So I've added my two keys here as repository keys. I don't know. I think, I feel like when I've done this in the past, I've done environment ones, but that was because I was actually using more like an environment variable. This is a new way for me doing with this, with GitHub pages.
+
+So definitely experimenting here, but we've got those in there. And I have about three minutes left. I think I will go ahead and push this into. GitHub and just see what happens. We are [00:19:00] modifying to GitHub pages. Converting,
+
+oh, hang on a sec.
+
+Makes sense. Makes it easy when you've added everything. Okay. And lemme just close those things here.
+
+Alright, so
+
+we can already see the HTMO files. Everything listed as now just came in.
+
+We can go in and watch our,
+
+these are just the diffs, but we can go into actions and there's my alarm. Okay, so we got a problem
+
+and. Okay. Not the problem I expected, but a problem. So I think I'm gonna pause right here and get to my other stuff and then come back and see if we can [00:20:00] sort this out. So thanks for watching up to now and we will come back later. Bye.
+
+PART 2
+
+[00:00:00] **Jason Hand:** Okay, we'll pick up where we left off here. All right, so
+
+I went ahead on my other machine and logged into GitHub and made a few changes to the project so that it is set up for being a GitHub page. And the only thing is because,
+
+because I'm coming with my own workflow file
+
+right here.
+
+I believe I need to just deploy from the branch, from the main branch, which is where that at. 
+
+Anyway, we've got it set up for deploying from the branch.
+
+I only have really just the main branches where I'm just pushing things. 'cause previously just markdown wasn't really anything important here. So I may have to reconsider which [00:01:00] what my branching strategy is. But for now it's just in main and nothing else is set up. I'm not using a custom domain.
+
+I think we're good. I've got my secrets.
+
+And D-D-A-P-I. Key DD app key matches the oops
+
+workflow language, DD API, key DD app Key.
+
+D-D-A-P-K-A-P-I, key DDF Key, everything looks correct as far as I can tell. This is where I'm not so sure because I did get an error when I tried to redeploy, and it was something similar to this step down here. So I'm gonna try to run it again and we'll get the air and then we'll probably feed that into [00:02:00] Claude and see what it thinks we should do.
+
+So here's the original build. Here. You can see similar, what I was talking about. I'm gonna go ahead and just rerun. Develop process knowing it is going to fail
+
+and gimme basically the same thing. But I'm gonna copy this and we're gonna go head back over into Claude.
+
+All right. We've pretty much done all that. Okay, and face this in and see what it thinks.
+
+This is what it means by vibe coding.
+
+So it looks like it is changing some files, changing the workflow file, [00:03:00] or it did change the workflow file. See what it said. I've updated the workflow file with filing changes, okay, from V three to 44. All right, this should fix my error.
+
+Maybe there was a problem with, oh no. This needs to be changed. Okay. Let's have it fix this part.
+
+Oops. I never know if I'm capturing anything. You wanna do that.
+
+All right, so let's set the record there that is not correct, so we'll just get this to fix itself, hopefully. Yep.
+
+Yep. I already fixed that.
+
+Okay. Finished? Yeah. Here's a summary. Updated GitHub actions to correct. Okay? Yep. Okay, so that means we take a look at the code.
+
+We [00:04:00] are changing.
+
+A number of things through out here
+
+and there. Okay, good. Fix the read me file. I forgot about that. Let's go ahead and just add that and add that
+
+and we cross our fingers.
+
+Pull this down. Quick refresh
+
+so far. Oh, why do we have two?
+
+Not sure what happened there, but look at that. Wow.
+
+And a little feedback form him at the bottom. Huh? Color me. Impressed. Look at that. Even hovering, click this, it goes to the
+
+alright, so this pretty impressed. We should probably,
+
+this is my impressed face. That was pretty good. Man. And this is being hosted on GitHub. Okay. But it's pretty in all, does it work as far as the form goes [00:05:00] though? So let's find out
+
+and.
+
+I didn't really. Oh yeah. Okay.
+
+He really was. Okay. See what happens. Submit feedback submitted development mode.
+
+Okay, let's go get Datadog. Bring it back over here.
+
+And go into our logs explorer,
+
+and
+
+what we think happened was that some logs were sent over.
+
+And I don't think I'm gonna be able to spot it that way, but so far I don't see anything. Doesn't mean it didn't work necessarily.
+
+Okay. What should we try now?
+
+I guess I, I would like to see what's happening on the console. Anything weird. Let's clear that out and try one more time.
+
+We will do that. Let's take a look at our console. [00:06:00] Nothing really weird happening in here. It seems as though it went
+
+however I.
+
+No indications of it here. All right, so we got no errors. I'm thinking.
+
+While I'm thinking, I wanna browse around here. I'm deployed. Do I have multiple
+
+flu files? No, just the one. Okay. We could just talk to Claude and say the app is. Deployed and accessible. It looks great. I'm always flattering. Yeah, just in case you never know. It looks great. However, I can't tell if the submission form is working. I'm not [00:07:00] seeing any logs. Reach Datadog.
+
+I am also not seeing anything in the console for logs or errors. How can I verify if data logs are being sent?
+
+What you got? Claude?
+
+So it seems to me it's gonna add some better logging so that when something, if something happening is happening, it's at least gonna be captured and displayed as a console log within the browser.
+
+I am wondering about seeing if we shouldn't just go ahead and instrument more Datadog stuff on here.
+
+But let's not get ahead of ourself. See what this [00:08:00] tells us.
+
+If something's just started showing up in Datadog, that would be amazing, but I'm not totally convinced anything was ever sent.
+
+We'll see what Claude can actualize for us.
+
+This means I don't have to deploy again. I should ask you what it thinks is the easiest way to.
+
+Just run it locally.
+
+Okay. Let's see what we got here. Problem identified browser. Yeah, I wondered about this. Prevent direct. A VI calls to Datadog. Okay.
+
+I guess this is good. This confirms, the problem is that we still need to have some sort of like script to make the API call, and because it's a static page on GitHub pages, they don't really allow for that. So what it's recommended you do or I do, is put a function or a [00:09:00] serverless thing somewhere that the app call, and then that thing actually is what makes the API call with my key and everything, and we could do it with netlify.
+
+Netlify is not a bad. Option because I've already got some stuff running in Netlify.
+
+It did add some better logging.
+
+Okay. So it just wants me to go for, in Netlify it looks like.
+
+Yeah. Okay. Let's then take a look at.
+
+What is it? Trying to, let's see what changes it has in there. Okay, so it's, it did actually update everything and then read me file. Okay. We'll just go ahead and accept all those changes.
+
+Just leave it like that.
+
+It is working, which is main benefit. Okay. Now assuming nothing different [00:10:00] here.
+
+Okay, so at least we got that. Now we got some feedback and in the console we even got some feedback.
+
+All right, so that's all good,
+
+but we still don't have a working site as far as sending anything over into Datadog. So 
+
+I am gonna go ahead and log into Netlify.
+
+Okay, so I'm in Netlify and I believe we will let's go back and read and see. Sign up new site from get.
+
+I just given dify some privileges here. That's my personal one, but where's the.
+
+This isn't the one I want to do.
+
+Where is the one about ai?
+
+All right. What I do need to get is [00:11:00] this.
+
+I just don't understand why.
+
+There's just more. I gotta go in here and
+
+enable.
+
+Yeah. Here we go. Okay, so that one, now we're getting somewhere.
+
+There we go. Okay. Build. We're gonna build off main, build command.
+
+Don't, no, I feel like I can.
+
+Leave all that alone and let's see what happens.
+
+Instructions say,
+
+oh, we know I might have missed something there.
+
+Let's see what happens though. It's building
+
+and it says it's published.
+
+Okay. And look at there
+
+and
+
+pretty straight. Alright, so this is fantastic. . Okay, so that's cool. But. What's going on down [00:12:00] here?
+
+Hold breath. There was a problem submitting your feedback. Please try again.
+
+Okay, so now we're getting some Oh yeah, of course. I don't, I have not provided my
+
+secrets.
+
+Where are secrets stored?
+
+Is this what I'm looking for?
+
+Okay. I guess you can do it like this. All right then. So let me grab
+
+. Okay. Let's go
+
+in here. Put you there. Get back into my keys.
+
+All right. I'm gonna move this over here for just a moment.
+
+And then grab This should be done with that now.
+
+Okay, so bringing this back over right now I've got the API key and the app key, both saved in here as environment [00:13:00] variables.
+
+. Let's see, what's the easiest way to redeploy?
+
+I could just make some changes to the code.
+
+See what that does. Let's do that. 'cause I'm curious if it will pick it up.
+
+So if I change something.
+
+Let's say here.
+
+All right.
+
+I'll just add something like the session. Ryan focused on something simple
+
+and then.
+
+Small change to redeploy.
+
+Okay, this can go up there.
+
+And here we got a new build happening.
+
+Play a game while you're waiting.
+
+Okay. Everything looks successful
+
+and
+
+there's our new website
+
+close. That one doesn't look any different. Three consoles empty,
+
+and if we go all the way to the [00:14:00] bottom.
+
+Hey, look at that. According to this, it actually went through and if we hop over into, in the Datadog, we got our feedback. Look at that.
+
+Use your feedback submission. Alright, so we have a working app.
+
+Thank you for your feedback. Okay. That was pretty much the goal was to get a working functional form set up. Using Datadog as the, service provider for the form. It's not, we don't have, there is no form in Datadog, but I'm just sending logs in and I'm gonna see if I can format those in a way that can do something with 'em.
+
+But yeah, at the end of the day, we successfully, I guess we can. [00:15:00] Talk about what happened there, but I
+
+used Claude Code to create this website, which is currently hosted on Netlify
+
+and I. The repo is in GitHub, and I originally set this up or was trying to set this up so that I could deploy it to a GitHub page to show everything, but it wasn't really working. And the reason is because of some limitations with GitHub pages, with cores CORS. Anyway, long story short talking to co talking to.
+
+Claude code here. It recommended we move to Netlify and we did that. So we pointed the repo, pointed a net. Netlify deployment to that repo. Made some changes, a few changes to the a [00:16:00] few different things, including adding secrets in. This is what it deployed, and created this pretty not bad looking website.
+
+With a page for every episode.
+
+And
+
+so last time we talked about radio a bit and I feel like maybe I, I didn't give. So yeah I'm pretty overall pleased with this and impressed with this, and.
+
+I love that it actually opens things in a new tab for me, which is exactly what the way I'd want to do it. So yeah, let's do it. Let's do one more form submission, some one from Ryan. I.
+
+He was using automatic 1111 last time.
+
+Also a true statement. Let's submit. Thank you for your feedback. And then over on our side and [00:17:00] Datadog. There we go. No, I should probably go in. There's the one from Ryan. I should probably go in and change a few things on some of these fields that are coming over. But that's definitely a V two thing. And I think for the purposes of. This little experiment we can conclude here and call it a win.
+
+And lemme know if you have any questions. Thanks.
+</pre>
+            </div>
         </div>
     </main>
     
