@@ -54,11 +54,15 @@
             </ul>
             
             <h2>Full Transcript</h2>
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
             <div class="transcript">
-<pre>
-PART 1
-
-[00:00:00] **Jason Hand:** Hey everyone. I have about a 30 minute window to work on something that I have been thinking about all morning, and I thought I would just hit record and see what we can do in that time. And let me explain to you what it is I'm thinking about. Ryan McClain and I recently have been doing episodes.
+                <pre>
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Jason Hand:</span> Hey everyone. I have about a 30 minute window to work on something that I have been thinking about all morning, and I thought I would just hit record and see what we can do in that time. And let me explain to you what it is I'm thinking about. Ryan McClain and I recently have been doing episodes.
 
 Where we or these little recordings where we go out and we talk about some different tools that we're interested in. And you can go into my, one of my repos on GitHub up here at the AI tools experiments and get a link straight to the recording where you can watch. You can watch that recording on YouTube.
 
@@ -471,7 +475,7 @@ He was using automatic 1111 last time.
 Also a true statement. Let's submit. Thank you for your feedback. And then over on our side and [00:17:00] Datadog. There we go. No, I should probably go in. There's the one from Ryan. I should probably go in and change a few things on some of these fields that are coming over. But that's definitely a V two thing. And I think for the purposes of. This little experiment we can conclude here and call it a win.
 
 And lemme know if you have any questions. Thanks.
-</pre>
+                </pre>
             </div>
         </div>
     </main>
