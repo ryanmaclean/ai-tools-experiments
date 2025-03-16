@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Using Cursor to Hunt and Remove Bugs in my Code</title>
+    <title>Using Cursor and Claude to Solve Record Search Bugs</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -18,7 +18,7 @@
         <a href="index.html" class="back-link">&larr; Back to Home</a>
         
         <div class="episode-content">
-            <h1>Using Cursor to Hunt and Remove Bugs in my Code</h1>
+            <h1>Using Cursor and Claude to Solve Record Search Bugs</h1>
             
             <p>In this episode, Jason revisits his "Vinyl Viewer" project, a web application for displaying his record collection that he created 10 months ago. He focuses on resolving a persistent bug where searching for records works correctly, but clicking on search results displays the wrong record details. Using Cursor with Claude Sonnet 3.7, Jason explains the issue in detail without suggesting a solution. Claude quickly identifies the root cause: the app creates a filtered data array during searches, but when users click on a record, it incorrectly references the original unfiltered data array. Claude implements a fix by modifying the code to reference the correct data source based on whether a search is active. After applying Claude's solution, Jason tests the application and confirms that the bug has been successfully resolved, allowing him to properly view details for all his records, including his Frank Zappa collection.</p>
             
@@ -203,7 +203,7 @@
                 <div class="nav-item">
                     <span class="nav-direction">Next Episode:</span>
                     <div class="recording-card">
-                        <h3>Fixing CSS problems using Cursor</h3>
+                        <h3>Using Cursor and Claude to Fix CSS Layout Issues</h3>
                         <div class="video-container">
                             <a href="https://www.youtube.com/watch?v=-yNJmVCR-nM" target="_blank">
                                 <img src="https://img.youtube.com/vi/-yNJmVCR-nM/maxresdefault.jpg" alt="Recording 8 Thumbnail">
