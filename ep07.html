@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode 7: ChatGPT Plugin AI Developer Series - AI Lab Experiments</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Lab Experiments & Related Tools</h1>
+            <p class="subtitle">Collection of AI related tools to investigate.</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+        
+        <div class="episode-content">
+            <h1>Episode Notes: ChatGPT Plugin AI Developer Series</h1>
+            
+            <h2>Episode Summary</h2>
+            <p>In this episode, Jason explores creating a plugin for ChatGPT using Python. He starts by reviewing OpenAI's documentation on plugin development, setting up a Python environment, and implementing a simple API using Flask. Jason walks through the creation of a manifest file that defines the plugin's capabilities and an OpenAPI specification that documents its endpoints. After implementing the necessary API endpoints, Jason tests the plugin with ChatGPT and demonstrates how it responds to queries about his resume. The plugin successfully provides information about Jason's work experience, education, and skills. Throughout the episode, Jason explains the key components of ChatGPT plugin development and how these plugins can extend ChatGPT's functionality by providing access to external data sources.</p>
+            
+            <h2>Video</h2>
+            <div class="video-container">
+                <a href="https://youtu.be/I-9Mve1PYYI?si=QyTMV_s2ysICxb8a" target="_blank">
+                    <img src="https://img.youtube.com/vi/I-9Mve1PYYI/maxresdefault.jpg" alt="ChatGPT Plugin Video Thumbnail">
+                </a>
+            </div>
+            
+            <h3>Video Chapter Markers</h3>
+            <p>Click on a timestamp to jump to that section of the video:</p>
+            <ul class="chapter-markers">
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=0" target="_blank">[00:00:00]</a> Introduction to the ChatGPT plugin development project</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=35" target="_blank">[00:00:35]</a> Overview of OpenAI documentation for plugin development</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=102" target="_blank">[00:01:42]</a> Reviewing OpenAI's plugin requirements and examples</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=198" target="_blank">[00:03:18]</a> Setting up a Python virtual environment</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=258" target="_blank">[00:04:18]</a> Installing Flask and other required packages</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=315" target="_blank">[00:05:15]</a> Creating the basic app structure and main.py file</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=389" target="_blank">[00:06:29]</a> Setting up CORS for the API</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=432" target="_blank">[00:07:12]</a> Creating the ai-plugin.json manifest file</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=517" target="_blank">[00:08:37]</a> Implementing the OpenAPI specification</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=624" target="_blank">[00:10:24]</a> Setting up the resume data endpoint</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=705" target="_blank">[00:11:45]</a> Testing the API endpoints locally</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=783" target="_blank">[00:13:03]</a> Installing the plugin in ChatGPT</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=849" target="_blank">[00:14:09]</a> Demonstrating the plugin with resume queries in ChatGPT</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=948" target="_blank">[00:15:48]</a> Asking about Jason's education using the plugin</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=987" target="_blank">[00:16:27]</a> Exploring Jason's work experience through the plugin</li>
+                <li><a href="https://youtu.be/I-9Mve1PYYI?t=1059" target="_blank">[00:17:39]</a> Final thoughts on ChatGPT plugin development</li>
+            </ul>
+            
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://platform.openai.com/docs/plugins/introduction" target="_blank">OpenAI Plugin Documentation</a></li>
+                <li><a href="https://flask.palletsprojects.com/" target="_blank">Flask Documentation</a></li>
+                <li><a href="https://github.com/jasonhand/gpt_resume_plugin" target="_blank">Project GitHub Repository</a></li>
+            </ul>
+            
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>ChatGPT plugins allow developers to extend ChatGPT's capabilities by connecting it to external data sources</li>
+                <li>A basic plugin requires a manifest file (ai-plugin.json) and an OpenAPI specification</li>
+                <li>The OpenAPI specification defines endpoints that ChatGPT can call to access your custom functionality</li>
+                <li>CORS configuration is crucial to ensure ChatGPT can access your plugin's API</li>
+                <li>Developing a plugin is relatively straightforward with frameworks like Flask</li>
+                <li>Plugins can provide ChatGPT with access to personal or specialized information that isn't in its training data</li>
+            </ul>
+            
+            <h2>Full Transcript</h2>
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
+            <div class="transcript">
+                <pre>
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Jason:</span> Hi. So I'm gonna do a little series on building plugins for chat GPT. I've been a little bit quiet lately since they introduced plugins. You probably haven't seen me doing any work around them, but I thought it'd be fun to go ahead and start exploring them. And so I thought we might start off just by going directly to the OpenAI site, and I'll just go to the guidance that they offer directly.
+
+<span class="transcript-timestamp">[00:00:30]</span> <span class="transcript-speaker">Jason:</span> So I'm going to go to the OpenAI documentation at platform.openai.com/docs. And then I'll look at plugins. And from here, I'm going to go to introduction. That's just the standard way that you can get to the plugins documentation. So plugin introduction is what we're looking at. Plugins are tools that extend chat GPT's capabilities by enabling it to interact with third party applications.
+
+<span class="transcript-timestamp">[00:01:00]</span> <span class="transcript-speaker">Jason:</span> These plugins enable ChatGPT to execute code, call external APIs, and access specific databases that we select. The whole idea of these is that you can give ChatGPT access to data that may not exists in the archives that it's been trained on or something along those lines. And as I go down here, I can see the OpenAI plugins overview.
+
+<span class="transcript-timestamp">[00:01:30]</span> <span class="transcript-speaker">Jason:</span> And then if we scroll down a little bit, we can see that we've got some requirements, and it looks like primarily we want to create a manifest file, we want an OpenAPI specification and then we need to do authentication if required. So as I understand it, the manifest file is a JSON file that defines what the plugin is going to do. The OpenAPI specification explains to OpenAI what API calls it's allowed to make against the API we're gonna provide.
+
+<span class="transcript-timestamp">[00:02:00]</span> <span class="transcript-speaker">Jason:</span> And then if our API requires authentication, we need to document how to handle that as well. There's a couple of different options, OAuth or service level authentication. Okay, so below that there's examples for how to create a simple plugin and then of course as I scroll down there's more and more information. So let's take a look at how to build a plugin. Let's jump right into that. Okay, so this gets a little bit more detailed.
+
+<span class="transcript-timestamp">[00:02:30]</span> <span class="transcript-speaker">Jason:</span> It looks like we need to create a couple of endpoints. The primary one being AI-plugin.json, then an OPENAPI.yaml, and it looks like our plugin needs to be secured with CORS, that is cross-origin resource sharing. Now, I'm going to use Python as my development tool or development language of choice for this. I'm reasonably comfortable with it. It's been a long time since I wrote, I code at all.
+
+<span class="transcript-timestamp">[00:03:00]</span> <span class="transcript-speaker">Jason:</span> I've been writing architectural diagrams in PowerPoint for a very long time. But I'm going to build this in Python. So let's go ahead and grab some of this information that we need. And let's go ahead and get started. Here we go. So let's just take a look at it. We're going to create a plugin for ChatGPT to be able to access information about me and my resume.
+
+<span class="transcript-timestamp">[00:03:30]</span> <span class="transcript-speaker">Jason:</span> Okay, so I'm going to first create a folder. Let's pick something easy. How about GPT_Resume_Plugin? And I'm going to and into that directory. And the first thing I usually like to do when I'm starting a Python application is to set up a virtual environment. Python3 -m venv .venv, that creates a virtual environment in a folder called .venv.
+
+<span class="transcript-timestamp">[00:04:00]</span> <span class="transcript-speaker">Jason:</span> The next thing after we do that is we need to start the virtual environment. So in this case, I'm running on Windows via source .venv/scripts/activate. And then the first thing I need to do is make sure I have the latest version of pip, Python -m pip install --upgrade pip. So let's install the Python packages that we're going to need.
+
+<span class="transcript-timestamp">[00:04:30]</span> <span class="transcript-speaker">Jason:</span> First one is going to be Flask. And I'll do a pip install flask. We'll use Flask as a web server just to keep things simple. And then I'm going to add in the flask-cors package, which is a little Flask extension module to handle cross-origin resource sharing. Once we've got those, we should be good to go.
+
+<span class="transcript-timestamp">[00:05:00]</span> <span class="transcript-speaker">Jason:</span> OK, so I've got a system right now with Flask and I've got Flask-CORS installed. Now I'm going to need to create a Python file for the application, so I'll create a file called main.py. And in main.py, I'm going to write code that will do a couple of things.
+
+<span class="transcript-timestamp">[00:05:30]</span> <span class="transcript-speaker">Jason:</span> First, I'm going to set up a server using Flask. I'm going to establish the routes for the URLs that the application is going to access, and then I'm going to create handlers for each of those routes. So let's start with our imports. From flask import flask with a capital F. We'll also import render_template request and jsonify. And we'll want to import from flask_cors.
+
+<span class="transcript-timestamp">[00:06:00]</span> <span class="transcript-speaker">Jason:</span> What do we want to import? We want to import CORS, and we'll also import some json. So import json. Okay, now let's create an instance of Flask. app = Flask(__name__) and I think I actually need to add some additional static folders here. Let's do static_url_path=" ", static_folder="static", and that should give me what I need to deliver static files.
+
+<span class="transcript-timestamp">[00:06:30]</span> <span class="transcript-speaker">Jason:</span> And now let's set up CORS permissions. And this is going to be CORS(app), which is going to just basically establish cross-origin resource sharing for the application. And let's add a couple of routes. I think the routes that we need are going to be the routes for the AI plugin JSON file, and we need a route for the YAML file.
+
+<span class="transcript-timestamp">[00:07:00]</span> <span class="transcript-speaker">Jason:</span> So OPENAPI.yaml, and then we'll need to create some sort of route to access the actual resume data. All right, let's first define the route for our ai-plugin.json. So @app.route("/.well-known/ai-plugin.json"). And then we'll write a function that will handle that.
+
+<span class="transcript-timestamp">[00:07:30]</span> <span class="transcript-speaker">Jason:</span> And that's going to be def serve_manifest(). And this function is going to return jsonify, which is going to return a dictionary with a bunch of values. Here, I'm going to grab those values from the example plugin that we were looking at. So first we need a schema_version. And I'm going to actually copy this over because otherwise this would be a very tedious video to watch.
+
+<span class="transcript-timestamp">[00:08:00]</span> <span class="transcript-speaker">Jason:</span> All right, and this is all of the values that we need for that manifest. So what we've done is we're creating a JSON structure, and we're going to return it via the jsonify function whenever we hit that route of .well-known/ai-plugin.json. Okay, so the next route we need is for the openapi.yaml.
+
+<span class="transcript-timestamp">[00:08:30]</span> <span class="transcript-speaker">Jason:</span> So let's go ahead and do a @app.route("/openapi.yaml"). And we need a def. Let's call this one serve_openapi. And then let's go ahead and serve up the YAML file, so return, and we'll do something a little bit different here. We're going to actually read this file from disk. We could craft it the way we did for the JSON, but I think in this case, we'll just read it from a file.
+
+<span class="transcript-timestamp">[00:09:00]</span> <span class="transcript-speaker">Jason:</span> So with open("openapi.yaml", "r") as f: openapi = f.read(). And then we'll return(openapi, 200, {"Content-Type": "text/yaml"}). Okay, so now we need to write a function that creates the actual API endpoint for our API, and it's going to be for the resume.
+
+<span class="transcript-timestamp">[00:09:30]</span> <span class="transcript-speaker">Jason:</span> So we're going to do a @app.route("/resume") and for this we're doing to do def resume. And then let's define a resume for Jason. resume_data = {"name": "Jason Hand", "title": "Developer Advocate" and so on, what a resume would normally have. Let's put some skills in there.
+
+<span class="transcript-timestamp">[00:10:00]</span> <span class="transcript-speaker">Jason:</span> Some education. And we can put in some work history. Microsoft, Google, VictorOps, Rundeck, and Rally. Okay. So let's actually save this file.
+
+<span class="transcript-timestamp">[00:10:30]</span> <span class="transcript-speaker">Jason:</span> But we're not done yet. We still need to actually return that data from the function. return jsonify(resume_data). And let's add a bit of debugging at the end. So if __name__ == "__main__": app.run(debug=True, host="0.0.0.0", port=5003). That's the basic shape of our app, but we're still missing the OpenAPI YAML file that we're trying to serve here.
+
+<span class="transcript-timestamp">[00:11:00]</span> <span class="transcript-speaker">Jason:</span> So let's create that. It's a YAML file, and I'll just call it openapi.yaml. This is defining all the features that are going to be available from our API. The operationId is basically giving a name to this function that the OpenAI back end can refer to. So in this case, we'll call it get_resume. So that's the operator ID.
+
+<span class="transcript-timestamp">[00:11:30]</span> <span class="transcript-speaker">Jason:</span> And then there's a description. Get resume information for Jason Hand, and we're going to say that there's one possible response, and if successful, it returns a 200. Okay, so I think that's all we need to get started. So let's save this file. So now we have two files. We have main.py and openapi.yaml. Let's start our app to make sure it runs. python main.py.
+
+<span class="transcript-timestamp">[00:12:00]</span> <span class="transcript-speaker">Jason:</span> And it looks like it's started up. Let's just make sure we can access the resume to make sure that our app is. serving data correctly. So let's try http://localhost:5003/resume. Very good. And there's our resume in a JSON format.
+
+<span class="transcript-timestamp">[00:12:30]</span> <span class="transcript-speaker">Jason:</span> And let's also check that we can get to the manifest file, which is at localhost:5003/.well-known/ai-plugin.json. And there we can see that we've got this ChatGPT plugin manifest. So ChatGPT can access this. And let's look at the schema, the OpenAPI schema, which should be at /openapi.yaml.
+
+<span class="transcript-timestamp">[00:13:00]</span> <span class="transcript-speaker">Jason:</span> And that's good as well. So now I have a server up and running. Now, what am I going to do with it? Well, what I want to do is the same thing I try to do with all of these plugins. I want to get it up and running in chat GPT, and I want to try to talk to it for a bit.
+
+<span class="transcript-timestamp">[00:13:30]</span> <span class="transcript-speaker">Jason:</span> But right now, my app is just running locally. How do I get this running online? Well, for that, I use a tool that I use a lot actually, which is called ngrok. It creates a tunnel from a publicly available domain through to my local machine. And I'll just run ngrok HTTP 5003. This is going to take the local server I have on port 5003 and expose it to a public URL on HTTPS.
+
+<span class="transcript-timestamp">[00:14:00]</span> <span class="transcript-speaker">Jason:</span> And I'm going to grab this URL right here, and I'm going to paste it into chat GPT. And I'm going to use that to register the plugin. So I'll open up chat GPT, new chat, and I want to use plugins. Let me click on the plugin store. We're going to go down to develop your own plugin.
+
+<span class="transcript-timestamp">[00:14:30]</span> <span class="transcript-speaker">Jason:</span> And we're going to give it the URL that ngrok provided for us. That's https://3d47-24-19-162-141.ngrok-free.app, and we get a successful response back from the manifest. So let's install the plugin. The authentication option is none, which is correct.
+
+<span class="transcript-timestamp">[00:15:00]</span> <span class="transcript-speaker">Jason:</span> And chat GPT has successfully installed the plugin. And now we should be able to have a conversation with chat GPT that uses this plugin. So let me think of a question to ask. The obvious one might be, what do you know about Jason hand? And right away we can see that we got a response back.
+
+<span class="transcript-timestamp">[00:15:30]</span> <span class="transcript-speaker">Jason:</span> Let's see. Introducing Jason Hand, a Developer Advocate with a robust background in technology and DevOps. Jason has honed his skills in several areas, including public speaking, developer relations, incident response management, technical writing, and DevOps practices. His career trajectory includes notable positions at industry-leading companies. So chat GPT was able to use our plugin to look up data about Jason.
+
+<span class="transcript-timestamp">[00:16:00]</span> <span class="transcript-speaker">Jason:</span> Let's try another query. Where did Jason go to school? And I believe I did put education data in there.
+
+<span class="transcript-timestamp">[00:16:30]</span> <span class="transcript-speaker">Jason:</span> So I see Jason attended the University of Colorado, where he earned a Bachelor of Communications degree, that is correct. Again, this information is coming from my plugin. And let's try another one. Where did Jason work? Oh, let's be a little more specific. Tell me about Jason's work experience.
+
+<span class="transcript-timestamp">[00:17:00]</span> <span class="transcript-speaker">Jason:</span> OK, and now the answer comes back. Jason Hand has a diverse work experience at several notable tech companies. He worked at Microsoft, Google, VictorOps Splunk, Rundeck, PagerDuty, and Rally Software Development. That's pretty good. All true.
+
+<span class="transcript-timestamp">[00:17:30]</span> <span class="transcript-speaker">Jason:</span> So there's a lot that you can do with this. I just created a simple plugin here based on the OpenAI docs for reading data from a custom API. In a future video, I hope to show you some more interesting plugins and take a look at some of the features that plugins can bring to chat GPT. Thanks for watching.
+                </pre>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Episode Navigation -->
+    <div class="episode-navigation">
+        <div class="container">
+            <h2>Episode Navigation</h2>
+            <div class="episode-nav-links">
+                <div class="nav-item">
+                    <span class="nav-direction">Previous Episode:</span>
+                    <div class="recording-card">
+                        <h3>Cursor Bug Hunting with Claude</h3>
+                        <div class="video-container">
+                            <a href="https://youtu.be/9V5QlhpqBbw?si=E7tBB19YbDi8LHB1" target="_blank">
+                                <img src="https://img.youtube.com/vi/9V5QlhpqBbw/maxresdefault.jpg" alt="Recording 6 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep06.html" class="btn">View Notes</a>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-direction">Next Episode:</span>
+                    <div class="recording-card">
+                        <h3>Coming Soon</h3>
+                        <div class="video-container">
+                            <img src="https://placehold.co/600x400?text=Coming+Soon" alt="Future Episode Thumbnail">
+                        </div>
+                        <a href="index.html" class="btn">Back to Home</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI Lab Experiments. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
