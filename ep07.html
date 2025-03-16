@@ -20,17 +20,15 @@
         <div class="episode-content">
             <h1>Using Cursor to Hunt and Remove Bugs in my Code</h1>
             
-            <h2>Episode Summary</h2>
-            <p>In this episode, Jason revisits the Vinyl Viewer project from a previous video where he used Cursor to fix a search functionality bug. He reminds viewers that the Vinyl Viewer is a weekend project he created to display his record collection, which had a longstanding issue where clicking on search results would display incorrect record details. After successfully fixing the bug with Cursor in the previous video, Jason decides to take on another bug hunting challenge with Cursor. This time, he examines his "Ignite Karaoke" project, a web app that displays random images for users to improvise narratives around. Jason identifies a layout issue where images display with too much space at the top of the screen and successfully uses Cursor to fix the CSS positioning problem by adjusting the margin and z-index settings, demonstrating again how AI tools can efficiently solve coding problems.</p>
+            <p>In this episode, Jason revisits his "Vinyl Viewer" project, a web application for displaying his record collection that he created 10 months ago. He focuses on resolving a persistent bug where searching for records works correctly, but clicking on search results displays the wrong record details. Using Cursor with Claude Sonnet 3.7, Jason explains the issue in detail without suggesting a solution. Claude quickly identifies the root cause: the app creates a filtered data array during searches, but when users click on a record, it incorrectly references the original unfiltered data array. Claude implements a fix by modifying the code to reference the correct data source based on whether a search is active. After applying Claude's solution, Jason tests the application and confirms that the bug has been successfully resolved, allowing him to properly view details for all his records, including his Frank Zappa collection.</p>
             
-            <h2>Video</h2>
             <div class="video-container">
                 <a href="https://www.youtube.com/watch?v=9V5QlhpqBbw" target="_blank">
-                    <img src="https://img.youtube.com/vi/9V5QlhpqBbw/maxresdefault.jpg" alt="ChatGPT Plugin AI Developer Series Thumbnail">
+                    <img src="https://img.youtube.com/vi/9V5QlhpqBbw/maxresdefault.jpg" alt="ChatGPT Plugin AI Developer Series Video Thumbnail">
                 </a>
             </div>
             
-            <h3>Video Chapter Markers</h3>
+            <h2>Chapter Markers</h2>
             <p>Click on a timestamp to jump to that section of the video:</p>
             <ul class="chapter-markers">
                 <li><a href="https://youtu.be/9V5QlhpqBbw?t=0" target="_blank">[00:00:00]</a> Introduction and reference to previous Vinyl Viewer fix</li>
