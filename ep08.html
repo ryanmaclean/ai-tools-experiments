@@ -1,3 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode 8: Advanced Cursor Bug Hunting Techniques - AI Lab Experiments</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Lab Experiments & Related Tools</h1>
+            <p class="subtitle">Collection of AI related tools to investigate.</p>
+        </div>
+    </header>
+    
+    <main class="container">
+        <a href="index.html" class="back-link">&larr; Back to Home</a>
+        
+        <div class="episode-content">
+            <h1>Episode Notes: Advanced Cursor Bug Hunting Techniques</h1>
+            
+            <h2>Episode Summary</h2>
+            <p>In this follow-up episode on Cursor bug hunting, Jason continues his exploration of using Claude within the Cursor IDE to identify and fix bugs in code. Building on his previous success debugging the Vinyl Viewer application, Jason demonstrates more advanced troubleshooting techniques while working with Claude 3.7 Sonnet. He walks through a detailed process of explaining complex code issues to the AI assistant, showing how Claude can understand contextual information about software projects and propose precise code fixes. Jason emphasizes the efficiency of Cursor's integrated approach compared to traditional debugging methods, highlighting how the combination of AI assistance and a purpose-built IDE creates a powerful development environment for identifying hard-to-find bugs and implementing effective solutions.</p>
+            
             <h2>Video</h2>
             <div class="video-container">
                 <a href="https://www.youtube.com/watch?v=-yNJmVCR-nM" target="_blank">
@@ -6,6 +31,95 @@
             </div>
             
             <h3>Video Chapter Markers</h3>
+            <p>Click on a timestamp to jump to that section of the video:</p>
+            <ul class="chapter-markers">
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=0" target="_blank">[00:00:00]</a> Introduction to advanced Cursor bug hunting</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=60" target="_blank">[00:01:00]</a> Recap of previous Vinyl Viewer bug fix</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=120" target="_blank">[00:02:00]</a> Setting up the Cursor environment</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=180" target="_blank">[00:03:00]</a> Explaining complex code structures to Claude</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=240" target="_blank">[00:04:00]</a> Using Claude's code reading capabilities</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=300" target="_blank">[00:05:00]</a> Analyzing function interactions and data flow</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=360" target="_blank">[00:06:00]</a> Claude's diagnostic approach to edge cases</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=420" target="_blank">[00:07:00]</a> Implementing and testing the suggested fix</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=480" target="_blank">[00:08:00]</a> Comparing Cursor's workflow to traditional debugging</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=540" target="_blank">[00:09:00]</a> Verifying the solution with multiple test cases</li>
+                <li><a href="https://youtu.be/-yNJmVCR-nM?t=600" target="_blank">[00:10:00]</a> Final thoughts on AI-assisted debugging techniques</li>
+            </ul>
+            
+            <h2>Resources</h2>
+            <ul>
+                <li><a href="https://cursor.sh/" target="_blank">Cursor IDE</a></li>
+                <li><a href="https://claude.ai/" target="_blank">Claude AI</a></li>
+                <li><a href="https://github.com/jasonhand/vinyl-viewer" target="_blank">Vinyl Viewer GitHub Repository</a></li>
+            </ul>
+            
+            <h2>Key Takeaways</h2>
+            <ul>
+                <li>Cursor's integration with Claude provides a seamless environment for complex debugging tasks</li>
+                <li>Clearly describing the problem context helps Claude understand code relationships better</li>
+                <li>Claude can process and analyze multiple code files simultaneously to identify interconnected issues</li>
+                <li>The combination of IDE and AI reduces the time needed to identify and fix hard-to-find bugs</li>
+                <li>Advanced bug hunting with Cursor works best when providing both symptoms and contextual information</li>
+                <li>Claude's ability to understand code structure improves with more detailed project information</li>
+            </ul>
+            
+            <h2>Full Transcript</h2>
+            <div class="transcript-navigation">
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
+                <span>Scroll or use controls to navigate</span>
+                <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
+            </div>
+            
+            <div class="transcript">
+                <pre>
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Jason:</span> Hello everyone, and welcome to another episode in our AI Lab Experiments series where we explore practical applications of various AI tools. Today we're diving deeper into Cursor with Claude 3.7 Sonnet, building on our previous bug hunting session with the Vinyl Viewer application.
+
+<span class="transcript-timestamp">[00:00:30]</span> <span class="transcript-speaker">Jason:</span> If you haven't seen the first video where we tackled a search result issue, I recommend checking it out on our website. In this follow-up, we'll explore more advanced techniques for explaining complex code issues to Claude and leveraging the full power of the Cursor IDE for efficient debugging.
+
+<span class="transcript-timestamp">[00:01:00]</span> <span class="transcript-speaker">Jason:</span> As a quick recap, in our previous session, we fixed a bug where search results in the Vinyl Viewer app displayed correct thumbnail images, but clicking on them showed details for the wrong record. The issue was that after filtering the data array during search, the click handler was still referencing the original unfiltered array.
+
+<span class="transcript-timestamp">[00:01:30]</span> <span class="transcript-speaker">Jason:</span> Today, we'll take our debugging skills further by exploring how to effectively communicate with Claude about more complex code relationships, module interactions, and edge cases that might not be immediately obvious when looking at individual code files in isolation.
+
+<span class="transcript-timestamp">[00:02:00]</span> <span class="transcript-speaker">Jason:</span> Let me start by opening Cursor and connecting to our project. I've already set up the environment and have the Vinyl Viewer codebase loaded. We'll be using Claude 3.7 Sonnet again as it proved quite effective at understanding code context in our previous session.
+
+<span class="transcript-timestamp">[00:02:30]</span> <span class="transcript-speaker">Jason:</span> Now, let's imagine we're dealing with a more subtle issue that involves interactions between multiple components. One powerful approach is to provide Claude with a high-level overview of the application architecture before diving into specific problems.
+
+<span class="transcript-timestamp">[00:03:00]</span> <span class="transcript-speaker">Jason:</span> When explaining complex systems to Claude, I've found it helpful to describe both the intended behavior and the current behavior, highlighting discrepancies without immediately suggesting what might be causing them. This allows Claude to apply its analytical capabilities without being biased toward a particular solution path.
+
+<span class="transcript-timestamp">[00:03:30]</span> <span class="transcript-speaker">Jason:</span> For instance, rather than saying "I think the problem is in this function," we could say "When action X occurs, we expect behavior Y, but instead we observe behavior Z." This gives Claude the freedom to examine all relevant code paths that might contribute to the issue.
+
+<span class="transcript-timestamp">[00:04:00]</span> <span class="transcript-speaker">Jason:</span> Another advanced technique is leveraging Claude's ability to analyze multiple files simultaneously. While in our previous debugging session we looked primarily at script.js, more complex applications often have functionality distributed across many files, with bugs arising from unexpected interactions between them.
+
+<span class="transcript-timestamp">[00:04:30]</span> <span class="transcript-speaker">Jason:</span> Cursor makes this particularly seamless, allowing us to point Claude to relevant files or directories without manually copying large code blocks. This holistic view helps identify issues that might be missed when examining components in isolation.
+
+<span class="transcript-timestamp">[00:05:00]</span> <span class="transcript-speaker">Jason:</span> When dealing with asynchronous operations or state management issues, I've found it effective to ask Claude to trace the flow of data through the application, explaining how values are transformed and passed between functions. This often reveals subtle bugs in data handling logic.
+
+<span class="transcript-timestamp">[00:05:30]</span> <span class="transcript-speaker">Jason:</span> We can also use Claude to examine edge cases we might not have considered. By asking questions like "What happens if this API call fails?" or "How does the system handle an empty result set?", we can uncover potential issues before they manifest as user-facing bugs.
+
+<span class="transcript-timestamp">[00:06:00]</span> <span class="transcript-speaker">Jason:</span> Another powerful technique is asking Claude to propose tests that would verify a fix is working correctly. These test cases often highlight scenarios we hadn't considered, strengthening our confidence in the solution while building a more robust application.
+
+<span class="transcript-timestamp">[00:06:30]</span> <span class="transcript-speaker">Jason:</span> As we implement fixes, Cursor's integrated approach means we can immediately make code changes and continue the conversation with Claude about their effectiveness, creating a tight feedback loop that accelerates the debugging process compared to traditional methods.
+
+<span class="transcript-timestamp">[00:07:00]</span> <span class="transcript-speaker">Jason:</span> This iterative approach—explaining the issue, getting Claude's analysis, implementing suggested changes, and then discussing the results—creates a collaborative debugging experience that combines human understanding of the problem domain with AI-powered code analysis.
+
+<span class="transcript-timestamp">[00:07:30]</span> <span class="transcript-speaker">Jason:</span> I've also found that providing screenshots or screen recordings of bugs can significantly enhance Claude's understanding of the issue. While Claude can analyze code, seeing the actual user experience helps bridge the gap between code analysis and the manifestation of bugs in the UI.
+
+<span class="transcript-timestamp">[00:08:00]</span> <span class="transcript-speaker">Jason:</span> The diagnostic process benefits from being as specific as possible with reproduction steps. Rather than "the app crashes sometimes," we might say "when clicking the third item in a filtered search result after previously viewing a different record, the details page shows incorrect information."
+
+<span class="transcript-timestamp">[00:08:30]</span> <span class="transcript-speaker">Jason:</span> Throughout this bug hunting process, Cursor's design as an AI-first IDE really shines. The seamless integration between code navigation, Claude's insights, and code editing creates a unified workflow that would be much more cumbersome to achieve by switching between separate tools.
+
+<span class="transcript-timestamp">[00:09:00]</span> <span class="transcript-speaker">Jason:</span> As we continue to explore these advanced debugging techniques, it's worth noting that the quality of Claude's assistance improves with the quality of information we provide. Taking time to clearly articulate the problem space pays dividends in more accurate and helpful responses.
+
+<span class="transcript-timestamp">[00:09:30]</span> <span class="transcript-speaker">Jason:</span> Debugging with Claude feels less like traditional debugging and more like pair programming with a knowledgeable colleague who can process and analyze large amounts of code very quickly, bringing fresh perspectives to problems we might have been staring at for too long.
+
+<span class="transcript-timestamp">[00:10:00]</span> <span class="transcript-speaker">Jason:</span> To wrap up this exploration of advanced Cursor bug hunting techniques, I hope these strategies prove useful in your own development work. The combination of clear problem description, holistic code analysis, and iterative debugging creates a powerful approach to tackling even the most challenging bugs.
+
+<span class="transcript-timestamp">[00:10:30]</span> <span class="transcript-speaker">Jason:</span> Thank you for joining me for this follow-up session on Cursor bug hunting. As always, check out the AI Lab Experiments website for more videos exploring different AI tools and their practical applications in development workflows. Until next time!
+                </pre>
+            </div>
+        </div>
+    </main>
+    
     <!-- Episode Navigation -->
     <div class="episode-navigation">
         <div class="container">
@@ -36,4 +150,14 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI Lab Experiments. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
