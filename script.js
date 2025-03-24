@@ -1,6 +1,75 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('datadog-form');
     
+    // Make transcript timestamps clickable
+    const makeTimestampsClickable = function() {
+        // Get YouTube video ID from meta property or chapter markers
+        let videoId = '';
+        const chapterMarkers = document.querySelector('.chapter-markers');
+        if (chapterMarkers) {
+            const firstChapterLink = chapterMarkers.querySelector('a');
+            if (firstChapterLink) {
+                const href = firstChapterLink.getAttribute('href');
+                if (href.includes('youtu.be/')) {
+                    videoId = href.split('youtu.be/')[1].split('?')[0];
+                } else if (href.includes('youtube.com/watch?v=')) {
+                    videoId = href.split('v=')[1].split('&')[0];
+                }
+            }
+        }
+        
+        if (!videoId) {
+            const videoContainer = document.querySelector('.video-container a');
+            if (videoContainer) {
+                const href = videoContainer.getAttribute('href');
+                if (href.includes('youtu.be/')) {
+                    videoId = href.split('youtu.be/')[1].split('?')[0];
+                } else if (href.includes('youtube.com/watch?v=')) {
+                    videoId = href.split('v=')[1].split('&')[0];
+                }
+            }
+        }
+        
+        if (!videoId) return;
+        
+        // Find all transcript timestamps
+        const timestampElements = document.querySelectorAll('.transcript-timestamp');
+        
+        timestampElements.forEach(function(element) {
+            const timestamp = element.textContent;
+            // Extract time in [HH:MM:SS] format
+            const timeMatch = timestamp.match(/\[(\d{2}):(\d{2}):(\d{2})\]/);
+            
+            if (timeMatch) {
+                // Convert to seconds for YouTube t parameter
+                const hours = parseInt(timeMatch[1], 10);
+                const minutes = parseInt(timeMatch[2], 10);
+                const seconds = parseInt(timeMatch[3], 10);
+                const totalSeconds = hours * 3600 + minutes * 60 + seconds;
+                
+                // Create a wrapper link element
+                const link = document.createElement('a');
+                link.href = `https://youtu.be/${videoId}?t=${totalSeconds}`;
+                link.target = '_blank';
+                link.classList.add('timestamp-link');
+                link.title = 'Click to watch this part of the video';
+                
+                // Add styling to show it's clickable
+                element.style.cursor = 'pointer';
+                element.style.color = '#0066cc';
+                element.style.textDecoration = 'underline';
+                
+                // Replace the timestamp element with the link element
+                const parent = element.parentNode;
+                parent.insertBefore(link, element);
+                link.appendChild(element);
+            }
+        });
+    };
+    
+    // Run the timestamp conversion function
+    makeTimestampsClickable();
+    
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();

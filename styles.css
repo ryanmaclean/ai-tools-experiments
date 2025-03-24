@@ -276,6 +276,16 @@ footer {
     margin-right: 0.5rem;
 }
 
+.timestamp-link {
+    text-decoration: none;
+}
+
+.timestamp-link:hover .transcript-timestamp {
+    color: #0066cc;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .transcript-speaker {
     font-weight: bold;
     color: var(--primary-color);
