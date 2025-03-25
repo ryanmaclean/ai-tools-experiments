@@ -1,1 +1,0 @@
-// Datadog RUM is now loaded via script tags in the HTML instead of this module
