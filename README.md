@@ -3,3 +3,28 @@
 [Use this link if the Bit.ly link doesn't work](https://ai-experiments-lab.netlify.app/)
 
 ![image](https://github.com/user-attachments/assets/9e985980-4722-48d7-9cca-9caf4d3948d3)
+
+# What is This? 
+
+~30-40 minute recorded technical demonstrations of hands-on (early or first) experiences with AI-related tooling for developers.
+
+# Why do This?
+
+Helping the team and beyond to navigate the AI era by leading discussions, demos, and observations that are grounded in curiosity and honest experiences that can be shared in order to remain leaders, not laggers, through this transition.
+
+# Why Now?
+
+What it means to be a developer is is changing rapidly. Therefore, what it means to be a developer advocate is changing rapidly.
+
+# Goals
+
+1. To educate ourselves and form opinions on new (AI-related) technologies, tools, and processes in order to better understand today’s challenges, solutions, and current thinking in order to be a better advocate for the modern developer
+
+2. Establish and maintain leadership within AI-related subjects
+
+3. Educate team about new technology and approaches in our space
+
+4. Collaboration with teammates
+
+5. Build credibility and reputation of Datadog as leaders in engineering excellence and thought leadership
+
