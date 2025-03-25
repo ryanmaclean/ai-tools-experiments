@@ -1,238 +1,247 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="icon" href="https://raw.githubusercontent.com/DataDog/documentation/master/static/images/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools Lab</title>
-    <link rel="stylesheet" href="styles.css">
-    <script
-        src="https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js"
-        type="text/javascript">
-    </script>
-    <script>
-        window.DD_RUM && window.DD_RUM.init({
-          clientToken: 'pub1ef411c82203fccee1b3d7b58d064f1d',
-          applicationId: 'cea3fe47-039f-47fb-91b3-57389419c2c9',
-          // `site` refers to the Datadog site parameter of your organization
-          // see https://docs.datadoghq.com/getting_started/site/
-          site: 'datadoghq.com',
-          service: 'ai-labs',
-          env: 'production',
-          // Specify a version number to identify the deployed version of your application in Datadog
-          // version: '1.0.0',
-          sessionSampleRate: 100,
-          sessionReplaySampleRate: 20,
-          defaultPrivacyLevel: 'mask-user-input',
-        });
-    </script>
-</head>
-<body>
-    <header>
-        <div class="container">
-            <h1>AI Tools Lab</h1>
-        </div>
-    </header>
-    
-    <main class="container">
-        <section id="recordings">
-            <div class="container">
-                <div class="recording-grid">
-                    <div class="recording-card">
-                        <h3>Exploring Gradio: Building Quick Web Interfaces for Machine Learning Models</h3>
-                        <div class="video-container">
-                            <a href="https://www.youtube.com/watch?v=hESEOJRZ-wc" target="_blank">
-                                <img src="https://img.youtube.com/vi/hESEOJRZ-wc/maxresdefault.jpg" alt="Recording 1 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep01.html" class="btn">View Notes</a>
-                    </div>
-                    <div class="recording-card">
-                        <h3>Exploring Warp Terminal and Cursor for Productivity</h3>
-                        <div class="video-container">
-                            <a href="https://www.youtube.com/watch?v=QYTe2BBhN1c" target="_blank">
-                                <img src="https://img.youtube.com/vi/QYTe2BBhN1c/maxresdefault.jpg" alt="Recording 2 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep02.html" class="btn">View Notes</a>
-                    </div>
-                    <div class="recording-card">
-                        <h3>Hands-On with Automatic1111: A Practical Guide to Local Text-to-Image Generation</h3>
-                        <div class="video-container">
-                            <a href="https://www.youtube.com/watch?v=l2H0HADOa5o" target="_blank">
-                                <img src="https://img.youtube.com/vi/l2H0HADOa5o/maxresdefault.jpg" alt="Recording 3 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep03.html" class="btn">View Notes</a>
-                    </div>
-                    <div class="recording-card">
-                        <h3>Claude Code in Action: Building a Secure Feedback Form with Datadog Logs</h3>
-                        <div class="video-container">
-                            <a href="https://youtu.be/ciLO96MDFbE" target="_blank">
-                                <img src="https://img.youtube.com/vi/ciLO96MDFbE/maxresdefault.jpg" alt="Recording 4 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep04.html" class="btn">View Notes</a>
-                    </div>
-                    <!-- New Episodes -->
-                    <div class="recording-card">
-                        <h3>Using Claude Code for Automated HTML Updates and Styling</h3>
-                        <div class="video-container">
-                            <a href="https://youtu.be/5ovKpnUeCb8" target="_blank">
-                                <img src="https://img.youtube.com/vi/5ovKpnUeCb8/maxresdefault.jpg" alt="Recording 5 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep05.html" class="btn">View Notes</a>
-                    </div>
-                    <div class="recording-card">
-                        <h3>Using Claude Code to Make Changes to My Website</h3>
-                        <div class="video-container">
-                            <a href="https://www.youtube.com/watch?v=OxHCfE1bFBs" target="_blank">
-                                <img src="https://img.youtube.com/vi/OxHCfE1bFBs/maxresdefault.jpg" alt="Recording 6 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep06.html" class="btn">View Notes</a>
-                    </div>
-                    <div class="recording-card">
-                        <h3>Using Cursor and Claude to Solve Record Search Bugs</h3>
-                        <div class="video-container">
-                            <a href="https://www.youtube.com/watch?v=9V5QlhpqBbw" target="_blank">
-                                <img src="https://img.youtube.com/vi/9V5QlhpqBbw/maxresdefault.jpg" alt="Recording 7 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep07.html" class="btn">View Notes</a>
-                    </div>
-                    <div class="recording-card">
-                        <h3>Using Cursor and Claude to Fix CSS Layout Issues</h3>
-                        <div class="video-container">
-                            <a href="https://www.youtube.com/watch?v=-yNJmVCR-nM" target="_blank">
-                                <img src="https://img.youtube.com/vi/-yNJmVCR-nM/maxresdefault.jpg" alt="Recording 8 Thumbnail">
-                            </a>
-                        </div>
-                        <a href="ep08.html" class="btn">View Notes</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="tools">
-            <h2>Tools to Explore Yet</h2>
-            
-            <div class="category">
-                <h3>Coding Assistants & Developer Tools</h3>
-                <ul>
-                    <li><a href="https://openrouter.ai/" target="_blank">OpenRouter</a> – API routing for AI models, allowing access to various AI models via a single interface.</li>
-                    <li><a href="https://web.lmarena.ai/" target="_blank">Web Dev Arena</a> – AI-powered development environment.</li>
-                    <li><a href="https://lmarena.ai" target="_blank">LMArena.ai</a> – AI benchmarking and development tool.</li>
-                    <li><a href="https://www.tabnine.com/" target="_blank">Tabnine</a> – AI-powered autocomplete for software development.</li>
-                    <li><a href="https://www.codeium.com/" target="_blank">Codeium</a> – AI-driven coding assistant with free access for developers.</li>
-                    <li><a href="https://replit.com/site/ghostwriter" target="_blank">Replit Ghostwriter</a> – AI coding assistant built into the Replit platform.</li>
-                    <li><a href="https://www.codium.ai/" target="_blank">CodiumAI</a> – AI for generating test cases and improving code quality.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Model Benchmarking & Optimization</h3>
-                <ul>
-                    <li><a href="https://github.com/ggerganov/llama.cpp/blob/master/examples/llama-bench/README.md" target="_blank">LlamaBench</a> – A benchmarking tool for evaluating Llama-based AI models.</li>
-                    <li><a href="https://livebench.ai" target="_blank">LiveBench.ai</a> – Real-time AI model performance benchmarking.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Workflow Automation & Agents</h3>
-                <ul>
-                    <li><a href="https://flowiseai.com/" target="_blank">FloWise.AI</a> – No-code/low-code tool for AI workflow automation.</li>
-                    <li><a href="https://mindpal.space/" target="_blank">MindPal AI</a> – AI-powered automation similar to Zapier, facilitating AI agent workflows.</li>
-                    <li><a href="https://jina.ai" target="_blank">Jina.ai</a> – AI-powered search and multimodal application framework.</li>
-                    <li><a href="https://agentgpt.reworkd.ai/" target="_blank">AgentGPT</a> – Deploy and run autonomous AI agents in a browser.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Research & Knowledge Management</h3>
-                <ul>
-                    <li><a href="https://elicit.com/?redirected=true" target="_blank">Elicit</a> – AI-powered research assistant for literature review and data extraction.</li>
-                    <li><a href="https://mymemo.ai/" target="_blank">MyMemo</a> – AI-enhanced note-taking and memory management tool.</li>
-                    <li><a href="https://www.napkin.ai/" target="_blank">Napkin.ai</a> – AI-assisted tool for organizing ideas and creative thought processes.</li>
-                    <li><a href="https://typeset.io/" target="_blank">SciSpace</a> – AI-powered research assistant for academic papers and literature review.</li>
-                    <li><a href="https://consensus.app/" target="_blank">Consensus</a> – AI search engine that finds research-backed answers.</li>
-                    <li><a href="https://www.semanticscholar.org/" target="_blank">Semantic Scholar</a> – AI-driven search and recommendation engine for academic research.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Chatbots & Conversational Models</h3>
-                <ul>
-                    <li><a href="https://claude.ai/login?returnTo=%2F%3F" target="_blank">Claude</a> – AI chatbot developed by Anthropic.</li>
-                    <li><a href="https://abacus.ai/" target="_blank">Abacus.ai</a> – AI platform for enterprise-level applications, including conversational AI and predictive analytics.</li>
-                    <li><a href="https://heypi.com/" target="_blank">Pi AI</a> – AI chatbot designed for friendly and engaging conversations.</li>
-                    <li><a href="https://you.com/chat" target="_blank">YouChat</a> – AI conversational assistant with web search capabilities.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Content & Detection Tools</h3>
-                <ul>
-                    <li><a href="https://zerogpt.com" target="_blank">Zerogpt.com</a> – AI-generated content detection.</li>
-                    <li><a href="https://www.loudly.com/" target="_blank">Loudly</a> – AI-powered music generation tool, with genres including Lo-Fi and Bluegrass.</li>
-                    <li><a href="https://gptzero.me/" target="_blank">GPTZero</a> – AI detection tool for identifying AI-generated content.</li>
-                    <li><a href="https://deepai.org/machine-learning-model/text-generator" target="_blank">DeepAI Text Generator</a> – AI-powered text generation tool.</li>
-                    <li><a href="https://runwayml.com/" target="_blank">Runway ML</a> – AI-powered video and content generation platform.</li>
-                    <li><a href="https://boomy.com/" target="_blank">Boomy</a> – AI-generated music creation tool, enabling users to create and release songs.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Tools for SRE & DevOps Engineers</h3>
-                <ul>
-                    <li><a href="https://monitaur.ai/" target="_blank">Monitaur</a> – AI-powered reliability and compliance monitoring for machine learning in production.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="feedback-form">
-            <h2>Submit Feedback</h2>
-            <form id="datadog-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="tool">Tool Used</label>
-                    <select id="tool" name="tool">
-                        <option value="">Select a tool</option>
-                        <option value="gradio">Gradio</option>
-                        <option value="warp">Warp Terminal</option>
-                        <option value="cursor">Cursor</option>
-                        <option value="automatic1111">Automatic1111</option>
-                        <option value="claude-code">Claude Code</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ai-tool-interest">What AI or LLM-related tool are you most interested in learning about?</label>
-                    <input type="text" id="ai-tool-interest" name="ai-tool-interest">
-                </div>
-                <div class="form-group">
-                    <label for="feedback">Feedback</label>
-                    <textarea id="feedback" name="feedback" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn">Submit Feedback</button>
-            </form>
-        </section>
-    </main>
-    
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 AI Tools Lab. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://raw.githubusercontent.com/DataDog/documentation/master/static/images/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Lab</title>
+    <link rel="stylesheet" href="styles.css">
+    <script
+        src="https://www.datadoghq-browser-agent.com/us1/v6/datadog-rum.js"
+        type="text/javascript">
+    </script>
+    <script>
+        window.DD_RUM && window.DD_RUM.init({
+          clientToken: 'pub1ef411c82203fccee1b3d7b58d064f1d',
+          applicationId: 'cea3fe47-039f-47fb-91b3-57389419c2c9',
+          // `site` refers to the Datadog site parameter of your organization
+          // see https://docs.datadoghq.com/getting_started/site/
+          site: 'datadoghq.com',
+          service: 'ai-labs',
+          env: 'production',
+          // Specify a version number to identify the deployed version of your application in Datadog
+          // version: '1.0.0',
+          sessionSampleRate: 100,
+          sessionReplaySampleRate: 20,
+          defaultPrivacyLevel: 'mask-user-input',
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>AI Tools Lab</h1>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="recordings">
+            <div class="container">
+                <div class="recording-grid">
+                    <div class="recording-card">
+                        <h3>Building Quick Web Interfaces for Machine Learning Models</h3>
+                        <div class="video-container">
+                            <a href="https://www.youtube.com/watch?v=hESEOJRZ-wc" target="_blank">
+                                <img src="https://img.youtube.com/vi/hESEOJRZ-wc/maxresdefault.jpg" alt="Recording 1 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep01.html" class="btn">View Notes</a>
+                    </div>
+                    <div class="recording-card">
+                        <h3>Exploring Warp Terminal and Cursor for Productivity</h3>
+                        <div class="video-container">
+                            <a href="https://www.youtube.com/watch?v=QYTe2BBhN1c" target="_blank">
+                                <img src="https://img.youtube.com/vi/QYTe2BBhN1c/maxresdefault.jpg" alt="Recording 2 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep02.html" class="btn">View Notes</a>
+                    </div>
+                    <div class="recording-card">
+                        <h3>A Practical Guide to Automatic1111 - a Local Text-to-Image Generation</h3>
+                        <div class="video-container">
+                            <a href="https://www.youtube.com/watch?v=l2H0HADOa5o" target="_blank">
+                                <img src="https://img.youtube.com/vi/l2H0HADOa5o/maxresdefault.jpg" alt="Recording 3 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep03.html" class="btn">View Notes</a>
+                    </div>
+                    <div class="recording-card">
+                        <h3>Building a Secure Feedback Form with Datadog Logs with Claude Code</h3>
+                        <div class="video-container">
+                            <a href="https://youtu.be/ciLO96MDFbE" target="_blank">
+                                <img src="https://img.youtube.com/vi/ciLO96MDFbE/maxresdefault.jpg" alt="Recording 4 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep04.html" class="btn">View Notes</a>
+                    </div>
+                    <!-- New Episodes -->
+                    <div class="recording-card">
+                        <h3>Using Claude Code for Automated HTML Updates and Styling</h3>
+                        <div class="video-container">
+                            <a href="https://youtu.be/5ovKpnUeCb8" target="_blank">
+                                <img src="https://img.youtube.com/vi/5ovKpnUeCb8/maxresdefault.jpg" alt="Recording 5 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep05.html" class="btn">View Notes</a>
+                    </div>
+                    <div class="recording-card">
+                        <h3>Using Claude Code to Make Changes to My Website</h3>
+                        <div class="video-container">
+                            <a href="https://www.youtube.com/watch?v=OxHCfE1bFBs" target="_blank">
+                                <img src="https://img.youtube.com/vi/OxHCfE1bFBs/maxresdefault.jpg" alt="Recording 6 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep06.html" class="btn">View Notes</a>
+                    </div>
+                    <div class="recording-card">
+                        <h3>Using Cursor and Claude to Solve Record Search Bugs</h3>
+                        <div class="video-container">
+                            <a href="https://www.youtube.com/watch?v=9V5QlhpqBbw" target="_blank">
+                                <img src="https://img.youtube.com/vi/9V5QlhpqBbw/maxresdefault.jpg" alt="Recording 7 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep07.html" class="btn">View Notes</a>
+                    </div>
+                    <div class="recording-card">
+                        <h3>Using Cursor and Claude to Fix CSS Layout Issues</h3>
+                        <div class="video-container">
+                            <a href="https://www.youtube.com/watch?v=-yNJmVCR-nM" target="_blank">
+                                <img src="https://img.youtube.com/vi/-yNJmVCR-nM/maxresdefault.jpg" alt="Recording 8 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep08.html" class="btn">View Notes</a>
+                    </div>
+                    <div class="recording-card">
+                        <h3>From GTC to Website Building with AI Tools</h3>
+                        <div class="video-container">
+                            <a href="https://youtu.be/ciLO96MDFbE" target="_blank">
+                                <img src="https://img.youtube.com/vi/ciLO96MDFbE/maxresdefault.jpg" alt="Recording 9 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep09.html" class="btn">View Notes</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="tools">
+            <h2>Tools to Explore Yet</h2>
+            
+            <div class="category">
+                <h3>Coding Assistants & Developer Tools</h3>
+                <ul>
+                    <li><a href="https://openrouter.ai/" target="_blank">OpenRouter</a> – API routing for AI models, allowing access to various AI models via a single interface.</li>
+                    <li><a href="https://web.lmarena.ai/" target="_blank">Web Dev Arena</a> – AI-powered development environment.</li>
+                    <li><a href="https://lmarena.ai" target="_blank">LMArena.ai</a> – AI benchmarking and development tool.</li>
+                    <li><a href="https://www.tabnine.com/" target="_blank">Tabnine</a> – AI-powered autocomplete for software development.</li>
+                    <li><a href="https://www.codeium.com/" target="_blank">Codeium</a> – AI-driven coding assistant with free access for developers.</li>
+                    <li><a href="https://replit.com/site/ghostwriter" target="_blank">Replit Ghostwriter</a> – AI coding assistant built into the Replit platform.</li>
+                    <li><a href="https://www.codium.ai/" target="_blank">CodiumAI</a> – AI for generating test cases and improving code quality.</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h3>Model Benchmarking & Optimization</h3>
+                <ul>
+                    <li><a href="https://github.com/ggerganov/llama.cpp/blob/master/examples/llama-bench/README.md" target="_blank">LlamaBench</a> – A benchmarking tool for evaluating Llama-based AI models.</li>
+                    <li><a href="https://livebench.ai" target="_blank">LiveBench.ai</a> – Real-time AI model performance benchmarking.</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h3>Workflow Automation & Agents</h3>
+                <ul>
+                    <li><a href="https://flowiseai.com/" target="_blank">FloWise.AI</a> – No-code/low-code tool for AI workflow automation.</li>
+                    <li><a href="https://mindpal.space/" target="_blank">MindPal AI</a> – AI-powered automation similar to Zapier, facilitating AI agent workflows.</li>
+                    <li><a href="https://jina.ai" target="_blank">Jina.ai</a> – AI-powered search and multimodal application framework.</li>
+                    <li><a href="https://agentgpt.reworkd.ai/" target="_blank">AgentGPT</a> – Deploy and run autonomous AI agents in a browser.</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h3>Research & Knowledge Management</h3>
+                <ul>
+                    <li><a href="https://elicit.com/?redirected=true" target="_blank">Elicit</a> – AI-powered research assistant for literature review and data extraction.</li>
+                    <li><a href="https://mymemo.ai/" target="_blank">MyMemo</a> – AI-enhanced note-taking and memory management tool.</li>
+                    <li><a href="https://www.napkin.ai/" target="_blank">Napkin.ai</a> – AI-assisted tool for organizing ideas and creative thought processes.</li>
+                    <li><a href="https://typeset.io/" target="_blank">SciSpace</a> – AI-powered research assistant for academic papers and literature review.</li>
+                    <li><a href="https://consensus.app/" target="_blank">Consensus</a> – AI search engine that finds research-backed answers.</li>
+                    <li><a href="https://www.semanticscholar.org/" target="_blank">Semantic Scholar</a> – AI-driven search and recommendation engine for academic research.</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h3>Chatbots & Conversational Models</h3>
+                <ul>
+                    <li><a href="https://claude.ai/login?returnTo=%2F%3F" target="_blank">Claude</a> – AI chatbot developed by Anthropic.</li>
+                    <li><a href="https://abacus.ai/" target="_blank">Abacus.ai</a> – AI platform for enterprise-level applications, including conversational AI and predictive analytics.</li>
+                    <li><a href="https://heypi.com/" target="_blank">Pi AI</a> – AI chatbot designed for friendly and engaging conversations.</li>
+                    <li><a href="https://you.com/chat" target="_blank">YouChat</a> – AI conversational assistant with web search capabilities.</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h3>Content & Detection Tools</h3>
+                <ul>
+                    <li><a href="https://zerogpt.com" target="_blank">Zerogpt.com</a> – AI-generated content detection.</li>
+                    <li><a href="https://www.loudly.com/" target="_blank">Loudly</a> – AI-powered music generation tool, with genres including Lo-Fi and Bluegrass.</li>
+                    <li><a href="https://gptzero.me/" target="_blank">GPTZero</a> – AI detection tool for identifying AI-generated content.</li>
+                    <li><a href="https://deepai.org/machine-learning-model/text-generator" target="_blank">DeepAI Text Generator</a> – AI-powered text generation tool.</li>
+                    <li><a href="https://runwayml.com/" target="_blank">Runway ML</a> – AI-powered video and content generation platform.</li>
+                    <li><a href="https://boomy.com/" target="_blank">Boomy</a> – AI-generated music creation tool, enabling users to create and release songs.</li>
+                </ul>
+            </div>
+            
+            <div class="category">
+                <h3>Tools for SRE & DevOps Engineers</h3>
+                <ul>
+                    <li><a href="https://monitaur.ai/" target="_blank">Monitaur</a> – AI-powered reliability and compliance monitoring for machine learning in production.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="feedback-form">
+            <h2>Submit Feedback</h2>
+            <form id="datadog-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="tool">Tool Used</label>
+                    <select id="tool" name="tool">
+                        <option value="">Select a tool</option>
+                        <option value="gradio">Gradio</option>
+                        <option value="warp">Warp Terminal</option>
+                        <option value="cursor">Cursor</option>
+                        <option value="automatic1111">Automatic1111</option>
+                        <option value="claude-code">Claude Code</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="ai-tool-interest">What AI or LLM-related tool are you most interested in learning about?</label>
+                    <input type="text" id="ai-tool-interest" name="ai-tool-interest">
+                </div>
+                <div class="form-group">
+                    <label for="feedback">Feedback</label>
+                    <textarea id="feedback" name="feedback" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Feedback</button>
+            </form>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AI Tools Lab. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
 </html>
