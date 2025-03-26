@@ -20,11 +20,9 @@ What it means to be a developer is is changing rapidly. Therefore, what it means
 
 1. To educate ourselves and form opinions on new (AI-related) technologies, tools, and processes in order to better understand today’s challenges, solutions, and current thinking in order to be a better advocate for the modern developer
 
-2. Establish and maintain leadership within AI-related subjects
+2. Build credibility and reputation as leaders in engineering excellence as it relates to AI developer tools and thought leadership
 
 3. Educate team about new technology and approaches in our space
 
 4. Collaboration with teammates
-
-5. Build credibility and reputation of Datadog as leaders in engineering excellence and thought leadership
 
