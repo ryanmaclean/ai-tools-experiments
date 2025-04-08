@@ -3,5 +3,7 @@ todo.md
 /resources/
 /transcripts/
 /venv/
+/observations/
+/dictionary/
 update_episodes.ps1
 update_episodes.sh
