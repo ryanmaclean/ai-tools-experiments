@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Adjust paths for resources based on page location
+    const isInPagesDir = window.location.pathname.includes('/pages/');
+    const pathPrefix = isInPagesDir ? '../' : '';
+    
     const form = document.getElementById('datadog-form');
     
     // Make transcript timestamps clickable
@@ -70,6 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Run the timestamp conversion function
     makeTimestampsClickable();
     
+    // Handle the feedback form
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -200,4 +205,436 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('tool').selectedIndex = 0;
         document.getElementById('feedback').value = '';
     }
+
+    // Initialize additional features
+    initializeSuggestionForm();
+    generateResourceThumbnails();
+
+    // Generate thumbnail images for resources
+    function generateResourceThumbnails() {
+        const resourceCards = document.querySelectorAll('.resource-card');
+        
+        resourceCards.forEach(card => {
+            const imageContainer = card.querySelector('.resource-card-image');
+            if (!imageContainer) return;
+            
+            const img = imageContainer.querySelector('img');
+            if (!img) return;
+            
+            if (!img.complete || img.naturalHeight === 0 || img.src.includes('resource-placeholder.jpg')) {
+                // Get details to generate a unique but consistent thumbnail
+                const title = card.querySelector('h2').textContent;
+                const sourceElement = card.querySelector('.resource-source');
+                const source = sourceElement ? sourceElement.textContent : 'source';
+                
+                // Create a canvas element
+                const canvas = document.createElement('canvas');
+                canvas.width = 400;
+                canvas.height = 200;
+                const ctx = canvas.getContext('2d');
+                
+                // Generate a color based on the title and source
+                const hash = stringToHash(title + source);
+                const hue = hash % 360;
+                const saturation = 70;
+                const lightness = 65;
+                
+                // Fill with gradient background
+                const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                gradient.addColorStop(0, `hsl(${hue}, ${saturation}%, ${lightness}%)`);
+                gradient.addColorStop(1, `hsl(${(hue + 40) % 360}, ${saturation}%, ${lightness}%)`);
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                // Add a pattern overlay for texture
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+                for (let i = 0; i < canvas.width; i += 20) {
+                    for (let j = 0; j < canvas.height; j += 20) {
+                        if ((i + j) % 40 === 0) {
+                            ctx.fillRect(i, j, 10, 10);
+                        }
+                    }
+                }
+                
+                // Add initials or first letters in a circle
+                const initials = getInitials(title);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.font = 'bold 72px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // Draw a semi-transparent white circle
+                ctx.beginPath();
+                ctx.arc(canvas.width / 2, canvas.height / 2, 70, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+                ctx.fill();
+                
+                // Draw the text
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+                ctx.fillText(initials, canvas.width / 2, canvas.height / 2);
+                
+                // Replace the image source with canvas data
+                img.src = canvas.toDataURL('image/png');
+                
+                // Set image properties
+                img.alt = title;
+                img.style.objectFit = 'cover';
+                img.style.width = '100%';
+                img.style.height = '100%';
+            }
+        });
+    }
+    
+    // Helper function to get initials from title
+    function getInitials(title) {
+        // Split by spaces and get first letters of first two words
+        const words = title.split(' ').filter(word => word.length > 0);
+        
+        if (words.length === 1) {
+            // If only one word, take first two letters
+            return words[0].substring(0, 2).toUpperCase();
+        } else {
+            // Take first letter of first two words
+            return (words[0][0] + words[1][0]).toUpperCase();
+        }
+    }
+    
+    // Helper function to convert string to a hash number
+    function stringToHash(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            const char = str.charCodeAt(i);
+            hash = ((hash << 5) - hash) + char;
+            hash = hash & hash; // Convert to 32bit integer
+        }
+        return Math.abs(hash);
+    }
+
+    // Initialize resource suggestion form
+    function initializeSuggestionForm() {
+        const suggestButton = document.getElementById('suggest-resource-btn');
+        const resourceForm = document.getElementById('resource-form');
+        const suggestionForm = document.getElementById('resource-suggestion-form');
+
+        if (!suggestButton || !resourceForm || !suggestionForm) return;
+
+        // Toggle form visibility
+        suggestButton.addEventListener('click', function() {
+            resourceForm.classList.toggle('hidden');
+            if (!resourceForm.classList.contains('hidden')) {
+                const firstInput = resourceForm.querySelector('input');
+                if (firstInput) firstInput.focus();
+            }
+        });
+
+        // Handle form submission
+        suggestionForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const title = document.getElementById('resource-title').value;
+            const url = document.getElementById('resource-url').value;
+            const source = document.getElementById('resource-source').value;
+            const category = document.getElementById('resource-category').value;
+            const description = document.getElementById('resource-description').value;
+            const name = document.getElementById('your-name').value;
+            const email = document.getElementById('your-email').value;
+            
+            // Create payload
+            const payload = {
+                message: 'Resource Suggestion',
+                ddsource: 'website',
+                ddtags: `category:${category}`,
+                hostname: window.location.hostname,
+                service: 'ai-tools-website',
+                status: 'info',
+                resource: {
+                    title: title,
+                    url: url,
+                    source: source,
+                    category: category,
+                    description: description
+                },
+                user: {
+                    name: name || 'Anonymous',
+                    email: email || 'Not provided'
+                },
+                timestamp: new Date().toISOString()
+            };
+            
+            // For now, just show an alert
+            console.log('Resource suggestion payload:', payload);
+            alert('Thank you for your resource suggestion! Our team will review it shortly.');
+            
+            // Clear form and hide it
+            suggestionForm.reset();
+            resourceForm.classList.add('hidden');
+        });
+    }
+
+    // Initialize Prism.js if it's available
+    if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+    }
+    
+    // Initialize any tag filters on the page
+    initializeTagFilters();
+    
+    // Initialize date sorting on both pages
+    initializeDateSorting();
+    
+    // Initially sort content by date (newest first)
+    initialSortByDate();
+    
+    // Initialize mobile menu toggling
+    initializeMobileMenu();
 });
+
+// Global functions for filtering
+function shouldShowCardByTags(card, activeTags) {
+    if (activeTags.length === 0 || activeTags.includes('all')) {
+        return true;
+    }
+    
+    const cardTags = card.getAttribute('data-tags') ? 
+        card.getAttribute('data-tags').split(',') : [];
+    
+    // Check if the card has at least one of the active tags
+    return activeTags.some(tag => cardTags.includes(tag));
+}
+
+function filterCardsByTags(activeTags) {
+    // Works for both recording-card and resource-card
+    const cards = document.querySelectorAll('.recording-card, .resource-card');
+    const categoryFilter = document.getElementById('episode-category-filter');
+    const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
+    
+    cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        const categoryMatch = selectedCategory === 'all' || cardCategory === selectedCategory;
+        const tagMatch = shouldShowCardByTags(card, activeTags);
+        
+        card.style.display = (categoryMatch && tagMatch) ? 'block' : 'none';
+    });
+}
+
+function initializeTagFilters() {
+    const tagFilters = document.querySelectorAll('.tag-filter');
+    const categoryFilter = document.getElementById('episode-category-filter');
+    const tagButtonsContainer = document.querySelector('.tag-buttons');
+    
+    if (tagFilters.length === 0) return;
+    
+    // Add visual feedback for touch devices
+    if (tagButtonsContainer) {
+        // Prevent horizontal scrolling from triggering filter changes unintentionally
+        tagButtonsContainer.addEventListener('scroll', function(e) {
+            // Set a flag to indicate the container is scrolling
+            tagButtonsContainer.setAttribute('data-scrolling', 'true');
+            
+            // Clear the flag after scrolling stops
+            clearTimeout(tagButtonsContainer.scrollTimeout);
+            tagButtonsContainer.scrollTimeout = setTimeout(function() {
+                tagButtonsContainer.setAttribute('data-scrolling', 'false');
+            }, 150);
+        });
+    }
+    
+    // Handle category filtering
+    if (categoryFilter) {
+        categoryFilter.addEventListener('change', function() {
+            const selectedCategory = this.value;
+            const cards = document.querySelectorAll('.recording-card, .resource-card');
+            
+            cards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                
+                if (selectedCategory === 'all' || cardCategory === selectedCategory) {
+                    // Only show if it also passes the tag filters
+                    const activeFilters = Array.from(document.querySelectorAll('.tag-filter.active'))
+                        .map(el => el.getAttribute('data-tag'));
+                    
+                    if (shouldShowCardByTags(card, activeFilters)) {
+                        card.style.display = 'block';
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+    
+    // Handle tag filtering
+    tagFilters.forEach(filter => {
+        filter.addEventListener('click', function(e) {
+            // Don't activate the filter if the container is still scrolling (prevents accidental activations)
+            if (tagButtonsContainer && tagButtonsContainer.getAttribute('data-scrolling') === 'true') {
+                return;
+            }
+            
+            const tag = this.getAttribute('data-tag');
+            
+            // Add tactile feedback for mobile
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Make this the only active tag of its group
+            const otherTagsInGroup = Array.from(
+                this.closest('.tag-buttons').querySelectorAll('.tag-filter')
+            ).filter(t => t !== this);
+            
+            otherTagsInGroup.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Get all currently active filters
+            const activeFilters = Array.from(document.querySelectorAll('.tag-filter.active'))
+                .map(el => el.getAttribute('data-tag'));
+            
+            // Filter the cards
+            filterCardsByTags(activeFilters);
+        });
+    });
+}
+
+function initializeDateSorting() {
+    const dateToggle = document.getElementById('date-sort-toggle');
+    if (!dateToggle) return;
+    
+    // Set initial arrow direction based on data-sort attribute
+    updateSortArrow(dateToggle);
+    
+    dateToggle.addEventListener('click', function() {
+        // Toggle sort direction
+        const currentSort = this.getAttribute('data-sort');
+        const newSort = currentSort === 'newest' ? 'oldest' : 'newest';
+        
+        // Update button state
+        this.setAttribute('data-sort', newSort);
+        
+        // Update arrow direction
+        updateSortArrow(this);
+        
+        // Sort the cards (works for both recording and resource cards)
+        const cardsContainer = document.querySelector('.recording-grid') || document.querySelector('.resource-grid');
+        if (!cardsContainer) return;
+        
+        const cards = Array.from(cardsContainer.children);
+        
+        cards.sort((a, b) => {
+            const dateA = getCardDate(a);
+            const dateB = getCardDate(b);
+            
+            // Compare dates (newest first or oldest first)
+            return newSort === 'newest' 
+                ? new Date(dateB) - new Date(dateA) 
+                : new Date(dateA) - new Date(dateB);
+        });
+        
+        // Remove existing cards
+        cards.forEach(card => card.remove());
+        
+        // Append sorted cards
+        cards.forEach(card => cardsContainer.appendChild(card));
+    });
+}
+
+// Update sort arrow direction based on sort state
+function updateSortArrow(toggleButton) {
+    const arrow = toggleButton.querySelector('.sort-arrow');
+    if (!arrow) return;
+    
+    if (toggleButton.getAttribute('data-sort') === 'newest') {
+        arrow.innerHTML = '↓';
+        arrow.title = 'Newest first';
+    } else {
+        arrow.innerHTML = '↑';
+        arrow.title = 'Oldest first';
+    }
+}
+
+function getCardDate(card) {
+    // Extract date from either recording-card or resource-card
+    const dateElement = card.querySelector('.recording-date') || card.querySelector('.resource-date');
+    if (!dateElement) return new Date(0); // Return epoch if no date found
+    
+    const dateText = dateElement.textContent.trim();
+    
+    // Parse the date in format "Month DD, YYYY"
+    try {
+        // Use Date.parse for standard format
+        const parsedDate = new Date(dateText);
+        
+        // Check if valid date was parsed
+        if (!isNaN(parsedDate.getTime())) {
+            return parsedDate;
+        }
+        
+        // Fallback to manual parsing for "Month DD, YYYY" format
+        const parts = dateText.match(/(\w+)\s+(\d+),\s+(\d+)/);
+        if (parts) {
+            const month = getMonthNumber(parts[1]);
+            const day = parseInt(parts[2], 10);
+            const year = parseInt(parts[3], 10);
+            return new Date(year, month, day);
+        }
+        
+        // If we can't parse the date, return epoch
+        return new Date(0);
+    } catch (e) {
+        console.warn('Error parsing date:', dateText, e);
+        return new Date(0);
+    }
+}
+
+// Helper function to convert month name to number (0-11)
+function getMonthNumber(monthName) {
+    const months = {
+        'January': 0, 'February': 1, 'March': 2, 'April': 3, 
+        'May': 4, 'June': 5, 'July': 6, 'August': 7,
+        'September': 8, 'October': 9, 'November': 10, 'December': 11
+    };
+    
+    return months[monthName] || 0;
+}
+
+function initializeMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    
+    if (!menuToggle || !mobileMenu) return;
+    
+    menuToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+    });
+}
+
+// Sort content by date (newest first) when the page loads
+function initialSortByDate() {
+    const cardsContainer = document.querySelector('.recording-grid') || document.querySelector('.resource-grid');
+    if (!cardsContainer) return;
+    
+    const cards = Array.from(cardsContainer.children);
+    
+    // Sort cards by date (newest first)
+    cards.sort((a, b) => {
+        const dateA = getCardDate(a);
+        const dateB = getCardDate(b);
+        
+        return new Date(dateB) - new Date(dateA); // Newest first
+    });
+    
+    // Remove existing cards
+    cards.forEach(card => card.remove());
+    
+    // Append sorted cards
+    cards.forEach(card => cardsContainer.appendChild(card));
+    
+    // Update the sort button to show current sort state
+    const dateToggle = document.getElementById('date-sort-toggle');
+    if (dateToggle) {
+        dateToggle.setAttribute('data-sort', 'newest');
+    }
+}
