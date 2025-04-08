@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Add visually-hidden class to all resource card titles
+    const resourceCardTitles = document.querySelectorAll('.resource-card-content h2');
+    resourceCardTitles.forEach(title => {
+        title.classList.add('visually-hidden');
+    });
     // Adjust paths for resources based on page location
     const isInPagesDir = window.location.pathname.includes('/pages/');
     const pathPrefix = isInPagesDir ? '../' : '';
@@ -232,10 +237,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const sourceElement = card.querySelector('.resource-source');
                 const source = sourceElement ? sourceElement.textContent : 'source';
                 
-                // Create a canvas element
+                // Check screen size
+                const isMobile = window.innerWidth <= 768;
+                
+                // Create a canvas element with responsive dimensions
                 const canvas = document.createElement('canvas');
-                canvas.width = 400;
-                canvas.height = 200;
+                canvas.width = 400; // Keep width consistent for aspect ratio
+                canvas.height = isMobile ? 220 : 200; // Slightly taller on mobile for more text space
                 const ctx = canvas.getContext('2d');
                 
                 // Generate a color based on the title and source
@@ -261,22 +269,126 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
                 
-                // Add initials or first letters in a circle
-                const initials = getInitials(title);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                ctx.font = 'bold 72px Inter, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
+                // Draw a semi-transparent white background with darker edges for better visibility
+                // Increase padding for mobile devices
+                const padding = isMobile ? 30 : 20; // More padding on mobile
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.fillRect(padding, padding, canvas.width - (padding * 2), canvas.height - (padding * 2));
                 
-                // Draw a semi-transparent white circle
-                ctx.beginPath();
-                ctx.arc(canvas.width / 2, canvas.height / 2, 70, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-                ctx.fill();
+                // Extract date and author information
+                const dateElement = card.querySelector('.resource-date');
+                const date = dateElement ? dateElement.textContent : '';
                 
-                // Draw the text
+                const authorElement = card.querySelector('.resource-source');
+                const author = authorElement ? authorElement.textContent : '';
+                
+                // Prepare to draw the title with proper padding
+                ctx.textAlign = 'left'; // Left align for better readability
+                ctx.textBaseline = 'top';
+                
+                // Calculate maximum width with much more restrictive constraints for mobile
+                // This ensures text doesn't reach the edges on small screens
+                const maxTextWidth = isMobile 
+                    ? canvas.width - (padding * 4) // Much tighter constraints on mobile
+                    : canvas.width - (padding * 3);
+                
+                // Handle long titles - split into multiple lines with proper padding
+                const titlePadding = isMobile ? 40 : 30; // Much more padding on mobile for title
+                
+                // We already checked for mobile above, no need to redefine
+                
+                // Adjust font size for mobile - even smaller on very small screens
+                const verySmallScreen = window.innerWidth <= 375; // iPhone SE and similar
+                const baseFontSize = verySmallScreen ? 14 : (isMobile ? 16 : 20);
+                ctx.font = `bold ${baseFontSize}px Inter, sans-serif`; // Set font before measuring
+                
+                // Adjust max width for mobile - even narrower on very small screens
+                const mobileAdjustedMaxWidth = verySmallScreen
+                    ? maxTextWidth - 40 // Extremely narrow for very small screens
+                    : (isMobile ? maxTextWidth - 30 : maxTextWidth);
+                
+                // Word splitting and line formation
+                const words = title.split(' ');
+                let lines = [];
+                let currentLine = words[0];
+                
+                for (let i = 1; i < words.length; i++) {
+                    const testLine = currentLine + ' ' + words[i];
+                    const testWidth = ctx.measureText(testLine).width;
+                    
+                    if (testWidth < mobileAdjustedMaxWidth) {
+                        currentLine = testLine;
+                    } else {
+                        lines.push(currentLine);
+                        currentLine = words[i];
+                    }
+                }
+                lines.push(currentLine);
+                
+                // On mobile, limit to 4 lines to fit more content 
+                // On desktop, keep at 3 lines
+                const maxLines = isMobile ? 4 : 3;
+                
+                // Limit lines and add ellipsis if needed
+                if (lines.length > maxLines) {
+                    lines = lines.slice(0, maxLines);
+                    // Only add ellipsis if the last line is getting cut off
+                    const lastLineWidth = ctx.measureText(lines[maxLines-1]).width;
+                    if (lastLineWidth > mobileAdjustedMaxWidth) {
+                        // Find a good cutoff point to add ellipsis
+                        let shortenedLine = lines[maxLines-1];
+                        while (ctx.measureText(shortenedLine + '...').width > mobileAdjustedMaxWidth && shortenedLine.length > 0) {
+                            shortenedLine = shortenedLine.slice(0, -1);
+                        }
+                        lines[maxLines-1] = shortenedLine + '...';
+                    }
+                }
+                
+                // Adjust line height based on font size
+                const lineHeight = baseFontSize * 1.3; 
+                
+                // Adjust top padding for mobile to give more space
+                const topPadding = isMobile ? 30 : 40;
+                
+                // Draw each line of title with black text and proper padding
                 ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
-                ctx.fillText(initials, canvas.width / 2, canvas.height / 2);
+                
+                lines.forEach((line, index) => {
+                    ctx.fillText(line, titlePadding, topPadding + (index * lineHeight));
+                });
+                
+                // Draw a semi-transparent footer bar for metadata
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                const footerHeight = isMobile ? 35 : 40;
+                ctx.fillRect(0, canvas.height - footerHeight, canvas.width, footerHeight);
+                
+                // Draw the author at the lower left and date at the lower right
+                const metaFontSize = isMobile ? 12 : 14;
+                ctx.font = `${metaFontSize}px Inter, sans-serif`;
+                
+                // For very long author names on mobile, truncate with ellipsis
+                let displayAuthor = author;
+                // More aggressive truncation on mobile
+                if (verySmallScreen && author.length > 10) {
+                    displayAuthor = author.substring(0, 9) + '...';
+                } else if (isMobile && author.length > 12) {
+                    displayAuthor = author.substring(0, 11) + '...';
+                }
+                
+                // Extra side padding for metadata text on mobile
+                const metaPadding = isMobile ? padding + 10 : padding;
+                
+                // Author on the left - adjust y-position based on footer height
+                ctx.textAlign = 'left';
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
+                ctx.fillText(displayAuthor, metaPadding, canvas.height - (footerHeight/2) - (metaFontSize/2) + 1);
+                
+                // Date on the right - adjust y-position the same way
+                ctx.textAlign = 'right';
+                // Use padding + 10 for right side as well on mobile
+                ctx.fillText(date, canvas.width - metaPadding, canvas.height - (footerHeight/2) - (metaFontSize/2) + 1);
                 
                 // Replace the image source with canvas data
                 img.src = canvas.toDataURL('image/png');
