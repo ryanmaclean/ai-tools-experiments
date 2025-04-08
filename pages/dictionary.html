@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Lab - Dictionary</title>
+    <meta name="description" content="Comprehensive glossary of AI and LLM terminology for developers.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AI Tools Lab - Dictionary">
+    <meta property="og:description" content="Explore our comprehensive glossary of AI and LLM terminology for developers.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolslab.com/pages/dictionary.html">
+    <meta property="og:image" content="../images/ai-tools-lab-logo.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .dictionary-section {
+            margin: 40px auto;
+        }
+        
+        .dictionary-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .dictionary-header h1 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .dictionary-section-title {
+            font-size: 30px;
+            font-weight: bold;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            color: var(--primary-color);
+        }
+        
+        .letter-navigation {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            background: var(--light-color);
+            padding: 15px;
+            z-index: 100;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        .letter-link {
+            display: block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .letter-link:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+        
+        .term {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .term h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            font-size: 22px;
+        }
+        
+        .term p {
+            color: #444;
+            line-height: 1.6;
+        }
+        
+        .section-container {
+            margin-bottom: 50px;
+        }
+        
+        .search-container {
+            margin-bottom: 30px;
+        }
+        
+        #dictionary-search {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        #dictionary-search:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(150, 197, 247, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href="index.html" style="font-size: 3rem;">AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="dictionary.html" class="active">Dictionary</a></li>
+                    <li><a href="observations.html">Observations</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container dictionary-section">
+        <div class="dictionary-header">
+            <h1>AI and LLM Dictionary for Developers</h1>
+            <p>A comprehensive glossary of key terms, concepts, and acronyms related to artificial intelligence and large language models, with special focus on web application development and infrastructure.</p>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="dictionary-search" placeholder="Search for terms...">
+        </div>
+        
+        <div class="letter-navigation">
+            <a href="#section-a" class="letter-link">A</a>
+            <a href="#section-b" class="letter-link">B</a>
+            <a href="#section-c" class="letter-link">C</a>
+            <a href="#section-d" class="letter-link">D</a>
+            <a href="#section-e" class="letter-link">E</a>
+            <a href="#section-f" class="letter-link">F</a>
+            <a href="#section-g" class="letter-link">G</a>
+            <a href="#section-h" class="letter-link">H</a>
+            <a href="#section-i" class="letter-link">I</a>
+            <a href="#section-j" class="letter-link">J</a>
+            <a href="#section-k" class="letter-link">K</a>
+            <a href="#section-l" class="letter-link">L</a>
+            <a href="#section-m" class="letter-link">M</a>
+            <a href="#section-n" class="letter-link">N</a>
+            <a href="#section-o" class="letter-link">O</a>
+            <a href="#section-p" class="letter-link">P</a>
+            <a href="#section-q" class="letter-link">Q</a>
+            <a href="#section-r" class="letter-link">R</a>
+            <a href="#section-s" class="letter-link">S</a>
+            <a href="#section-t" class="letter-link">T</a>
+            <a href="#section-u" class="letter-link">U</a>
+            <a href="#section-v" class="letter-link">V</a>
+            <a href="#section-w" class="letter-link">W</a>
+            <a href="#section-z" class="letter-link">Z</a>
+            <a href="#section-web" class="letter-link">Web</a>
+        </div>
+
+        <div id="dictionary-content">
+            <!-- Dictionary content will be loaded dynamically -->
+        </div>
+    </main>
+    
+    <footer>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="dictionary.html">Dictionary</a></li>
+                        <li><a href="observations.html">Observations</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Tools Lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('dictionary-search');
+            const dictionaryContent = document.getElementById('dictionary-content');
+            
+            // Function to fetch and parse the dictionary.md file
+            async function loadDictionary() {
+                try {
+                    const response = await fetch('../dictionary/dictionary.md');
+                    if (!response.ok) {
+                        throw new Error('Failed to load dictionary file');
+                    }
+                    
+                    const markdown = await response.text();
+                    parseDictionary(markdown);
+                } catch (error) {
+                    console.error('Error loading dictionary:', error);
+                    dictionaryContent.innerHTML = `<div class="error-message">
+                        <h2>Error Loading Dictionary</h2>
+                        <p>Sorry, we couldn't load the dictionary content. Please try again later.</p>
+                    </div>`;
+                }
+            }
+            
+            // Function to parse markdown and create HTML structure
+            function parseDictionary(markdown) {
+                // Clear existing content
+                dictionaryContent.innerHTML = '';
+                
+                // Split the content by sections (## denotes sections)
+                const sections = markdown.split('\n## ');
+                
+                // Skip the title section
+                for (let i = 1; i < sections.length; i++) {
+                    const section = sections[i];
+                    const sectionLines = section.split('\n');
+                    const sectionTitle = sectionLines[0].trim();
+                    
+                    // Create section HTML
+                    let sectionId = 'section-' + sectionTitle.toLowerCase().charAt(0);
+                    if (sectionTitle === 'Web Development & Infrastructure') {
+                        sectionId = 'section-web';
+                    }
+                    
+                    const sectionHTML = document.createElement('div');
+                    sectionHTML.innerHTML = `
+                        <h2 id="${sectionId}" class="dictionary-section-title">${sectionTitle}</h2>
+                        <div class="section-container"></div>
+                    `;
+                    
+                    dictionaryContent.appendChild(sectionHTML);
+                    const sectionContainer = sectionHTML.querySelector('.section-container');
+                    
+                    // Parse terms (### denotes terms)
+                    const termBlocks = section.split('\n### ').slice(1);
+                    
+                    termBlocks.forEach(block => {
+                        const lines = block.split('\n');
+                        const termName = lines[0].trim();
+                        const termDefinition = lines.slice(1).join(' ').trim();
+                        
+                        const termHTML = document.createElement('div');
+                        termHTML.className = 'term';
+                        termHTML.innerHTML = `
+                            <h3>${termName}</h3>
+                            <p>${termDefinition}</p>
+                        `;
+                        
+                        sectionContainer.appendChild(termHTML);
+                    });
+                }
+                
+                // Initialize search functionality
+                initSearch();
+            }
+            
+            // Function to initialize search functionality
+            function initSearch() {
+                const terms = document.querySelectorAll('.term');
+                
+                searchInput.addEventListener('input', function() {
+                    const searchQuery = this.value.toLowerCase();
+                    
+                    terms.forEach(term => {
+                        const termName = term.querySelector('h3').textContent.toLowerCase();
+                        const termDefinition = term.querySelector('p').textContent.toLowerCase();
+                        
+                        if (termName.includes(searchQuery) || termDefinition.includes(searchQuery)) {
+                            term.style.display = 'block';
+                        } else {
+                            term.style.display = 'none';
+                        }
+                    });
+                    
+                    // Show/hide section titles based on visible terms
+                    document.querySelectorAll('.section-container').forEach(section => {
+                        const visibleTerms = Array.from(section.querySelectorAll('.term')).filter(term => term.style.display !== 'none').length;
+                        const sectionTitle = section.previousElementSibling;
+                        
+                        if (visibleTerms === 0) {
+                            sectionTitle.style.display = 'none';
+                            section.style.display = 'none';
+                        } else {
+                            sectionTitle.style.display = 'block';
+                            section.style.display = 'block';
+                        }
+                    });
+                });
+            }
+            
+            // Load the dictionary
+            loadDictionary();
+        });
+    </script>
+</body>
+</html> 

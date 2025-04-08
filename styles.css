@@ -233,6 +233,101 @@ footer {
     color: white;
     padding: 3rem 0 1.5rem;
     margin-top: 4rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Footer bubble effects */
+footer .bubble {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@keyframes footerBubble {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.7; transform: translateY(-100%) translateX(var(--x-travel)); }
+    100% { transform: translateY(-120%) translateX(var(--x-travel)); opacity: 0; }
+}
+
+@keyframes footerBubble2 {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    15% { opacity: 0.7; }
+    90% { opacity: 0.6; transform: translateY(-100%) translateX(calc(var(--x-travel) * -1)); }
+    100% { transform: translateY(-120%) translateX(calc(var(--x-travel) * -1)); opacity: 0; }
+}
+
+@keyframes footerBubble3 {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    20% { opacity: 0.9; }
+    90% { opacity: 0.8; transform: translateY(-100%) translateX(calc(var(--x-travel) * 0.5)); }
+    100% { transform: translateY(-120%) translateX(calc(var(--x-travel) * 0.5)); opacity: 0; }
+}
+
+footer .bubble:nth-child(1) {
+    width: 25px;
+    height: 25px;
+    bottom: 25px;
+    left: 15%;
+    animation: footerBubble 9s infinite 0.5s ease-in-out;
+    --x-travel: 50px;
+}
+
+footer .bubble:nth-child(2) {
+    width: 20px;
+    height: 20px;
+    bottom: 20px;
+    left: 45%;
+    animation: footerBubble2 7s infinite 1.5s ease-in-out;
+    --x-travel: 40px;
+}
+
+footer .bubble:nth-child(3) {
+    width: 18px;
+    height: 18px;
+    bottom: 18px;
+    left: 75%;
+    animation: footerBubble3 10s infinite 0.8s ease-in-out;
+    --x-travel: 60px;
+}
+
+footer .bubble:nth-child(4) {
+    width: 15px;
+    height: 15px;
+    bottom: 15px;
+    left: 30%;
+    animation: footerBubble2 8s infinite 0s ease-in-out;
+    --x-travel: 35px;
+}
+
+footer .bubble:nth-child(5) {
+    width: 12px;
+    height: 12px;
+    bottom: 12px;
+    left: 60%;
+    animation: footerBubble 9.5s infinite 1.2s ease-in-out;
+    --x-travel: 45px;
+}
+
+footer .bubble:nth-child(6) {
+    width: 22px;
+    height: 22px;
+    bottom: 22px;
+    left: 85%;
+    animation: footerBubble3 7.5s infinite 2s ease-in-out;
+    --x-travel: 25px;
+}
+
+footer .bubble:nth-child(7) {
+    width: 16px;
+    height: 16px;
+    bottom: 16px;
+    left: 5%;
+    animation: footerBubble 10.5s infinite 0.3s ease-in-out;
+    --x-travel: 55px;
 }
 
 .footer-content {
@@ -240,6 +335,8 @@ footer {
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .footer-logo {
@@ -1116,6 +1213,7 @@ code {
     display: inline-block;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
+    padding: 1.5rem 0 0.5rem 0;
 }
 
 /* Transcript Styling */
