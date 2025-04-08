@@ -1,1 +1,7 @@
 todo.md
+/instructions/
+/resources/
+/transcripts/
+/venv/
+update_episodes.ps1
+update_episodes.sh

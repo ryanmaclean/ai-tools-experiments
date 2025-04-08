@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools Lab - Resources</title>
+    <meta name="description" content="Explore our curated collection of resources about AI tools and technologies from across the web.">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="AI Tools Lab - Resources">
+    <meta property="og:description" content="Discover articles, tutorials, and case studies about AI tools and technologies from industry leaders.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aitoolslab.com/pages/resources.html">
+    <meta property="og:image" content="../images/resource-placeholder.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="site-header">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="container">
+            <div class="logo">
+                <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
+                <a href="index.html">AI Tools Lab</a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="resources.html" class="active">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="filter-container">
+        <div class="container">
+            <div class="episodes-filters">
+                <div class="filter-group">
+                    <select id="episode-category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="tutorials">Tutorials</option>
+                        <option value="reviews">Reviews</option>
+                        <option value="case-studies">Case Studies</option>
+                        <option value="research">Research</option>
+                        <option value="industry">Industry News</option>
+                        <option value="opinion">Opinion & Analysis</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <div class="tag-buttons">
+                        <button class="tag-filter active" data-tag="all">All Tags</button>
+                        <button class="tag-filter" data-tag="prompt-engineering">Prompt Engineering</button>
+                        <button class="tag-filter" data-tag="code-assistants">Code Assistants</button>
+                        <button class="tag-filter" data-tag="llm">LLMs</button>
+                        <button class="tag-filter" data-tag="image-generation">Image Generation</button>
+                        <button class="tag-filter" data-tag="agi">AGI</button>
+                        <button class="tag-filter" data-tag="web-scraping">Web Scraping</button>
+                        <button class="tag-filter" data-tag="software-engineering">Software Engineering</button>
+                    </div>
+                </div>
+                
+                <div class="sort-control">
+                    <span>Sort by date</span>
+                    <button id="date-sort-toggle" class="sort-toggle" data-sort="newest" title="Toggle sort order">
+                        <span class="sort-arrow">↓</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="container resources-section">
+        <div class="resources-header">
+            <p class="resources-intro"></p>
+        </div>
+        
+        <div class="resource-grid">
+            <!-- AI 2027 -->
+            <div class="resource-card" data-category="research" data-tags="agi,llm,research">
+                <a href="https://ai-2027.com/" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="AI 2027">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>AI 2027</h2>
+                        <p>A predictive scenario of how superhuman AI could evolve over the next few years, exploring the potential impact of AGI arriving within the next 5 years.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 4, 2025</span>
+                            <span class="resource-source">ai-2027.com</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Anthropic Economic Index -->
+            <div class="resource-card" data-category="research" data-tags="llm,economics,ai-analysis">
+                <a href="https://www.anthropic.com/news/anthropic-economic-index-insights-from-claude-sonnet-3-7" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="Anthropic Economic Index">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>Anthropic Economic Index: Insights from Claude 3.7 Sonnet</h2>
+                        <p>Anthropic's analysis of economic indicators using their Claude 3.7 model, providing AI-driven insights on market trends and economic forecasting.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 2, 2025</span>
+                            <span class="resource-source">Anthropic</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Cloudflare AI Labyrinth -->
+            <div class="resource-card" data-category="industry" data-tags="web-scraping,bots,ai-defense">
+                <a href="https://www.theregister.com/2025/03/21/cloudflare_ai_labyrinth/?td=keepreading" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="Cloudflare AI Bot Labyrinth">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>Cloudflare builds an AI to make life hell for other AIs</h2>
+                        <p>Cloudflare's "AI Labyrinth" generates junk content to mislead and waste resources of unauthorized AI crawler bots that scrape websites for training data.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 3, 2025</span>
+                            <span class="resource-source">The Register</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- DiffRhythm -->
+            <div class="resource-card" data-category="research" data-tags="audio-generation,llm,diffusion-models">
+                <a href="https://arxiv.org/abs/2503.01183" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="DiffRhythm">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>DiffRhythm: Blazingly Fast and Embarrassingly Simple End-to-End Full-Length Song Generation</h2>
+                        <p>A breakthrough in text-to-audio technology offering significantly faster processing with simpler architecture compared to previous approaches.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">March 5, 2025</span>
+                            <span class="resource-source">arXiv</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- EmbodiedEval -->
+            <div class="resource-card" data-category="research" data-tags="llm,multimodal,embodied-ai">
+                <a href="https://embodiedeval.github.io/" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="EmbodiedEval">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>EmbodiedEval: Evaluate Multimodal LLMs as Embodied Agents</h2>
+                        <p>Framework for evaluating the performance of multimodal large language models in embodied agent scenarios and physical world interactions.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">February 26, 2025</span>
+                            <span class="resource-source">embodiedeval.github.io</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Senior Developer Skills -->
+            <div class="resource-card" data-category="opinion" data-tags="code-assistants,software-engineering,developers">
+                <a href="https://manuel.kiessling.net/2025/03/31/how-seasoned-developers-can-achieve-great-results-with-ai-coding-agents/" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="Senior Developer Skills">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>Senior Developer Skills in the AI Age: Leveraging Experience for Better Results</h2>
+                        <p>How senior developers are optimally positioned to leverage AI coding tools due to their existing experience in software engineering and project management.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 4, 2025</span>
+                            <span class="resource-source">Manuel Kießling</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Death of Software Engineer -->
+            <div class="resource-card" data-category="opinion" data-tags="software-engineering,developers,industry-trends">
+                <a href="https://verdikapuku.com/posts/the-death-of-the-software-engineer-by-a-thousand-prompts/" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="Death of Software Engineer">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>The Death of the Software Engineer by a Thousand Prompts</h2>
+                        <p>An analysis of how AI may fragment the role of software engineering into low-skilled coders relying on AI and specialists who unblock them and address performance issues.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 3, 2025</span>
+                            <span class="resource-source">Verdi Kapuku</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Stack Overflow Decline -->
+            <div class="resource-card" data-category="research" data-tags="code-assistants,developers,industry-trends" id="stack-overflow-decline">
+                <a href="https://tomazweiss.github.io/blog/stackoverflow_decline/" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="Stack Overflow Decline">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>The Decline of Stack Overflow</h2>
+                        <p>Analysis of the decline in question volume on Stack Overflow following the public release of ChatGPT, showing a shift towards AI-driven coding assistance.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 3, 2025</span>
+                            <span class="resource-source">Tomaž Weiss</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- MCP Security -->
+            <div class="resource-card" data-category="research" data-tags="security,mcp,ai-interfaces">
+                <a href="https://elenacross7.medium.com/%EF%B8%8F-the-s-in-mcp-stands-for-security-91407b33ed6b" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="MCP Security">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>The "S" in MCP stands for Security</h2>
+                        <p>Critical examination of security challenges and considerations in Model Context Protocol implementations.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 7, 2025</span>
+                            <span class="resource-source">Elena Cross</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- No Vibe Engineering -->
+            <div class="resource-card" data-category="opinion" data-tags="software-engineering,developers,prompt-engineering">
+                <a href="https://serce.me/posts/2025-31-03-there-is-no-vibe-engineering" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="No Vibe Engineering">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>There is no Vibe Engineering</h2>
+                        <p>An argument that "vibe coding" through AI prompts neglects critical software engineering concerns like scalability and security.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 4, 2025</span>
+                            <span class="resource-source">serce.me</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- The Curve is Bending -->
+            <div class="resource-card" data-category="research" data-tags="ai-capabilities,future-trends,agi">
+                <a href="https://grantslatton.com/the-curve-is-bending" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="The Curve is Bending">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>The Curve is Bending</h2>
+                        <p>Analysis of AI capability growth rates and implications for technology adoption and societal impact.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 7, 2025</span>
+                            <span class="resource-source">Grant Slatton</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Wikimedia Bot Burden -->
+            <div class="resource-card" data-category="industry" data-tags="web-scraping,infrastructure,data-training">
+                <a href="https://www.theregister.com/2025/04/03/wikimedia_foundation_bemoans_bot_bandwidth/" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="Wikimedia Bot Burden">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>Wikimedia Foundation bemoans AI bot bandwidth burden</h2>
+                        <p>Wikimedia Foundation reports a significant increase in bandwidth usage attributed to web-scraping bots consuming vast amounts of multimedia content to train AI models.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 3, 2025</span>
+                            <span class="resource-source">The Register</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- The artifact isn't the art -->
+            <div class="resource-card" data-category="opinion" data-tags="creativity,art,ai-generation">
+                <a href="https://www.freethink.com/opinion/studio-ghibli-chatgpt-creativity" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="The artifact isn't the art">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>The artifact isn't the art: Rethinking creativity in the age of AI</h2>
+                        <p>Philosophical exploration of how AI generation tools are changing our understanding of creativity, art, and the creative process.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">April 7, 2025</span>
+                            <span class="resource-source">Freethink</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            
+            <!-- Revenge of the junior developer -->
+            <div class="resource-card" data-category="opinion" data-tags="developers,code-assistants,career-development">
+                <a href="https://sourcegraph.com/blog/revenge-of-the-junior-developer" target="_blank">
+                    <div class="resource-card-image">
+                        <img src="../images/resource-placeholder.jpg" alt="Revenge of the junior developer">
+                    </div>
+                    <div class="resource-card-content">
+                        <h2>Revenge of the junior developer</h2>
+                        <p>How AI coding tools are reshaping the junior developer experience and potentially inverting traditional experience-based advantages.</p>
+                        <div class="resource-meta">
+                            <span class="resource-date">March 24, 2025</span>
+                            <span class="resource-source">Sourcegraph Blog</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="suggest-resource">
+            <h2>Suggest a Resource</h2>
+            <p>Know of a great article, tutorial, or case study about AI tools that we should include? Let us know!</p>
+            <button id="suggest-resource-btn" class="btn">Suggest a Resource</button>
+            
+            <div id="resource-form" class="hidden">
+                <form id="resource-suggestion-form">
+                    <div class="form-group">
+                        <label for="resource-title">Resource Title</label>
+                        <input type="text" id="resource-title" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resource-url">URL</label>
+                        <input type="url" id="resource-url" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resource-source">Source/Publisher</label>
+                        <input type="text" id="resource-source" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resource-category">Category</label>
+                        <select id="resource-category" required>
+                            <option value="">-- Select Category --</option>
+                            <option value="tutorials">Tutorial</option>
+                            <option value="reviews">Review</option>
+                            <option value="case-studies">Case Study</option>
+                            <option value="research">Research</option>
+                            <option value="industry">Industry News</option>
+                            <option value="opinion">Opinion & Analysis</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="resource-description">Brief Description</label>
+                        <textarea id="resource-description" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="your-name">Your Name (optional)</label>
+                        <input type="text" id="your-name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="your-email">Your Email (optional)</label>
+                        <input type="email" id="your-email">
+                    </div>
+                    
+                    <button type="submit" class="btn">Submit Suggestion</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
+                    <div>
+                        <h2>AI Tools Lab</h2>
+                        <p>Exploring the landscape of AI tools and technologies</p>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AI Tools Lab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="../script.js"></script>
+</body>
+</html> 
