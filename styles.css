@@ -217,18 +217,39 @@ img {
 }
 
 .site-header nav ul li a {
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 15px 20px;
+    box-sizing: border-box;
     color: white;
+    font-weight: 500;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    font-size: 14px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    outline: none;
 }
 
-.site-header nav ul li a:hover, 
+.site-header nav ul li a:hover,
+.site-header nav ul li a:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+    text-decoration: none;
+    outline: none;
+}
+
 .site-header nav ul li a.active {
     background-color: rgba(255, 255, 255, 0.2);
-    text-decoration: none;
+    font-weight: 600;
+}
+
+.site-header nav ul li a:active {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(1px);
 }
 
 /* Footer Styles - Standardized */
@@ -1494,61 +1515,90 @@ code {
 
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
+    .site-header {
+        padding: 1.5rem 0 1.5rem 0;
+    }
+    
+    /* Override desktop navigation styles completely for mobile */
+    .site-header nav {
+        display: none; /* Hide the original nav */
+    }
+    
+    .site-header nav.open {
+        display: block; /* Show when toggled */
+    }
+    
+    /* Add to ensure that the menu doesn't interfere with clicks */
+    .site-header nav.open ul li a {
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        opacity: 1 !important;
+        color: white !important;
+        font-weight: bold !important;
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+    
+    /* Rest of mobile styles */
     .site-header .container {
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         position: relative;
-        padding: 20px 15px;
+        padding: 0 15px;
     }
     
     .logo {
         display: flex;
         align-items: center;
-        position: absolute;
-        left: 10px;
-        margin: 0;
+        width: 100%;
+        justify-content: flex-start;
+        padding-right: 110px;
+        position: relative;
     }
     
     .logo .site-logo {
-        width: 45px;
-        height: 45px;
+        display: none;
     }
     
     .logo a {
-        font-size: 2.5rem !important;
-        position: absolute;
-        left: 80px;
-        width: calc(100vw - 120px);
-        text-align: center;
-        white-space: nowrap;
-        transform: translateX(-25%);
+        font-size: 3.2rem !important;
+        text-align: left;
+        margin-left: 0;
+        color: white;
+        text-decoration: none;
     }
     
     .hamburger-menu {
         display: block !important;
         cursor: pointer;
-        font-size: 32px;
-        z-index: 1001;
+        z-index: 2000;
         position: absolute;
         right: 15px;
         top: 50%;
         transform: translateY(-50%);
         background-color: rgba(255, 255, 255, 0.3);
         border-radius: 50%;
-        width: 50px;
-        height: 50px;
+        width: 100px;
+        height: 100px;
         display: flex !important;
         align-items: center;
         justify-content: center;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
         backdrop-filter: blur(2px);
-        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+    
+    .hamburger-menu img {
+        width: 90%;
+        height: 90%;
     }
     
     .hamburger-menu.active {
         background-color: rgba(143, 70, 241, 0.3);
         transform: translateY(-50%) rotate(10deg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
     
     .site-header nav {
@@ -1558,12 +1608,12 @@ code {
         width: 80%;
         max-width: 300px;
         height: 100vh;
-        background-color: #3E2D73; /* Use solid color instead of var */
-        z-index: 1000;
+        background-color: #3E2D73;
+        z-index: 2001;
         transition: right 0.3s ease;
         padding-top: 80px;
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
-        overflow-y: auto; /* Ensure menu is scrollable */
+        overflow-y: auto;
     }
     
     .site-header nav.open {
@@ -1573,12 +1623,13 @@ code {
     .site-header nav ul {
         flex-direction: column;
         padding: 20px;
+        list-style: none;
     }
     
     .site-header nav ul li {
         margin: 0;
         width: 100%;
-        padding: 15px 0;
+        padding: 0;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
@@ -1591,13 +1642,30 @@ code {
         display: block;
         width: 100%;
         text-align: left;
-        padding: 10px 15px;
+        padding: 15px 20px;
         box-sizing: border-box;
         color: white;
         font-weight: 500;
         text-decoration: none;
         border-radius: 6px;
         transition: background-color 0.2s ease;
+        cursor: pointer;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Add visual arrow indicator for mobile menu links */
+    @media (max-width: 768px) {
+        .site-header nav ul li a::after {
+            content: " →";
+            display: inline-block;
+            margin-left: 8px;
+            transition: transform 0.2s ease;
+        }
+        
+        .site-header nav ul li a:hover::after {
+            transform: translateX(3px);
+        }
     }
     
     .site-header nav ul li a:hover,
@@ -1607,9 +1675,33 @@ code {
         text-decoration: none;
     }
     
+    .site-header nav ul li a.active {
+        background-color: rgba(255, 255, 255, 0.2);
+        font-weight: 600;
+    }
+    
     .site-header nav ul li a:active {
         background-color: rgba(255, 255, 255, 0.25);
         transform: translateY(1px);
+    }
+    
+    /* Mobile-specific touch-friendly styles */
+    @media (max-width: 768px) {
+        .site-header nav ul li {
+            margin-bottom: 8px;
+        }
+        
+        .site-header nav ul li a {
+            padding: 16px 20px;
+            font-size: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .site-header nav ul li a:active {
+            background-color: rgba(255, 255, 255, 0.3);
+            box-shadow: none;
+        }
     }
     
     .menu-overlay {
@@ -1619,15 +1711,17 @@ code {
         width: 100%;
         height: 100%;
         background-color: rgba(0, 0, 0, 0.5);
-        z-index: 999;
+        z-index: 2000;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        pointer-events: none;
     }
     
     .menu-overlay.active {
         opacity: 1;
         visibility: visible;
+        pointer-events: auto; /* Allow clicks when visible */
     }
     
     .footer-content {
@@ -1748,7 +1842,8 @@ code {
     }
     
     .site-header .container {
-        padding-bottom: 1.2rem;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }
 
@@ -1779,17 +1874,26 @@ code {
         transition: all 0.3s ease;
         backdrop-filter: blur(2px);
         text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
     }
     
     .hamburger-menu.active {
         background-color: rgba(143, 70, 241, 0.3);
         transform: translateY(-50%) rotate(10deg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
 }
 
 /* Hide menu overlay by default */
 .menu-overlay {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
 }
 
 .menu-overlay.active {
@@ -1862,19 +1966,22 @@ code {
         border-radius: 6px 6px 0 0;
     }
     
-    .logo .site-logo {
-        width: 40px;
-        height: 40px;
-    }
-    
+    /* Header adjustments for smaller screens */
     .logo a {
-        font-size: 1.8rem !important;
-        left: 65px;
-        transform: translateX(-20%);
+        font-size: 2.8rem !important;
+        text-align: left;
+        margin-left: 0;
     }
     
     .hamburger-menu {
-        right: 15px;
+        right: 10px;
+        width: 80px;  /* Doubled from original 40px */
+        height: 80px; /* Doubled from original 40px */
+    }
+    
+    .hamburger-menu img {
+        width: 90%;
+        height: 90%;
     }
     
     /* Left align filter groups on smaller screens */
@@ -1882,6 +1989,16 @@ code {
     .resources-filter-group,
     .episodes-filters {
         justify-content: flex-start;
+    }
+    
+    /* Adjust header padding for smaller screens */
+    .site-header .container {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+    
+    .logo {
+        padding-right: 90px; /* Adjust for larger menu on smaller screens */
     }
 }
 
