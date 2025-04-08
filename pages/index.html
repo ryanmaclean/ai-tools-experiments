@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools Lab - Home</title>
+    <title>Home | AI Tools Lab</title>
     <meta name="description" content="Collection of AI tools experiments and resources.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="AI Tools Lab - Home">
+    <meta property="og:title" content="Home | AI Tools Lab">
     <meta property="og:description" content="Explore our collection of AI tools experiments and resources.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aitoolslab.com/">
@@ -66,18 +66,7 @@
     <div class="filter-container">
         <div class="container">
             <div class="episodes-filters">
-                <div class="filter-group">
-                    <select id="episode-category-filter">
-                        <option value="all">All Categories</option>
-                        <option value="tutorial">Tutorials</option>
-                        <option value="demo">Demonstrations</option>
-                        <option value="guide">Guides</option>
-                        <option value="exploration">Explorations</option>
-                        <option value="coding">Coding Sessions</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
+                <div class="filter-group index-filter-group">
                     <div class="tag-buttons">
                         <button class="tag-filter active" data-tag="all">All Tags</button>
                         <button class="tag-filter" data-tag="web-dev">Web Development</button>
@@ -88,13 +77,6 @@
                         <button class="tag-filter" data-tag="claude">Claude</button>
                         <button class="tag-filter" data-tag="debugging">Debugging</button>
                     </div>
-                </div>
-                
-                <div class="sort-control">
-                    <span>Sort by date</span>
-                    <button id="date-sort-toggle" class="sort-toggle" data-sort="newest" title="Toggle sort order">
-                        <span class="sort-arrow">↓</span>
-                    </button>
                 </div>
             </div>
         </div>
@@ -312,7 +294,6 @@
             <div class="category">
                 <h3>Chatbots & Conversational Models</h3>
                 <ul>
-                    <li><a href="https://claude.ai/login?returnTo=%2F%3F" target="_blank">Claude</a> – AI chatbot developed by Anthropic.</li>
                     <li><a href="https://abacus.ai/" target="_blank">Abacus.ai</a> – AI platform for enterprise-level applications, including conversational AI and predictive analytics.</li>
                     <li><a href="https://heypi.com/" target="_blank">Pi AI</a> – AI chatbot designed for friendly and engaging conversations.</li>
                     <li><a href="https://you.com/chat" target="_blank">YouChat</a> – AI conversational assistant with web search capabilities.</li>
@@ -337,41 +318,6 @@
                     <li><a href="https://monitaur.ai/" target="_blank">Monitaur</a> – AI-powered reliability and compliance monitoring for machine learning in production.</li>
                 </ul>
             </div>
-        </section>
-
-        <section class="feedback-form">
-            <h2>Submit Feedback</h2>
-            <form id="datadog-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="tool">Tool Used</label>
-                    <select id="tool" name="tool">
-                        <option value="">Select a tool</option>
-                        <option value="gradio">Gradio</option>
-                        <option value="warp">Warp Terminal</option>
-                        <option value="cursor">Cursor</option>
-                        <option value="automatic1111">Automatic1111</option>
-                        <option value="claude-code">Claude Code</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="ai-tool-interest">What AI or LLM-related tool are you most interested in learning about?</label>
-                    <input type="text" id="ai-tool-interest" name="ai-tool-interest">
-                </div>
-                <div class="form-group">
-                    <label for="feedback">Feedback</label>
-                    <textarea id="feedback" name="feedback" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn">Submit Feedback</button>
-            </form>
         </section>
     </main>
     
