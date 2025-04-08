@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools Lab - Resources</title>
-    <meta name="description" content="Explore our curated collection of resources about AI tools and technologies from across the web.">
+    <title>Resources | AI Tools Lab</title>
+    <meta name="description" content="A curated collection of resources for AI tools and experiments.">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="AI Tools Lab - Resources">
+    <meta property="og:title" content="Resources | AI Tools Lab">
     <meta property="og:description" content="Discover articles, tutorials, and case studies about AI tools and technologies from industry leaders.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://aitoolslab.com/pages/resources.html">
@@ -20,6 +20,133 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .resource-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 100%;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .resource-card-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .resource-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .resource-card:hover .resource-card-image img {
+            transform: scale(1.05);
+        }
+        
+        .resource-card-content {
+            padding: 20px;
+            background: #ffffff;
+        }
+        
+        .resource-card-content h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .resource-card-content p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .resource-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .suggest-resource {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 50px 0;
+            text-align: center;
+        }
+        
+        .suggest-resource h2 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .suggest-resource p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        #resource-form {
+            max-width: 600px;
+            margin: 30px auto 0;
+            text-align: left;
+        }
+        
+        #resource-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        #resource-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        #resource-form input,
+        #resource-form select,
+        #resource-form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .resource-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resource-card-image {
+                height: 160px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
@@ -50,19 +177,7 @@
     <div class="filter-container">
         <div class="container">
             <div class="episodes-filters">
-                <div class="filter-group">
-                    <select id="episode-category-filter">
-                        <option value="all">All Categories</option>
-                        <option value="tutorials">Tutorials</option>
-                        <option value="reviews">Reviews</option>
-                        <option value="case-studies">Case Studies</option>
-                        <option value="research">Research</option>
-                        <option value="industry">Industry News</option>
-                        <option value="opinion">Opinion & Analysis</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
+                <div class="filter-group resources-filter-group">
                     <div class="tag-buttons">
                         <button class="tag-filter active" data-tag="all">All Tags</button>
                         <button class="tag-filter" data-tag="prompt-engineering">Prompt Engineering</button>
@@ -73,13 +188,6 @@
                         <button class="tag-filter" data-tag="web-scraping">Web Scraping</button>
                         <button class="tag-filter" data-tag="software-engineering">Software Engineering</button>
                     </div>
-                </div>
-                
-                <div class="sort-control">
-                    <span>Sort by date</span>
-                    <button id="date-sort-toggle" class="sort-toggle" data-sort="newest" title="Toggle sort order">
-                        <span class="sort-arrow">↓</span>
-                    </button>
                 </div>
             </div>
         </div>
@@ -127,7 +235,7 @@
             
             <!-- Cloudflare AI Labyrinth -->
             <div class="resource-card" data-category="industry" data-tags="web-scraping,bots,ai-defense">
-                <a href="https://www.theregister.com/2025/03/21/cloudflare_ai_labyrinth/?td=keepreading" target="_blank">
+                <a href="https://www.theregister.com/2025/03/21/cloudflare_ai_labyrinth/" target="_blank">
                     <div class="resource-card-image">
                         <img src="../images/resource-placeholder.jpg" alt="Cloudflare AI Bot Labyrinth">
                     </div>
