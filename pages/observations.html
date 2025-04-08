@@ -45,6 +45,32 @@
             margin-right: 0.75rem;
         }
         
+        /* Tool Filter Styling */
+        .tool-filter {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .tool-filter:hover {
+            border-color: #7c4dff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .tool-filter.active {
+            border-color: #7c4dff;
+            background-color: #f5f0ff;
+        }
+        
+        .episode-section {
+            transition: all 0.3s ease;
+        }
+        
+        .episode-section.hidden {
+            display: none;
+        }
+        
         /* Special styling for tools list */
         .tools-list {
             display: grid;
@@ -86,6 +112,7 @@
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 1rem;
             margin-top: 1.5rem;
+            margin-bottom: 2rem;
         }
         
         .term-item {
@@ -93,6 +120,20 @@
             padding: 0.75rem;
             border-radius: 0.5rem;
             border-left: 3px solid #6366f1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .term-item:hover {
+            border-color: #7c4dff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .term-item.active {
+            border-color: #7c4dff;
+            background-color: #f5f0ff;
         }
         
         /* Episode link styling */
@@ -268,12 +309,11 @@
 
     <main class="container about-section">
         <div class="about-header">
-            <h1>AI Lab Observations</h1>
         </div>
         
         <div class="about-content">
             <section class="about-section-block">
-                <h2>Overall Summary</h2>
+                <h2>Observations</h2>
                 <p>
                     The episodes to date explore a range of AI tools and techniques that enhance developer productivity, creativity, and efficiency. 
                     We hope to learn and demonstrate how AI can be integrated into various workflows - from building interfaces for machine learning models 
@@ -291,12 +331,74 @@
             </section>
             
             <section class="about-section-block">
+                <h2>Tools Covered</h2>
+                <div class="tools-list">
+                    <div class="tool-item tool-filter" data-tool="gradio" data-episodes="1">
+                        <h3>Gradio</h3>
+                        <p>Building web interfaces for ML models</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="warp" data-episodes="2">
+                        <h3>Warp Terminal</h3>
+                        <p>AI-enhanced terminal with command suggestions</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="cursor" data-episodes="2,7,8">
+                        <h3>Cursor</h3>
+                        <p>AI-powered code editor based on VSCode</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="automatic1111" data-episodes="3">
+                        <h3>Automatic1111</h3>
+                        <p>Web UI for Stable Diffusion image generation</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="claude-code" data-episodes="4,5,6,7,8">
+                        <h3>Claude Code</h3>
+                        <p>AI code generation and assistance</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="stable-diffusion" data-episodes="3">
+                        <h3>Stable Diffusion</h3>
+                        <p>Image generation model</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="huggingface" data-episodes="1">
+                        <h3>HuggingFace Spaces</h3>
+                        <p>Hosting and sharing ML models</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="windsurf" data-episodes="10">
+                        <h3>Windsurf</h3>
+                        <p>AI-powered code editor alternative to Cursor</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="mcp" data-episodes="10">
+                        <h3>Model Context Protocol (MCP)</h3>
+                        <p>Protocol for connecting AI models to tools</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="openrouter" data-episodes="11">
+                        <h3>OpenRouter</h3>
+                        <p>Platform for comparing and routing between multiple AI models</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="lm-arena" data-episodes="11">
+                        <h3>LM Arena</h3>
+                        <p>Interactive tool for blind comparison testing of language models</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="llama4" data-episodes="11">
+                        <h3>Llama 4</h3>
+                        <p>Meta's latest language model with massive context window</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="lunarcall" data-episodes="11">
+                        <h3>LunarCall</h3>
+                        <p>Emerging AI model discovered during comparison testing</p>
+                    </div>
+                    <div class="tool-item tool-filter active" data-tool="all">
+                        <h3>All Tools</h3>
+                        <p>Show all episodes</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="about-section-block">
                 <h2>Key Takeaways from All Episodes</h2>
                 
-                <section id="episode-11">
+                <section id="episode-11" class="episode-section" data-tools="openrouter,lm-arena,llama4,lunarcall">
                     <a href="ep11.html" class="episode-link">View</a>
-                    <h2>Episode 11: Exploring Llama 4, OpenRouter, and Model Comparison Tools</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h2>
+                    <h3></h3>
                     <ul>
                         <li>Llama 4 features a massive 10+ million token context window, potentially revolutionizing how we work with large documents and complex instructions</li>
                         <li>Despite large context windows, RAG (Retrieval Augmented Generation) remains valuable for cost efficiency and performance optimization</li>
@@ -306,10 +408,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-10">
+                <section id="episode-10" class="episode-section" data-tools="windsurf,mcp">
                     <a href="ep10.html" class="episode-link">View</a>
-                    <h2>Episode 10: Building AI-powered Applications</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>First Look at Windsurf & Model Context Protocol</h2>
+                    <h3></h3>
                     <ul>
                         <li>Windsurf offers a free tier with the Cascade model, providing capable AI assistance for code completion and project planning</li>
                         <li>Creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output</li>
@@ -319,10 +421,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-9">
+                <section id="episode-9" class="episode-section">
                     <a href="ep09.html" class="episode-link">View</a>
-                    <h2>Episode 9: Exploring AI-powered Content Creation Tools</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>From GTC to Website Building with AI Tools</h2>
+                    <h3></h3>
                     <ul>
                         <li>AI content creation tools can accelerate the creation of various media types</li>
                         <li>Different tools have unique strengths and limitations</li>
@@ -331,10 +433,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-8">
+                <section id="episode-8" class="episode-section" data-tools="cursor,claude-code">
                     <a href="ep08.html" class="episode-link">View</a>
-                    <h2>Episode 8: Local AI Development Environment Setup</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Using Cursor and Claude to Fix CSS Layout Issues</h2>
+                    <h3></h3>
                     <ul>
                         <li>Running AI models locally requires specific hardware and software configurations</li>
                         <li>Local environments provide more control and privacy than cloud-based alternatives</li>
@@ -343,10 +445,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-7">
+                <section id="episode-7" class="episode-section" data-tools="cursor,claude-code">
                     <a href="ep07.html" class="episode-link">View</a>
-                    <h2>Episode 7: Debugging with Cursor and Claude</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Debugging with Cursor and Claude</h2>
+                    <h3></h3>
                     <ul>
                         <li>AI debugging tools can identify issues in code more quickly than manual inspection</li>
                         <li>Cursor provides integrated features for asking questions about code and finding bugs</li>
@@ -355,10 +457,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-6">
+                <section id="episode-6" class="episode-section" data-tools="claude-code">
                     <a href="ep06.html" class="episode-link">View</a>
-                    <h2>Episode 6: Using Claude Code to Make Changes to Personal Website</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Using Cursor with Claude to Fix Vinyl Viewer Bugs</h2>
+                    <h3></h3>
                     <ul>
                         <li>Cursor with Claude can quickly identify and fix complex bugs in web applications</li>
                         <li>The Vinyl Viewer bug occurred because the click handler used the original data array instead of the filtered array</li>
@@ -368,10 +470,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-5">
+                <section id="episode-5" class="episode-section" data-tools="claude-code">
                     <a href="ep05.html" class="episode-link">View</a>
-                    <h2>Episode 5: Using Claude Code for Automated HTML Updates and Styling</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Using Claude Code for Automated HTML Updates and Styling</h2>
+                    <h3></h3>
                     <ul>
                         <li>Claude Code can automate repetitive HTML updates across multiple files</li>
                         <li>AI can apply consistent styling and structure to improve website maintainability</li>
@@ -380,10 +482,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-4">
+                <section id="episode-4" class="episode-section" data-tools="claude-code">
                     <a href="ep04.html" class="episode-link">View</a>
-                    <h2>Episode 4: Building a Secure Feedback Form with Datadog Logs with Claude Code</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Building a Secure Feedback Form with Datadog Logs with Claude Code</h2>
+                    <h3></h3>
                     <ul>
                         <li>Claude Code can efficiently generate HTML/CSS/JS for static websites</li>
                         <li>GitHub Actions allow secure handling of API keys through repository secrets</li>
@@ -393,10 +495,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-3">
+                <section id="episode-3" class="episode-section" data-tools="automatic1111,stable-diffusion">
                     <a href="ep03.html" class="episode-link">View</a>
-                    <h2>Episode 3: Automatic1111 and Local Text-to-Image Generation</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Automatic1111 and Local Text-to-Image Generation</h2>
+                    <h3></h3>
                     <ul>
                         <li>Automatic1111 provides a web UI for Stable Diffusion image generation models</li>
                         <li>Local image generation is slower but offers privacy, offline access, and cost savings</li>
@@ -406,10 +508,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-2">
+                <section id="episode-2" class="episode-section" data-tools="warp,cursor">
                     <a href="ep02.html" class="episode-link">View</a>
-                    <h2>Episode 2: Exploring Warp Terminal and Cursor for Productivity</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Exploring Warp Terminal and Cursor for Productivity</h2>
+                    <h3></h3>
                     <ul>
                         <li>Warp offers a more intuitive terminal experience with AI-powered command suggestions</li>
                         <li>Cursor enhances coding with integrated AI assistance for code generation and review</li>
@@ -419,10 +521,10 @@
                     </ul>
                 </section>
                 
-                <section id="episode-1">
+                <section id="episode-1" class="episode-section" data-tools="gradio,huggingface">
                     <a href="ep01.html" class="episode-link">View</a>
-                    <h2>Episode 1: Building Quick Web Interfaces for ML Models</h2>
-                    <h3>Key Takeaways:</h3>
+                    <h2>Building Quick Web Interfaces for ML Models</h2>
+                    <h3></h3>
                     <ul>
                         <li>Gradio is a very easy way to get a Huggingface Space locally (via <code>load</code>)</li>
                         <li>Gradio provides a simple way to build frontends for ML applications</li>
@@ -434,143 +536,19 @@
             </section>
             
             <section class="about-section-block">
-                <h2>Tools Covered</h2>
-                <div class="tools-list">
-                    <div class="tool-item">
-                        <h3>Gradio</h3>
-                        <p>Building web interfaces for ML models</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Warp Terminal</h3>
-                        <p>AI-enhanced terminal with command suggestions</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Cursor</h3>
-                        <p>AI-powered code editor based on VSCode</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Automatic1111</h3>
-                        <p>Web UI for Stable Diffusion image generation</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Claude Code</h3>
-                        <p>AI code generation and assistance</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>GitHub Pages</h3>
-                        <p>Hosting static websites</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>GitHub Actions</h3>
-                        <p>Automating workflow and deployment</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Datadog Logging API</h3>
-                        <p>Structured logging service</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Stable Diffusion</h3>
-                        <p>Image generation model</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>HuggingFace Spaces</h3>
-                        <p>Hosting and sharing ML models</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Local AI Development Environments</h3>
-                        <p>Tools for running models locally</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>AI Content Creation Tools</h3>
-                        <p>Various tools for generating content</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Draw Things</h3>
-                        <p>Mobile app for image generation</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Python Virtual Environments</h3>
-                        <p>For managing dependencies</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Windsurf</h3>
-                        <p>AI-powered code editor alternative to Cursor</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Model Context Protocol (MCP)</h3>
-                        <p>Protocol for connecting AI models to tools</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>OpenRouter</h3>
-                        <p>Platform for comparing and routing between multiple AI models</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>LM Arena</h3>
-                        <p>Interactive tool for blind comparison testing of language models</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Llama 4</h3>
-                        <p>Meta's latest language model with massive context window</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>LunarCall</h3>
-                        <p>Emerging AI model discovered during comparison testing</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Cursor AI</h3>
-                        <p>An AI-enhanced code editor that provides real-time code suggestions, powerful refactoring tools, and in-editor pair programming assistance. Especially strong at understanding context and generating high-quality, complex code.</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>GitHub Copilot</h3>
-                        <p>An AI pair programmer that offers inline code suggestions directly in the editor. Integrates with multiple IDEs and is particularly useful for routine coding tasks and boilerplate generation.</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Codeium</h3>
-                        <p>A free AI coding assistant providing code completions, generation, and chat capabilities. Available as extensions for most popular IDEs with a focus on privacy and code understanding.</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Amazon CodeWhisperer</h3>
-                        <p>Amazon's AI code companion that provides contextual recommendations. Notable for its security scanning features and specialized suggestions for AWS services.</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>Tabnine</h3>
-                        <p>An AI assistant that provides code completions while prioritizing privacy. Offers both cloud-based and local models with strong multi-line code completion capabilities.</p>
-                    </div>
-                    <div class="tool-item">
-                        <h3>continue.dev</h3>
-                        <p>An open-source IDE extension that brings LLM-powered code assistance to your development workflow. Allows customization of models and provides specialized agent features.</p>
-                    </div>
-                </div>
-            </section>
-            
-            <section class="about-section-block">
                 <h2>Most Popular Terms Used</h2>
                 <div class="terms-grid">
-                    <div class="term-item">1. AI/Artificial Intelligence</div>
-                    <div class="term-item">2. Machine Learning (ML)</div>
-                    <div class="term-item">3. Models</div>
-                    <div class="term-item">4. Prompt Engineering</div>
-                    <div class="term-item">5. Generation/Generative</div>
-                    <div class="term-item">6. Interface/UI</div>
-                    <div class="term-item">7. Local/Locally</div>
-                    <div class="term-item">8. Cloud</div>
-                    <div class="term-item">9. API</div>
-                    <div class="term-item">10. Code/Coding</div>
-                    <div class="term-item">11. Image Generation</div>
-                    <div class="term-item">12. GitHub</div>
-                    <div class="term-item">13. Terminal</div>
-                    <div class="term-item">14. Productivity</div>
-                    <div class="term-item">15. Debugging</div>
-                    <div class="term-item">16. Deployment</div>
-                    <div class="term-item">17. Brainstorming</div>
-                    <div class="term-item">18. Static Website</div>
-                    <div class="term-item">19. Memory/GPU</div>
-                    <div class="term-item">20. Automation</div>
-                    <div class="term-item">21. Context Window</div>
-                    <div class="term-item">22. Hallucinations</div>
-                    <div class="term-item">23. Model Comparison</div>
-                    <div class="term-item">24. RAG (Retrieval Augmented Generation)</div>
-                    <div class="term-item">25. System Prompts</div>
+                    <div class="term-item term-filter active" data-term="all">All Terms</div>
+                    <div class="term-item term-filter" data-term="claude" data-episodes="1,2,4,5,6,7,8,9,11">Claude</div>
+                    <div class="term-item term-filter" data-term="cursor" data-episodes="2,6,7,8,9,10,11">Cursor</div>
+                    <div class="term-item term-filter" data-term="gradio" data-episodes="1,3,5,8,10">Gradio</div>
+                    <div class="term-item term-filter" data-term="stable-diffusion" data-episodes="3,7,8,9,10">Stable Diffusion</div>
+                    <div class="term-item term-filter" data-term="python" data-episodes="1,2,4,8,11">Python</div>
+                    <div class="term-item term-filter" data-term="api" data-episodes="1,2,4,7,9">API</div>
+                    <div class="term-item term-filter" data-term="warp-terminal" data-episodes="2,7,8,11">Warp Terminal</div>
+                    <div class="term-item term-filter" data-term="gpu" data-episodes="3,7,9,10">GPU</div>
+                    <div class="term-item term-filter" data-term="prompt-engineering" data-episodes="3,7,9,10">Prompt Engineering</div>
+                    <div class="term-item term-filter" data-term="huggingface" data-episodes="1,3,8">Hugging Face</div>
                 </div>
             </section>
         </div>
@@ -611,5 +589,90 @@
     </footer>
 
     <script src="../script.js"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get all filter elements
+        const toolFilters = document.querySelectorAll('.tool-filter');
+        const termFilters = document.querySelectorAll('.term-filter');
+        const episodeSections = document.querySelectorAll('.episode-section');
+        
+        // Add click event listeners to each tool filter
+        toolFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                // Remove active class from all tool filters
+                toolFilters.forEach(f => f.classList.remove('active'));
+                
+                // Reset term filters
+                termFilters.forEach(f => f.classList.remove('active'));
+                document.querySelector('.term-filter[data-term="all"]').classList.add('active');
+                
+                // Add active class to clicked filter
+                this.classList.add('active');
+                
+                const selectedTool = this.getAttribute('data-tool');
+                
+                // Show all episodes if 'all' is selected
+                if (selectedTool === 'all') {
+                    episodeSections.forEach(section => {
+                        section.classList.remove('hidden');
+                    });
+                    return;
+                }
+                
+                // Hide/show episodes based on the selected tool
+                episodeSections.forEach(section => {
+                    const episodeTools = section.getAttribute('data-tools') || '';
+                    if (episodeTools.includes(selectedTool)) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            });
+        });
+        
+        // Add click event listeners to each term filter
+        termFilters.forEach(filter => {
+            filter.addEventListener('click', function() {
+                // Remove active class from all term filters
+                termFilters.forEach(f => f.classList.remove('active'));
+                
+                // Reset tool filters
+                toolFilters.forEach(f => f.classList.remove('active'));
+                document.querySelector('.tool-filter[data-tool="all"]').classList.add('active');
+                
+                // Add active class to clicked filter
+                this.classList.add('active');
+                
+                const selectedTerm = this.getAttribute('data-term');
+                
+                // Show all episodes if 'all' is selected
+                if (selectedTerm === 'all') {
+                    episodeSections.forEach(section => {
+                        section.classList.remove('hidden');
+                    });
+                    return;
+                }
+                
+                // Get episodes that mention this term
+                const episodeNumbers = this.getAttribute('data-episodes') || '';
+                const episodeArray = episodeNumbers.split(',');
+                
+                // Hide/show episodes based on the selected term
+                episodeSections.forEach(section => {
+                    const episodeId = section.getAttribute('id');
+                    const episodeNumber = episodeId.replace('episode-', '');
+                    
+                    if (episodeArray.includes(episodeNumber)) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    });
+    </script>
 </body>
 </html> 
