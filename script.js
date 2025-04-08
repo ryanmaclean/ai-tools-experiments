@@ -213,10 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSuggestionForm();
     generateResourceThumbnails();
     initializeTagFilters();
-    initializeMobileMenu();
-    // Date sorting functionality removed
-    // initializeDateSorting();
-    // initialSortByDate();
+    initializeMobileMenuDirectLinks();
     
     // Generate thumbnail images for resources
     function generateResourceThumbnails() {
@@ -493,22 +490,24 @@ document.addEventListener('DOMContentLoaded', function() {
         return activeTags.some(tag => cardTags.includes(tag));
     }
 
-    // Improved mobile menu initialization with better link handling
-    function initializeMobileMenu() {
-        console.log('Initializing mobile menu');
+    // COMPLETELY NEW mobile menu implementation using direct links
+    function initializeMobileMenuDirectLinks() {
+        console.log('Initializing mobile menu with direct links approach');
         
-        // Remove existing hamburger menu if present
+        // Clean up any existing elements
         const existingMenu = document.querySelector('.hamburger-menu');
-        if (existingMenu) {
-            existingMenu.remove();
-        }
+        if (existingMenu) existingMenu.remove();
         
+        const existingOverlay = document.querySelector('.menu-overlay');
+        if (existingOverlay) existingOverlay.remove();
+        
+        // Get required elements
         const siteHeader = document.querySelector('.site-header');
         const headerContainer = document.querySelector('.site-header .container');
         const nav = document.querySelector('.site-header nav');
         
         if (!siteHeader || !headerContainer || !nav) {
-            console.error('Required elements not found');
+            console.error('Required elements not found for mobile menu');
             return;
         }
         
@@ -518,18 +517,20 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerMenu.setAttribute('role', 'button');
         hamburgerMenu.setAttribute('tabindex', '0');
         hamburgerMenu.setAttribute('aria-label', 'Toggle navigation menu');
-        hamburgerMenu.innerHTML = '⚛';
         
-        // Only apply display:block when screen is mobile size
-        if (window.innerWidth <= 768) {
-            hamburgerMenu.style.display = 'flex';
+        // Use site logo for hamburger button
+        const logoImg = document.createElement('img');
+        const siteLogo = document.querySelector('.site-logo');
+        if (siteLogo) {
+            logoImg.src = siteLogo.src;
         } else {
-            hamburgerMenu.style.display = 'none';
+            logoImg.src = '../images/ai-tools-lab-logo.png';
         }
-        
-        // Add minimal inline styles (most styles come from CSS)
-        hamburgerMenu.style.position = 'absolute';
-        hamburgerMenu.style.right = '15px';
+        logoImg.alt = "Menu";
+        logoImg.style.width = '100%';
+        logoImg.style.height = '100%';
+        logoImg.style.objectFit = 'contain';
+        hamburgerMenu.appendChild(logoImg);
         
         // Add to DOM
         headerContainer.appendChild(hamburgerMenu);
@@ -539,32 +540,77 @@ document.addEventListener('DOMContentLoaded', function() {
         menuOverlay.className = 'menu-overlay';
         document.body.appendChild(menuOverlay);
         
-        // Function to toggle menu state
+        // Get all navigation items and convert to direct links
+        const navItems = nav.querySelectorAll('a');
+        const navLinks = [];
+        
+        navItems.forEach(item => {
+            navLinks.push({
+                href: item.getAttribute('href'),
+                text: item.textContent,
+                isActive: item.classList.contains('active')
+            });
+        });
+        
+        // Create mobile navigation container that will replace the nav element when open
+        const mobileNavContainer = document.createElement('div');
+        mobileNavContainer.className = 'mobile-nav-container';
+        mobileNavContainer.style.display = 'none';
+        mobileNavContainer.style.position = 'fixed';
+        mobileNavContainer.style.top = '0';
+        mobileNavContainer.style.right = '0';
+        mobileNavContainer.style.width = '80%';
+        mobileNavContainer.style.maxWidth = '300px';
+        mobileNavContainer.style.height = '100vh';
+        mobileNavContainer.style.backgroundColor = '#3E2D73';
+        mobileNavContainer.style.zIndex = '2001';
+        mobileNavContainer.style.paddingTop = '80px';
+        mobileNavContainer.style.boxShadow = '-2px 0 5px rgba(0, 0, 0, 0.2)';
+        mobileNavContainer.style.overflowY = 'auto';
+        
+        // Create direct HTML links to avoid event handling issues
+        let mobileNavHTML = '<ul style="list-style: none; padding: 20px;">';
+        navLinks.forEach(link => {
+            mobileNavHTML += `
+                <li style="margin: 0; width: 100%; padding: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                    <a href="${link.href}" 
+                       style="font-size: 20px; display: block; width: 100%; text-align: left; padding: 16px 20px; 
+                              box-sizing: border-box; color: white; font-weight: 600; text-decoration: none; 
+                              border-radius: 6px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1);
+                              margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"
+                       ${link.isActive ? 'class="active"' : ''}>
+                        ${link.text} →
+                    </a>
+                </li>
+            `;
+        });
+        mobileNavHTML += '</ul>';
+        
+        mobileNavContainer.innerHTML = mobileNavHTML;
+        document.body.appendChild(mobileNavContainer);
+        
+        // Toggle function that doesn't reference the original nav
         function toggleMenu() {
-            console.log('Toggling menu');
-            nav.classList.toggle('open');
-            hamburgerMenu.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            
-            if (nav.classList.contains('open')) {
+            if (mobileNavContainer.style.display === 'none') {
+                // Open menu
+                mobileNavContainer.style.display = 'block';
+                hamburgerMenu.classList.add('active');
+                menuOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             } else {
+                // Close menu
+                mobileNavContainer.style.display = 'none';
+                hamburgerMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
                 document.body.style.overflow = '';
             }
         }
         
         // Toggle menu on hamburger click
         hamburgerMenu.addEventListener('click', function(e) {
+            e.preventDefault();
             e.stopPropagation();
             toggleMenu();
-        });
-        
-        // Toggle on keypress for accessibility
-        hamburgerMenu.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleMenu();
-            }
         });
         
         // Close menu when clicking overlay
@@ -572,134 +618,29 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleMenu();
         });
         
-        // Handle navigation links
-        const navLinks = nav.querySelectorAll('a');
-        navLinks.forEach(link => {
-            // Remove existing event listeners
-            const newLink = link.cloneNode(true);
-            link.parentNode.replaceChild(newLink, link);
-            
-            // Add click listener with delayed navigation
-            newLink.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                console.log('Link clicked: ' + href);
-                
-                // Close menu first
-                toggleMenu();
-                
-                // Navigate after a short delay to allow menu to close
-                setTimeout(function() {
-                    window.location.href = href;
-                }, 300);
-            });
-        });
-        
-        // Handle window resize - show/hide hamburger based on screen width
+        // Handle window resize
         window.addEventListener('resize', function() {
-            // Update hamburger visibility based on screen size
             if (window.innerWidth <= 768) {
                 hamburgerMenu.style.display = 'flex';
             } else {
                 hamburgerMenu.style.display = 'none';
                 
-                // If menu is open and screen size increases, close the menu
-                if (nav.classList.contains('open')) {
+                if (mobileNavContainer.style.display !== 'none') {
                     toggleMenu();
                 }
             }
         });
         
-        console.log('Mobile menu initialized successfully');
-    }
-
-    // Date sorting functions (commented out as UI elements were removed)
-    /*
-    function initializeDateSorting() {
-        const dateToggle = document.getElementById('date-sort-toggle');
-        if (!dateToggle) return;
-        
-        // Set initial arrow direction based on data-sort attribute
-        updateSortArrow(dateToggle);
-        
-        dateToggle.addEventListener('click', function() {
-            // Toggle sort direction
-            const currentSort = this.getAttribute('data-sort');
-            const newSort = currentSort === 'newest' ? 'oldest' : 'newest';
-            
-            // Update button state
-            this.setAttribute('data-sort', newSort);
-            
-            // Update arrow direction
-            updateSortArrow(this);
-            
-            // Sort the cards (works for both recording and resource cards)
-            const cardsContainer = document.querySelector('.recording-grid') || document.querySelector('.resource-grid');
-            if (!cardsContainer) return;
-            
-            const cards = Array.from(cardsContainer.children);
-            
-            cards.sort((a, b) => {
-                const dateA = getCardDate(a);
-                const dateB = getCardDate(b);
-                
-                // Compare dates (newest first or oldest first)
-                return newSort === 'newest' 
-                    ? new Date(dateB) - new Date(dateA) 
-                    : new Date(dateA) - new Date(dateB);
-            });
-            
-            // Remove existing cards
-            cards.forEach(card => card.remove());
-            
-            // Append sorted cards
-            cards.forEach(card => cardsContainer.appendChild(card));
-        });
-    }
-
-    // Update sort arrow direction based on sort state
-    function updateSortArrow(toggleButton) {
-        const arrow = toggleButton.querySelector('.sort-arrow');
-        if (!arrow) return;
-        
-        if (toggleButton.getAttribute('data-sort') === 'newest') {
-            arrow.innerHTML = '↓';
-            arrow.title = 'Newest first';
+        // Initial state
+        if (window.innerWidth <= 768) {
+            hamburgerMenu.style.display = 'flex';
         } else {
-            arrow.innerHTML = '↑';
-            arrow.title = 'Oldest first';
+            hamburgerMenu.style.display = 'none';
         }
+        
+        console.log('Mobile menu initialized with direct links approach');
     }
-
-    // Sort content by date (newest first) when the page loads
-    function initialSortByDate() {
-        const cardsContainer = document.querySelector('.recording-grid') || document.querySelector('.resource-grid');
-        if (!cardsContainer) return;
-        
-        const cards = Array.from(cardsContainer.children);
-        
-        // Sort cards by date (newest first)
-        cards.sort((a, b) => {
-            const dateA = getCardDate(a);
-            const dateB = getCardDate(b);
-            
-            return new Date(dateB) - new Date(dateA); // Newest first
-        });
-        
-        // Remove existing cards
-        cards.forEach(card => card.remove());
-        
-        // Append sorted cards
-        cards.forEach(card => cardsContainer.appendChild(card));
-        
-        // Update the sort button to show current sort state
-        const dateToggle = document.getElementById('date-sort-toggle');
-        if (dateToggle) {
-            dateToggle.setAttribute('data-sort', 'newest');
-        }
-    }
-    */
-
+    
     function getCardDate(card) {
         // Extract date from either recording-card or resource-card
         const dateElement = card.querySelector('.recording-date') || card.querySelector('.resource-date');
