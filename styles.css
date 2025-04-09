@@ -118,7 +118,7 @@ img {
 /* Create multiple bubble elements with different animations */
 .site-header .bubble {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5); /* Default color */
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
@@ -132,6 +132,7 @@ img {
     left: 15%;
     animation: headerBubble 9s infinite 0.5s ease-in-out;
     --x-travel: 50px;
+    background-color: hsla(240, 70%, 70%, 0.6); /* Blue */
 }
 
 .site-header .bubble:nth-child(2) {
@@ -141,6 +142,7 @@ img {
     left: 45%;
     animation: headerBubble2 7s infinite 1.5s ease-in-out;
     --x-travel: 40px;
+    background-color: rgba(255, 255, 255, 0.6); /* Keep white */
 }
 
 .site-header .bubble:nth-child(3) {
@@ -150,6 +152,7 @@ img {
     left: 75%;
     animation: headerBubble3 10s infinite 0.8s ease-in-out;
     --x-travel: 60px;
+    background-color: hsla(160, 70%, 65%, 0.6); /* Teal */
 }
 
 /* Add more bubbles for a more pronounced effect */
@@ -160,6 +163,7 @@ img {
     left: 30%;
     animation: headerBubble2 8s infinite 0s ease-in-out;
     --x-travel: 35px;
+    background-color: hsla(280, 70%, 65%, 0.6); /* Purple */
 }
 
 .site-header .bubble:nth-child(5) {
@@ -169,6 +173,7 @@ img {
     left: 60%;
     animation: headerBubble 9.5s infinite 1.2s ease-in-out;
     --x-travel: 45px;
+    background-color: rgba(255, 255, 255, 0.6); /* Keep white */
 }
 
 .site-header .bubble:nth-child(6) {
@@ -178,6 +183,7 @@ img {
     left: 85%;
     animation: headerBubble3 7.5s infinite 2s ease-in-out;
     --x-travel: 25px;
+    background-color: hsla(30, 70%, 70%, 0.6); /* Orange */
 }
 
 .site-header .bubble:nth-child(7) {
@@ -187,6 +193,7 @@ img {
     left: 5%;
     animation: headerBubble 10.5s infinite 0.3s ease-in-out;
     --x-travel: 55px;
+    background-color: hsla(190, 70%, 65%, 0.6); /* Light Blue */
 }
 
 .logo {
@@ -327,7 +334,7 @@ footer {
 /* Footer bubble effects */
 footer .bubble {
     position: absolute;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.5); /* Default color */
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
@@ -361,6 +368,7 @@ footer .bubble:nth-child(1) {
     left: 15%;
     animation: footerBubble 9s infinite 0.5s ease-in-out;
     --x-travel: 50px;
+    background-color: hsla(320, 70%, 65%, 0.6); /* Pink */
 }
 
 footer .bubble:nth-child(2) {
@@ -370,6 +378,7 @@ footer .bubble:nth-child(2) {
     left: 45%;
     animation: footerBubble2 7s infinite 1.5s ease-in-out;
     --x-travel: 40px;
+    background-color: rgba(255, 255, 255, 0.6); /* Keep white */
 }
 
 footer .bubble:nth-child(3) {
@@ -379,6 +388,7 @@ footer .bubble:nth-child(3) {
     left: 75%;
     animation: footerBubble3 10s infinite 0.8s ease-in-out;
     --x-travel: 60px;
+    background-color: hsla(60, 70%, 70%, 0.6); /* Yellow */
 }
 
 footer .bubble:nth-child(4) {
@@ -388,6 +398,7 @@ footer .bubble:nth-child(4) {
     left: 30%;
     animation: footerBubble2 8s infinite 0s ease-in-out;
     --x-travel: 35px;
+    background-color: hsla(120, 60%, 70%, 0.6); /* Green */
 }
 
 footer .bubble:nth-child(5) {
@@ -397,6 +408,7 @@ footer .bubble:nth-child(5) {
     left: 60%;
     animation: footerBubble 9.5s infinite 1.2s ease-in-out;
     --x-travel: 45px;
+    background-color: rgba(255, 255, 255, 0.6); /* Keep white */
 }
 
 footer .bubble:nth-child(6) {
@@ -406,6 +418,7 @@ footer .bubble:nth-child(6) {
     left: 85%;
     animation: footerBubble3 7.5s infinite 2s ease-in-out;
     --x-travel: 25px;
+    background-color: hsla(200, 70%, 65%, 0.6); /* Blue */
 }
 
 footer .bubble:nth-child(7) {
@@ -415,6 +428,7 @@ footer .bubble:nth-child(7) {
     left: 5%;
     animation: footerBubble 10.5s infinite 0.3s ease-in-out;
     --x-travel: 55px;
+    background-color: hsla(340, 70%, 70%, 0.6); /* Magenta */
 }
 
 .footer-content {
@@ -875,10 +889,11 @@ footer::before {
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
-    border-radius: 2px;
+    border-radius: 25px;
     min-width: 90px;
     margin: 2px;
     font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Test tube style */
@@ -913,6 +928,8 @@ footer::before {
     background-color: #8a70b5; /* Purple hover color */
     color: white;
     transform: translateY(-2px);
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .tag-filter:hover::before {
@@ -930,6 +947,8 @@ footer::before {
     background-color: var(--secondary-color); /* Header blue color */
     color: #fff;
     transform: translateY(-2px);
+    border-radius: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .tag-filter.active::before {
@@ -985,119 +1004,131 @@ footer::before {
     position: relative;
     overflow: hidden;
     border-radius: 8px 8px 0 0;
-    background: rgba(0, 122, 204, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(0, 122, 204, 0.15);
+    transition: transform 0.3s ease;
 }
 
 .resource-card-image::before {
     content: '';
     position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(96, 165, 250, 0.5) 0%, rgba(37, 99, 235, 0.1) 70%, transparent 100%);
+    bottom: 10px;
+    right: 15px;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 50%;
-    filter: blur(10px);
-    opacity: 0.7;
-    transition: transform 1.8s cubic-bezier(0.05, 0.8, 0.3, 0.95);
-    z-index: 1;
-}
-
-.resource-card:hover .resource-card-image::before {
-    transform: translate(calc(var(--mouse-x, 50%) - 50%), calc(var(--mouse-y, 50%) - 50%)) scale(1.1);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 2;
 }
 
 .resource-card-image::after {
     content: '';
     position: absolute;
-    top: 30%;
-    left: 40%;
-    width: 30%;
-    height: 30%;
-    background: radial-gradient(circle, rgba(147, 197, 253, 0.6) 0%, rgba(59, 130, 246, 0.2) 70%, transparent 100%);
+    bottom: 15px;
+    left: 20%;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
-    filter: blur(8px);
-    opacity: 0.6;
-    transition: transform 1.6s cubic-bezier(0.05, 0.8, 0.3, 0.95);
-    z-index: 1;
-    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.resource-card:hover .resource-card-image::before {
+    opacity: 0.8;
+    animation: resourceBubble 3s infinite;
 }
 
 .resource-card:hover .resource-card-image::after {
-    transform: translate(calc(var(--mouse-x, 50%) - 50%), calc(var(--mouse-y, 50%) - 50%)) scale(1.15);
+    opacity: 0.6;
+    animation: resourceBubble2 4s infinite 0.5s;
 }
 
-.resource-card:nth-child(odd) .resource-card-image::after {
-    left: 25%;
-    top: 40%;
-    background: radial-gradient(circle, rgba(196, 181, 253, 0.7) 0%, rgba(139, 92, 246, 0.2) 70%, transparent 100%);
-    transition: transform 2s cubic-bezier(0.05, 0.8, 0.3, 0.95);
+@keyframes resourceBubble {
+    0% { transform: translateY(0); opacity: 0.8; }
+    50% { transform: translateY(-15px); opacity: 0.4; }
+    100% { transform: translateY(-30px); opacity: 0; }
 }
 
-.bubble {
+@keyframes resourceBubble2 {
+    0% { transform: translateY(0); opacity: 0.6; }
+    50% { transform: translateY(-12px) translateX(5px); opacity: 0.3; }
+    100% { transform: translateY(-25px) translateX(8px); opacity: 0; }
+}
+
+.resource-card-image .bubble {
     position: absolute;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(255, 255, 255, 0.6);
     pointer-events: none;
     z-index: 2;
-    transition: transform 1.6s cubic-bezier(0.05, 0.8, 0.3, 0.95);
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.3);
+    opacity: 0;
+    transition: all 0.3s ease;
 }
 
-.resource-card:hover .bubble {
+/* Add multiple bubbles to each card */
+.resource-card-image .bubble:nth-child(1) {
+    bottom: 20px;
+    left: 30%;
+    width: 8px;
+    height: 8px;
+}
+
+.resource-card-image .bubble:nth-child(2) {
+    bottom: 15px;
+    right: 35%;
+    width: 5px;
+    height: 5px;
+    background-color: hsla(240, 70%, 70%, 0.6); /* Blue */
+}
+
+.resource-card-image .bubble:nth-child(3) {
+    bottom: 25px;
+    left: 75%;
+    width: 7px;
+    height: 7px;
+    background-color: hsla(160, 70%, 65%, 0.6); /* Teal */
+}
+
+.resource-card-image .bubble:nth-child(4) {
+    bottom: 10px;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background-color: hsla(320, 70%, 65%, 0.6); /* Pink */
+}
+
+.resource-card:hover .resource-card-image .bubble:nth-child(1) {
     opacity: 0.8;
-    transform: translate(
-        calc((var(--mouse-x, 50%) - 50%) * var(--attract-strength, 0.15)),
-        calc((var(--mouse-y, 50%) - 50%) * var(--attract-strength, 0.15))
-    );
+    animation: resourceBubble 3.5s infinite 0.2s;
 }
 
-/* Add some more water-like behavior */
-.bubble::before {
-    content: '';
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.6), transparent 60%);
-    opacity: 0.5;
-    z-index: 3;
-    pointer-events: none;
+.resource-card:hover .resource-card-image .bubble:nth-child(2) {
+    opacity: 0.7;
+    animation: resourceBubble2 2.8s infinite 0.7s;
 }
 
-/* Bubble animation with reduced fluid effect */
-.resource-card:hover .bubble {
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-    animation: bubbleFloat 2.5s infinite alternate;
+.resource-card:hover .resource-card-image .bubble:nth-child(3) {
+    opacity: 0.6;
+    animation: resourceBubble 4s infinite 1.3s;
 }
 
-@keyframes bubbleFloat {
-    0%, 100% {
-        transform: translate(
-            calc((var(--mouse-x, 50%) - 50%) * var(--attract-strength, 0.15)),
-            calc((var(--mouse-y, 50%) - 50%) * var(--attract-strength, 0.15))
-        );
-    }
-    50% {
-        transform: translate(
-            calc((var(--mouse-x, 50%) - 50%) * var(--attract-strength, 0.15)),
-            calc((var(--mouse-y, 50%) - 50%) * var(--attract-strength, 0.15) - 3px)
-        );
-    }
+.resource-card:hover .resource-card-image .bubble:nth-child(4) {
+    opacity: 0.8;
+    animation: resourceBubble2 3.2s infinite 0.4s;
 }
 
-/* Add subtle movement to the card liquid area */
+/* Change background on hover for bubbly effect */
 .resource-card:hover .resource-card-image {
     background: linear-gradient(
         to bottom, 
         rgba(37, 99, 235, 0.1),
         rgba(59, 130, 246, 0.15),
-        rgba(96, 165, 250, 0.2)
+        rgba(96, 165, 250, 0.15)
     );
 }
 
@@ -1854,6 +1885,7 @@ code {
         text-align: center;
         margin: 3px;
         white-space: nowrap;
+        border-radius: 25px;
     }
     
     .tag-filter::before,
@@ -2082,6 +2114,8 @@ code {
         background-color: #8a70b5; /* Purple hover color */
         color: white;
         transform: translateY(-2px);
+        border-radius: 25px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     }
     
     .tag-filter:hover::before {
@@ -2310,10 +2344,11 @@ code {
     cursor: pointer;
     transition: all 0.3s;
     position: relative;
-    border-radius: 4px;
+    border-radius: 50%;
     text-decoration: none;
     text-align: center;
     vertical-align: middle;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .back-link.tag-filter:hover {
@@ -2321,6 +2356,8 @@ code {
     color: white;
     transform: translateY(-2px);
     text-decoration: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Test tube style */
