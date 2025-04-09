@@ -4,6 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     resourceCardTitles.forEach(title => {
         title.classList.add('visually-hidden');
     });
+    
+    // Add bubbles to resource card images
+    const resourceCardImages = document.querySelectorAll('.resource-card-image');
+    resourceCardImages.forEach(imageContainer => {
+        // Create 4 bubble elements
+        for (let i = 0; i < 4; i++) {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            imageContainer.appendChild(bubble);
+        }
+    });
+    
     // Adjust paths for resources based on page location
     const isInPagesDir = window.location.pathname.includes('/pages/');
     const pathPrefix = isInPagesDir ? '../' : '';
