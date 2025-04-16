@@ -341,7 +341,7 @@
                         <h3>Warp Terminal</h3>
                         <p>AI-enhanced terminal with command suggestions</p>
                     </div>
-                    <div class="tool-item tool-filter" data-tool="cursor" data-episodes="2,7,8">
+                    <div class="tool-item tool-filter" data-tool="cursor" data-episodes="2,7,8,12">
                         <h3>Cursor</h3>
                         <p>AI-powered code editor based on VSCode</p>
                     </div>
@@ -361,12 +361,20 @@
                         <h3>HuggingFace Spaces</h3>
                         <p>Hosting and sharing ML models</p>
                     </div>
-                    <div class="tool-item tool-filter" data-tool="windsurf" data-episodes="10">
+                    <div class="tool-item tool-filter" data-tool="windsurf" data-episodes="10,12">
                         <h3>Windsurf</h3>
                         <p>AI-powered code editor alternative to Cursor</p>
                     </div>
+                    <div class="tool-item tool-filter" data-tool="firebase-studio" data-episodes="12">
+                        <h3>Firebase Studio</h3>
+                        <p>Google's cloud-based IDE powered by Gemini</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="cursor-rules" data-episodes="12">
+                        <h3>Cursor Rules</h3>
+                        <p>Configuration files to maintain context in AI coding tools</p>
+                    </div>
                     <div class="tool-item tool-filter" data-tool="mcp" data-episodes="10">
-                        <h3>Model Context Protocol (MCP)</h3>
+                        <h3>Model Context Protocol (MCP) (MCP)</h3>
                         <p>Protocol for connecting AI models to tools</p>
                     </div>
                     <div class="tool-item tool-filter" data-tool="openrouter" data-episodes="11">
@@ -395,6 +403,20 @@
             <section class="about-section-block">
                 <h2>Key Takeaways from All Episodes</h2>
                 
+                <section id="episode-12" class="episode-section" data-tools="cursor,firebase-studio">
+                    <a href="ep12.html" class="episode-link">View</a>
+                    <h2>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</h2>
+                    <h3></h3>
+                    <ul>
+                        <li>Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development</li>
+                        <li>AI tools suffer from "amnesia" between sessions, requiring developers to repeatedly provide the same context and instructions</li>
+                        <li>Tools like Cursor and WindSurf implement rule files differently, but both recognize their importance in creating consistent AI outputs</li>
+                        <li>Cloud providers (Google, Microsoft, Amazon) are each developing their own AI-powered development environments like Firebase Studio</li>
+                        <li>The "don't repeat yourself" (DRY) principle from traditional software development is being extended to interactions with AI assistants</li>
+                        <li>Security practices and API key management are crucial considerations when working with cloud-based AI development environments</li>
+                    </ul>
+                </section>
+                
                 <section id="episode-11" class="episode-section" data-tools="openrouter,lm-arena,llama4,lunarcall">
                     <a href="ep11.html" class="episode-link">View</a>
                     <h2>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h2>
@@ -410,7 +432,7 @@
                 
                 <section id="episode-10" class="episode-section" data-tools="windsurf,mcp">
                     <a href="ep10.html" class="episode-link">View</a>
-                    <h2>First Look at Windsurf & Model Context Protocol</h2>
+                    <h2>First Look at Windsurf & Model Context Protocol (MCP)</h2>
                     <h3></h3>
                     <ul>
                         <li>Windsurf offers a free tier with the Cascade model, providing capable AI assistance for code completion and project planning</li>
@@ -539,12 +561,15 @@
                 <h2>Most Popular Terms Used</h2>
                 <div class="terms-grid">
                     <div class="term-item term-filter active" data-term="all">All Terms</div>
-                    <div class="term-item term-filter" data-term="claude" data-episodes="1,2,4,5,6,7,8,9,11">Claude</div>
-                    <div class="term-item term-filter" data-term="cursor" data-episodes="2,6,7,8,9,10,11">Cursor</div>
+                    <div class="term-item term-filter" data-term="claude" data-episodes="1,2,4,5,6,7,8,9,11,12">Claude</div>
+                    <div class="term-item term-filter" data-term="cursor" data-episodes="2,6,7,8,9,10,11,12">Cursor</div>
+                    <div class="term-item term-filter" data-term="cursor-rules" data-episodes="12">Cursor Rules</div>
+                    <div class="term-item term-filter" data-term="firebase" data-episodes="12">Firebase</div>
                     <div class="term-item term-filter" data-term="gradio" data-episodes="1,3,5,8,10">Gradio</div>
                     <div class="term-item term-filter" data-term="stable-diffusion" data-episodes="3,7,8,9,10">Stable Diffusion</div>
                     <div class="term-item term-filter" data-term="python" data-episodes="1,2,4,8,11">Python</div>
-                    <div class="term-item term-filter" data-term="api" data-episodes="1,2,4,7,9">API</div>
+                    <div class="term-item term-filter" data-term="api" data-episodes="1,2,4,7,9,12">API</div>
+                    <div class="term-item term-filter" data-term="windsurf" data-episodes="10,12">WindSurf</div>
                     <div class="term-item term-filter" data-term="warp-terminal" data-episodes="2,7,8,11">Warp Terminal</div>
                     <div class="term-item term-filter" data-term="gpu" data-episodes="3,7,9,10">GPU</div>
                     <div class="term-item term-filter" data-term="prompt-engineering" data-episodes="3,7,9,10">Prompt Engineering</div>

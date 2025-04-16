@@ -50,7 +50,7 @@ img {
 .site-header {
     background-color: var(--secondary-color);
     color: white;
-    padding: 1.5rem 0 0 0;
+    padding: 1.5rem 0 1rem 0;
     box-shadow: none;
     margin-bottom: 0;
     position: relative;
@@ -1479,7 +1479,9 @@ code {
     border-radius: 8px;
     padding: 2rem;
     box-shadow: var(--shadow);
+    margin-top: -10px;
     margin-bottom: 2rem;
+    position: relative;
 }
 
 .episode-content h1 {
@@ -1501,11 +1503,118 @@ code {
     margin-bottom: 1.5rem;
 }
 
+/* Key Takeaways checkmark styling */
+.episode-content h2 + ul.takeaways li,
+.episode-content ul.takeaways li {
+    list-style-type: none;
+    position: relative;
+    padding-left: 1.8rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.episode-content h2 + ul.takeaways li::before,
+.episode-content ul.takeaways li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #4CAF50; /* Green checkmark */
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
 .back-link {
     display: inline-block;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
+    padding: 0;
+}
+
+/* Episode Navigation Styles */
+.episode-navigation {
+    margin: 2rem 0 3rem;
+    background-color: #f5f7fa;
+    padding: 2rem 0;
+    border-top: 1px solid #e0e4e8;
+    border-bottom: 1px solid #e0e4e8;
+}
+
+.episode-navigation h2 {
+    text-align: center;
     margin-bottom: 1.5rem;
     color: var(--primary-color);
-    padding: 1.5rem 0 0.5rem 0;
+}
+
+.episode-nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.nav-item {
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.nav-direction {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: var(--secondary-color);
+}
+
+/* Smaller thumbnails for navigation */
+.nav-item .recording-card {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.nav-item .recording-card h3 {
+    padding: 1rem;
+    font-size: 0.95rem;
+}
+
+.nav-item .video-container {
+    max-height: 120px;
+}
+
+.nav-item .btn {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+/* For the latest episode card with no thumbnail */
+.latest-episode {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.latest-episode h3 {
+    background-color: transparent !important;
+    color: var(--primary-color) !important;
+    padding: 0 !important;
+    margin-bottom: 1rem;
+}
+
+.latest-episode p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .episode-nav-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .nav-item {
+        max-width: 100%;
+    }
 }
 
 /* Transcript Styling */
@@ -2330,73 +2439,77 @@ code {
 }
 
 /* Episode Page Back Link styling */
-.back-link.tag-filter {
-    margin: 10px auto;
+.back-link {
+    margin: -25px auto 0;
     display: block;
-    background-color: #f2f4ff;
-    border: none;
-    padding: 4px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    color: var(--primary-color);
     font-size: 24px;
-    height: 36px;
-    width: 36px;
-    line-height: 36px;
-    color: #444;
-    cursor: pointer;
-    transition: all 0.3s;
-    position: relative;
+    font-weight: 500;
     border-radius: 50%;
-    text-decoration: none;
     text-align: center;
-    vertical-align: middle;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.back-link.tag-filter:hover {
-    background-color: #8a70b5;
-    color: white;
-    transform: translateY(-2px);
     text-decoration: none;
-    border-radius: 50%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
 }
 
-/* Test tube style */
-.back-link.tag-filter::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 6px;
-    background-color: #4c65e9;
-    opacity: 0.3;
-    border-radius: 0 0 8px 8px;
-    transition: all 0.3s;
+.back-link:hover,
+.back-link:focus {
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    color: var(--primary-color);
+    text-decoration: none;
+    outline: none;
 }
 
-/* Liquid bubble effect */
-.back-link.tag-filter::after {
+/* Bubble effect inside back link */
+.back-link::before {
     content: '';
     position: absolute;
-    bottom: -3px;
-    right: 15%;
-    width: 4px;
-    height: 4px;
-    background-color: #7c4dff;
+    bottom: 3px;
+    right: 10px;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 50%;
     opacity: 0;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
-.back-link.tag-filter:hover::before {
-    height: 8px;
-    bottom: -8px;
-    opacity: 0.6;
+.back-link::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 15%;
+    width: 5px;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.3s ease;
 }
 
-.back-link.tag-filter:hover::after {
+.back-link:hover::before {
     opacity: 0.8;
-    animation: bubble 1.5s infinite;
+    animation: navBubble 2s infinite;
+}
+
+.back-link:hover::after {
+    opacity: 0.6;
+    animation: navBubble2 3s infinite 0.5s;
+}
+
+.back-link:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Remove the following resource card bubble styling sections */
