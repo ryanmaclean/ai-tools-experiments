@@ -107,7 +107,7 @@
         </div>
     </header>
     <main class="container">
-        <a href="javascript:history.back()" class="back-link tag-filter">&larr;</a>
+        <a href="javascript:history.back()" class="back-link">&larr;</a>
         
         <div class="episode-content">
 
@@ -206,7 +206,7 @@
 
 
             <h2>Key Takeaways</h2>
-            <ul>
+            <ul class="takeaways">
                 <li>Gradio is a very easy way to get a Huggingface Space locally (via `load`)</li>
                 <li>It provides a simple way to build frontends for ML applications</li>
                 <li>When installing, make sure to create a virtual environment first</li>
@@ -745,6 +745,35 @@ But a lot of this is just JSON setting up the boilerplate template. Using Google
             </div>
         </div>
     </main>
+    
+    <!-- Episode Navigation -->
+    <div class="episode-navigation">
+        <div class="container">
+            <h2>Episode Navigation</h2>
+            <div class="episode-nav-links">
+                <div class="nav-item">
+                    <span class="nav-direction">This is the first episode</span>
+                    <div class="recording-card latest-episode">
+                        <h3>First Episode</h3>
+                        <p>You're viewing the first episode in the series. Check out the next episode to continue your learning journey!</p>
+                    </div>
+                </div>
+                
+                <div class="nav-item">
+                    <span class="nav-direction">Next Episode:</span>
+                    <div class="recording-card">
+                        <h3>Exploring Warp Terminal and Cursor for Productivity</h3>
+                        <div class="video-container">
+                            <a href="ep02.html">
+                                <img src="https://img.youtube.com/vi/QYTe2BBhN1c/maxresdefault.jpg" alt="Episode 2 Thumbnail">
+                            </a>
+                        </div>
+                        <a href="ep02.html" class="btn">Watch Episode</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <footer>
         <div class="bubble"></div>
