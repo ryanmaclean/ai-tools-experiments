@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
         title.classList.add('visually-hidden');
     });
     
+    // Add play icons to any video containers that don't have them
+    addPlayIconsToVideos();
+    
+    // Make video thumbnails clickable
+    makeVideoContainersClickable();
+    
     // Add bubbles to resource card images
     const resourceCardImages = document.querySelectorAll('.resource-card-image');
     resourceCardImages.forEach(imageContainer => {
@@ -837,5 +843,59 @@ document.addEventListener('DOMContentLoaded', function() {
         cards.forEach(card => cardsContainer.appendChild(card));
         
         console.log('Episodes sorted successfully');
+    }
+
+    // Make video containers clickable (thumbnail area)
+    function makeVideoContainersClickable() {
+        const videoContainers = document.querySelectorAll('.video-container');
+        
+        videoContainers.forEach(container => {
+            const link = container.querySelector('a');
+            
+            if (link) {
+                const linkHref = link.getAttribute('href');
+                const linkTarget = link.getAttribute('target');
+                
+                // Make the entire container clickable
+                container.addEventListener('click', function(e) {
+                    // Only handle clicks directly on the container or the image, not on the link itself
+                    if (e.target === container || e.target.tagName === 'IMG') {
+                        e.preventDefault();
+                        // Open the link in the same way the anchor would
+                        if (linkTarget === '_blank') {
+                            window.open(linkHref, '_blank');
+                        } else {
+                            window.location.href = linkHref;
+                        }
+                    }
+                });
+                
+                // Add aria attributes for accessibility
+                container.setAttribute('role', 'button');
+                container.setAttribute('aria-label', 'Watch video');
+                container.style.cursor = 'pointer';
+            }
+        });
+    }
+
+    // Add play icons to video containers
+    function addPlayIconsToVideos() {
+        const videoContainers = document.querySelectorAll('.video-container');
+        
+        videoContainers.forEach(container => {
+            const link = container.querySelector('a');
+            
+            if (link) {
+                // Check if there is already a play-icon span
+                let playIcon = link.querySelector('.play-icon');
+                
+                // If not, create and add it
+                if (!playIcon) {
+                    playIcon = document.createElement('span');
+                    playIcon.className = 'play-icon';
+                    link.appendChild(playIcon);
+                }
+            }
+        });
     }
 });
