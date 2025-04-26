@@ -238,6 +238,31 @@
             color: #7c4dff;
         }
         
+        /* Episode card layout with thumbnails */
+        .episode-card {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .episode-thumbnail {
+            flex: 0 0 440px;
+            height: 248px;
+            border-radius: 6px;
+            object-fit: cover;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .episode-card a:hover .episode-thumbnail {
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .episode-content {
+            flex: 1;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .terms-grid {
@@ -259,6 +284,27 @@
             section[id^="episode-"] h2 {
                 font-size: 1.2rem;
                 padding-bottom: 6px;
+            }
+            
+            .episode-card {
+                flex-direction: column;
+            }
+            
+            .episode-thumbnail {
+                width: 100%;
+                flex-basis: auto;
+                margin-bottom: 10px;
+            }
+            
+            /* Episode guide table responsiveness */
+            .episode-list-table {
+                overflow-x: auto;
+                display: block;
+                width: 100%;
+            }
+            
+            .episode-list-table table {
+                min-width: 600px;
             }
         }
         
@@ -328,6 +374,88 @@
                     <li>The rapid evolution of AI tooling and the need to stay current</li>
                     <li>Practical applications of AI in day-to-day development tasks</li>
                 </ul>
+                
+                <h3>Episode Guide</h3>
+                <p>A complete list of all episodes in the AI Tools Lab series:</p>
+                
+                <div class="episode-list-table">
+                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                        <thead>
+                            <tr style="background-color: #f5f0ff; border-bottom: 2px solid #7c4dff;">
+                                <th style="padding: 12px; text-align: left;">Episode</th>
+                                <th style="padding: 12px; text-align: left;">Title</th>
+                                <th style="padding: 12px; text-align: left;">Main Focus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 10px;"><a href="ep01.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 01</a></td>
+                                <td style="padding: 10px;">Building Quick Web Interfaces for ML Models with Gradio</td>
+                                <td style="padding: 10px;">Creating user interfaces for machine learning models</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep02.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 02</a></td>
+                                <td style="padding: 10px;">Exploring Warp Terminal and Cursor for Productivity</td>
+                                <td style="padding: 10px;">AI-powered terminal and code editor tools</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 10px;"><a href="ep03.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 03</a></td>
+                                <td style="padding: 10px;">Automatic1111 and Local Text-to-Image Generation</td>
+                                <td style="padding: 10px;">Local image generation with Stable Diffusion</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep04.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 04</a></td>
+                                <td style="padding: 10px;">Building a Secure Feedback Form with Datadog Logs with Claude Code</td>
+                                <td style="padding: 10px;">Integrating APIs into static websites</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 10px;"><a href="ep05.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 05</a></td>
+                                <td style="padding: 10px;">Using Claude Code for Automated HTML Updates and Styling</td>
+                                <td style="padding: 10px;">Automating website updates with AI</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep06.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 06</a></td>
+                                <td style="padding: 10px;">Using Cursor with Claude to Fix Vinyl Viewer Bugs</td>
+                                <td style="padding: 10px;">AI-assisted debugging and bug fixing</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 10px;"><a href="ep07.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 07</a></td>
+                                <td style="padding: 10px;">Debugging with Cursor and Claude</td>
+                                <td style="padding: 10px;">Advanced debugging techniques with AI</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep08.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 08</a></td>
+                                <td style="padding: 10px;">Using Cursor and Claude to Fix CSS Layout Issues</td>
+                                <td style="padding: 10px;">Resolving styling issues in web applications</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 10px;"><a href="ep09.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 09</a></td>
+                                <td style="padding: 10px;">From GTC to Website Building with AI Tools</td>
+                                <td style="padding: 10px;">Insights after NVIDIA GTC conference</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep10.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 10</a></td>
+                                <td style="padding: 10px;">First Look at Windsurf & Model Context Protocol (MCP)</td>
+                                <td style="padding: 10px;">Exploring WindSurf IDE and context protocols</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 10px;"><a href="ep11.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 11</a></td>
+                                <td style="padding: 10px;">Exploring Llama 4, OpenRouter, and Model Comparison Tools</td>
+                                <td style="padding: 10px;">Testing and comparing AI language models</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep12.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 12</a></td>
+                                <td style="padding: 10px;">Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</td>
+                                <td style="padding: 10px;">Context management in AI tools and cloud IDEs</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
+                                <td style="padding: 10px;"><a href="ep13.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 13</a></td>
+                                <td style="padding: 10px;">Exploring Bolt: Rapid App Development with AI-Powered Templates</td>
+                                <td style="padding: 10px;">Template-based app development with Bolt</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </section>
             
             <section class="about-section-block">
@@ -393,6 +521,10 @@
                         <h3>LunarCall</h3>
                         <p>Emerging AI model discovered during comparison testing</p>
                     </div>
+                    <div class="tool-item tool-filter" data-tool="bolt" data-episodes="13">
+                        <h3>Bolt</h3>
+                        <p>AI-powered template-based app development for rapid prototyping</p>
+                    </div>
                     <div class="tool-item tool-filter active" data-tool="all">
                         <h3>All Tools</h3>
                         <p>Show all episodes</p>
@@ -403,157 +535,250 @@
             <section class="about-section-block">
                 <h2>Key Takeaways from All Episodes</h2>
                 
-                <section id="episode-12" class="episode-section" data-tools="cursor,firebase-studio">
+                <section id="episode-13" class="episode-section" data-tools="bolt">
+                    <a href="ep13.html" class="episode-link">View</a>
+                    <h2>Exploring Bolt: Rapid App Development with AI-Powered Templates</h2>
+                    <div class="episode-card">
+                        <a href="ep13.html">
+                            <img src="../images/thumbnails/ep13.png" alt="Episode 13 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Bolt provides a template-based approach to rapidly build web and mobile applications</li>
+                                <li>It's particularly useful for prototyping and "vibe coding" - quickly visualizing concepts</li>
+                                <li>The tool works with multiple frameworks including React, Next.js, and Expo</li>
+                                <li>Users can download their code and continue development in their preferred IDE</li>
+                                <li>While it may not be ideal for production-grade applications, it excels at exploration and prototyping</li>
+                                <li>Screenshot-based programming allows for quickly recreating interfaces from images</li>
+                                <li>Bolt offers both hosted and open-source versions for different use cases</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="episode-12" class="episode-section" data-tools="cursor,firebase,cursor-rules,windsurf">
                     <a href="ep12.html" class="episode-link">View</a>
                     <h2>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development</li>
-                        <li>AI tools suffer from "amnesia" between sessions, requiring developers to repeatedly provide the same context and instructions</li>
-                        <li>Tools like Cursor and WindSurf implement rule files differently, but both recognize their importance in creating consistent AI outputs</li>
-                        <li>Cloud providers (Google, Microsoft, Amazon) are each developing their own AI-powered development environments like Firebase Studio</li>
-                        <li>The "don't repeat yourself" (DRY) principle from traditional software development is being extended to interactions with AI assistants</li>
-                        <li>Security practices and API key management are crucial considerations when working with cloud-based AI development environments</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep12.html">
+                            <img src="../images/thumbnails/ep12.png" alt="Episode 12 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development</li>
+                                <li>AI tools suffer from "amnesia" between sessions, requiring developers to repeatedly provide the same context and instructions</li>
+                                <li>Tools like Cursor and WindSurf implement rule files differently, but both recognize their importance in creating consistent AI outputs</li>
+                                <li>Cloud providers (Google, Microsoft, Amazon) are each developing their own AI-powered development environments like Firebase Studio</li>
+                                <li>The "don't repeat yourself" (DRY) principle from traditional software development is being extended to interactions with AI assistants</li>
+                                <li>Security practices and API key management are crucial considerations when working with cloud-based AI development environments</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-11" class="episode-section" data-tools="openrouter,lm-arena,llama4,lunarcall">
                     <a href="ep11.html" class="episode-link">View</a>
                     <h2>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Llama 4 features a massive 10+ million token context window, potentially revolutionizing how we work with large documents and complex instructions</li>
-                        <li>Despite large context windows, RAG (Retrieval Augmented Generation) remains valuable for cost efficiency and performance optimization</li>
-                        <li>Expanded context windows enable more comprehensive guardrails and detailed system prompts in production applications</li>
-                        <li>Even the latest AI models still struggle with certain types of knowledge, particularly specialized programming techniques and niche factual information</li>
-                        <li>AI hallucinations remain a concern, particularly for factual questions, as demonstrated by the incorrect musician information</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep11.html">
+                            <img src="../images/thumbnails/ep11.png" alt="Episode 11 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Llama 4 features a massive 10+ million token context window, potentially revolutionizing how we work with large documents and complex instructions</li>
+                                <li>Despite large context windows, RAG (Retrieval Augmented Generation) remains valuable for cost efficiency and performance optimization</li>
+                                <li>Expanded context windows enable more comprehensive guardrails and detailed system prompts in production applications</li>
+                                <li>Even the latest AI models still struggle with certain types of knowledge, particularly specialized programming techniques and niche factual information</li>
+                                <li>AI hallucinations remain a concern, particularly for factual questions, as demonstrated by the incorrect musician information</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-10" class="episode-section" data-tools="windsurf,mcp">
                     <a href="ep10.html" class="episode-link">View</a>
                     <h2>First Look at Windsurf & Model Context Protocol (MCP)</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Windsurf offers a free tier with the Cascade model, providing capable AI assistance for code completion and project planning</li>
-                        <li>Creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output</li>
-                        <li>Different AI coding tools have different "ergonomics" that may suit different workflows</li>
-                        <li>Using multiple AI assistants in parallel can produce better results through comparing approaches</li>
-                        <li>The role of developers is rapidly changing with AI tools, focusing more on architecture and planning than syntax</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep10.html">
+                            <img src="../images/thumbnails/ep10.png" alt="Episode 10 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Windsurf offers a free tier with the Cascade model, providing capable AI assistance for code completion and project planning</li>
+                                <li>Creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output</li>
+                                <li>Different AI coding tools have different "ergonomics" that may suit different workflows</li>
+                                <li>Using multiple AI assistants in parallel can produce better results through comparing approaches</li>
+                                <li>The role of developers is rapidly changing with AI tools, focusing more on architecture and planning than syntax</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-9" class="episode-section">
                     <a href="ep09.html" class="episode-link">View</a>
                     <h2>From GTC to Website Building with AI Tools</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>AI content creation tools can accelerate the creation of various media types</li>
-                        <li>Different tools have unique strengths and limitations</li>
-                        <li>Understanding prompt engineering principles improves output quality</li>
-                        <li>Ethical considerations are important when creating AI-generated content</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep09.html">
+                            <img src="../images/thumbnails/ep09.png" alt="Episode 9 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>AI content creation tools can accelerate the creation of various media types</li>
+                                <li>Different tools have unique strengths and limitations</li>
+                                <li>Understanding prompt engineering principles improves output quality</li>
+                                <li>Ethical considerations are important when creating AI-generated content</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-8" class="episode-section" data-tools="cursor,claude-code">
                     <a href="ep08.html" class="episode-link">View</a>
                     <h2>Using Cursor and Claude to Fix CSS Layout Issues</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Running AI models locally requires specific hardware and software configurations</li>
-                        <li>Local environments provide more control and privacy than cloud-based alternatives</li>
-                        <li>The AI ecosystem is rapidly evolving with new tools and models constantly emerging</li>
-                        <li>Setting up proper development environments is crucial for efficient AI experimentation</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep08.html">
+                            <img src="../images/thumbnails/ep08.png" alt="Episode 8 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Running AI models locally requires specific hardware and software configurations</li>
+                                <li>Local environments provide more control and privacy than cloud-based alternatives</li>
+                                <li>The AI ecosystem is rapidly evolving with new tools and models constantly emerging</li>
+                                <li>Setting up proper development environments is crucial for efficient AI experimentation</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-7" class="episode-section" data-tools="cursor,claude-code">
                     <a href="ep07.html" class="episode-link">View</a>
                     <h2>Debugging with Cursor and Claude</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>AI debugging tools can identify issues in code more quickly than manual inspection</li>
-                        <li>Cursor provides integrated features for asking questions about code and finding bugs</li>
-                        <li>Claude can provide explanations of complex code patterns and suggest improvements</li>
-                        <li>Debugging with AI is most effective when providing adequate context</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep07.html">
+                            <img src="../images/thumbnails/ep07.png" alt="Episode 7 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>AI debugging tools can identify issues in code more quickly than manual inspection</li>
+                                <li>Cursor provides integrated features for asking questions about code and finding bugs</li>
+                                <li>Claude can provide explanations of complex code patterns and suggest improvements</li>
+                                <li>Debugging with AI is most effective when providing adequate context</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-6" class="episode-section" data-tools="claude-code">
                     <a href="ep06.html" class="episode-link">View</a>
                     <h2>Using Cursor with Claude to Fix Vinyl Viewer Bugs</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Cursor with Claude can quickly identify and fix complex bugs in web applications</li>
-                        <li>The Vinyl Viewer bug occurred because the click handler used the original data array instead of the filtered array</li>
-                        <li>Claude was able to diagnose the issue without requiring extensive prompting</li>
-                        <li>Cursor provides a more integrated experience than standard chat interfaces for coding tasks</li>
-                        <li>AI assistants can help debug code even on projects that haven't been maintained for months</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep06.html">
+                            <img src="../images/thumbnails/ep06.png" alt="Episode 6 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Cursor with Claude can quickly identify and fix complex bugs in web applications</li>
+                                <li>The Vinyl Viewer bug occurred because the click handler used the original data array instead of the filtered array</li>
+                                <li>Claude was able to diagnose the issue without requiring extensive prompting</li>
+                                <li>Cursor provides a more integrated experience than standard chat interfaces for coding tasks</li>
+                                <li>AI assistants can help debug code even on projects that haven't been maintained for months</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-5" class="episode-section" data-tools="claude-code">
                     <a href="ep05.html" class="episode-link">View</a>
                     <h2>Using Claude Code for Automated HTML Updates and Styling</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Claude Code can automate repetitive HTML updates across multiple files</li>
-                        <li>AI can apply consistent styling and structure to improve website maintainability</li>
-                        <li>Reduces tedious manual editing for large-scale changes</li>
-                        <li>Can adapt existing code patterns rather than creating from scratch</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep05.html">
+                            <img src="../images/thumbnails/ep05.png" alt="Episode 5 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Claude Code can automate repetitive HTML updates across multiple files</li>
+                                <li>AI can apply consistent styling and structure to improve website maintainability</li>
+                                <li>Reduces tedious manual editing for large-scale changes</li>
+                                <li>Can adapt existing code patterns rather than creating from scratch</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-4" class="episode-section" data-tools="claude-code">
                     <a href="ep04.html" class="episode-link">View</a>
                     <h2>Building a Secure Feedback Form with Datadog Logs with Claude Code</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Claude Code can efficiently generate HTML/CSS/JS for static websites</li>
-                        <li>GitHub Actions allow secure handling of API keys through repository secrets</li>
-                        <li>Static websites can still communicate with external APIs like Datadog</li>
-                        <li>Structured logging provides a simple way to collect and analyze form submissions</li>
-                        <li>Setting up deployment pipelines requires careful configuration</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep04.html">
+                            <img src="../images/thumbnails/ep04.png" alt="Episode 4 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Claude Code can efficiently generate HTML/CSS/JS for static websites</li>
+                                <li>GitHub Actions allow secure handling of API keys through repository secrets</li>
+                                <li>Static websites can still communicate with external APIs like Datadog</li>
+                                <li>Structured logging provides a simple way to collect and analyze form submissions</li>
+                                <li>Setting up deployment pipelines requires careful configuration</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-3" class="episode-section" data-tools="automatic1111,stable-diffusion">
                     <a href="ep03.html" class="episode-link">View</a>
                     <h2>Automatic1111 and Local Text-to-Image Generation</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Automatic1111 provides a web UI for Stable Diffusion image generation models</li>
-                        <li>Local image generation is slower but offers privacy, offline access, and cost savings</li>
-                        <li>Older models like SD 1.5 have limitations but are faster than newer ones</li>
-                        <li>Prompt engineering with positive and negative prompts can improve generation results</li>
-                        <li>The tool can be useful for brainstorming, ideation, and inspiration rather than final assets</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep03.html">
+                            <img src="../images/thumbnails/ep03.png" alt="Episode 3 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Automatic1111 provides a web UI for Stable Diffusion image generation models</li>
+                                <li>Local image generation is slower but offers privacy, offline access, and cost savings</li>
+                                <li>Older models like SD 1.5 have limitations but are faster than newer ones</li>
+                                <li>Prompt engineering with positive and negative prompts can improve generation results</li>
+                                <li>The tool can be useful for brainstorming, ideation, and inspiration rather than final assets</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-2" class="episode-section" data-tools="warp,cursor">
                     <a href="ep02.html" class="episode-link">View</a>
                     <h2>Exploring Warp Terminal and Cursor for Productivity</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Warp offers a more intuitive terminal experience with AI-powered command suggestions</li>
-                        <li>Cursor enhances coding with integrated AI assistance for code generation and review</li>
-                        <li>Both tools provide significant productivity boosts for developers</li>
-                        <li>Great for both beginners and experienced developers</li>
-                        <li>AI can streamline documentation writing and code refactoring</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep02.html">
+                            <img src="../images/thumbnails/ep02.png" alt="Episode 2 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Warp offers a more intuitive terminal experience with AI-powered command suggestions</li>
+                                <li>Cursor enhances coding with integrated AI assistance for code generation and review</li>
+                                <li>Both tools provide significant productivity boosts for developers</li>
+                                <li>Great for both beginners and experienced developers</li>
+                                <li>AI can streamline documentation writing and code refactoring</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
                 
                 <section id="episode-1" class="episode-section" data-tools="gradio,huggingface">
                     <a href="ep01.html" class="episode-link">View</a>
                     <h2>Building Quick Web Interfaces for ML Models</h2>
-                    <h3></h3>
-                    <ul>
-                        <li>Gradio is a very easy way to get a Huggingface Space locally (via <code>load</code>)</li>
-                        <li>Gradio provides a simple way to build frontends for ML applications</li>
-                        <li>When installing, make sure to create a virtual environment</li>
-                        <li>Ensure to install Gradio in that environment after activation</li>
-                        <li>Don't try to run your project in the <code>Gradio</code> repo by mistake</li>
-                    </ul>
+                    <div class="episode-card">
+                        <a href="ep01.html">
+                            <img src="../images/thumbnails/ep01.png" alt="Episode 1 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Gradio is a very easy way to get a Huggingface Space locally (via <code>load</code>)</li>
+                                <li>Gradio provides a simple way to build frontends for ML applications</li>
+                                <li>When installing, make sure to create a virtual environment</li>
+                                <li>Ensure to install Gradio in that environment after activation</li>
+                                <li>Don't try to run your project in the <code>Gradio</code> repo by mistake</li>
+                            </ul>
+                        </div>
+                    </div>
                 </section>
             </section>
             
@@ -574,6 +799,8 @@
                     <div class="term-item term-filter" data-term="gpu" data-episodes="3,7,9,10">GPU</div>
                     <div class="term-item term-filter" data-term="prompt-engineering" data-episodes="3,7,9,10">Prompt Engineering</div>
                     <div class="term-item term-filter" data-term="huggingface" data-episodes="1,3,8">Hugging Face</div>
+                    <div class="term-item term-filter" data-term="bolt" data-episodes="13">Bolt</div>
+                    <div class="term-item term-filter" data-term="expo" data-episodes="13">Expo</div>
                 </div>
             </section>
         </div>

@@ -47,18 +47,16 @@
         </div>
     </header>
     <main class="container">
-        <a href="javascript:history.back()" class="back-link">&larr;</a>
-        
+        <div class="video-container">
+            <a href="https://youtu.be/QYTe2BBhN1c" target="_blank">
+                <img src="../images/thumbnails/ep02.png" alt="Episode 2 Thumbnail">
+            </a>
+        </div>
+
         <div class="episode-content">
             <h1>Exploring Warp Terminal and Cursor for Productivity</h1>
             
             <p>In this second episode, Jason and Ryan explore AI-powered terminal and code editor tools that enhance the development experience. They start by diving into Warp Terminal, a modern terminal application that intelligently understands commands, offers AI-powered suggestions, and provides a more user-friendly interface compared to traditional terminals. The discussion then shifts to Cursor, an AI-enhanced code editor built on VSCode that helps with code generation, refactoring, and documentation. They demonstrate Cursor's capabilities by examining and improving Python code for a Datadog integration, showing how AI assistants can identify PEP8 formatting issues and suggest improvements. Throughout the episode, they highlight how these tools can make development more efficient while maintaining good coding practices.</p>
-            
-            <div class="video-container">
-                <a href="https://youtu.be/QYTe2BBhN1c" target="_blank">
-                    <img src="https://img.youtube.com/vi/QYTe2BBhN1c/maxresdefault.jpg" alt="Episode 2 Video Thumbnail">
-                </a>
-            </div>
             
             <h2>Jump To</h2>
             <ul class="chapter-markers">
@@ -202,7 +200,7 @@ And so this is a super frustrating thing where you have an API key, API key is D
 
 <span class="transcript-timestamp">[00:10:18]</span> <span class="transcript-speaker">Ryan MacLean:</span> Oh, I see it API_KEY. So this is, this is DD_API_KEY, it's all capital.
 
-<span class="transcript-timestamp">[00:10:24]</span> <span class="transcript-speaker">Jason Hand:</span> Okay. Fine.
+<span class="transcript-timestamp">[00:10:24]</span> <span class="transcript-speaker">Jason Hand:</span> Okay.
 
 <span class="transcript-timestamp">[00:10:25]</span> <span class="transcript-speaker">Ryan MacLean:</span> Yeah, so right here it says API_KEY equals os.getenv DD_API_KEY if you set it. So that's actually the correct, so what you have on 30, let me write it down. So on lines 35 and 36, that's actually the correct thing. So load environment variables.
 
@@ -210,7 +208,7 @@ DD_API_KEY is the environment variable name, and API_KEY is the variable name. I
 
 <span class="transcript-timestamp">[00:10:56]</span> <span class="transcript-speaker">Jason Hand:</span> I, okay. But so, so on line 59, we're using, and [00:11:00] that's why I'm asking, this is the one that gets messed up. So on 59, uh, again. DD_API_KEY is what we're trying to load.
 
-<span class="transcript-timestamp">[00:11:08]</span> <span class="transcript-speaker">Ryan MacLean:</span> If we search our documentation for DD_API_KEY, there's a bunch of locations where it uses DD, and it, and it is, yeah, it's, it is named DD_API_KEY.
+<span class="transcript-timestamp">[00:11:08]</span> <span class="transcript-speaker">Ryan MacLean:</span> If we search our documentation for DD_API_KEY, there's a bunch of locations where it uses DD, and it, and it is, yeah, it is named DD_API_KEY.
 
 <span class="transcript-timestamp">[00:11:21]</span> <span class="transcript-speaker">Jason Hand:</span> Alright, so well, so that's, then that was the problem I was running into. Okay, was, between, I think, you know, our, our conversation around this, you know, again, what it pulled out is there's a couple ways to, to fix this.
 
@@ -380,26 +378,26 @@ Alright, we should probably wrap it up there, so for those of you watching, I ho
                 <div class="nav-item">
                     <span class="nav-direction">Previous Episode:</span>
                     <div class="recording-card">
-                        <h3>Building Quick Web Interfaces for Machine Learning Models with Gradio</h3>
+                        <h3>Building Quick Web Interfaces for ML Models</h3>
                         <div class="video-container">
                             <a href="ep01.html">
-                                <img src="https://img.youtube.com/vi/hESEOJRZ-wc/maxresdefault.jpg" alt="Episode 1 Thumbnail">
+                                <img src="../images/thumbnails/ep01.png" alt="Episode 1 Thumbnail">
                             </a>
                         </div>
-                        <a href="ep01.html" class="btn">Watch Episode</a>
+                        <a href="ep01.html" class="btn">View Notes</a>
                     </div>
                 </div>
                 
                 <div class="nav-item">
                     <span class="nav-direction">Next Episode:</span>
                     <div class="recording-card">
-                        <h3>Automatic1111 and Text-to-Image Generation</h3>
+                        <h3>Automatic1111 and Local Text-to-Image Generation</h3>
                         <div class="video-container">
                             <a href="ep03.html">
-                                <img src="https://img.youtube.com/vi/l2H0HADOa5o/maxresdefault.jpg" alt="Episode 3 Thumbnail">
+                                <img src="../images/thumbnails/ep03.png" alt="Episode 3 Thumbnail">
                             </a>
                         </div>
-                        <a href="ep03.html" class="btn">Watch Episode</a>
+                        <a href="ep03.html" class="btn">View Notes</a>
                     </div>
                 </div>
             </div>
