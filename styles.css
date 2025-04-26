@@ -2657,3 +2657,103 @@ main.container {
 .episode-navigation .video-container .play-icon {
     display: block !important;
 }
+
+/* Easter Egg */
+.easter-egg {
+    opacity: 0.15;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+}
+
+.easter-egg:hover {
+    opacity: 0.4;
+}
+
+/* Easter Egg Modal */
+.easter-egg-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.easter-egg-modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.easter-egg-modal-content {
+    background: linear-gradient(145deg, #3a1c71, #d76d77, #ffaf7b);
+    border-radius: 10px;
+    width: 300px;
+    max-width: 80%;
+    position: relative;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.easter-egg-modal.show .easter-egg-modal-content {
+    transform: scale(1);
+}
+
+.easter-egg-modal-content p {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.easter-egg-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.easter-egg-close:hover {
+    opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .easter-egg {
+        font-size: 1.2rem;
+        right: 5px;
+        bottom: 5px;
+    }
+    
+    .easter-egg-modal {
+        width: 80%;
+        max-width: 300px;
+    }
+    
+    .easter-egg-modal-content {
+        width: 90%;
+        max-width: 90%;
+    }
+    
+    .easter-egg-close {
+        font-size: 20px;
+        top: 5px;
+        right: 5px;
+    }
+}

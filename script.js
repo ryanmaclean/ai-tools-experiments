@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
         title.classList.add('visually-hidden');
     });
     
+    // Easter Egg functionality
+    initializeEasterEgg();
+    
     // Add play icons to any video containers that don't have them
     addPlayIconsToVideos();
     
@@ -895,6 +898,41 @@ document.addEventListener('DOMContentLoaded', function() {
                     playIcon.className = 'play-icon';
                     link.appendChild(playIcon);
                 }
+            }
+        });
+    }
+
+    // Initialize the easter egg functionality
+    function initializeEasterEgg() {
+        const easterEgg = document.getElementById('easter-egg');
+        const modal = document.getElementById('easter-egg-modal');
+        const closeBtn = document.querySelector('.easter-egg-close');
+        
+        if (!easterEgg || !modal || !closeBtn) return;
+        
+        // Show modal when Pi symbol is clicked
+        easterEgg.addEventListener('click', function() {
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modal.classList.add('show');
+            }, 10);
+        });
+        
+        // Close modal when X is clicked
+        closeBtn.addEventListener('click', function() {
+            modal.classList.remove('show');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        });
+        
+        // Close modal when clicking outside of it
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
             }
         });
     }
