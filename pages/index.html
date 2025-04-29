@@ -20,6 +20,168 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    
+    <!-- Featured Episode Styles -->
+    <style>
+        /* Header logo font styling */
+        .logo a {
+            font-family: 'Revalia', cursive;
+            font-size: 1.6rem;
+        }
+        
+        #featured-episode {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: linear-gradient(145deg, #f0f7ff 0%, #e6f0ff 100%);
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 86, 210, 0.1);
+        }
+        
+        #featured-episode h2 {
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+        
+        .featured-episode-container {
+            display: flex;
+            gap: 25px;
+            align-items: flex-start;
+        }
+        
+        .featured-episode-video {
+            flex: 0 0 50%;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .featured-episode-video img {
+            width: 100%;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        
+        .featured-episode-video:hover img {
+            transform: scale(1.03);
+        }
+        
+        .play-button-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 102, 204, 0.8);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+        
+        .featured-episode-video:hover .play-button-overlay {
+            background-color: rgba(0, 102, 204, 1);
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .featured-episode-content {
+            flex: 1;
+        }
+        
+        .featured-episode-content h3 {
+            color: #0066cc;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+        
+        .featured-episode-content h4 {
+            font-size: 1.6rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .featured-episode-content p {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .featured-episode-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .recording-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .featured-episode-tags {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .tag {
+            background-color: #0066cc;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .featured-episode-button {
+            display: inline-block;
+            background-color: #0066cc;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s ease;
+        }
+        
+        .featured-episode-button:hover {
+            background-color: #0055aa;
+        }
+        
+        @media (max-width: 768px) {
+            .featured-episode-container {
+                flex-direction: column;
+            }
+            
+            .featured-episode-video {
+                flex: 0 0 100%;
+                margin-bottom: 20px;
+            }
+        }
+        
+        /* Featured badge styling */
+        .featured-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff6b00;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
     
     <!-- Datadog RUM -->
     <script
@@ -55,7 +217,6 @@
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="resources.html">Resources</a></li>
-                    <li><a href="dictionary.html">Dictionary</a></li>
                     <li><a href="observations.html">Observations</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
@@ -78,6 +239,8 @@
                         <button class="tag-filter" data-tag="debugging">Debugging</button>
                         <button class="tag-filter" data-tag="firebase">Firebase</button>
                         <button class="tag-filter" data-tag="bolt">Bolt</button>
+                        <button class="tag-filter" data-tag="lovable">Lovable</button>
+                        <button class="tag-filter" data-tag="sora">Sora</button>
                         <button class="tag-filter" data-tag="ai-development">AI Development</button>
                     </div>
                 </div>
@@ -86,12 +249,57 @@
     </div>
     
     <main class="container">
+        <section id="featured-episode">
+            <h2>Newest Episode</h2>
+            <div class="featured-episode-container">
+                <div class="featured-episode-video">
+                    <a href="ep15.html">
+                        <img src="../images/thumbnails/ep15.png" alt="AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder">
+                        <div class="play-button-overlay">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="#ffffff">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+                <div class="featured-episode-content">
+                    <h3>Latest Episode: AI Tools in Action</h3>
+                    <h4>Exploring Sora Image Generation and Lovable App Builder</h4>
+                    <p>In this episode, Jason Hand and Ryan MacLean explore recent developments in AI tools, focusing on image generation with Sora and app building with Lovable. They discuss the significant improvement in AI's ability to generate images with text and test Lovable's capabilities by building applications together.</p>
+                    <div class="featured-episode-meta">
+                        <span class="recording-date">April 29, 2025</span>
+                        <div class="featured-episode-tags">
+                            <span class="tag">Sora</span>
+                            <span class="tag">Lovable</span>
+                            <span class="tag">Image Generation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section id="recordings">
             <div class="episodes-intro">
-                
+                <h2>All Episodes</h2>
+                <p>Browse through our complete collection of AI tools explorations and experiments. Use the tags above to filter episodes by topic.</p>
             </div>
             
             <div class="recording-grid">
+                <div class="recording-card" data-category="exploration" data-tags="lovable,sora,image-gen,ai-development">
+                    <a href="ep15.html">
+                        <div class="video-container">
+                            <img src="../images/thumbnails/ep15.png" alt="Recording 15 Thumbnail">
+                            <span class="featured-badge">Newest</span>
+                        </div>
+                        <div class="recording-card-content">
+                            <h3>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h3>
+                            <p>Explore the latest developments in AI tools with Jason Hand and Ryan MacLean as they test image generation with Sora and app building with Lovable.</p>
+                            <div class="recording-meta">
+                                <span class="recording-date">April 29, 2025</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 <div class="recording-card" data-category="exploration" data-tags="bolt,ai-development">
                     <a href="ep13.html">
                         <div class="video-container">
@@ -277,77 +485,6 @@
             </div>
         </section>
 
-        <section class="tools">
-            <h2>Tools to Explore Yet</h2>
-            
-            <div class="category">
-                <h3>Coding Assistants & Developer Tools</h3>
-                <ul>
-                    <li><a href="https://web.lmarena.ai/" target="_blank">Web Dev Arena</a> – AI-powered development environment.</li>
-                    <li><a href="https://www.tabnine.com/" target="_blank">Tabnine</a> – AI-powered autocomplete for software development.</li>
-                    <li><a href="https://replit.com/site/ghostwriter" target="_blank">Replit Ghostwriter</a> – AI coding assistant built into the Replit platform.</li>
-                    <li><a href="https://www.codium.ai/" target="_blank">CodiumAI</a> – AI for generating test cases and improving code quality.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Model Benchmarking & Optimization</h3>
-                <ul>
-                    <li><a href="https://github.com/ggerganov/llama.cpp/blob/master/examples/llama-bench/README.md" target="_blank">LlamaBench</a> – A benchmarking tool for evaluating Llama-based AI models.</li>
-                    <li><a href="https://livebench.ai" target="_blank">LiveBench.ai</a> – Real-time AI model performance benchmarking.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Workflow Automation & Agents</h3>
-                <ul>
-                    <li><a href="https://flowiseai.com/" target="_blank">FloWise.AI</a> – No-code/low-code tool for AI workflow automation.</li>
-                    <li><a href="https://mindpal.space/" target="_blank">MindPal AI</a> – AI-powered automation similar to Zapier, facilitating AI agent workflows.</li>
-                    <li><a href="https://jina.ai" target="_blank">Jina.ai</a> – AI-powered search and multimodal application framework.</li>
-                    <li><a href="https://agentgpt.reworkd.ai/" target="_blank">AgentGPT</a> – Deploy and run autonomous AI agents in a browser.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Research & Knowledge Management</h3>
-                <ul>
-                    <li><a href="https://elicit.com/?redirected=true" target="_blank">Elicit</a> – AI-powered research assistant for literature review and data extraction.</li>
-                    <li><a href="https://mymemo.ai/" target="_blank">MyMemo</a> – AI-enhanced note-taking and memory management tool.</li>
-                    <li><a href="https://www.napkin.ai/" target="_blank">Napkin.ai</a> – AI-assisted tool for organizing ideas and creative thought processes.</li>
-                    <li><a href="https://typeset.io/" target="_blank">SciSpace</a> – AI-powered research assistant for academic papers and literature review.</li>
-                    <li><a href="https://consensus.app/" target="_blank">Consensus</a> – AI search engine that finds research-backed answers.</li>
-                    <li><a href="https://www.semanticscholar.org/" target="_blank">Semantic Scholar</a> – AI-driven search and recommendation engine for academic research.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Chatbots & Conversational Models</h3>
-                <ul>
-                    <li><a href="https://abacus.ai/" target="_blank">Abacus.ai</a> – AI platform for enterprise-level applications, including conversational AI and predictive analytics.</li>
-                    <li><a href="https://heypi.com/" target="_blank">Pi AI</a> – AI chatbot designed for friendly and engaging conversations.</li>
-                    <li><a href="https://you.com/chat" target="_blank">YouChat</a> – AI conversational assistant with web search capabilities.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Content & Detection Tools</h3>
-                <ul>
-                    <li><a href="https://zerogpt.com" target="_blank">Zerogpt.com</a> – AI-generated content detection.</li>
-                    <li><a href="https://www.loudly.com/" target="_blank">Loudly</a> – AI-powered music generation tool, with genres including Lo-Fi and Bluegrass.</li>
-                    <li><a href="https://gptzero.me/" target="_blank">GPTZero</a> – AI detection tool for identifying AI-generated content.</li>
-                    <li><a href="https://deepai.org/machine-learning-model/text-generator" target="_blank">DeepAI Text Generator</a> – AI-powered text generation tool.</li>
-                    <li><a href="https://runwayml.com/" target="_blank">Runway ML</a> – AI-powered video and content generation platform.</li>
-                    <li><a href="https://boomy.com/" target="_blank">Boomy</a> – AI-generated music creation tool, enabling users to create and release songs.</li>
-                </ul>
-            </div>
-            
-            <div class="category">
-                <h3>Tools for SRE & DevOps Engineers</h3>
-                <ul>
-                    <li><a href="https://monitaur.ai/" target="_blank">Monitaur</a> – AI-powered reliability and compliance monitoring for machine learning in production.</li>
-                </ul>
-            </div>
-        </section>
     </main>
     
     <footer>
@@ -372,7 +509,6 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="resources.html">Resources</a></li>
-                        <li><a href="dictionary.html">Dictionary</a></li>
                         <li><a href="observations.html">Observations</a></li>
                         <li><a href="about.html">About</a></li>
                     </ul>

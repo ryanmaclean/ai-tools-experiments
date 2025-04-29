@@ -20,9 +20,16 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
     
     <!-- Custom styles for observations page -->
     <style>
+        /* Header logo font styling */
+        .logo a {
+            font-family: 'Revalia', cursive;
+            font-size: 1.6rem;
+        }
+        
         /* Enhanced styling for key takeaways bulleted lists */
         .about-section-block ul {
             margin-top: 1rem;
@@ -345,7 +352,6 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="resources.html">Resources</a></li>
-                    <li><a href="dictionary.html">Dictionary</a></li>
                     <li><a href="observations.html" class="active">Observations</a></li>
                     <li><a href="about.html">About</a></li>
                 </ul>
@@ -453,6 +459,11 @@
                                 <td style="padding: 10px;">Exploring Bolt: Rapid App Development with AI-Powered Templates</td>
                                 <td style="padding: 10px;">Template-based app development with Bolt</td>
                             </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep15.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 15</a></td>
+                                <td style="padding: 10px;">AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</td>
+                                <td style="padding: 10px;">Image generation with Sora and app building with Lovable</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -525,6 +536,14 @@
                         <h3>Bolt</h3>
                         <p>AI-powered template-based app development for rapid prototyping</p>
                     </div>
+                    <div class="tool-item tool-filter" data-tool="sora" data-episodes="15">
+                        <h3>Sora</h3>
+                        <p>OpenAI's text-to-image and video generation model</p>
+                    </div>
+                    <div class="tool-item tool-filter" data-tool="lovable" data-episodes="15">
+                        <h3>Lovable</h3>
+                        <p>Full-stack application builder with AI assistance</p>
+                    </div>
                     <div class="tool-item tool-filter active" data-tool="all">
                         <h3>All Tools</h3>
                         <p>Show all episodes</p>
@@ -534,6 +553,27 @@
             
             <section class="about-section-block">
                 <h2>Key Takeaways from All Episodes</h2>
+                
+                <section id="episode-15" class="episode-section" data-tools="sora,lovable">
+                    <a href="ep15.html" class="episode-link">View</a>
+                    <h2>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h2>
+                    <div class="episode-card">
+                        <a href="ep15.html">
+                            <img src="../images/thumbnails/ep15.png" alt="Episode 15 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>AI image generation has significantly improved, especially for text rendering in images</li>
+                                <li>Sora can now create images with professional-looking fonts, proper kerning, and layout</li>
+                                <li>Lovable is a full-stack development tool similar to Bolt, allowing rapid app creation</li>
+                                <li>The free tier of Lovable offers only five interactions per day</li>
+                                <li>Lovable provides intuitive interfaces, error correction, and GitHub integration</li>
+                                <li>Generative AI quality has improved to the point where many outputs no longer trigger the "AI slop" response</li>
+                                <li>Supabase is highlighted as a valuable database solution that integrates well with app-building tools</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
                 
                 <section id="episode-13" class="episode-section" data-tools="bolt">
                     <a href="ep13.html" class="episode-link">View</a>
@@ -801,6 +841,9 @@
                     <div class="term-item term-filter" data-term="huggingface" data-episodes="1,3,8">Hugging Face</div>
                     <div class="term-item term-filter" data-term="bolt" data-episodes="13">Bolt</div>
                     <div class="term-item term-filter" data-term="expo" data-episodes="13">Expo</div>
+                    <div class="term-item term-filter" data-term="sora" data-episodes="15">Sora</div>
+                    <div class="term-item term-filter" data-term="lovable" data-episodes="15">Lovable</div>
+                    <div class="term-item term-filter" data-term="supabase" data-episodes="15">Supabase</div>
                 </div>
             </section>
         </div>
@@ -828,7 +871,6 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="resources.html">Resources</a></li>
-                        <li><a href="dictionary.html">Dictionary</a></li>
                         <li><a href="observations.html">Observations</a></li>
                         <li><a href="about.html">About</a></li>
                     </ul>
