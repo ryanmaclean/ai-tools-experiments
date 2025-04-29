@@ -627,16 +627,15 @@ document.addEventListener('DOMContentLoaded', function() {
     function initializeMobileMenuDirectLinks() {
         console.log('Initializing mobile menu with direct links approach');
         
-        // Clean up any existing elements
+        // Query DOM elements
+        const siteHeader = document.querySelector('.site-header');
+        const headerContainer = document.querySelector('.site-header .container');
         const existingMenu = document.querySelector('.hamburger-menu');
         if (existingMenu) existingMenu.remove();
         
         const existingOverlay = document.querySelector('.menu-overlay');
         if (existingOverlay) existingOverlay.remove();
         
-        // Get required elements
-        const siteHeader = document.querySelector('.site-header');
-        const headerContainer = document.querySelector('.site-header .container');
         const nav = document.querySelector('.site-header nav');
         
         if (!siteHeader || !headerContainer || !nav) {
@@ -651,21 +650,20 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerMenu.setAttribute('tabindex', '0');
         hamburgerMenu.setAttribute('aria-label', 'Toggle navigation menu');
         
-        // Use site logo for hamburger button
+        // Create hamburger icon
         const logoImg = document.createElement('img');
-        const siteLogo = document.querySelector('.site-logo');
-        if (siteLogo) {
-            logoImg.src = siteLogo.src;
-        } else {
-            logoImg.src = '../images/ai-tools-lab-logo.png';
+        logoImg.src = '../images/ai-tools-lab-logo.png';
+        if (!logoImg.src || logoImg.src.includes('undefined')) {
+            logoImg.src = './images/ai-tools-lab-logo.png';
         }
+        logoImg.width = 24;
+        logoImg.height = 24;
         logoImg.alt = "Menu";
-        logoImg.style.width = '100%';
-        logoImg.style.height = '100%';
-        logoImg.style.objectFit = 'contain';
+        
+        // Add icon to hamburger menu
         hamburgerMenu.appendChild(logoImg);
         
-        // Add to DOM
+        // Add hamburger menu to header
         headerContainer.appendChild(hamburgerMenu);
         
         // Create overlay
@@ -701,21 +699,22 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileNavContainer.style.boxShadow = '-2px 0 5px rgba(0, 0, 0, 0.2)';
         mobileNavContainer.style.overflowY = 'auto';
         
-        // Create direct HTML links to avoid event handling issues
+        // Build mobile nav HTML directly
         let mobileNavHTML = '<ul style="list-style: none; padding: 20px;">';
         navLinks.forEach(link => {
             mobileNavHTML += `
-                <li style="margin: 0; width: 100%; padding: 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                    <a href="${link.href}" 
-                       style="font-size: 20px; display: block; width: 100%; text-align: left; padding: 16px 20px; 
-                              box-sizing: border-box; color: white; font-weight: 600; text-decoration: none; 
-                              border-radius: 6px; cursor: pointer; border: 1px solid rgba(255, 255, 255, 0.1);
-                              margin-bottom: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);"
-                       ${link.isActive ? 'class="active"' : ''}>
-                        ${link.text} →
-                    </a>
-                </li>
-            `;
+            <li style="margin-bottom: 15px;">
+                <a href="${link.href}" 
+                   style="
+                      color: white; 
+                      text-decoration: none; 
+                      font-size: 18px; 
+                      display: block; 
+                      padding: 10px;
+                      ${link.isActive ? 'font-weight: bold; background-color: rgba(255,255,255,0.1); border-radius: 5px;' : ''}
+                   "
+                >${link.text}</a>
+            </li>`;
         });
         mobileNavHTML += '</ul>';
         
@@ -729,14 +728,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 mobileNavContainer.style.display = 'block';
                 hamburgerMenu.classList.add('active');
                 menuOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden';
             } else {
                 // Close menu
                 mobileNavContainer.style.display = 'none';
                 hamburgerMenu.classList.remove('active');
                 menuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
             }
+            document.body.classList.toggle('menu-open');
         }
         
         // Toggle menu on hamburger click
@@ -751,25 +749,26 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleMenu();
         });
         
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth <= 768) {
-                hamburgerMenu.style.display = 'flex';
-            } else {
-                hamburgerMenu.style.display = 'none';
-                
-                if (mobileNavContainer.style.display !== 'none') {
-                    toggleMenu();
-                }
-            }
-        });
-        
-        // Initial state
+        // Show hamburger on smaller screens, hide on larger
         if (window.innerWidth <= 768) {
             hamburgerMenu.style.display = 'flex';
         } else {
             hamburgerMenu.style.display = 'none';
         }
+        
+        // Close menu on resize
+        window.addEventListener('resize', function() {
+            if (mobileNavContainer.style.display !== 'none') {
+                toggleMenu();
+            }
+            
+            // Show hamburger on smaller screens, hide on larger
+            if (window.innerWidth <= 768) {
+                hamburgerMenu.style.display = 'flex';
+            } else {
+                hamburgerMenu.style.display = 'none';
+            }
+        });
         
         console.log('Mobile menu initialized with direct links approach');
     }
