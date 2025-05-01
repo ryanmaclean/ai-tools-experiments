@@ -460,6 +460,11 @@
                                 <td style="padding: 10px;">Template-based app development with Bolt</td>
                             </tr>
                             <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
+                                <td style="padding: 10px;"><a href="ep14.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 14</a></td>
+                                <td style="padding: 10px;">Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar</td>
+                                <td style="padding: 10px;">Email and productivity tools integration with Claude</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #e5e7eb;">
                                 <td style="padding: 10px;"><a href="ep15.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 15</a></td>
                                 <td style="padding: 10px;">AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</td>
                                 <td style="padding: 10px;">Image generation with Sora and app building with Lovable</td>
@@ -492,6 +497,10 @@
                         <h3>Claude Code</h3>
                         <p>AI code generation and assistance</p>
                     </div>
+                    <div class="tool-item tool-filter" data-tool="claude-plugins" data-episodes="14">
+                        <h3>Claude 3.7 Plugins</h3>
+                        <p>OAuth integration for Gmail, Drive, and Calendar</p>
+                    </div>
                     <div class="tool-item tool-filter" data-tool="stable-diffusion" data-episodes="3">
                         <h3>Stable Diffusion</h3>
                         <p>Image generation model</p>
@@ -512,8 +521,8 @@
                         <h3>Cursor Rules</h3>
                         <p>Configuration files to maintain context in AI coding tools</p>
                     </div>
-                    <div class="tool-item tool-filter" data-tool="mcp" data-episodes="10">
-                        <h3>Model Context Protocol (MCP) (MCP)</h3>
+                    <div class="tool-item tool-filter" data-tool="mcp" data-episodes="10,14">
+                        <h3>Model Context Protocol (MCP)</h3>
                         <p>Protocol for connecting AI models to tools</p>
                     </div>
                     <div class="tool-item tool-filter" data-tool="openrouter" data-episodes="11">
@@ -553,6 +562,28 @@
             
             <section class="about-section-block">
                 <h2>Key Takeaways from All Episodes</h2>
+                
+                <section id="episode-14" class="episode-section" data-tools="claude-plugins,mcp,gmail,oauth,plugins">
+                    <a href="ep14.html" class="episode-link">View</a>
+                    <h2>Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar</h2>
+                    <div class="episode-card">
+                        <a href="ep14.html">
+                            <img src="../images/thumbnails/ep14.png" alt="Episode 14 Thumbnail" class="episode-thumbnail">
+                        </a>
+                        <div class="episode-content">
+                            <ul>
+                                <li>Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar through simple OAuth authentication</li>
+                                <li>The AI can analyze massive email volumes (3.5+ million emails) and generate personalized interactive dashboards</li>
+                                <li>Claude creates customized email filter recommendations with ready-to-use filter language</li>
+                                <li>The system generates different insights on subsequent runs, showing varied approaches to inbox management</li>
+                                <li>Integration provides practical tools for email organization through AI-powered visualization and actionable recommendations</li>
+                                <li>Integration with Google Drive includes security recommendations for sensitive data</li>
+                                <li>Calendar management integration can adapt to different personality types and scheduling preferences</li>
+                                <li>Generated outputs include downloadable TSX (React) files that users can modify and extend</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
                 
                 <section id="episode-15" class="episode-section" data-tools="sora,lovable">
                     <a href="ep15.html" class="episode-link">View</a>
@@ -826,14 +857,14 @@
                 <h2>Most Popular Terms Used</h2>
                 <div class="terms-grid">
                     <div class="term-item term-filter active" data-term="all">All Terms</div>
-                    <div class="term-item term-filter" data-term="claude" data-episodes="1,2,4,5,6,7,8,9,11,12">Claude</div>
+                    <div class="term-item term-filter" data-term="claude" data-episodes="1,2,4,5,6,7,8,9,11,12,14">Claude</div>
                     <div class="term-item term-filter" data-term="cursor" data-episodes="2,6,7,8,9,10,11,12">Cursor</div>
                     <div class="term-item term-filter" data-term="cursor-rules" data-episodes="12">Cursor Rules</div>
                     <div class="term-item term-filter" data-term="firebase" data-episodes="12">Firebase</div>
                     <div class="term-item term-filter" data-term="gradio" data-episodes="1,3,5,8,10">Gradio</div>
                     <div class="term-item term-filter" data-term="stable-diffusion" data-episodes="3,7,8,9,10">Stable Diffusion</div>
                     <div class="term-item term-filter" data-term="python" data-episodes="1,2,4,8,11">Python</div>
-                    <div class="term-item term-filter" data-term="api" data-episodes="1,2,4,7,9,12">API</div>
+                    <div class="term-item term-filter" data-term="api" data-episodes="1,2,4,7,9,12,14">API</div>
                     <div class="term-item term-filter" data-term="windsurf" data-episodes="10,12">WindSurf</div>
                     <div class="term-item term-filter" data-term="warp-terminal" data-episodes="2,7,8,11">Warp Terminal</div>
                     <div class="term-item term-filter" data-term="gpu" data-episodes="3,7,9,10">GPU</div>
@@ -844,6 +875,9 @@
                     <div class="term-item term-filter" data-term="sora" data-episodes="15">Sora</div>
                     <div class="term-item term-filter" data-term="lovable" data-episodes="15">Lovable</div>
                     <div class="term-item term-filter" data-term="supabase" data-episodes="15">Supabase</div>
+                    <div class="term-item term-filter" data-term="gmail" data-episodes="14">Gmail</div>
+                    <div class="term-item term-filter" data-term="oauth" data-episodes="14">OAuth</div>
+                    <div class="term-item term-filter" data-term="plugins" data-episodes="14">Plugins</div>
                 </div>
             </section>
         </div>

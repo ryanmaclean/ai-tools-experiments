@@ -6,3 +6,4 @@ todo.md
 /observations/
 update_episodes.ps1
 update_episodes.sh
+**/.claude/settings.local.json
