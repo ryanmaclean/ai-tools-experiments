@@ -22,15 +22,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
     
-    <!-- Add styles for logo font -->
-    <style>
-        /* Header logo font styling */
-        .logo a {
-            font-family: 'Revalia', cursive;
-            font-size: 1.6rem;
-        }
-    </style>
-    
     <!-- Datadog RUM -->
     <script
         src="https://www.datadoghq-browser-agent.com/us1/v4/datadog-rum.js"
@@ -60,7 +51,7 @@
         <div class="container">
             <div class="logo">
                 <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
-                <a href="index.html">AI Tools Lab</a>
+                <a href="index.html" style="font-size: 3rem;">AI Tools Lab</a>
             </div>
             <nav>
                 <ul>
@@ -74,43 +65,53 @@
     </header>
     <main class="container">
         <div class="episode-content">
-            <h1>{{EPISODE_TITLE}}</h1>
-            
-            <p>{{EPISODE_SUMMARY}}</p>
-            
+            <!-- VIDEO CONTAINER - YouTube embed with thumbnail -->
             <div class="video-container">
                 <a href="https://youtu.be/{{YOUTUBE_ID}}" target="_blank">
-                    <img src="../images/thumbnails/ep{{EPISODE_NUMBER}}.png" alt="Episode {{EPISODE_NUMBER}} Video Thumbnail">
+                    <img src="../images/thumbnails/ep{{EPISODE_NUMBER}}.png" alt="Episode {{EPISODE_NUMBER}} Thumbnail">
                     <span class="play-icon"></span>
                 </a>
             </div>
             
+            <!-- TITLE SECTION -->
+            <h1>{{EPISODE_TITLE}}</h1>
+            
+            <!-- SUMMARY SECTION - Brief overview of episode content -->
+            <p>{{EPISODE_SUMMARY}}</p>
+            
+            <!-- CHAPTER MARKERS SECTION - Timestamps and topics for easy navigation -->
             <h2>Jump To</h2>
             <ul class="chapter-markers">
                 {{CHAPTER_MARKERS}}
-                <!-- Example format:
-                <li><a href="https://youtu.be/VIDEO_ID?t=0" target="_blank">🕒</a> Introduction and overview</li>
-                <li><a href="https://youtu.be/VIDEO_ID?t=120" target="_blank">🕒</a> Main topic discussion</li>
+                <!-- Format for chapter markers:
+                <li><a href="https://youtu.be/{{YOUTUBE_ID}}?t=0" target="_blank">🕒</a> Introduction to topic</li>
+                <li><a href="https://youtu.be/{{YOUTUBE_ID}}?t=60" target="_blank">🕒</a> Main discussion</li>
+                <li><a href="https://youtu.be/{{YOUTUBE_ID}}?t=120" target="_blank">🕒</a> Demonstrations and examples</li>
                 -->
             </ul>
             
+            <!-- RESOURCES SECTION - Links and tools mentioned in the episode -->
             <h2>Resources</h2>
             <ul>
                 {{RESOURCES}}
-                <!-- Example format:
+                <!-- Format for resources:
                 <li><a href="https://example.com" target="_blank">Resource Name</a> - Brief description of the resource</li>
+                <li><a href="https://tool-website.com" target="_blank">Tool Name</a> - What this tool does and how it was referenced</li>
                 -->
             </ul>
             
+            <!-- KEY TAKEAWAYS SECTION - Main learning points from the episode -->
             <h2>Key Takeaways</h2>
             <ul class="takeaways">
                 {{KEY_TAKEAWAYS}}
-                <!-- Example format:
-                <li>First key takeaway from the episode</li>
-                <li>Second key takeaway from the episode</li>
+                <!-- Format for takeaways:
+                <li>First important insight or learning from the episode</li>
+                <li>Second key concept or takeaway point</li>
+                <li>Third significant observation or conclusion</li>
                 -->
             </ul>
             
+            <!-- TRANSCRIPT SECTION - Full conversation text with timestamps -->
             <h2>Full Transcript</h2>
             <div class="transcript-navigation">
                 <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
@@ -125,17 +126,17 @@
             <div class="transcript">
                 <pre>
 {{TRANSCRIPT}}
-<!-- 
-Transcript format example:
-<span class="transcript-timestamp"><a href="https://youtu.be/VIDEO_ID?t=0" target="_blank">🕒</a></span> <span class="transcript-speaker">Speaker Name:</span> Text content
+<!-- Format for transcript entries:
+<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Speaker Name:</span> Text of what was said
 
-<span class="transcript-timestamp"><a href="https://youtu.be/VIDEO_ID?t=30" target="_blank">🕒</a></span> <span class="transcript-speaker">Other Speaker:</span> Response text
+<span class="transcript-timestamp">[00:00:30]</span> <span class="transcript-speaker">Other Speaker:</span> Response or continuation
 -->
                 </pre>
             </div>
         </div>
     </main>
     
+    <!-- EPISODE NAVIGATION SECTION - Links to previous and next episodes -->
     <div class="episode-navigation">
         <div class="container">
             <h2>Episode Navigation</h2>
@@ -147,6 +148,7 @@ Transcript format example:
                         <div class="video-container">
                             <a href="ep{{PREVIOUS_EPISODE_NUMBER}}.html">
                                 <img src="../images/thumbnails/ep{{PREVIOUS_EPISODE_NUMBER}}.png" alt="Episode {{PREVIOUS_EPISODE_NUMBER}} Thumbnail">
+                                <span class="play-icon"></span>
                             </a>
                         </div>
                         <a href="ep{{PREVIOUS_EPISODE_NUMBER}}.html" class="btn">Watch Episode</a>
@@ -154,21 +156,21 @@ Transcript format example:
                 </div>
                 
                 <div class="nav-item">
-                    <span class="nav-direction">Next Episode:</span>
+                    <span class="nav-direction">Latest Episode:</span>
                     {{NEXT_EPISODE_NAVIGATION}}
                     <!-- 
-                    For latest episode:
-                    <div class="recording-card latest-episode">
-                        <h3>Latest Episode</h3>
-                        <p>You're currently viewing the latest episode. Check back soon for more AI Tools Lab content!</p>
+                    For the most recent episode (where this is the latest):
+                    <div class="recording-card">
+                        <h3>You are watching the latest episode</h3>
                     </div>
                     
-                    For episodes with a next episode:
+                    For episodes with a next episode available:
                     <div class="recording-card">
                         <h3>{{NEXT_EPISODE_TITLE}}</h3>
                         <div class="video-container">
                             <a href="ep{{NEXT_EPISODE_NUMBER}}.html">
                                 <img src="../images/thumbnails/ep{{NEXT_EPISODE_NUMBER}}.png" alt="Episode {{NEXT_EPISODE_NUMBER}} Thumbnail">
+                                <span class="play-icon"></span>
                             </a>
                         </div>
                         <a href="ep{{NEXT_EPISODE_NUMBER}}.html" class="btn">Watch Episode</a>
@@ -207,7 +209,7 @@ Transcript format example:
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+                <p>&copy; 2025 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
             </div>
         </div>
     </footer>
