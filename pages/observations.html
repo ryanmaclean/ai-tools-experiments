@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
     
-    <!-- Custom styles for observations page -->
+    <!-- Custom styles for improved observations page -->
     <style>
         /* Header logo font styling */
         .logo a {
@@ -30,305 +30,337 @@
             font-size: 1.6rem;
         }
         
-        /* Enhanced styling for key takeaways bulleted lists */
-        .about-section-block ul {
-            margin-top: 1rem;
-            margin-bottom: 1.5rem;
-            padding-left: 1.5rem;
-        }
-        
-        .about-section-block ul li {
-            margin-bottom: 0.75rem;
+        /* Main layout improvements */
+        .observations-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 30px;
             position: relative;
-            padding-left: 0.5rem;
-            line-height: 1.6;
         }
         
-        .about-section-block ul li:before {
-            content: "•";
-            color: #6366f1;
-            font-weight: bold;
-            display: inline-block;
-            margin-right: 0.75rem;
+        /* Sidebar styling */
+        .observations-sidebar {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 100px);
+            overflow-y: auto;
+            padding-right: 15px;
+            scrollbar-width: thin;
         }
         
-        /* Tool Filter Styling */
-        .tool-filter {
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+        .observations-sidebar::-webkit-scrollbar {
+            width: 6px;
         }
         
-        .tool-filter:hover {
-            border-color: #7c4dff;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        .observations-sidebar::-webkit-scrollbar-thumb {
+            background-color: #ddd;
+            border-radius: 6px;
         }
         
-        .tool-filter.active {
-            border-color: #7c4dff;
-            background-color: #f5f0ff;
+        .observations-content {
+            min-height: 500px;
         }
         
-        .episode-section {
-            transition: all 0.3s ease;
+        /* Filter group styling */
+        .filter-group {
+            margin-bottom: 25px;
+            background: #f8f9ff;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
         }
         
-        .episode-section.hidden {
-            display: none;
-        }
-        
-        /* Special styling for tools list */
-        .tools-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .tools-list li {
-            background-color: #f8f9ff;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            border-left: 3px solid #818cf8;
-            margin-bottom: 0.5rem;
-            list-style-type: none;
-            padding-left: 1rem !important;
-        }
-        
-        .tools-list li:before {
-            display: none;
-        }
-        
-        .tools-list li strong {
-            color: #4f46e5;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-        
-        .about-section-block h3 {
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #4f46e5;
+        .filter-group h3 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: #333;
             border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 0.5rem;
+            padding-bottom: 8px;
         }
         
-        .terms-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
+        /* Tool filters */
+        .filters-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 5px;
         }
         
-        .term-item {
-            background-color: #f9fafb;
-            padding: 0.75rem;
-            border-radius: 0.5rem;
-            border-left: 3px solid #6366f1;
+        .filter-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 10px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
         }
         
-        .term-item:hover {
+        .filter-item:hover {
+            background-color: #f0f0ff;
+        }
+        
+        .filter-item.active {
+            background-color: #e6e6ff;
+            font-weight: 500;
+        }
+        
+        .filter-item .count {
+            margin-left: auto;
+            background-color: #e2e2fe;
+            border-radius: 12px;
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            color: #4f46e5;
+        }
+        
+        /* Search styling */
+        .filter-search {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .filter-search:focus {
+            outline: none;
             border-color: #7c4dff;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 0 2px rgba(124, 77, 255, 0.2);
         }
         
-        .term-item.active {
-            border-color: #7c4dff;
-            background-color: #f5f0ff;
+        /* Reset filters button */
+        .reset-filters {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            background-color: #f8f8f8;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 0.9rem;
         }
         
-        /* Episode link styling */
-        .episode-link {
+        .reset-filters:hover {
+            background-color: #e8e8e8;
+        }
+        
+        /* Takeaway cards styling */
+        .takeaway-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .takeaway-card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .takeaway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        
+        .takeaway-card-header {
+            height: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .takeaway-card-header img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .takeaway-card:hover .takeaway-card-header img {
+            transform: scale(1.05);
+        }
+        
+        .takeaway-card-header-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 12px 16px;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%);
+            color: white;
+        }
+        
+        .takeaway-card-header h3 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .takeaway-card-header .episode-number {
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .takeaway-card-body {
+            padding: 16px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .takeaway-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .takeaway-tag {
+            background-color: #f0f0ff;
+            color: #4f46e5;
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+        }
+        
+        .takeaway-content {
+            flex-grow: 1;
+        }
+        
+        .takeaway-content ul {
+            padding-left: 5px;
+            margin: 0;
+            list-style-type: none;
+        }
+        
+        .takeaway-content li {
+            margin-bottom: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 24px;
+        }
+        
+        .takeaway-content li:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background-color: #7c4dff;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        
+        .takeaway-content li:hover:before {
+            background-color: #6366f1;
+            transform: scale(1.2);
+            transition: all 0.2s ease;
+        }
+        
+        .takeaway-card-footer {
+            padding: 12px 16px;
+            background-color: #f8f9ff;
+            border-top: 1px solid #eee;
+            text-align: right;
+        }
+        
+        .takeaway-card-footer a {
+            color: #4f46e5;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .takeaway-card-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #f8f9ff;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+        
+        .empty-state h3 {
+            margin-top: 0;
+            color: #666;
+        }
+        
+        .empty-state p {
+            color: #888;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .observations-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .observations-sidebar {
+                position: relative;
+                height: auto;
+                margin-bottom: 20px;
+            }
+            
+            .takeaway-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Tab navigation for mobile */
+        .mobile-tabs {
+            display: none;
+            overflow-x: auto;
+            white-space: nowrap;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            scrollbar-width: none;
+        }
+        
+        .mobile-tabs::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .mobile-tab {
             display: inline-block;
-            padding: 6px 12px;
+            padding: 8px 16px;
+            background-color: #f0f0ff;
+            border-radius: 20px;
+            margin-right: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .mobile-tab.active {
             background-color: #7c4dff;
             color: white;
-            text-decoration: none;
-            border-radius: 4px;
             font-weight: 500;
-            margin: 12px 0;
-            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         
-        .episode-link:hover {
-            background-color: #6635cc;
-            transform: translateY(-2px);
-        }
-        
-        /* Tools list styling */
-        .tool-item {
-            background-color: #f5f7fa;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .tool-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .tool-item h3 {
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
-        
-        .tool-item p {
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            color: #555;
-        }
-        
-        /* Styles for episode sections */
-        section[id^="episode-"] {
-            margin-bottom: 30px;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-            position: relative;
-        }
-        
-        section[id^="episode-"]:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
-        section[id^="episode-"] h2 {
-            color: #333;
-            margin-top: 10px;
-            border-bottom: 2px solid #7c4dff;
-            padding-bottom: 8px;
-            display: inline-block;
-            font-size: 1.4rem;
-            max-width: 100%;
-            line-height: 1.3;
-        }
-        
-        section[id^="episode-"] .episode-link {
-            float: left;
-            margin-right: 15px;
-            margin-top: 0;
-        }
-        
-        section[id^="episode-"] h3 {
-            color: #555;
-            margin: 15px 0 10px;
-            font-size: 1.1rem;
-            clear: both;
-        }
-        
-        section[id^="episode-"] ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-        
-        section[id^="episode-"] li {
-            margin-bottom: 8px;
-            line-height: 1.5;
-            color: #444;
-            position: relative;
-        }
-        
-        section[id^="episode-"] li::marker {
-            color: #7c4dff;
-        }
-        
-        /* Episode card layout with thumbnails */
-        .episode-card {
-            display: flex;
-            gap: 20px;
-            margin-top: 15px;
-        }
-        
-        .episode-thumbnail {
-            flex: 0 0 440px;
-            height: 248px;
-            border-radius: 6px;
-            object-fit: cover;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .episode-card a:hover .episode-thumbnail {
-            transform: scale(1.02);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .episode-content {
-            flex: 1;
-        }
-        
-        /* Responsive adjustments */
         @media (max-width: 768px) {
-            .terms-grid {
-                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-            }
-            
-            .about-section-block ul {
-                padding-left: 1rem;
-            }
-            
-            .tools-list {
-                grid-template-columns: 1fr;
-            }
-            
-            section[id^="episode-"] {
-                padding: 15px;
-            }
-            
-            section[id^="episode-"] h2 {
-                font-size: 1.2rem;
-                padding-bottom: 6px;
-            }
-            
-            .episode-card {
-                flex-direction: column;
-            }
-            
-            .episode-thumbnail {
-                width: 100%;
-                flex-basis: auto;
-                margin-bottom: 10px;
-            }
-            
-            /* Episode guide table responsiveness */
-            .episode-list-table {
-                overflow-x: auto;
-                display: block;
-                width: 100%;
-            }
-            
-            .episode-list-table table {
-                min-width: 600px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .episode-link {
-                display: inline-block;
-                text-align: left;
-                margin-left: 0;
-            }
-            
-            .tools-list {
-                grid-template-columns: 1fr;
-            }
-            
-            section[id^="episode-"] h2 {
-                font-size: 1.1rem;
-                padding-right: 0;
+            .mobile-tabs {
                 display: block;
             }
         }
@@ -346,7 +378,7 @@
         <div class="container">
             <div class="logo">
                 <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
-                <a href="index.html" style="font-size: 3rem;">AI Tools Lab</a>
+                <a href="index.html" style="font-size: 1.6rem;">AI Tools Lab</a>
             </div>
             <nav>
                 <ul>
@@ -361,561 +393,597 @@
 
     <main class="container about-section">
         <div class="about-header">
+            <h1>Observations & Insights</h1>
+            <p>Discover patterns, insights, and key takeaways from our AI tools exploration journey. Filter by tools, technologies, or concepts to focus on specific areas of interest.</p>
         </div>
         
-        <div class="about-content">
-            <section class="about-section-block">
-                <h2>Observations</h2>
-                <p>
-                    The episodes to date explore a range of AI tools and techniques that enhance developer productivity, creativity, and efficiency. 
-                    We hope to learn and demonstrate how AI can be integrated into various workflows - from building interfaces for machine learning models 
-                    to generating images, automating code tasks, debugging, and designing applications.
-                </p>
-                
-                <h3>Key themes throughout include:</h3>
-                <ul>
-                    <li>The tradeoffs between local and cloud-based AI tools</li>
-                    <li>The importance of understanding prompt engineering to achieve desired results</li>
-                    <li>How AI can accelerate development without replacing human expertise</li>
-                    <li>The rapid evolution of AI tooling and the need to stay current</li>
-                    <li>Practical applications of AI in day-to-day development tasks</li>
-                </ul>
-                
-                <h3>Episode Guide</h3>
-                <p>A complete list of all episodes in the AI Tools Lab series:</p>
-                
-                <div class="episode-list-table">
-                    <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-                        <thead>
-                            <tr style="background-color: #f5f0ff; border-bottom: 2px solid #7c4dff;">
-                                <th style="padding: 12px; text-align: left;">Episode</th>
-                                <th style="padding: 12px; text-align: left;">Title</th>
-                                <th style="padding: 12px; text-align: left;">Main Focus</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep01.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 01</a></td>
-                                <td style="padding: 10px;">Building Quick Web Interfaces for ML Models with Gradio</td>
-                                <td style="padding: 10px;">Creating user interfaces for machine learning models</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep02.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 02</a></td>
-                                <td style="padding: 10px;">Exploring Warp Terminal and Cursor for Productivity</td>
-                                <td style="padding: 10px;">AI-powered terminal and code editor tools</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep03.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 03</a></td>
-                                <td style="padding: 10px;">Automatic1111 and Local Text-to-Image Generation</td>
-                                <td style="padding: 10px;">Local image generation with Stable Diffusion</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep04.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 04</a></td>
-                                <td style="padding: 10px;">Building a Secure Feedback Form with Datadog Logs with Claude Code</td>
-                                <td style="padding: 10px;">Integrating APIs into static websites</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep05.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 05</a></td>
-                                <td style="padding: 10px;">Using Claude Code for Automated HTML Updates and Styling</td>
-                                <td style="padding: 10px;">Automating website updates with AI</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep06.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 06</a></td>
-                                <td style="padding: 10px;">Using Cursor with Claude to Fix Vinyl Viewer Bugs</td>
-                                <td style="padding: 10px;">AI-assisted debugging and bug fixing</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep07.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 07</a></td>
-                                <td style="padding: 10px;">Debugging with Cursor and Claude</td>
-                                <td style="padding: 10px;">Advanced debugging techniques with AI</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep08.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 08</a></td>
-                                <td style="padding: 10px;">Using Cursor and Claude to Fix CSS Layout Issues</td>
-                                <td style="padding: 10px;">Resolving styling issues in web applications</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep09.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 09</a></td>
-                                <td style="padding: 10px;">From GTC to Website Building with AI Tools</td>
-                                <td style="padding: 10px;">Insights after NVIDIA GTC conference</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep10.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 10</a></td>
-                                <td style="padding: 10px;">First Look at Windsurf & Model Context Protocol (MCP)</td>
-                                <td style="padding: 10px;">Exploring WindSurf IDE and context protocols</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep11.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 11</a></td>
-                                <td style="padding: 10px;">Exploring Llama 4, OpenRouter, and Model Comparison Tools</td>
-                                <td style="padding: 10px;">Testing and comparing AI language models</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep12.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 12</a></td>
-                                <td style="padding: 10px;">Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</td>
-                                <td style="padding: 10px;">Context management in AI tools and cloud IDEs</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep13.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 13</a></td>
-                                <td style="padding: 10px;">Exploring Bolt: Rapid App Development with AI-Powered Templates</td>
-                                <td style="padding: 10px;">Template-based app development with Bolt</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep14.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 14</a></td>
-                                <td style="padding: 10px;">Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar</td>
-                                <td style="padding: 10px;">Email and productivity tools integration with Claude</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb;">
-                                <td style="padding: 10px;"><a href="ep15.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 15</a></td>
-                                <td style="padding: 10px;">AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</td>
-                                <td style="padding: 10px;">Image generation with Sora and app building with Lovable</td>
-                            </tr>
-                            <tr style="border-bottom: 1px solid #e5e7eb; background-color: #fafafa;">
-                                <td style="padding: 10px;"><a href="ep16.html" style="color: #7c4dff; text-decoration: none; font-weight: 500;">Episode 16</a></td>
-                                <td style="padding: 10px;">Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context</td>
-                                <td style="padding: 10px;">Using visual screenshots to improve AI-assisted CSS editing</td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <!-- Mobile tab navigation for small screens -->
+        <div class="mobile-tabs">
+            <div class="mobile-tab active" data-view="takeaways">Takeaways</div>
+            <div class="mobile-tab" data-view="trends">Trends & Patterns</div>
+            <div class="mobile-tab" data-view="tools">Tools Comparison</div>
+        </div>
+        
+        <div class="observations-layout">
+            <!-- Left sidebar with filters -->
+            <aside class="observations-sidebar">
+                <div class="filter-group">
+                    <h3>Search</h3>
+                    <input type="text" class="filter-search" placeholder="Search observations..." id="observationSearch">
                 </div>
-            </section>
-            
-            <section class="about-section-block">
-                <h2>Tools Covered</h2>
-                <div class="tools-list">
-                    <div class="tool-item tool-filter" data-tool="gradio" data-episodes="1">
-                        <h3>Gradio</h3>
-                        <p>Building web interfaces for ML models</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="warp" data-episodes="2">
-                        <h3>Warp Terminal</h3>
-                        <p>AI-enhanced terminal with command suggestions</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="cursor" data-episodes="2,7,8,12">
-                        <h3>Cursor</h3>
-                        <p>AI-powered code editor based on VSCode</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="automatic1111" data-episodes="3">
-                        <h3>Automatic1111</h3>
-                        <p>Web UI for Stable Diffusion image generation</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="claude-code" data-episodes="4,5,6,7,8">
-                        <h3>Claude Code</h3>
-                        <p>AI code generation and assistance</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="claude-plugins" data-episodes="14">
-                        <h3>Claude 3.7 Plugins</h3>
-                        <p>OAuth integration for Gmail, Drive, and Calendar</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="stable-diffusion" data-episodes="3">
-                        <h3>Stable Diffusion</h3>
-                        <p>Image generation model</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="huggingface" data-episodes="1">
-                        <h3>HuggingFace Spaces</h3>
-                        <p>Hosting and sharing ML models</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="windsurf" data-episodes="10,12">
-                        <h3>Windsurf</h3>
-                        <p>AI-powered code editor alternative to Cursor</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="firebase-studio" data-episodes="12">
-                        <h3>Firebase Studio</h3>
-                        <p>Google's cloud-based IDE powered by Gemini</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="cursor-rules" data-episodes="12">
-                        <h3>Cursor Rules</h3>
-                        <p>Configuration files to maintain context in AI coding tools</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="mcp" data-episodes="10,14">
-                        <h3>Model Context Protocol (MCP)</h3>
-                        <p>Protocol for connecting AI models to tools</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="openrouter" data-episodes="11">
-                        <h3>OpenRouter</h3>
-                        <p>Platform for comparing and routing between multiple AI models</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="lm-arena" data-episodes="11">
-                        <h3>LM Arena</h3>
-                        <p>Interactive tool for blind comparison testing of language models</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="llama4" data-episodes="11">
-                        <h3>Llama 4</h3>
-                        <p>Meta's latest language model with massive context window</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="lunarcall" data-episodes="11">
-                        <h3>LunarCall</h3>
-                        <p>Emerging AI model discovered during comparison testing</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="bolt" data-episodes="13">
-                        <h3>Bolt</h3>
-                        <p>AI-powered template-based app development for rapid prototyping</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="sora" data-episodes="15">
-                        <h3>Sora</h3>
-                        <p>OpenAI's text-to-image and video generation model</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="lovable" data-episodes="15">
-                        <h3>Lovable</h3>
-                        <p>Full-stack application builder with AI assistance</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="puppeteer" data-episodes="16">
-                        <h3>Puppeteer</h3>
-                        <p>Headless browser automation for screenshots</p>
-                    </div>
-                    <div class="tool-item tool-filter" data-tool="gemini" data-episodes="16">
-                        <h3>Gemini</h3>
-                        <p>Google's AI model used for visual CSS editing</p>
-                    </div>
-                    <div class="tool-item tool-filter active" data-tool="all">
-                        <h3>All Tools</h3>
-                        <p>Show all episodes</p>
+                
+                <div class="filter-group">
+                    <h3>Filter by Tool</h3>
+                    <div class="filters-container" id="toolFilters">
+                        <div class="filter-item active" data-filter="tool" data-value="all">
+                            <span>All Tools</span>
+                            <span class="count">16</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="puppeteer">
+                            <span>Puppeteer</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="mcp">
+                            <span>MCP</span>
+                            <span class="count">3</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="gemini">
+                            <span>Gemini</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="claude">
+                            <span>Claude</span>
+                            <span class="count">8</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="sora">
+                            <span>Sora</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="lovable">
+                            <span>Lovable</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="cursor">
+                            <span>Cursor</span>
+                            <span class="count">4</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="bolt">
+                            <span>Bolt</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="gradio">
+                            <span>Gradio</span>
+                            <span class="count">1</span>
+                        </div>
                     </div>
                 </div>
-            </section>
-            
-            <section class="about-section-block">
-                <h2>Key Takeaways from All Episodes</h2>
                 
-                <section id="episode-16" class="episode-section" data-tools="puppeteer,mcp,gemini,css">
-                    <a href="ep16.html" class="episode-link">View</a>
-                    <h2>Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context</h2>
-                    <div class="episode-card">
-                        <a href="ep16.html">
-                            <img src="../images/thumbnails/ep16.png" alt="Episode 16 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Using visual context through screenshots helps LLMs make better CSS editing decisions than relying on text alone</li>
-                                <li>Puppeteer integration with LLMs creates a virtuous feedback cycle for quickly iterating on design changes</li>
-                                <li>The MCP (Model Control Protocol) server is essential for allowing LLMs to interact with local development environments</li>
-                                <li>Working in a test branch provides a safe environment for experimenting with AI-suggested CSS changes</li>
-                                <li>Despite requiring manual approval for screenshots, the workflow with Gemini 2.5 Pro is fast enough to create an efficient development experience</li>
-                            </ul>
+                <div class="filter-group">
+                    <h3>Filter by Concept</h3>
+                    <div class="filters-container" id="conceptFilters">
+                        <div class="filter-item active" data-filter="concept" data-value="all">
+                            <span>All Concepts</span>
+                            <span class="count">16</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="css">
+                            <span>CSS</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="visual-context">
+                            <span>Visual Context</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="debugging">
+                            <span>Debugging</span>
+                            <span class="count">3</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="image-generation">
+                            <span>Image Generation</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="oauth">
+                            <span>OAuth & Plugins</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="code-editing">
+                            <span>Code Editing</span>
+                            <span class="count">4</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="app-development">
+                            <span>App Development</span>
+                            <span class="count">2</span>
                         </div>
                     </div>
-                </section>
-                
-                <section id="episode-14" class="episode-section" data-tools="claude-plugins,mcp,gmail,oauth,plugins">
-                    <a href="ep14.html" class="episode-link">View</a>
-                    <h2>Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar</h2>
-                    <div class="episode-card">
-                        <a href="ep14.html">
-                            <img src="../images/thumbnails/ep14.png" alt="Episode 14 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar through simple OAuth authentication</li>
-                                <li>The AI can analyze massive email volumes (3.5+ million emails) and generate personalized interactive dashboards</li>
-                                <li>Claude creates customized email filter recommendations with ready-to-use filter language</li>
-                                <li>The system generates different insights on subsequent runs, showing varied approaches to inbox management</li>
-                                <li>Integration provides practical tools for email organization through AI-powered visualization and actionable recommendations</li>
-                                <li>Integration with Google Drive includes security recommendations for sensitive data</li>
-                                <li>Calendar management integration can adapt to different personality types and scheduling preferences</li>
-                                <li>Generated outputs include downloadable TSX (React) files that users can modify and extend</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-15" class="episode-section" data-tools="sora,lovable">
-                    <a href="ep15.html" class="episode-link">View</a>
-                    <h2>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h2>
-                    <div class="episode-card">
-                        <a href="ep15.html">
-                            <img src="../images/thumbnails/ep15.png" alt="Episode 15 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>AI image generation has significantly improved, especially for text rendering in images</li>
-                                <li>Sora can now create images with professional-looking fonts, proper kerning, and layout</li>
-                                <li>Lovable is a full-stack development tool similar to Bolt, allowing rapid app creation</li>
-                                <li>The free tier of Lovable offers only five interactions per day</li>
-                                <li>Lovable provides intuitive interfaces, error correction, and GitHub integration</li>
-                                <li>Generative AI quality has improved to the point where many outputs no longer trigger the "AI slop" response</li>
-                                <li>Supabase is highlighted as a valuable database solution that integrates well with app-building tools</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-13" class="episode-section" data-tools="bolt">
-                    <a href="ep13.html" class="episode-link">View</a>
-                    <h2>Exploring Bolt: Rapid App Development with AI-Powered Templates</h2>
-                    <div class="episode-card">
-                        <a href="ep13.html">
-                            <img src="../images/thumbnails/ep13.png" alt="Episode 13 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Bolt provides a template-based approach to rapidly build web and mobile applications</li>
-                                <li>It's particularly useful for prototyping and "vibe coding" - quickly visualizing concepts</li>
-                                <li>The tool works with multiple frameworks including React, Next.js, and Expo</li>
-                                <li>Users can download their code and continue development in their preferred IDE</li>
-                                <li>While it may not be ideal for production-grade applications, it excels at exploration and prototyping</li>
-                                <li>Screenshot-based programming allows for quickly recreating interfaces from images</li>
-                                <li>Bolt offers both hosted and open-source versions for different use cases</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-12" class="episode-section" data-tools="cursor,firebase,cursor-rules,windsurf">
-                    <a href="ep12.html" class="episode-link">View</a>
-                    <h2>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</h2>
-                    <div class="episode-card">
-                        <a href="ep12.html">
-                            <img src="../images/thumbnails/ep12.png" alt="Episode 12 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development</li>
-                                <li>AI tools suffer from "amnesia" between sessions, requiring developers to repeatedly provide the same context and instructions</li>
-                                <li>Tools like Cursor and WindSurf implement rule files differently, but both recognize their importance in creating consistent AI outputs</li>
-                                <li>Cloud providers (Google, Microsoft, Amazon) are each developing their own AI-powered development environments like Firebase Studio</li>
-                                <li>The "don't repeat yourself" (DRY) principle from traditional software development is being extended to interactions with AI assistants</li>
-                                <li>Security practices and API key management are crucial considerations when working with cloud-based AI development environments</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-11" class="episode-section" data-tools="openrouter,lm-arena,llama4,lunarcall">
-                    <a href="ep11.html" class="episode-link">View</a>
-                    <h2>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h2>
-                    <div class="episode-card">
-                        <a href="ep11.html">
-                            <img src="../images/thumbnails/ep11.png" alt="Episode 11 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Llama 4 features a massive 10+ million token context window, potentially revolutionizing how we work with large documents and complex instructions</li>
-                                <li>Despite large context windows, RAG (Retrieval Augmented Generation) remains valuable for cost efficiency and performance optimization</li>
-                                <li>Expanded context windows enable more comprehensive guardrails and detailed system prompts in production applications</li>
-                                <li>Even the latest AI models still struggle with certain types of knowledge, particularly specialized programming techniques and niche factual information</li>
-                                <li>AI hallucinations remain a concern, particularly for factual questions, as demonstrated by the incorrect musician information</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-10" class="episode-section" data-tools="windsurf,mcp">
-                    <a href="ep10.html" class="episode-link">View</a>
-                    <h2>First Look at Windsurf & Model Context Protocol (MCP)</h2>
-                    <div class="episode-card">
-                        <a href="ep10.html">
-                            <img src="../images/thumbnails/ep10.png" alt="Episode 10 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Windsurf offers a free tier with the Cascade model, providing capable AI assistance for code completion and project planning</li>
-                                <li>Creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output</li>
-                                <li>Different AI coding tools have different "ergonomics" that may suit different workflows</li>
-                                <li>Using multiple AI assistants in parallel can produce better results through comparing approaches</li>
-                                <li>The role of developers is rapidly changing with AI tools, focusing more on architecture and planning than syntax</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-9" class="episode-section">
-                    <a href="ep09.html" class="episode-link">View</a>
-                    <h2>From GTC to Website Building with AI Tools</h2>
-                    <div class="episode-card">
-                        <a href="ep09.html">
-                            <img src="../images/thumbnails/ep09.png" alt="Episode 9 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>AI content creation tools can accelerate the creation of various media types</li>
-                                <li>Different tools have unique strengths and limitations</li>
-                                <li>Understanding prompt engineering principles improves output quality</li>
-                                <li>Ethical considerations are important when creating AI-generated content</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-8" class="episode-section" data-tools="cursor,claude-code">
-                    <a href="ep08.html" class="episode-link">View</a>
-                    <h2>Using Cursor and Claude to Fix CSS Layout Issues</h2>
-                    <div class="episode-card">
-                        <a href="ep08.html">
-                            <img src="../images/thumbnails/ep08.png" alt="Episode 8 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Running AI models locally requires specific hardware and software configurations</li>
-                                <li>Local environments provide more control and privacy than cloud-based alternatives</li>
-                                <li>The AI ecosystem is rapidly evolving with new tools and models constantly emerging</li>
-                                <li>Setting up proper development environments is crucial for efficient AI experimentation</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-7" class="episode-section" data-tools="cursor,claude-code">
-                    <a href="ep07.html" class="episode-link">View</a>
-                    <h2>Debugging with Cursor and Claude</h2>
-                    <div class="episode-card">
-                        <a href="ep07.html">
-                            <img src="../images/thumbnails/ep07.png" alt="Episode 7 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>AI debugging tools can identify issues in code more quickly than manual inspection</li>
-                                <li>Cursor provides integrated features for asking questions about code and finding bugs</li>
-                                <li>Claude can provide explanations of complex code patterns and suggest improvements</li>
-                                <li>Debugging with AI is most effective when providing adequate context</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-6" class="episode-section" data-tools="claude-code">
-                    <a href="ep06.html" class="episode-link">View</a>
-                    <h2>Using Cursor with Claude to Fix Vinyl Viewer Bugs</h2>
-                    <div class="episode-card">
-                        <a href="ep06.html">
-                            <img src="../images/thumbnails/ep06.png" alt="Episode 6 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Cursor with Claude can quickly identify and fix complex bugs in web applications</li>
-                                <li>The Vinyl Viewer bug occurred because the click handler used the original data array instead of the filtered array</li>
-                                <li>Claude was able to diagnose the issue without requiring extensive prompting</li>
-                                <li>Cursor provides a more integrated experience than standard chat interfaces for coding tasks</li>
-                                <li>AI assistants can help debug code even on projects that haven't been maintained for months</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-5" class="episode-section" data-tools="claude-code">
-                    <a href="ep05.html" class="episode-link">View</a>
-                    <h2>Using Claude Code for Automated HTML Updates and Styling</h2>
-                    <div class="episode-card">
-                        <a href="ep05.html">
-                            <img src="../images/thumbnails/ep05.png" alt="Episode 5 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Claude Code can automate repetitive HTML updates across multiple files</li>
-                                <li>AI can apply consistent styling and structure to improve website maintainability</li>
-                                <li>Reduces tedious manual editing for large-scale changes</li>
-                                <li>Can adapt existing code patterns rather than creating from scratch</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-4" class="episode-section" data-tools="claude-code">
-                    <a href="ep04.html" class="episode-link">View</a>
-                    <h2>Building a Secure Feedback Form with Datadog Logs with Claude Code</h2>
-                    <div class="episode-card">
-                        <a href="ep04.html">
-                            <img src="../images/thumbnails/ep04.png" alt="Episode 4 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Claude Code can efficiently generate HTML/CSS/JS for static websites</li>
-                                <li>GitHub Actions allow secure handling of API keys through repository secrets</li>
-                                <li>Static websites can still communicate with external APIs like Datadog</li>
-                                <li>Structured logging provides a simple way to collect and analyze form submissions</li>
-                                <li>Setting up deployment pipelines requires careful configuration</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-3" class="episode-section" data-tools="automatic1111,stable-diffusion">
-                    <a href="ep03.html" class="episode-link">View</a>
-                    <h2>Automatic1111 and Local Text-to-Image Generation</h2>
-                    <div class="episode-card">
-                        <a href="ep03.html">
-                            <img src="../images/thumbnails/ep03.png" alt="Episode 3 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Automatic1111 provides a web UI for Stable Diffusion image generation models</li>
-                                <li>Local image generation is slower but offers privacy, offline access, and cost savings</li>
-                                <li>Older models like SD 1.5 have limitations but are faster than newer ones</li>
-                                <li>Prompt engineering with positive and negative prompts can improve generation results</li>
-                                <li>The tool can be useful for brainstorming, ideation, and inspiration rather than final assets</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-2" class="episode-section" data-tools="warp,cursor">
-                    <a href="ep02.html" class="episode-link">View</a>
-                    <h2>Exploring Warp Terminal and Cursor for Productivity</h2>
-                    <div class="episode-card">
-                        <a href="ep02.html">
-                            <img src="../images/thumbnails/ep02.png" alt="Episode 2 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Warp offers a more intuitive terminal experience with AI-powered command suggestions</li>
-                                <li>Cursor enhances coding with integrated AI assistance for code generation and review</li>
-                                <li>Both tools provide significant productivity boosts for developers</li>
-                                <li>Great for both beginners and experienced developers</li>
-                                <li>AI can streamline documentation writing and code refactoring</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-                
-                <section id="episode-1" class="episode-section" data-tools="gradio,huggingface">
-                    <a href="ep01.html" class="episode-link">View</a>
-                    <h2>Building Quick Web Interfaces for ML Models</h2>
-                    <div class="episode-card">
-                        <a href="ep01.html">
-                            <img src="../images/thumbnails/ep01.png" alt="Episode 1 Thumbnail" class="episode-thumbnail">
-                        </a>
-                        <div class="episode-content">
-                            <ul>
-                                <li>Gradio is a very easy way to get a Huggingface Space locally (via <code>load</code>)</li>
-                                <li>Gradio provides a simple way to build frontends for ML applications</li>
-                                <li>When installing, make sure to create a virtual environment</li>
-                                <li>Ensure to install Gradio in that environment after activation</li>
-                                <li>Don't try to run your project in the <code>Gradio</code> repo by mistake</li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-            </section>
-            
-            <section class="about-section-block">
-                <h2>Most Popular Terms Used</h2>
-                <div class="terms-grid">
-                    <div class="term-item term-filter active" data-term="all">All Terms</div>
-                    <div class="term-item term-filter" data-term="claude" data-episodes="1,2,4,5,6,7,8,9,11,12,14">Claude</div>
-                    <div class="term-item term-filter" data-term="cursor" data-episodes="2,6,7,8,9,10,11,12">Cursor</div>
-                    <div class="term-item term-filter" data-term="cursor-rules" data-episodes="12">Cursor Rules</div>
-                    <div class="term-item term-filter" data-term="firebase" data-episodes="12">Firebase</div>
-                    <div class="term-item term-filter" data-term="gradio" data-episodes="1,3,5,8,10">Gradio</div>
-                    <div class="term-item term-filter" data-term="stable-diffusion" data-episodes="3,7,8,9,10">Stable Diffusion</div>
-                    <div class="term-item term-filter" data-term="python" data-episodes="1,2,4,8,11">Python</div>
-                    <div class="term-item term-filter" data-term="api" data-episodes="1,2,4,7,9,12,14">API</div>
-                    <div class="term-item term-filter" data-term="windsurf" data-episodes="10,12">WindSurf</div>
-                    <div class="term-item term-filter" data-term="warp-terminal" data-episodes="2,7,8,11">Warp Terminal</div>
-                    <div class="term-item term-filter" data-term="gpu" data-episodes="3,7,9,10">GPU</div>
-                    <div class="term-item term-filter" data-term="prompt-engineering" data-episodes="3,7,9,10">Prompt Engineering</div>
-                    <div class="term-item term-filter" data-term="huggingface" data-episodes="1,3,8">Hugging Face</div>
-                    <div class="term-item term-filter" data-term="bolt" data-episodes="13">Bolt</div>
-                    <div class="term-item term-filter" data-term="expo" data-episodes="13">Expo</div>
-                    <div class="term-item term-filter" data-term="sora" data-episodes="15">Sora</div>
-                    <div class="term-item term-filter" data-term="lovable" data-episodes="15">Lovable</div>
-                    <div class="term-item term-filter" data-term="supabase" data-episodes="15">Supabase</div>
-                    <div class="term-item term-filter" data-term="gmail" data-episodes="14">Gmail</div>
-                    <div class="term-item term-filter" data-term="oauth" data-episodes="14">OAuth</div>
-                    <div class="term-item term-filter" data-term="plugins" data-episodes="14">Plugins</div>
-                    <div class="term-item term-filter" data-term="puppeteer" data-episodes="16">Puppeteer</div>
-                    <div class="term-item term-filter" data-term="gemini" data-episodes="16">Gemini</div>
-                    <div class="term-item term-filter" data-term="css" data-episodes="16">CSS</div>
-                    <div class="term-item term-filter" data-term="visual-context" data-episodes="16">Visual Context</div>
                 </div>
-            </section>
+                
+                
+                <button class="reset-filters" id="resetFilters">Reset All Filters</button>
+            </aside>
+            
+            <!-- Main content area -->
+            <div class="observations-content">
+                <div class="takeaway-cards">
+                    <!-- Episode 16 Card -->
+                    <div class="takeaway-card" data-episode="16" data-tools="puppeteer,mcp,gemini" data-concepts="css,visual-context">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep16.png" alt="Episode 16 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 16</div>
+                                <h3>Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Puppeteer</span>
+                                <span class="takeaway-tag">MCP</span>
+                                <span class="takeaway-tag">Gemini</span>
+                                <span class="takeaway-tag">CSS</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Using visual context through screenshots helps LLMs make better CSS editing decisions than relying on text alone</li>
+                                    <li>Puppeteer integration with LLMs creates a virtuous feedback cycle for quickly iterating on design changes</li>
+                                    <li>The MCP server is essential for allowing LLMs to interact with local development environments</li>
+                                    <li>Working in a test branch provides a safe environment for experimenting with AI-suggested CSS changes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep16.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 15 Card -->
+                    <div class="takeaway-card" data-episode="15" data-tools="sora,lovable" data-concepts="image-generation,app-development">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep15.png" alt="Episode 15 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 15</div>
+                                <h3>AI Tools in Action: Exploring Sora Image Generation and Lovable App Builder</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Sora</span>
+                                <span class="takeaway-tag">Lovable</span>
+                                <span class="takeaway-tag">Image Generation</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI image generation has significantly improved, especially for text rendering in images</li>
+                                    <li>Sora can now create images with professional-looking fonts, proper kerning, and layout</li>
+                                    <li>Lovable is a full-stack development tool similar to Bolt, allowing rapid app creation</li>
+                                    <li>Generative AI quality has improved to the point where many outputs no longer trigger the "AI slop" response</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep15.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 14 Card -->
+                    <div class="takeaway-card" data-episode="14" data-tools="claude,mcp" data-concepts="oauth,plugins">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep14.png" alt="Episode 14 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 14</div>
+                                <h3>Claude 3.7 Sonnet Plugins: AI Integration with Gmail, Drive and Calendar</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">OAuth</span>
+                                <span class="takeaway-tag">Plugins</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude 3.7 Sonnet integrates with Gmail, Google Drive, and Calendar through simple OAuth authentication</li>
+                                    <li>The AI can analyze massive email volumes and generate personalized interactive dashboards</li>
+                                    <li>Claude creates customized email filter recommendations with ready-to-use filter language</li>
+                                    <li>Integration with Google Drive includes security recommendations for sensitive data</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep14.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 13 Card -->
+                    <div class="takeaway-card" data-episode="13" data-tools="bolt" data-concepts="app-development">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep13.png" alt="Episode 13 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 13</div>
+                                <h3>Exploring Bolt: Rapid App Development with AI-Powered Templates</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Bolt</span>
+                                <span class="takeaway-tag">App Development</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Bolt provides a template-based approach to rapidly build web and mobile applications</li>
+                                    <li>It's particularly useful for prototyping and "vibe coding" - quickly visualizing concepts</li>
+                                    <li>The tool works with multiple frameworks including React, Next.js, and Expo</li>
+                                    <li>Users can download their code and continue development in their preferred IDE</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep13.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 12 Card -->
+                    <div class="takeaway-card" data-episode="12" data-tools="cursor" data-concepts="code-editing">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep12.png" alt="Episode 12 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 12</div>
+                                <h3>Cursor Rules, Firebase Studio, and the Evolving IDE Landscape</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Firebase</span>
+                                <span class="takeaway-tag">IDE</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Cursor Rules and project requirements documents (PRDs) are becoming essential for maintaining context in AI-assisted development</li>
+                                    <li>AI tools suffer from "amnesia" between sessions, requiring developers to repeatedly provide the same context</li>
+                                    <li>Cloud providers are each developing their own AI-powered development environments</li>
+                                    <li>Security practices and API key management are crucial considerations when working with cloud-based AI dev environments</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep12.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 11 Card -->
+                    <div class="takeaway-card" data-episode="11" data-tools="llama4,openrouter" data-concepts="llm,context-window">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep11.png" alt="Episode 11 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 11</div>
+                                <h3>Exploring Llama 4, OpenRouter, and Model Comparison Tools</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Llama 4</span>
+                                <span class="takeaway-tag">OpenRouter</span>
+                                <span class="takeaway-tag">LLM Comparison</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Llama 4 features a massive 10+ million token context window, revolutionizing how we work with large documents</li>
+                                    <li>Despite large context windows, RAG remains valuable for cost efficiency and performance optimization</li>
+                                    <li>Even the latest AI models still struggle with certain types of specialized knowledge</li>
+                                    <li>AI hallucinations remain a concern, particularly for factual questions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep11.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 10 Card -->
+                    <div class="takeaway-card" data-episode="10" data-tools="windsurf,mcp" data-concepts="ide,code-editing">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep10.png" alt="Episode 10 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 10</div>
+                                <h3>First Look at Windsurf & Model Context Protocol (MCP)</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Windsurf</span>
+                                <span class="takeaway-tag">MCP</span>
+                                <span class="takeaway-tag">IDE</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Windsurf offers a free tier with the Cascade model, providing capable AI assistance for coding tasks</li>
+                                    <li>Creating a detailed Project Requirements Document (PRD) before coding leads to higher quality AI output</li>
+                                    <li>Different AI coding tools have different "ergonomics" that may suit different workflows</li>
+                                    <li>The role of developers is rapidly changing with AI tools, focusing more on architecture and planning than syntax</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep10.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 9 Card -->
+                    <div class="takeaway-card" data-episode="9" data-tools="gtc" data-concepts="ai-trends,web-dev">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep09.png" alt="Episode 9 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 09</div>
+                                <h3>From GTC to Website Building with AI Tools</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">GTC</span>
+                                <span class="takeaway-tag">Web Development</span>
+                                <span class="takeaway-tag">AI Trends</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI content creation tools can accelerate the creation of various media types</li>
+                                    <li>Different tools have unique strengths and limitations</li>
+                                    <li>Understanding prompt engineering principles improves output quality</li>
+                                    <li>Ethical considerations are important when creating AI-generated content</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep09.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 8 Card -->
+                    <div class="takeaway-card" data-episode="8" data-tools="cursor,claude" data-concepts="css,debugging">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep08.png" alt="Episode 8 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 08</div>
+                                <h3>Using Cursor and Claude to Fix CSS Layout Issues</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">CSS</span>
+                                <span class="takeaway-tag">Debugging</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Running AI models locally requires specific hardware and software configurations</li>
+                                    <li>Local environments provide more control and privacy than cloud-based alternatives</li>
+                                    <li>The AI ecosystem is rapidly evolving with new tools and models constantly emerging</li>
+                                    <li>Setting up proper development environments is crucial for efficient AI experimentation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep08.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 7 Card -->
+                    <div class="takeaway-card" data-episode="7" data-tools="cursor,claude" data-concepts="debugging">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep07.png" alt="Episode 7 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 07</div>
+                                <h3>Debugging with Cursor and Claude</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">Debugging</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI debugging tools can identify issues in code more quickly than manual inspection</li>
+                                    <li>Cursor provides integrated features for asking questions about code and finding bugs</li>
+                                    <li>Claude can provide explanations of complex code patterns and suggest improvements</li>
+                                    <li>Debugging with AI is most effective when providing adequate context</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep07.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 6 Card -->
+                    <div class="takeaway-card" data-episode="6" data-tools="claude-code" data-concepts="web-dev">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep06.png" alt="Episode 6 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 06</div>
+                                <h3>Using Claude Code to Make Changes to My Personal Website</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">Web Development</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude Code can effectively implement substantial changes to personal websites</li>
+                                    <li>Planning before execution helps ensure successful implementation of changes</li>
+                                    <li>AI assistants can understand existing code patterns and maintain consistency</li>
+                                    <li>Claude can handle complex website changes across multiple files</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep06.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 5 Card -->
+                    <div class="takeaway-card" data-episode="5" data-tools="claude-code" data-concepts="web-dev,automation">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep05.png" alt="Episode 5 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 05</div>
+                                <h3>Using Claude Code for Automated HTML Updates and Styling</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">HTML</span>
+                                <span class="takeaway-tag">Automation</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude Code can automate repetitive HTML updates across multiple files</li>
+                                    <li>AI can apply consistent styling and structure to improve website maintainability</li>
+                                    <li>Reduces tedious manual editing for large-scale changes</li>
+                                    <li>Can adapt existing code patterns rather than creating from scratch</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep05.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 4 Card -->
+                    <div class="takeaway-card" data-episode="4" data-tools="claude-code" data-concepts="api,static-sites">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep04.png" alt="Episode 4 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 04</div>
+                                <h3>Building a Secure Feedback Form with Datadog Logs with Claude Code</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">API</span>
+                                <span class="takeaway-tag">Datadog</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Claude Code can efficiently generate HTML/CSS/JS for static websites</li>
+                                    <li>GitHub Actions allow secure handling of API keys through repository secrets</li>
+                                    <li>Static websites can still communicate with external APIs like Datadog</li>
+                                    <li>Structured logging provides a simple way to collect and analyze form submissions</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep04.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 3 Card -->
+                    <div class="takeaway-card" data-episode="3" data-tools="automatic1111,stable-diffusion" data-concepts="image-generation">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep03.png" alt="Episode 3 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 03</div>
+                                <h3>Automatic1111 and Local Text-to-Image Generation</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Automatic1111</span>
+                                <span class="takeaway-tag">Stable Diffusion</span>
+                                <span class="takeaway-tag">Image Generation</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Automatic1111 provides a web UI for Stable Diffusion image generation models</li>
+                                    <li>Local image generation is slower but offers privacy, offline access, and cost savings</li>
+                                    <li>Older models like SD 1.5 have limitations but are faster than newer ones</li>
+                                    <li>Prompt engineering with positive and negative prompts can improve generation results</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep03.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 2 Card -->
+                    <div class="takeaway-card" data-episode="2" data-tools="warp,cursor" data-concepts="productivity">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep02.png" alt="Episode 2 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 02</div>
+                                <h3>Exploring Warp Terminal and Cursor for Productivity</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Warp Terminal</span>
+                                <span class="takeaway-tag">Cursor</span>
+                                <span class="takeaway-tag">Productivity</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Warp offers a more intuitive terminal experience with AI-powered command suggestions</li>
+                                    <li>Cursor enhances coding with integrated AI assistance for code generation and review</li>
+                                    <li>Both tools provide significant productivity boosts for developers</li>
+                                    <li>Great for both beginners and experienced developers</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep02.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 1 Card -->
+                    <div class="takeaway-card" data-episode="1" data-tools="gradio,huggingface" data-concepts="ml-models">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep01.png" alt="Episode 1 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 01</div>
+                                <h3>Building Quick Web Interfaces for ML Models</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Gradio</span>
+                                <span class="takeaway-tag">Hugging Face</span>
+                                <span class="takeaway-tag">ML Models</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Gradio is a very easy way to get a Huggingface Space locally (via <code>load</code>)</li>
+                                    <li>Gradio provides a simple way to build frontends for ML applications</li>
+                                    <li>When installing, make sure to create a virtual environment</li>
+                                    <li>Ensure to install Gradio in that environment after activation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href="ep01.html" target="_blank">View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Empty state - shown when no matches -->
+                    <div class="empty-state" id="emptyState" style="display: none; grid-column: 1 / -1;">
+                        <h3>No matching observations found</h3>
+                        <p>Try adjusting your filters or search term to see more results.</p>
+                        <button class="reset-filters" style="width: auto; display: inline-block; margin-top: 15px; padding: 8px 20px;">Reset Filters</button>
+                    </div>
+                </div>
+                
+                <!-- Pagination for future use -->
+                <div class="pagination" style="margin-top: 30px; text-align: center; display: none;">
+                    <a href="#" class="pagination-item">1</a>
+                    <a href="#" class="pagination-item active">2</a>
+                    <a href="#" class="pagination-item">3</a>
+                    <span class="pagination-ellipsis">...</span>
+                    <a href="#" class="pagination-item">8</a>
+                </div>
+            </div>
         </div>
     </main>
     
@@ -947,7 +1015,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
+                <p>&copy; 2025 AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p>
             </div>
         </div>
     </footer>
@@ -962,89 +1030,133 @@
 
     <script src="../script.js"></script>
     
+    <!-- Observations page specific JavaScript -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Get all filter elements
-        const toolFilters = document.querySelectorAll('.tool-filter');
-        const termFilters = document.querySelectorAll('.term-filter');
-        const episodeSections = document.querySelectorAll('.episode-section');
+        // DOM Elements
+        const toolFilters = document.querySelectorAll('[data-filter="tool"]');
+        const conceptFilters = document.querySelectorAll('[data-filter="concept"]');
+        const resetFiltersBtn = document.getElementById('resetFilters');
+        const searchInput = document.getElementById('observationSearch');
+        const takeawayCards = document.querySelectorAll('.takeaway-card');
+        const emptyState = document.getElementById('emptyState');
+        const mobileTabs = document.querySelectorAll('.mobile-tab');
         
-        // Add click event listeners to each tool filter
+        // Current filter state
+        let currentFilters = {
+            tool: 'all',
+            concept: 'all',
+            search: ''
+        };
+        
+        // Filter cards based on current filter state
+        function filterCards() {
+            let visibleCount = 0;
+            
+            takeawayCards.forEach(card => {
+                const cardTools = card.dataset.tools.split(',');
+                const cardConcepts = card.dataset.concepts.split(',');
+                const cardText = card.textContent.toLowerCase();
+                
+                // Check if card matches all active filters
+                const matchesTool = currentFilters.tool === 'all' || cardTools.includes(currentFilters.tool);
+                const matchesConcept = currentFilters.concept === 'all' || cardConcepts.includes(currentFilters.concept);
+                const matchesSearch = currentFilters.search === '' || cardText.includes(currentFilters.search.toLowerCase());
+                
+                if (matchesTool && matchesConcept && matchesSearch) {
+                    card.style.display = '';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Show empty state if no cards are visible
+            if (visibleCount === 0) {
+                emptyState.style.display = 'block';
+            } else {
+                emptyState.style.display = 'none';
+            }
+        }
+        
+        // Update active filter UI
+        function updateActiveFilters(filterType, value) {
+            const filterSet = filterType === 'tool' ? toolFilters : conceptFilters;
+            
+            filterSet.forEach(filter => {
+                filter.classList.toggle('active', filter.dataset.value === value);
+            });
+        }
+        
+        // Event handlers for filters
+        function handleFilterClick(e) {
+            const filterItem = e.currentTarget;
+            const filterType = filterItem.dataset.filter;
+            const filterValue = filterItem.dataset.value;
+            
+            // Update filter state
+            currentFilters[filterType] = filterValue;
+            
+            // Update UI
+            updateActiveFilters(filterType, filterValue);
+            
+            // Apply filters
+            filterCards();
+        }
+        
+        // Add click event to all filters
         toolFilters.forEach(filter => {
-            filter.addEventListener('click', function() {
-                // Remove active class from all tool filters
-                toolFilters.forEach(f => f.classList.remove('active'));
+            filter.addEventListener('click', handleFilterClick);
+        });
+        
+        conceptFilters.forEach(filter => {
+            filter.addEventListener('click', handleFilterClick);
+        });
+        
+        // Handle search input
+        searchInput.addEventListener('input', function(e) {
+            currentFilters.search = e.target.value.trim();
+            filterCards();
+        });
+        
+        // Reset all filters
+        resetFiltersBtn.addEventListener('click', function() {
+            // Reset filter state
+            currentFilters = {
+                tool: 'all',
+                concept: 'all',
+                search: ''
+            };
+            
+            // Reset UI
+            updateActiveFilters('tool', 'all');
+            updateActiveFilters('concept', 'all');
+            searchInput.value = '';
+            
+            // Apply filters
+            filterCards();
+        });
+        
+        // Mobile tabs
+        mobileTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                mobileTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
                 
-                // Reset term filters
-                termFilters.forEach(f => f.classList.remove('active'));
-                document.querySelector('.term-filter[data-term="all"]').classList.add('active');
-                
-                // Add active class to clicked filter
-                this.classList.add('active');
-                
-                const selectedTool = this.getAttribute('data-tool');
-                
-                // Show all episodes if 'all' is selected
-                if (selectedTool === 'all') {
-                    episodeSections.forEach(section => {
-                        section.classList.remove('hidden');
-                    });
-                    return;
-                }
-                
-                // Hide/show episodes based on the selected tool
-                episodeSections.forEach(section => {
-                    const episodeTools = section.getAttribute('data-tools') || '';
-                    if (episodeTools.includes(selectedTool)) {
-                        section.classList.remove('hidden');
-                    } else {
-                        section.classList.add('hidden');
-                    }
-                });
+                // Additional logic for switching views would go here
+                // For now, let's just do a simple filter reset
+                resetFiltersBtn.click();
             });
         });
         
-        // Add click event listeners to each term filter
-        termFilters.forEach(filter => {
-            filter.addEventListener('click', function() {
-                // Remove active class from all term filters
-                termFilters.forEach(f => f.classList.remove('active'));
-                
-                // Reset tool filters
-                toolFilters.forEach(f => f.classList.remove('active'));
-                document.querySelector('.tool-filter[data-tool="all"]').classList.add('active');
-                
-                // Add active class to clicked filter
-                this.classList.add('active');
-                
-                const selectedTerm = this.getAttribute('data-term');
-                
-                // Show all episodes if 'all' is selected
-                if (selectedTerm === 'all') {
-                    episodeSections.forEach(section => {
-                        section.classList.remove('hidden');
-                    });
-                    return;
-                }
-                
-                // Get episodes that mention this term
-                const episodeNumbers = this.getAttribute('data-episodes') || '';
-                const episodeArray = episodeNumbers.split(',');
-                
-                // Hide/show episodes based on the selected term
-                episodeSections.forEach(section => {
-                    const episodeId = section.getAttribute('id');
-                    const episodeNumber = episodeId.replace('episode-', '');
-                    
-                    if (episodeArray.includes(episodeNumber)) {
-                        section.classList.remove('hidden');
-                    } else {
-                        section.classList.add('hidden');
-                    }
-                });
-            });
+        // Make sure all cards match the empty state button
+        document.querySelector('.empty-state .reset-filters').addEventListener('click', function() {
+            resetFiltersBtn.click();
         });
+        
+        // Initial filter on page load
+        filterCards();
     });
     </script>
 </body>
-</html> 
+</html>
