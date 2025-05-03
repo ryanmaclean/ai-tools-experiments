@@ -3,6 +3,17 @@
   publish = "dist"
   functions = "proxy"
 
+# Explicitly specify the production branch
+[context.production]
+  command = "npm run build"
+  publish = "dist"
+
+# Specify that the test branch should be treated as production
+[context.test]
+  command = "npm run build"
+  publish = "dist"
+
+# Development settings
 [dev]
   functions = "proxy"
   
