@@ -173,7 +173,7 @@ img {
 }
 
 /* Header Bubble Styles - Matching live site */
-.site-header .bubble {
+.site-header .bubble, .site-header .header-bubble {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.5); 
     border-radius: 50%;
