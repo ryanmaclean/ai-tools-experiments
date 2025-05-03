@@ -1,4 +1,6 @@
 [build]
+  command = "npm run build"
+  publish = "dist"
   functions = "proxy"
 
 [dev]
@@ -9,3 +11,9 @@
   to = "/.netlify/functions/datadog-proxy"
   status = 200
   force = true
+  
+# Handle 404s by redirecting to index.html (SPA fallback)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
