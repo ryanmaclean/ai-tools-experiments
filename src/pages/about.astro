@@ -1,0 +1,66 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About - AI Tools Lab">
+  <main class="container mx-auto px-4 py-16">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-8 text-center">About AI Tools Lab</h1>
+      
+      <div class="prose prose-lg mx-auto">
+        <p class="lead text-xl mb-6">
+          AI Tools Lab is a platform dedicated to exploring, testing, and sharing insights about the latest AI developer tools, models, and industry trends.
+        </p>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Our Mission</h2>
+        <p>
+          Our mission is to help developers, researchers, and technology enthusiasts navigate the rapidly evolving landscape of artificial intelligence tools and technologies. We provide hands-on demonstrations, practical reviews, and in-depth analysis of AI tools to help you make informed decisions about which technologies to adopt in your workflow.
+        </p>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">The Team</h2>
+        <div class="grid md:grid-cols-2 gap-8 mt-6">
+          <div class="team-member">
+            <h3 class="text-xl font-medium mb-2">Jason Hand</h3>
+            <p class="text-gray-700 mb-3">Co-founder & AI Tools Specialist</p>
+            <p>Jason brings years of experience in developer advocacy and cloud technologies, with a focus on making complex technologies accessible to developers of all skill levels.</p>
+          </div>
+          
+          <div class="team-member">
+            <h3 class="text-xl font-medium mb-2">Ryan MacLean</h3>
+            <p class="text-gray-700 mb-3">Co-founder & Technical Lead</p>
+            <p>Ryan specializes in AI infrastructure and deployment strategies, with expertise in optimizing AI tools for production environments.</p>
+          </div>
+        </div>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Our Approach</h2>
+        <p>
+          At AI Tools Lab, we believe in a hands-on approach to evaluating AI technologies. Each tool we review is thoroughly tested in real-world scenarios, with a focus on developer experience, performance, and practical applications. Our episodes and articles aim to provide both technical depth and practical insights.
+        </p>
+        
+        <h2 class="text-2xl font-semibold mt-8 mb-4">Contact Us</h2>
+        <p>
+          Have questions, suggestions, or want to collaborate? We'd love to hear from you! Reach out to us through our social media channels or email us at <a href="mailto:contact@aitoolslab.com" class="text-blue-600 hover:underline">contact@aitoolslab.com</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .lead {
+    font-weight: 400;
+    line-height: 1.6;
+  }
+  
+  .team-member {
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+</style>
