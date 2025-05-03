@@ -1,0 +1,81 @@
+name: Deploy to Netlify
+
+# This workflow handles deployment to Netlify from the test branch
+# For GitHub Pages deployment, see the deploy.yml workflow
+
+on:
+  push:
+    branches:
+      - test
+    paths-ignore:
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'netlify'
+        type: choice
+        options:
+          - netlify
+
+# Environment variables will be set directly in the GitHub repository settings
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Inject Datadog API Keys
+        run: |
+          # Check if secrets are available (will be masked in logs)
+          if [ -n "${{ secrets.DD_API_KEY }}" ]; then
+            echo "DD_API_KEY is available"
+          else
+            echo "WARNING: DD_API_KEY is not set in repository secrets!"
+          fi
+          
+          if [ -n "${{ secrets.DD_APP_KEY }}" ]; then
+            echo "DD_APP_KEY is available"
+          else
+            echo "WARNING: DD_APP_KEY is not set in repository secrets!"
+          fi
+          
+          # Replace placeholder values with secrets in script.js
+          sed -i "s|__DD_API_KEY__|${{ secrets.DD_API_KEY }}|g" script.js
+          sed -i "s|__DD_APP_KEY__|${{ secrets.DD_APP_KEY }}|g" script.js
+      
+      - name: Build Astro site
+        run: npm run build
+      
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v2
+        with:
+          publish-dir: './dist'
+          production-branch: test
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: true
+          overwrites-pull-request-comment: true
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 5
+      
+      - name: Trigger Netlify Build Hook (Fallback)
+        if: failure()
+        run: |
+          curl -X POST -d {} https://api.netlify.com/build_hooks/6815aa2896ae6ddba51a8a30
+          echo "Triggered Netlify build hook as fallback"
