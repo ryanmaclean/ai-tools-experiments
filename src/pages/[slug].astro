@@ -54,27 +54,31 @@ try {
       title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Content'}`;
       bodyContent = `<p>Content for ${title} is being prepared.</p>`;
     }
+    // Don't return early - we need to continue to render the page
   }
   
-  // Attempt to extract title from <title> tag if present in the HTML
-  const titleMatch = htmlString.match(/<title>(.*?)<\/title>/i);
-  if (titleMatch && titleMatch[1]) {
-    title = titleMatch[1].trim();
-  }
+  // Only proceed with string operations if htmlString is a valid string
+  if (typeof htmlString === 'string') {
+    // Attempt to extract title from <title> tag if present in the HTML
+    const titleMatch = htmlString.match(/<title>(.*?)<\/title>/i);
+    if (titleMatch && titleMatch[1]) {
+      title = titleMatch[1].trim();
+    }
 
-  // Attempt to extract content between <body> tags
-  const bodyMatch = htmlString.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-  if (bodyMatch && bodyMatch[1]) {
-    bodyContent = bodyMatch[1].trim();
-    // Basic fix for relative paths within the injected HTML:
-    // Replace ../ with / for root-relative paths assuming assets are in public/
-    // Adjusted this relative path fix logic as well, assuming assets are in /public
-    // This might need refinement depending on actual asset structure in HTML files
-    bodyContent = bodyContent.replace(/\.\.\//g, '/'); 
-  } else {
-    // If body is missing, the raw content might be the body itself
-    bodyContent = htmlString;
-    title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Transcript'}`;
+    // Attempt to extract content between <body> tags
+    const bodyMatch = htmlString.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+    if (bodyMatch && bodyMatch[1]) {
+      bodyContent = bodyMatch[1].trim();
+      // Basic fix for relative paths within the injected HTML:
+      // Replace ../ with / for root-relative paths assuming assets are in public/
+      // Adjusted this relative path fix logic as well, assuming assets are in /public
+      // This might need refinement depending on actual asset structure in HTML files
+      bodyContent = bodyContent.replace(/\.\.\//g, '/'); 
+    } else {
+      // If body is missing, the raw content might be the body itself
+      bodyContent = htmlString;
+      title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Transcript'}`;
+    }
   }
 } catch (error) {
   console.error(`Error processing transcript content for slug ${slug}:`, error);
