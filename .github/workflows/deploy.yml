@@ -55,7 +55,7 @@ jobs:
           grep -c "__DD_APP_KEY__" script.js || echo "APP Key placeholder was replaced"
       
       - name: Upload Pages Artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .
           
