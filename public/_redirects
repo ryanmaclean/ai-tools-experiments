@@ -1,9 +1,10 @@
-# Redirect from /pages/X to /X for backward compatibility
-/pages/about              /about              301
+# Handle About page redirects - /pages/about redirects to /about
+/pages/about              /about              200!
+
+# Handle Resources and Observations redirects
 /pages/resources          /resources          301
 /pages/observations       /observations       301
 
-# Proxy requests from /X to /pages/X for production compatibility
-/about                   /pages/about         200!
+# For completeness, also support the reverse mappings
 /resources               /pages/resources     200!
 /observations            /pages/observations  200!
