@@ -1,5 +1,12 @@
 # AI Tools Lab - Synchronization and Improvement Plan
 
+## URGENT TASKS (2025-05-03)
+
+- [ ] Fix missing resource links in the resources page
+- [ ] Update about page styling/structure to match production site
+- [ ] Fix episode navigation test failures in post-git commit hook (Test 5 failing with timeout)
+
+
 ## Phase 1: Compare Live Site (ai-tools-lab.com) vs. Local (`test-branch`)
 
 - [x] Start local development server.
