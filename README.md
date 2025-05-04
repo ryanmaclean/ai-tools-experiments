@@ -2,16 +2,28 @@
 
 # TODO LIST FOR DATADOG SYNTHETIC TESTS FIXES
 
-1. **Fix Missing Critical CSS Classes & Properties**
+1. **Fix Missing Critical CSS Classes & Properties** ✅
    - Ensure `site-footer` class is added to Footer component
-   - Verify `site-header` class is present on Header component
+   - Verify `site-header` class is present on Header component ✅
    - Check that resource cards have `resource-card` class
-   - **CRITICAL**: Validate actual CSS properties not just class names:
-     - Verify header has correct background-color (#93ACB5 or var(--secondary-color))
-     - Test element positioning, z-index, and visibility
-     - Confirm text colors match production site
+   - **CRITICAL**: Validate actual CSS properties not just class names: ✅
+     - Verify header has correct background-color (#93ACB5 or var(--secondary-color)) ✅
+     - Test element positioning, z-index, and visibility ✅
+     - Confirm text colors match production site ✅
 
-2. **Fix Missing Synthetic Tests**
+2. **Docker Build Issues**
+   - Fix dependency issues in package.json/package-lock.json preventing Docker builds
+   - Regenerate package-lock.json to ensure consistency with package.json
+   - Test Docker builds with updated dependencies
+   - Use Docker for all testing as per best practices
+
+3. **Deploy Terraform Configuration**
+   - Apply new Terraform configuration for CSS validation tests
+   - Initialize Terraform with proper credentials (`terraform init`)
+   - Apply the configuration with `terraform apply`
+   - Verify the new tests are created in Datadog dashboard
+
+4. **Fix Missing Synthetic Tests**
    - Create/set up the following missing tests:
      - Homepage Test
      - About Page Test
