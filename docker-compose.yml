@@ -1,15 +1,33 @@
 version: '3'
 
 services:
-  astro-app:
+  # Development service with hot-reloading
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4321-4325:4321-4325"  # Expose multiple ports for Astro's automatic port shifting
+    volumes:
+      # Mount everything needed for development with hot-reloading
+      - ./:/app
+      - /app/node_modules  # Prevent node_modules from being overwritten
+      - /app/dist         # Prevent dist from being overwritten
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped
+    # Show log output in console
+    tty: true
+    stdin_open: true
+    command: npm run dev -- --host 0.0.0.0
+
+  # Production preview service
+  prod:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - "4321:4321"
-    volumes:
-      # Mount source code for development (comment out for production)
-      - ./src:/app/src
     environment:
       - NODE_ENV=production
     restart: unless-stopped

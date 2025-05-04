@@ -2,6 +2,7 @@
 node_modules
 dist
 .cache
+.netlify
 
 # Development files
 .git
@@ -18,7 +19,27 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+logs/
+*.log
 
 # System files
 .DS_Store
 Thumbs.db
+
+# Test files - not needed in container
+tests/
+test-results/
+**/__image_snapshots__/
+**/__snapshots__/
+**/*.spec.js
+**/*.test.js
+
+# Documentation - not needed for runtime
+docs/
+*.md
+LICENSE
+
+# Docker files - not needed inside container
+Dockerfile*
+docker-compose*.yml
+.dockerignore

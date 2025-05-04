@@ -67,17 +67,47 @@ Then open your browser to http://localhost:4321
 
 ### Using Docker
 
-Alternatively, you can run the website using Docker:
+Alternatively, you can run the website using Docker with our enhanced development environment:
 
 ```bash
-# Build the Docker image
-docker-compose build
+# Start the development environment with hot-reloading
+./scripts/docker-start.sh
 
-# Run the container
-docker-compose up
+# OR manually with docker-compose
+docker-compose up dev
 ```
 
-This will build and serve the site at http://localhost:4321
+This will build and serve the site with hot-reloading at http://localhost:4321 (or higher port if 4321 is in use).
+
+#### Docker Development Features
+
+- **Hot-Reloading**: Changes to your source files are immediately reflected in the browser
+- **Multiple Service Modes**:
+  - `dev`: Development mode with hot-reloading (`docker-compose up dev`)
+  - `prod`: Production preview mode (`docker-compose up prod` or `./scripts/docker-start.sh --prod`)
+- **Port Range**: Supports Astro's automatic port shifting (4321-4325)
+- **Optimized Volumes**: Prevents node_modules and dist from being overwritten
+- **Helper Scripts**:
+  - `./scripts/docker-start.sh`: Start the development environment
+  - `./scripts/docker-start.sh --prod`: Start the production preview
+  - `./scripts/docker-start.sh --rebuild`: Force rebuild of images
+  - `./scripts/docker-cleanup.sh`: Clean up Docker resources
+
+#### Docker Environment Management
+
+```bash
+# Force rebuild of development environment
+./scripts/docker-start.sh --rebuild
+
+# Run in production preview mode
+./scripts/docker-start.sh --prod
+
+# Clean up Docker resources
+./scripts/docker-cleanup.sh
+
+# Deep clean (removes all project images)
+./scripts/docker-cleanup.sh --all
+```
 
 ### Running Tests
 

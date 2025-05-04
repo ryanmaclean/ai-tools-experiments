@@ -1,0 +1,19 @@
+# Development Dockerfile for AI Tools Lab
+# Optimized for hot-reloading and development experience
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies first (for better caching)
+COPY package*.json ./
+RUN npm ci
+
+# We don't copy the source here - docker-compose will mount it
+# This enables hot reloading without container rebuilds
+
+# Expose the port that Astro dev server runs on
+EXPOSE 4321 4322 4323 4324 4325
+
+# Command to run the dev server with host binding for container access
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
