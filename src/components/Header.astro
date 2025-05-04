@@ -52,7 +52,14 @@
   /* Basic layout and desktop/mobile visibility */
   .site-header {
     position: relative; /* Needed for bubble absolute positioning */
-    /* Background color, padding etc. should come from global styles.css */
+    background-color: var(--secondary-color, #93ACB5); /* Ensure consistent background color matching production */
+    color: white;
+    padding: 1.5rem 0 0 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+    overflow: visible;
+    border-bottom: none;
+    z-index: 2;
   }
 
   .header-content-container { /* Updated class name */
