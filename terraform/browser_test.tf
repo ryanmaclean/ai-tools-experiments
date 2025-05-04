@@ -1,5 +1,5 @@
-# Simplified browser test for main pages only
-# This avoids format issues with too many steps
+# Simplified browser test for main pages using JavaScript assertions
+# This uses the recommended assertFromJavascript for validation
 
 resource "datadog_synthetics_test" "main_pages" {
   name      = "Homepage Test"  # Named to match verification hook requirements
@@ -36,6 +36,7 @@ resource "datadog_synthetics_test" "main_pages" {
     }
   }
   
+  # First step must be goToUrl
   browser_step {
     name = "Navigate to Homepage"
     type = "goToUrl"
@@ -43,23 +44,24 @@ resource "datadog_synthetics_test" "main_pages" {
     timeout = 0
     params {
       value = "https://ai-tools-lab.com"
-      delay = 0
-      with_click = false
-      x = 0
-      y = 0
     }
   }
   
+  # Use assertFromJavascript as recommended for validations
   browser_step {
     name = "Homepage Check"
-    type = "assertElementPresent"
+    type = "assertFromJavascript"
     allow_failure = false
-    timeout = 0
+    timeout = 10
     params {
-      element = "body"
-      with_click = false
-      x = 0
-      y = 0
+      code = <<-EOF
+        // Check for the presence of the body element
+        const bodyElement = document.querySelector('body');
+        if (!bodyElement) {
+          throw new Error('Body element not found');
+        }
+        return 'Homepage basic structure validated';
+      EOF
     }
   }
 }
