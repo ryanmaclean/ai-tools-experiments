@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const img = imageContainer.querySelector('img');
             if (!img) return;
             
-            if (!img.complete || img.naturalHeight === 0 || img.src.includes('resource-placeholder.jpg')) {
+            if (!img.complete || img.naturalHeight === 0 || img.src.includes('resource-placeholder.png')) {
                 // Get details to generate a unique but consistent thumbnail
                 const title = card.querySelector('h2').textContent;
                 const sourceElement = card.querySelector('.resource-source');
