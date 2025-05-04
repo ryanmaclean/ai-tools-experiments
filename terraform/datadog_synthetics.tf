@@ -59,7 +59,7 @@ locals {
           # Episodes in production use /pages/ prefix
           startswith(route, "ep") && env_key == "production" ? "${env_url}/pages/${route}" : (
             # Episodes in staging use direct path
-            startswith(route, "ep") && env_key == "staging" ? "${env_url}/pages/${route}" : (
+            startswith(route, "ep") && env_key == "staging" ? "${env_url}/${route}" : (
               # Standard pages like about, resources in production use /pages/ prefix
               contains(["about", "resources", "observations"], route) && env_key == "production" ? "${env_url}/pages/${route}" : (
                 # Standard pages in staging use direct path
