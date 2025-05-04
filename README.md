@@ -1,5 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/94b1b695-e156-4836-9f22-aa64256e4d05/deploy-status)](https://app.netlify.com/sites/ai-tools-lab-tst/deploys)
-[ai-tools-lab.com](https://ai-tools-lab.com)
+
+[![Netlify](https://ai-tools-lab-tst.netlify.app/)](https://ai-tools-lab-tst.netlify.app/)
 
 ![image](https://github.com/user-attachments/assets/9e985980-4722-48d7-9cca-9caf4d3948d3)
 
@@ -87,6 +88,31 @@ To run the automated tests:
 ```
 
 This will build the Docker container, run the Puppeteer tests, and trigger a Netlify deployment if tests pass.
+
+#### Using Docker for Consistent Testing
+
+For the most reliable testing environment, always use Docker when running tests:
+
+```bash
+# Start Docker container
+docker-compose up -d
+
+# Run tests against the Docker container
+node tests/comprehensive-site-test.js --port=4321
+```
+
+This ensures consistent testing across different machines and environments.
+
+#### Browser Preview
+
+The comprehensive test script now includes improved visual validation that works well with the browser preview tool. This helps you visually verify the site's appearance while automated tests run in the background.
+
+#### Improved Testing Framework
+
+* **Dynamic Port Detection**: The test script now automatically detects the correct port being used by the Astro server
+* **Enhanced Error Reporting**: Clear visual indicators (✅, ❌, ⚠️) and detailed error messages
+* **Robust Navigation**: Uses direct navigation patterns instead of click+wait for more reliable testing
+* **Better Error Handling**: Properly distinguishes between warnings and critical errors
 
 ### Git Hooks
 
