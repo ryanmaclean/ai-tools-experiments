@@ -246,7 +246,17 @@ This section outlines the current project roadmap with prioritized tasks and imp
   - [ ] Refactor resources.astro to use only the JS data source
   - [ ] Implement automated validation to ensure data integrity
 
-### 1.3 CI/CD Pipeline Stability
+### 1.4 Application Security for Serverless
+- **Objective**: Implement Datadog Application Security for serverless components
+- **Key Results**:
+  - [ ] Set up Datadog serverless security monitoring
+  - [ ] Configure custom instrumentation for Lambda functions
+  - [ ] Implement security scanning for serverless components
+  - [ ] Add protection against common serverless vulnerabilities (injection, etc.)
+  - [ ] Integrate security findings with existing monitoring dashboard
+  - [ ] Set up alerting for critical serverless security issues
+
+### 1.5 CI/CD Pipeline Stability
 - **Objective**: Create consistent, reproducible build and test environments
 - **Key Results**:
   - [ ] Create Dockerfile.test with all dependencies (Node.js, ImageMagick, etc.)
