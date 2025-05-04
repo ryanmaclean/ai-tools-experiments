@@ -5,6 +5,9 @@
 - [x] Fix false positive in comprehensive test script - reports success despite warning: "Error navigating back: Node is either not clickable or not an Element" (Fixed using JavaScript click method)
 - [x] Update test script to use consistent port between server launch and test connection (Implemented dynamic port detection)
 - [x] Improve test validation to properly fail when warnings are detected in critical functionality (Added proper error categorization and visual reporting)
+- [ ] Add test screenshots to gitignore
+- [ ] take new screenshots of production site
+- [ ] update test script to use new screenshots
 
 ## URGENT TASKS (2025-05-03)
 
@@ -139,3 +142,38 @@ Note: The file `src/pages/about.astro` appears obsolete and doesn't match the li
 - [x] Use Netlify build hook (https://api.netlify.com/build_hooks/6815aa2896ae6ddba51a8a30) to trigger deployments after successful tests.
 - [ ] Add more comprehensive tests for critical user flows.
 - [ ] Set up monitoring for deployed site performance and availability.
+
+### Modern Docker Improvements (2025)
+
+- [ ] Implement multi-stage builds to reduce image size by 50-60%
+- [ ] Add health checks and graceful shutdown to Docker configurations
+- [ ] Optimize for ARM64 architecture for better cloud cost efficiency
+- [ ] Implement layer optimization for faster builds and smaller images
+- [ ] Create specialized test containers for ephemeral, isolated testing
+- [ ] Add Docker BuildKit capabilities via BuildX for faster builds
+
+### Datadog Integration Enhancements
+
+- [ ] Add Datadog RUM for real user monitoring
+  - [ ] Implement browser-rum package for frontend performance tracking
+  - [ ] Configure session replay for debugging user flows
+- [ ] Set up containerized Datadog agent in docker-compose.yml
+- [ ] Implement CI Visibility for test performance tracking
+- [ ] Replace current screenshot comparison with Datadog Synthetic API
+- [ ] Implement OpenTelemetry standards for broader compatibility
+- [ ] Add custom metrics for resource card performance
+
+### Modern JavaScript Tooling Upgrades
+
+- [ ] Evaluate Bun as Node.js/npm replacement
+  - [ ] Test Bun for faster dependency installation (2-3x faster)
+  - [ ] Evaluate bundling performance vs current build process
+  - [ ] Create Bun-optimized Dockerfile variant with smaller footprint
+- [ ] Explore Vite integration with Astro
+  - [ ] Implement Vite plugins for enhanced development experience
+  - [ ] Test HMR performance improvement
+  - [ ] Configure Vite preview for production-like testing
+- [ ] Modernize script commands
+  - [ ] Replace npm scripts with npx alternatives where appropriate
+  - [ ] Add script validation and linting pre-execution
+  - [ ] Create lockfile-based caching for consistent builds
