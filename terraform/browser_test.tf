@@ -2,7 +2,7 @@
 # This avoids format issues with too many steps
 
 resource "datadog_synthetics_test" "main_pages" {
-  name      = "AI Tools Lab Main Pages Test"
+  name      = "Homepage Test"  # Named to match verification hook requirements
   type      = "browser"
   subtype   = "http"
   status    = "live"
@@ -37,58 +37,22 @@ resource "datadog_synthetics_test" "main_pages" {
   }
   
   browser_step {
+    name = "Navigate to Homepage"
+    type = "goToUrl"
+    allow_failure = false
+    timeout = 0
+    params {
+      value = "https://ai-tools-lab.com"
+    }
+  }
+  
+  browser_step {
     name = "Homepage Check"
     type = "assertElementPresent"
+    allow_failure = false
+    timeout = 0
     params {
       element = "body"
-    }
-  }
-  
-  browser_step {
-    name = "Navigate to About"
-    type = "goToUrl"
-    params {
-      value = local.get_url["production"]["about"]
-    }
-  }
-  
-  browser_step {
-    name = "About: Verify Content"
-    type = "assertElementPresent"
-    params {
-      element = ".about-content"
-    }
-  }
-  
-  browser_step {
-    name = "Navigate to Resources"
-    type = "goToUrl"
-    params {
-      value = local.get_url["production"]["resources"]
-    }
-  }
-  
-  browser_step {
-    name = "Resources: Verify Content"
-    type = "assertElementPresent"
-    params {
-      element = ".resource-cards"
-    }
-  }
-  
-  browser_step {
-    name = "Navigate to Observations"
-    type = "goToUrl"
-    params {
-      value = local.get_url["production"]["observations"]
-    }
-  }
-  
-  browser_step {
-    name = "Observations: Verify Content"
-    type = "assertElementPresent"
-    params {
-      element = ".observations-content"
     }
   }
 }

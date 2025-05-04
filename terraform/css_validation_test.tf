@@ -20,6 +20,16 @@ resource "datadog_synthetics_test" "css_validation" {
     target   = "200"
   }
   
+  browser_step {
+    name = "Navigate to homepage"
+    type = "goToUrl"
+    allow_failure = false
+    timeout = 0
+    params {
+      value = local.get_url["production"]["home"]
+    }
+  }
+  
   locations = local.default_test_config.locations
   device_ids = local.default_test_config.device_ids
   
@@ -40,6 +50,8 @@ resource "datadog_synthetics_test" "css_validation" {
   browser_step {
     name = "Homepage: Validate Header Class"
     type = "assertElementPresent"
+    allow_failure = false
+    timeout = 0
     params {
       element = "header.site-header"
     }
@@ -48,6 +60,8 @@ resource "datadog_synthetics_test" "css_validation" {
   browser_step {
     name = "Homepage: Validate Header CSS Properties"
     type = "assertFromJavascript"
+    allow_failure = false
+    timeout = 10
     params {
       code = <<-EOF
         const header = document.querySelector('header');
@@ -89,6 +103,8 @@ resource "datadog_synthetics_test" "css_validation" {
   browser_step {
     name = "Navigate to Resources"
     type = "goToUrl"
+    allow_failure = false
+    timeout = 0
     params {
       value = local.get_url["production"]["resources"]
     }
@@ -97,6 +113,8 @@ resource "datadog_synthetics_test" "css_validation" {
   browser_step {
     name = "Resources: Validate Resource Cards Class"
     type = "assertElementPresent"
+    allow_failure = false
+    timeout = 0
     params {
       element = ".resource-card"
     }
@@ -105,6 +123,8 @@ resource "datadog_synthetics_test" "css_validation" {
   browser_step {
     name = "Resources: Validate Resource Cards CSS Properties"
     type = "assertFromJavascript"
+    allow_failure = false
+    timeout = 10
     params {
       code = <<-EOF
         const resourceCard = document.querySelector('.resource-card');

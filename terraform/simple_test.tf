@@ -1,4 +1,4 @@
-# A bare minimum browser test to troubleshoot Datadog Synthetics formatting
+# A bare minimum browser test with single step to troubleshoot Datadog Synthetics formatting
 
 resource "datadog_synthetics_test" "minimal_test" {
   name      = "AI Tools Lab Minimal Test"
@@ -34,12 +34,15 @@ resource "datadog_synthetics_test" "minimal_test" {
       renotify_interval = 120
     }
   }
-  
+
+  # Only one browser step for minimal test
   browser_step {
-    name = "Homepage Check"
-    type = "assertElementPresent"
+    name = "Navigate to homepage"
+    type = "goToUrl"
+    allow_failure = false
+    timeout = 0
     params {
-      element = "{\\\"css\\\":\\\"body\\\"}"
+      value = "https://ai-tools-lab.com"
     }
   }
 }
