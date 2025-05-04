@@ -1,16 +1,16 @@
 [build]
-  command = "npm run build"
+  command = "./scripts/build-safe.sh"
   publish = "dist"
   functions = "proxy"
 
 # Explicitly specify the production branch
 [context.production]
-  command = "npm run build"
+  command = "./scripts/build-safe.sh"
   publish = "dist"
 
 # Specify that the test branch should be treated as production
 [context.test]
-  command = "npm run build"
+  command = "./scripts/build-safe.sh"
   publish = "dist"
 
 # Development settings

@@ -29,13 +29,15 @@ const colors = {
 // Environment constants
 const ENV = {
   PRODUCTION: {
+    name: 'Production',
     base: 'https://ai-tools-lab.com',
     pathPrefix: '/pages',
     name: 'Production'
   },
   STAGING: {
+    name: 'Test',
     base: 'https://ai-tools-lab-tst.netlify.app',
-    pathPrefix: '',
+    pathPrefix: '/pages',
     name: 'Staging'
   }
 };

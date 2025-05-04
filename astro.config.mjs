@@ -7,6 +7,11 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
+  build: {
+    // Prevent document is not defined errors during build
+    format: 'file',
+    assets: '_assets',
+  },
   // Output directory remains 'dist' by default
   // Specify site URL for correct absolute path generation
   site: 'https://ai-tools-lab-tst.netlify.app', // Updated to match Netlify domain

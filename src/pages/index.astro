@@ -177,7 +177,7 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
   {/* Render the imported raw HTML */}
   <div set:html={indexHtmlContent} />
 
-  <script>
+  <script is:client>
     document.addEventListener('DOMContentLoaded', function() {
       // Add play icons to any video containers that don't have them
       addPlayIconsToVideos();

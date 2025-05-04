@@ -20,6 +20,10 @@ const DD_APP_KEY = process.env.DD_APP_KEY || process.env.TF_VAR_datadog_app_key;
 const PRODUCTION_URL = 'https://ai-tools-lab.com';
 const STAGING_URL = 'https://ai-tools-lab-tst.netlify.app';
 
+// URL path prefix settings (based on environment validation)
+const PRODUCTION_PATH_PREFIX = '/pages';
+const STAGING_PATH_PREFIX = '/pages';  // Found that test env also uses /pages/ prefix
+
 // Readable names
 const colors = {
   reset: '\x1b[0m',
@@ -34,7 +38,7 @@ const colors = {
 // Test configuration
 const STANDARD_TESTS = [
   { name: 'Homepage Test', route: '', productionPath: '/', stagingPath: '/' },
-  { name: 'About Page Test', route: 'about', productionPath: '/pages/about', stagingPath: '/about' },
+  { name: 'About Page Test', route: 'about', productionPath: '/pages/about', stagingPath: '/pages/about' },
   { name: 'Resources Page Test', route: 'resources', productionPath: '/pages/resources', stagingPath: '/resources' },
   { name: 'Observations Page Test', route: 'observations', productionPath: '/pages/observations', stagingPath: '/observations' }
 ];
@@ -46,7 +50,7 @@ const EPISODE_TESTS = Array.from({ length: 17 }, (_, i) => {
     name: `Episode Page Test - ep${epNum}`,
     route: `ep${epNum}`,
     productionPath: `/pages/ep${epNum}`,
-    stagingPath: `/ep${epNum}`
+    stagingPath: `/pages/ep${epNum}`  // Updated to match actual test environment
   };
 });
 

@@ -16,6 +16,7 @@ update_episodes.sh
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Env Files
 .env
@@ -60,3 +61,14 @@ override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform.lock.hcl
+
+# Never commit API keys or secrets
+**/*/terraform.tfvars
+**/*/.env.local
