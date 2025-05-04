@@ -1,5 +1,40 @@
 <div align="center">
 
+# TODO LIST FOR DATADOG SYNTHETIC TESTS FIXES
+
+1. **Fix Missing Critical CSS Classes**
+   - Ensure `site-footer` class is added to Footer component
+   - Verify `site-header` class is present on Header component
+   - Check that resource cards have `resource-card` class
+
+2. **Fix Missing Synthetic Tests**
+   - Create/set up the following missing tests:
+     - Homepage Test
+     - About Page Test
+     - Resources Page Test
+     - Observations Page Test
+
+3. **Fix URL Pattern Handling**
+   - Ensure URL patterns are correctly handled between environments:
+     - Production: `https://ai-tools-lab.com/pages/observations`
+     - Test: `https://ai-tools-lab-tst.netlify.app/observations`
+
+4. **Fix API Episode Page Tests**
+   - Diagnose why all 17 API Episode Page Tests are failing
+   - Create consistent paths between test and production environments
+
+5. **Environment Synchronization**
+   - Create consistent HTML structure between test and production
+   - Avoid URL pattern workarounds in test scripts
+   - Implement proper environment-aware testing
+
+6. **Documentation & Setup**
+   - Document the correct HTML structure requirements
+   - Add component validation to CI process
+   - Update README with component validation instructions
+
+---
+
 # AI Tools Lab 🧪
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/94b1b695-e156-4836-9f22-aa64256e4d05/deploy-status)](https://app.netlify.com/sites/ai-tools-lab-tst/deploys)
