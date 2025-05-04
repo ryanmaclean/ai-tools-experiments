@@ -1,16 +1,39 @@
 ---
 // src/pages/resources.astro
 import MainLayout from '../layouts/MainLayout.astro';
-import ResourcesContent from '../content/transcripts/resources.html?raw';
+import ResourceCard from '../components/ResourceCard.astro';
+import { resourcesData } from '../data/resources.js';
 
 const pageTitle = "Resources";
 const description = "A curated collection of resources for AI tools and experiments.";
-const ogImageUrl = "/images/resource-placeholder.png"; // Make sure placeholder is in public/images
+const ogImageUrl = "/images/resource-placeholder.png"; 
+
+const allTags = [...new Set(resourcesData.flatMap(r => r.tags))].sort();
 ---
 
 <MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
-  <!-- Render the imported HTML content -->
-  <Fragment set:html={ResourcesContent} />
+  <div class="filter-container">
+    <div class="container">
+      <div class="episodes-filters">
+        <div class="filter-group resources-filter-group">
+          <div class="tag-buttons">
+            <button class="tag-filter active" data-tag="all">All</button>
+            {allTags.map(tag => (
+              <button class="tag-filter" data-tag={tag}>{tag.replace(/-/g, ' ')}</button>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="container resources-section">
+    <div class="resource-grid">
+      {resourcesData.map(resource => (
+        <ResourceCard resource={resource} />
+      ))}
+    </div>
+  </main>
 
   <style is:global>
   /* Inline styles from resources.html lines 24-155 */

@@ -1,0 +1,93 @@
+--- 
+// src/components/ResourceCard.astro
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+// Helper function to get __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Function to get MIME type from file extension
+function getMimeType(filePath) {
+  const ext = path.extname(filePath).toLowerCase();
+  switch (ext) {
+    case '.png': return 'image/png';
+    case '.jpg':
+    case '.jpeg': return 'image/jpeg';
+    case '.gif': return 'image/gif';
+    case '.svg': return 'image/svg+xml';
+    case '.webp': return 'image/webp';
+    default: return 'application/octet-stream'; // Default binary type
+  }
+}
+
+// Component props
+export interface Props {
+  resource: {
+    title: string;
+    description: string;
+    imagePath: string; // Path relative to /public, e.g., /images/foo.png
+    link: string;
+    date: string;
+    source: string;
+    category: string;
+    tags: string[];
+  };
+}
+
+const { resource } = Astro.props;
+
+let imageSrc = resource.imagePath; // Default to original path if embedding fails
+let imageAlt = resource.title; // Use title as alt text
+
+// Construct the absolute path to the image file in the public directory
+// process.cwd() gives the project root
+const absoluteImagePath = path.join(process.cwd(), 'public', resource.imagePath);
+
+try {
+  if (fs.existsSync(absoluteImagePath)) {
+    const imageBuffer = fs.readFileSync(absoluteImagePath);
+    const base64Image = imageBuffer.toString('base64');
+    const mimeType = getMimeType(absoluteImagePath);
+    imageSrc = `data:${mimeType};base64,${base64Image}`;
+  } else {
+    console.warn(`Image not found for ResourceCard: ${absoluteImagePath}`);
+    // Fallback to a default placeholder if the specified image doesn't exist
+    const placeholderPath = path.join(process.cwd(), 'public', '/images/resource-placeholder.png');
+    if (fs.existsSync(placeholderPath)) {
+       const imageBuffer = fs.readFileSync(placeholderPath);
+       const base64Image = imageBuffer.toString('base64');
+       const mimeType = getMimeType(placeholderPath);
+       imageSrc = `data:${mimeType};base64,${base64Image}`;
+       imageAlt = "Placeholder image";
+    } else {
+        console.error(`Default placeholder image not found: ${placeholderPath}`);
+        // If even the placeholder is missing, keep original path (will likely result in broken image)
+        imageSrc = resource.imagePath; 
+    }
+  }
+} catch (error) {
+  console.error(`Error processing image for ResourceCard (${resource.title}): ${absoluteImagePath}`, error);
+  // Keep original path on error
+   imageSrc = resource.imagePath; 
+}
+
+const tagsString = resource.tags.join(',');
+---
+
+<div class="resource-card" data-category={resource.category} data-tags={tagsString}>
+  <a href={resource.link} target="_blank" rel="noopener noreferrer">
+    <div class="resource-card-image">
+      <img src={imageSrc} alt={imageAlt} loading="lazy" />
+    </div>
+    <div class="resource-card-content">
+      <h2>{resource.title}</h2>
+      <p>{resource.description}</p>
+      <div class="resource-meta">
+        <span class="resource-date">{resource.date}</span>
+        <span class="resource-source">{resource.source}</span>
+      </div>
+    </div>
+  </a>
+</div>
