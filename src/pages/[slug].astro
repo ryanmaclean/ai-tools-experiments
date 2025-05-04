@@ -5,25 +5,39 @@ import MainLayout from '../layouts/MainLayout.astro';
 // Required for dynamic routes
 export async function getStaticPaths() {
   try {
-    // Use Astro.glob to import raw HTML content at build time
-    // Path updated from ../content/ to ./content/ due to file relocation
-    const transcriptModules = await Astro.glob('../content/transcripts/*.html', { query: 'raw' });
-
-    const paths = Object.entries(transcriptModules).map(([filePath, rawHtmlContent]) => {
+    // Use import.meta.glob for more reliable file loading
+    const transcriptModulesMeta = import.meta.glob('../content/transcripts/*.html', { query: 'raw', eager: true });
+    
+    // Create paths for all HTML files in the transcripts directory
+    const contentPaths = Object.entries(transcriptModulesMeta).map(([filePath, rawHtmlContent]) => {
       // Extract slug from filename (e.g., '../content/transcripts/ep01.html' -> 'ep01')
-      // Don't prepend 'pages/' as it causes routing issues
       const slug = filePath.split('/').pop().replace('.html', '');
       return {
         params: { slug },
-        props: { rawHtmlContent } // Pass the raw HTML string directly
+        props: { rawHtmlContent } // Pass the raw HTML content
       };
     });
-    // Debug: Log the generated paths
-    console.log('[getStaticPaths] Generated paths:', JSON.stringify(paths, null, 2));
-    return paths;
+    
+    // Add specific handling for numeric routes that might not have content files
+    // This prevents the "Missing parameter: slug" error for routes like /pages/0/
+    const numericPaths = [];
+    for (let i = 0; i <= 25; i++) { // Support up to episode 25
+      const numericSlug = String(i);
+      // Only add if it doesn't already exist in contentPaths
+      if (!contentPaths.some(path => path.params.slug === numericSlug)) {
+        numericPaths.push({
+          params: { slug: numericSlug },
+          props: { rawHtmlContent: {} } // Empty content to be handled in the component
+        });
+      }
+    }
+    
+    // Combine all paths
+    const allPaths = [...contentPaths, ...numericPaths];
+    console.log(`[getStaticPaths] Generated ${allPaths.length} paths`);
+    return allPaths;
   } catch (error) {
     console.error('[getStaticPaths] Error generating paths:', error);
-    // Return an empty array or re-throw, depending on desired behavior on error
     return []; 
   }
 }
@@ -35,26 +49,52 @@ const { rawHtmlContent } = Astro.props;
 let title = slug; // Default title
 let bodyContent = ''; // Variable for extracted body content
 
-// Check if rawHtmlContent is a string or an object with default property
-const htmlString = typeof rawHtmlContent === 'string' ? rawHtmlContent : 
-                   (rawHtmlContent && typeof rawHtmlContent === 'object' && rawHtmlContent.default) ? 
-                   rawHtmlContent.default : '';
+// Handle different rawHtmlContent formats more robustly
+let htmlString = '';
+
+if (typeof rawHtmlContent === 'string') {
+  htmlString = rawHtmlContent;
+} else if (rawHtmlContent && typeof rawHtmlContent === 'object') {
+  // Handle both import.meta.glob format (rawHtmlContent.default) and Astro.glob format
+  htmlString = rawHtmlContent.default || '';
+}
 
 try {
-  // Handle special cases for numeric slugs (like 20, 21) that might not have proper HTML content
-  if (typeof htmlString !== 'string' || htmlString === '') {
-    // For numeric slugs or empty content, create a placeholder
+  // Handle empty content cases first (numeric slugs or missing content)
+  if (!htmlString || htmlString.trim() === '') {
+    // Handle numeric episode slugs (0-25)
     if (/^\d+$/.test(slug)) {
-      title = `Episode ${slug}`;
-      bodyContent = `<p>Content for episode ${slug} is being prepared.</p>`;
-      // Skip the rest of the processing without throwing an error
-      console.log(`Using fallback content for numeric slug: ${slug}`);
+      const episodeNum = parseInt(slug, 10);
+      title = `Episode ${episodeNum}`;
+      bodyContent = `
+        <div class="episode-content">
+          <div class="video-container placeholder-container">
+            <div class="placeholder-media">
+              <div class="placeholder-icon">📹</div>
+              <p>Video content for Episode ${episodeNum} is being prepared</p>
+            </div>
+          </div>
+          <div class="transcript-section">
+            <h2>Transcript</h2>
+            <p>The transcript for Episode ${episodeNum} is being prepared. Please check back later.</p>
+            <p><a href="/" class="home-link">Browse other episodes</a></p>
+          </div>
+        </div>
+      `;
+      console.log(`Using enhanced placeholder for numeric slug: ${slug}`);
     } else {
-      console.log(`HTML content is not available for slug: ${slug}, using fallback`);
-      title = `${slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) ?? 'Content'}`;
-      bodyContent = `<p>Content for ${title} is being prepared.</p>`;
+      // Handle non-numeric missing content
+      const formattedTitle = slug?.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()) || 'Content';
+      title = formattedTitle;
+      bodyContent = `
+        <div class="content-placeholder">
+          <h2>${formattedTitle}</h2>
+          <p>Content is currently being prepared. Please check back later.</p>
+          <p><a href="/" class="home-link">Return to home page</a></p>
+        </div>
+      `;
+      console.log(`Using enhanced placeholder for slug: ${slug}`);
     }
-    // Don't return early - we need to continue to render the page
   }
   
   // Only proceed with string operations if htmlString is a valid string
@@ -188,5 +228,32 @@ try {
   .home-link:hover {
     background-color: #0055aa;
     text-decoration: none;
+  }
+  
+  /* Placeholder styling */
+  .placeholder-container {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .placeholder-media {
+    padding: 3rem 1rem;
+  }
+  
+  .placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .content-placeholder {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 3rem 2rem;
+    text-align: center;
+    margin: 2rem auto;
+    max-width: 600px;
   }
 </style>
