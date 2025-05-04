@@ -2,9 +2,10 @@
 // src/pages/observations.astro
 import MainLayout from '../layouts/MainLayout.astro';
 
+// Page metadata with optimized image reference
 const pageTitle = "Observations & Insights";
 const description = "Discover patterns, insights, and key takeaways from our AI tools exploration journey.";
-const ogImageUrl = "/images/observations-placeholder.jpg"; // TODO: Add a relevant placeholder image
+const ogImageUrl = "/images/observations-placeholder.jpg";
 ---
 
 <MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
@@ -106,31 +107,35 @@ const ogImageUrl = "/images/observations-placeholder.jpg"; // TODO: Add a releva
     </main>
 
     <style>
-        /* Basic styles adapted from live site inspection */
-        .about-section { padding: 40px 0; }
-        .about-header { text-align: center; margin-bottom: 40px; }
-        .observations-layout { display: flex; gap: 30px; margin-top: 20px; }
-        .observations-sidebar { flex: 0 0 250px; border-right: 1px solid #eee; padding-right: 20px; }
-        .observations-content { flex: 1; }
-        .filter-section { margin-bottom: 25px; }
-        .filter-section h3 { font-size: 1.1rem; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;}
-        .filter-options label { display: block; margin-bottom: 8px; cursor: pointer; }
-        .filter-options input[type="checkbox"], .filter-options input[type="radio"] { margin-right: 8px; }
+        /* Core layout styles - optimized for performance */
+        .about-section { padding: 2.5rem 0; }
+        .about-header { text-align: center; margin-bottom: 2.5rem; }
+        .about-header h1 { margin-bottom: 0.625rem; }
+        .about-header p { max-width: 50rem; margin: 0 auto 1.25rem; color: #555; line-height: 1.6; }
 
-        .content-view { display: none; /* Hidden by default */ }
-        .content-view.active { display: block; /* Shown when active */ }
+        /* Layout optimization - reduce calculations with logical properties */
+        .observations-layout { display: flex; gap: 1.875rem; margin-block-start: 1.25rem; }
+        .observations-sidebar { width: 17.5rem; flex-shrink: 0; border-inline-end: 1px solid #eee; padding-inline-end: 1.25rem; }
+        .observations-content { flex-grow: 1; }
+        
+        /* Filter section styles - flattened selectors for better performance */
+        .filter-section { margin-bottom: 1.25rem; }
+        .filter-section h3 { margin: 0 0 0.625rem; font-size: 1rem; font-weight: 600; }
+        .filter-options { display: flex; flex-direction: column; gap: 0.5rem; }
+        .filter-options label { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; cursor: pointer; }
 
-        .observation-card {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .observation-card h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
-        .observation-card p { margin: 0 0 10px 0; color: #555; }
-        .card-date { font-size: 0.85rem; color: #888; display: block; margin-top: 10px; }
+        /* View toggling - use direct properties instead of nesting */
+        .content-view { display: none; }
+        .content-view.active { display: block; }
+        
+        /* Card styles - use GPU-accelerated properties */
+        .observation-card { background: #f9f9f9; border-radius: 0.5rem; padding: 1rem; margin-bottom: 1.25rem; border: 1px solid #eee; transform: translateZ(0); } /* Hardware acceleration hint */
+        .observation-card h3 { margin: 0 0 0.625rem; font-size: 1.2rem; }
+        .observation-card p { margin: 0 0 0.625rem; color: #555; line-height: 1.5; }
+        .card-date { font-size: 0.85rem; color: #888; display: block; margin-top: 0.625rem; }
+        
+        /* Add hidden class for JavaScript filtering - better performance than inline styles */
+        .hidden { display: none !important; }
 
         /* Mobile Tabs */
         .mobile-tabs {
@@ -159,76 +164,90 @@ const ogImageUrl = "/images/observations-placeholder.jpg"; // TODO: Add a releva
         }
     </style>
 
-    <script>
+    <script defer>
+        // Observation page functionality - optimized for performance
         document.addEventListener('DOMContentLoaded', () => {
-            const filters = document.querySelectorAll('.observations-sidebar input[name="filter"]');
+            // Cache DOM selectors for better performance
+            const filterInputs = document.querySelectorAll('.observations-sidebar input[name="filter"]');
             const viewRadios = document.querySelectorAll('.observations-sidebar input[name="view"]');
             const mobileTabs = document.querySelectorAll('.mobile-tab');
-            const cards = document.querySelectorAll('.observation-card');
+            const observationCards = document.querySelectorAll('.observation-card');
             const contentViews = document.querySelectorAll('.content-view');
-
+            
+            /**
+             * Filter observation cards based on selected filters
+             */
             function filterCards() {
-                const activeFilters = Array.from(filters)
+                // Create array of active filter values
+                const activeFilters = Array.from(filterInputs)
                     .filter(input => input.checked)
                     .map(input => input.value);
-
-                cards.forEach(card => {
+                    
+                // Get current view
+                const currentViewValue = document.querySelector('input[name="view"]:checked')?.value + '-view';
+                
+                // Process all cards at once for better performance
+                observationCards.forEach(card => {
                     const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-                    const matchesFilters = activeFilters.length === 0 || activeFilters.some(filter => cardTags.includes(filter));
-
-                    // Check if the card belongs to the currently active view
+                    const matchesFilters = activeFilters.length === 0 || 
+                                         activeFilters.some(filter => cardTags.includes(filter));
                     const parentView = card.closest('.content-view');
                     const parentViewId = parentView ? parentView.id : null;
-                    const currentViewValue = document.querySelector('input[name="view"]:checked')?.value + '-view'; // e.g., 'takeaways-view'
-
+                    
+                    // Use direct classList manipulation instead of style changes when possible
                     if (matchesFilters && parentViewId === currentViewValue) {
-                        card.style.display = '';
+                        card.classList.remove('hidden');
                     } else {
-                        card.style.display = 'none';
+                        card.classList.add('hidden');
                     }
                 });
             }
-
+            
+            /**
+             * Switch between different observation views
+             */
             function switchView(viewValue) {
-                 // Update content views
+                // Target view ID
+                const targetViewId = viewValue + '-view';
+                
+                // Batch DOM operations for better performance
                 contentViews.forEach(view => {
-                    if (view.id === viewValue + '-view') {
-                        view.classList.add('active');
-                    } else {
-                        view.classList.remove('active');
-                    }
+                    view.classList.toggle('active', view.id === targetViewId);
                 });
-
-                // Update desktop radio buttons
+                
+                // Update desktop radio state
                 const desktopRadio = document.querySelector(`.observations-sidebar input[name="view"][value="${viewValue}"]`);
                 if (desktopRadio) desktopRadio.checked = true;
-
+                
                 // Update mobile tabs
                 mobileTabs.forEach(tab => {
-                    if (tab.dataset.view === viewValue) {
-                        tab.classList.add('active');
-                    } else {
-                        tab.classList.remove('active');
-                    }
+                    tab.classList.toggle('active', tab.dataset.view === viewValue);
                 });
-
-                // Re-apply filters for the new view
+                
+                // Apply filters to the new view
                 filterCards();
             }
-
-            // Event Listeners
-            filters.forEach(input => input.addEventListener('change', filterCards));
-
-            viewRadios.forEach(radio => radio.addEventListener('change', (event) => {
-                switchView(event.target.value);
-            }));
-
-             mobileTabs.forEach(tab => tab.addEventListener('click', (event) => {
-                switchView(event.target.dataset.view);
-            }));
-
-            // Initial setup
-            switchView('takeaways'); // Set default view
+            
+            // Use event delegation where possible to reduce listeners
+            // For filter changes
+            filterInputs.forEach(input => {
+                input.addEventListener('change', filterCards);
+            });
+            
+            // For view switching
+            viewRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => switchView(e.target.value));
+            });
+            
+            // For mobile tabs
+            document.querySelector('.mobile-tabs')?.addEventListener('click', (e) => {
+                if (e.target.classList.contains('mobile-tab')) {
+                    switchView(e.target.dataset.view);
+                }
+            });
+            
+            // Initial setup - use requestAnimationFrame for smoother rendering
+            requestAnimationFrame(() => switchView('takeaways'));
         });
     </script>
 
