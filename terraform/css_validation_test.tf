@@ -20,6 +20,7 @@ resource "datadog_synthetics_test" "css_validation" {
     target   = "200"
   }
   
+  # First step must be goToUrl
   browser_step {
     name = "Navigate to homepage"
     type = "goToUrl"
@@ -49,11 +50,17 @@ resource "datadog_synthetics_test" "css_validation" {
   # Homepage check with CSS validation
   browser_step {
     name = "Homepage: Validate Header Class"
-    type = "assertElementPresent"
+    type = "assertFromJavascript"
     allow_failure = false
-    timeout = 0
+    timeout = 10
     params {
-      element = "header.site-header"
+      code = <<-EOF
+        const headerElement = document.querySelector('header.site-header');
+        if (!headerElement) {
+          throw new Error('Header element with class site-header not found');
+        }
+        return 'Header element found';
+      EOF
     }
   }
   
@@ -112,11 +119,17 @@ resource "datadog_synthetics_test" "css_validation" {
   
   browser_step {
     name = "Resources: Validate Resource Cards Class"
-    type = "assertElementPresent"
+    type = "assertFromJavascript"
     allow_failure = false
-    timeout = 0
+    timeout = 10
     params {
-      element = ".resource-card"
+      code = <<-EOF
+        const resourceCards = document.querySelectorAll('.resource-card');
+        if (!resourceCards || resourceCards.length === 0) {
+          throw new Error('Resource card elements not found');
+        }
+        return 'Resource card elements found: ' + resourceCards.length;
+      EOF
     }
   }
   
