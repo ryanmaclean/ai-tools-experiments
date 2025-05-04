@@ -1,9 +1,12 @@
-# Handle About page redirects - /pages/about redirects to /about
-/pages/about              /about              200!
+# Handle dual URL structure for consistency with production
+/pages/about      /about              301
+/pages/resources  /resources          301
+/pages/observations /observations     301
 
-# Handle Resources and Observations redirects
-/pages/resources          /resources          301
-/pages/observations       /observations       301
+# Provide backward compatibility for direct navigation
+/about            /pages/about        200!
+/resources        /pages/resources    200!
+/observations     /pages/observations  200!
 
 # For completeness, also support the reverse mappings
 /resources               /pages/resources     200!

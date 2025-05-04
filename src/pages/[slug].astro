@@ -97,7 +97,7 @@ try {
 
 <MainLayout title={`${title} - Transcript`}>
   <main class="container">
-    <a href="javascript:history.back()" class="back-link">← Back</a>
+    <a href="/" class="back-link" onclick="event.preventDefault(); window.history.back();" data-testid="back-link">← Back</a>
 
     <div class="episode-content">
       <h1>{title}</h1>
