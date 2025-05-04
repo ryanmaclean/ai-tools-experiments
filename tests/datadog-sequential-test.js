@@ -291,13 +291,22 @@ async function runSequentialTest(baseUrl = 'http://localhost:4321') {
         report.addStep('Resource Cards', 'fail', { message: 'No resource cards found on resources page' });
       }
       
-      // 8. Navigate to Observations Page
+      // 8. Test Observations Page Navigation
       try {
-        // Try both URL patterns
+        // Handle URL patterns based on environment
+        // Production site uses /pages/ prefix, test site doesn't
+        const isProd = baseUrl.includes('ai-tools-lab.com');
+        const observationsPaths = isProd ? ["/pages/observations"] : ["/observations"];
+        
+        // Try both patterns if necessary and log which we're trying
         let observationsLoaded = false;
-        for (const observationsPath of ['/observations', '/pages/observations']) {
+        let successfulUrl = '';
+        
+        for (const observationsPath of observationsPaths) {
           try {
             const observationsUrl = new URL(observationsPath, baseUrl).href;
+            if (DEBUG) console.log(`Trying observations page URL: ${observationsUrl}`);
+            
             await page.goto(observationsUrl, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT / 2 });
             
             // Check if we loaded an observations page
@@ -306,10 +315,11 @@ async function runSequentialTest(baseUrl = 'http://localhost:4321') {
             
             if (observationsTitle.toLowerCase().includes('observation') || pageText.toLowerCase().includes('observations')) {
               observationsLoaded = true;
+              successfulUrl = observationsUrl;
               await page.screenshot({ path: path.join(SCREENSHOT_DIR, '04-observations.png') });
               report.addStep('Observations Page Navigation', 'pass', { message: `Successfully loaded observations page at: ${observationsUrl}` });
               
-              // 9. Check for observations content
+              // Check for observations content
               const contentElements = await page.$$('article, .observation, div[class*="observation"]');
               if (contentElements.length > 0) {
                 report.addStep('Observations Content', 'pass', { message: `Found ${contentElements.length} observation elements` });
@@ -320,15 +330,17 @@ async function runSequentialTest(baseUrl = 'http://localhost:4321') {
               break;
             }
           } catch (e) {
-            console.warn(`Warning attempting ${observationsPath}: ${e.message}`);
+            if (DEBUG) console.warn(`Warning attempting ${observationsPath}: ${e.message}`);
           }
         }
         
         if (!observationsLoaded) {
-          report.addStep('Observations Page Navigation', 'warn', { message: 'Could not load observations page with any URL pattern' });
+          report.addStep('Observations Page Navigation', 'fail', { 
+            message: `Could not load observations page with any URL pattern: ${observationsPaths.join(', ')}` 
+          });
         }
       } catch (e) {
-        report.addStep('Observations Page Navigation', 'warn', { 
+        report.addStep('Observations Page Navigation', 'fail', { 
           message: `Error navigating to observations page: ${e.message}`,
           error: e.toString()
         });
