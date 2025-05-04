@@ -48,8 +48,16 @@ tests/episode-screenshots/episode-ep14.png
 tests/episode-screenshots/episode-ep15.png
 tests/episode-screenshots/episode-ep16.png
 tests/episode-screenshots/episode-ep17.png
-tests/screenshots/about-page.png
-tests/screenshots/episode-page.png
-tests/screenshots/homepage.png
-tests/screenshots/observations-page.png
-tests/screenshots/resources-page.png
+
+# Visual comparison screenshots
+tests/screenshots/*.png
+tests/llm-screenshots/
+tests/llm-reports/
+tests/screenshots/resources-analysis.json
+
+# Original screenshot list (keeping for reference)
+# tests/screenshots/about-page.png
+# tests/screenshots/episode-page.png
+# tests/screenshots/homepage.png
+# tests/screenshots/observations-page.png
+# tests/screenshots/resources-page.png
