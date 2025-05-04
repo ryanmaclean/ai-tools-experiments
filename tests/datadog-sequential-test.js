@@ -56,6 +56,7 @@ class TestReport {
     const icon = status === 'pass' ? '✅' : status === 'warn' ? '⚠️' : '❌';
     // Use a logging utility that can be captured by Datadog
     const logMessage = `${icon} ${name}`;
+    // eslint-disable-next-line no-console
     console.log(logMessage);
     if (details.message) {
       console.log(`   ${details.message}`);

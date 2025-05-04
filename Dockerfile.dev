@@ -2,12 +2,15 @@
 # Optimized for hot-reloading and development experience
 FROM node:18-alpine
 
+# Install build dependencies for native modules and Python for node-gyp
+RUN apk add --no-cache python3 make g++ pixman-dev cairo-dev pango-dev jpeg-dev giflib-dev librsvg-dev
+
 # Set working directory
 WORKDIR /app
 
 # Install dependencies first (for better caching)
 COPY package*.json ./
-RUN npm ci
+RUN npm ci --build-from-source
 
 # We don't copy the source here - docker-compose will mount it
 # This enables hot reloading without container rebuilds

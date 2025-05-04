@@ -47,7 +47,7 @@ resource "datadog_synthetics_test" "css_validation" {
   
   browser_step {
     name = "Homepage: Validate Header CSS Properties"
-    type = "runJavascript"
+    type = "assertFromJavascript"
     params {
       code = <<-EOF
         const header = document.querySelector('header');
@@ -69,7 +69,7 @@ resource "datadog_synthetics_test" "css_validation" {
           bgColor.toLowerCase().includes(color.toLowerCase()));
           
         if (!isValidColor) {
-          throw new Error(`Header background color should be #93ACB5, but found: ${bgColor}`);
+          throw new Error('Header background color should be #93ACB5, but found: ' + bgColor);
         }
         
         // Check text color
@@ -77,7 +77,7 @@ resource "datadog_synthetics_test" "css_validation" {
         if (!textColor.includes('255, 255, 255') && 
             !textColor.includes('#fff') && 
             !textColor.includes('#ffffff')) {
-          throw new Error(`Header text color should be white, but found: ${textColor}`);
+          throw new Error('Header text color should be white, but found: ' + textColor);
         }
         
         return 'Header CSS validated successfully';
@@ -104,7 +104,7 @@ resource "datadog_synthetics_test" "css_validation" {
   
   browser_step {
     name = "Resources: Validate Resource Cards CSS Properties"
-    type = "runJavascript"
+    type = "assertFromJavascript"
     params {
       code = <<-EOF
         const resourceCard = document.querySelector('.resource-card');
