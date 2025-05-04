@@ -4,14 +4,20 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      # Using Node official image for better compatibility
+      args:
+        - NODE_ENV=test
     volumes:
       - ./:/app
-      - /app/node_modules  # Prevent node_modules from being overwritten
+      - ./scripts:/app/scripts
+      # Don't mount node_modules as a volume to prevent overriding native modules
     environment:
       - NODE_ENV=test
       - DEBUG=false
-      - TEST_URL=http://dev:4321  # Point tests to the dev service
-      - PYTHON=/usr/bin/python3  # Help node-gyp find Python
+      # Proper networking configuration for Docker (uses Docker's internal hostname)
+      - TEST_URL=http://dev:4321
+      # Address potential 404 warnings in the tests rather than suppressing them
+      - HANDLE_404_WARNINGS=true
     depends_on:
       - dev
     networks:
@@ -21,42 +27,167 @@ services:
     # Expose DD API key when provided
     env_file:
       - .env.local
+    # Use entrypoint script to fix Rollup ARM64 module issue before starting tests
+    entrypoint: ["./scripts/docker-entrypoint.sh"]
+    # Add Datadog labels for container monitoring
+    labels:
+      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-test"}]'
+      com.datadoghq.tags.service: 'ai-tools-test'
+      com.datadoghq.tags.env: 'test'
+      com.datadoghq.tags.issue: 'rollup-arm64-fix'
 
   # Development service with hot-reloading
   dev:
     build:
       context: .
       dockerfile: Dockerfile.dev
+      # Using Node official image for better compatibility
+      # This ensures proper support for Puppeteer and canvas dependencies
+      args:
+        - NODE_ENV=development
     ports:
       - "4321-4325:4321-4325"  # Expose multiple ports for Astro's automatic port shifting
     volumes:
       # Mount everything needed for development with hot-reloading
       - ./:/app
-      - /app/node_modules  # Prevent node_modules from being overwritten
-      - /app/dist         # Prevent dist from being overwritten
+      - ./scripts:/app/scripts
+      # Don't mount node_modules as a volume to prevent overriding native modules
     environment:
       - NODE_ENV=development
-      - PYTHON=/usr/bin/python3  # Help node-gyp find Python
+      # Address potential 404 warnings in the tests rather than suppressing them
+      - HANDLE_404_WARNINGS=true
     restart: unless-stopped
     networks:
       - ai-tools-network
     # Show log output in console
     tty: true
     stdin_open: true
-    command: npm run dev -- --host 0.0.0.0
+    # Use entrypoint script to fix Rollup ARM64 module issue before starting dev server
+    entrypoint: ["./scripts/docker-entrypoint.sh"]
+    command: ["sh", "-c", "cd /app && npm run dev -- --host 0.0.0.0"]
+    # Add Datadog labels for container monitoring
+    labels:
+      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-dev"}]'
+      com.datadoghq.tags.service: 'ai-tools-dev'
+      com.datadoghq.tags.env: 'development'
+      com.datadoghq.tags.issue: 'rollup-arm64-fix'
 
-  # Production preview service
+  # Production service using multi-stage optimized build (matches Netlify production)
   prod:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+        - DD_API_KEY=${DD_API_KEY:-}
     ports:
       - "4321:4321"
+    # No volumes needed - uses built artifacts from multi-stage build
     environment:
       - NODE_ENV=production
+      - PORT=4321
+      # Netlify-specific environment variables
+      - NETLIFY=true
+      - CONTEXT=production
     restart: unless-stopped
     networks:
       - ai-tools-network
+    # Entrypoint is set in Dockerfile
+    # Add Datadog labels for container monitoring
+    labels:
+      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-prod"}]'
+      com.datadoghq.tags.service: 'ai-tools-prod'
+      com.datadoghq.tags.env: 'production'
+      com.datadoghq.tags.version: '${VERSION:-1.0.0}'
+      com.datadoghq.tags.issue: 'rollup-arm64-fix'
+    env_file:
+      - .env.local
+
+  # Datadog Agent for monitoring all Docker containers
+  datadog-agent:
+    image: datadog/agent:latest
+    environment:
+      - DD_API_KEY=${DD_API_KEY}
+      - DD_LOGS_ENABLED=true
+      - DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL=true
+      - DD_CONTAINER_EXCLUDE=name:datadog-agent
+      - DD_APM_ENABLED=true
+      - DD_APM_NON_LOCAL_TRAFFIC=true
+      - DD_SITE=datadoghq.com
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc/:/host/proc/:ro
+      - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /opt/datadog-agent/run:/opt/datadog-agent/run:rw
+    networks:
+      - ai-tools-network
+    restart: unless-stopped
+    env_file:
+      - .env.local
+
+  # Build tools benchmark service
+  build-benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=development
+    volumes:
+      - ./:/app
+      - ./scripts:/app/scripts
+      - ./utils:/app/utils
+    environment:
+      - NODE_ENV=development
+      - DD_API_KEY=${DD_API_KEY:-}
+      - DATADOG_API_KEY=${DD_API_KEY:-}
+      - USE_ERROR_LOGGER=true
+    networks:
+      - ai-tools-network
+    # Don't start automatically
+    profiles: [benchmark]
+    # Use entrypoint script to fix architecture issues before running benchmarks
+    entrypoint: ["./scripts/docker-entrypoint.sh"]
+    command: ["node", "-r", "/app/utils/error-handler-init.js", "/app/scripts/build-tools-benchmark.js"]
+    # Add Datadog labels for container monitoring
+    labels:
+      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-benchmark"}]'
+      com.datadoghq.tags.service: 'ai-tools-benchmark'
+      com.datadoghq.tags.env: 'development'
+      com.datadoghq.tags.component: 'build-tools'
+
+  # Rspack-specific benchmark service
+  rspack-benchmark:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        - NODE_ENV=development
+    volumes:
+      - ./:/app
+      - ./scripts:/app/scripts
+      - ./utils:/app/utils
+    environment:
+      - NODE_ENV=development
+      - DD_API_KEY=${DD_API_KEY:-}
+      - DATADOG_API_KEY=${DD_API_KEY:-}
+      - USE_ERROR_LOGGER=true
+      # Only benchmark Rspack for focused testing
+      - BENCHMARK_TOOLS=rspack
+      - DETAILED_LOGGING=true
+    networks:
+      - ai-tools-network
+    # Don't start automatically
+    profiles: [rspack]
+    # Use entrypoint script to fix architecture issues before running benchmarks
+    entrypoint: ["./scripts/docker-entrypoint.sh"]
+    command: ["node", "-r", "/app/utils/error-handler-init.js", "/app/scripts/build-tools-benchmark.js"]
+    # Add Datadog labels for container monitoring
+    labels:
+      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-rspack"}]'
+      com.datadoghq.tags.service: 'ai-tools-rspack'
+      com.datadoghq.tags.env: 'development'
+      com.datadoghq.tags.component: 'rspack'
 
 networks:
   ai-tools-network:
