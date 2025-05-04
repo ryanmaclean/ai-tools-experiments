@@ -58,7 +58,6 @@ resource "datadog_synthetics_test" "main_pages" {
     params {
       element = "body"
       with_click = false
-      check = "present"
       x = 0
       y = 0
     }
