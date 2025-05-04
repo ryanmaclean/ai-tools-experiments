@@ -10,6 +10,9 @@ interface Props {
 
 // Get props
 const { title } = Astro.props;
+
+// Import client-side scripts
+import '../js/user-flow-tracking.js';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -67,25 +70,47 @@ const { title } = Astro.props;
 		}
 	</script>
 	<script>
-		  // Initialize Datadog RUM (Keep the first instance)
-		  if (typeof window !== 'undefined' && window.DD_RUM) {
-			// Note: Using the credentials from the first block found earlier
-			window.DD_RUM.init({
-			  clientToken: 'pub501e7bdae51f592b13b33adf351655a3', 
-			  applicationId: 'db2aad17-02cf-4e95-bee7-09293dd29f1a',
-			  site: 'datadoghq.com',
-			  service: 'ai-tools-lab', // Match the service name from first block
-			  env: import.meta.env.MODE, // 'development' or 'production'
-			  version: '1.0.0', // Optional version
-			  sessionSampleRate: 100,
-			  sessionReplaySampleRate: 20,
-			  trackUserInteractions: true,
-			  trackResources: true,
-			  trackLongTasks: true,
-			  defaultPrivacyLevel: 'mask-user-input'
-			});
-
-			window.DD_RUM.startSessionReplayRecording();
+		  // Initialize Datadog RUM with enhanced configuration
+  if (typeof window !== 'undefined' && window.DD_RUM) {
+		// Using the existing credentials
+		window.DD_RUM.init({
+		  clientToken: 'pub501e7bdae51f592b13b33adf351655a3', 
+		  applicationId: 'db2aad17-02cf-4e95-bee7-09293dd29f1a',
+		  site: 'datadoghq.com',
+		  service: 'ai-tools-lab',
+		  env: import.meta.env.MODE, // 'development' or 'production'
+		  version: '1.0.0',
+		  // Enhanced configuration
+		  sessionSampleRate: 100,        // Track all sessions
+		  sessionReplaySampleRate: 20,   // Record 20% of sessions for replay (balanced approach)
+		  trackUserInteractions: true,   // Track clicks, taps, and user input
+		  trackResources: true,          // Track resources (images, fonts, etc.)
+		  trackLongTasks: true,          // Track tasks that take >50ms
+		  trackFrustrations: true,       // NEW: Track rage clicks, dead clicks, error clicks
+		  defaultPrivacyLevel: 'mask-user-input' // Ensure GDPR compliance
+		});
+		
+		window.DD_RUM.startSessionReplayRecording();
+		
+		// Add global context that will be attached to all RUM events
+		window.DD_RUM.addRumGlobalContext('app_version', '1.0.0');
+		
+		// Track Core Web Vitals for performance monitoring
+		if (typeof window.performance !== 'undefined') {
+		  // Track First Contentful Paint
+		  const paintEntries = window.performance.getEntriesByType('paint');
+		  const fcp = paintEntries.find(entry => entry.name === 'first-contentful-paint');
+		  if (fcp) {
+			window.DD_RUM.addTiming('first_contentful_paint', fcp.startTime);
+		  }
+		  
+		  // Track navigation timing metrics
+		  if (window.performance.timing) {
+			const timing = window.performance.timing;
+			window.DD_RUM.addTiming('dom_interactive', timing.domInteractive - timing.navigationStart);
+			window.DD_RUM.addTiming('dom_complete', timing.domComplete - timing.navigationStart);
+		  }
+		}
 		  }
 
 		  // Initialize the easter egg functionality

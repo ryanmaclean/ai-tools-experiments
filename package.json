@@ -4,13 +4,36 @@
   "description": "AI Lab Experiments & Tools",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "install-hooks": "./hooks/install-hooks.sh",
-    "test-episodes": "node ./tests/episode-checker.js"
+    "astro": "astro",
+    "test": "node tests/run-all-tests.js",
+    "test:visual": "node tests/visual-comparison-test.js",
+    "test:visual:dd": "vitest run tests/visual.test.js --reporter verbose",
+    "test:visual:watch": "vitest tests/visual.test.js",
+    "test:visual:ci": "DD_TEST_REPORT=true vitest run tests/visual.test.js --reporter json --outputFile ./test-results/visual-test-results.json",
+    "test:screenshot": "node tests/capture-screenshots.js",
+    "test:datadog": "node tests/validate-datadog-integration.js",
+    "test:snapshot": "vitest run tests/snapshot-test.js",
+    "test:a11y": "node tests/accessibility-test.js",
+    "test:comprehensive": "node tests/comprehensive-site-test.js",
+    "test:llm": "node tests/visual-llm-test.js",
+    "test-episodes": "node ./tests/episode-checker.js",
+    "docker:test": "docker-compose -f docker-compose-test.yml up",
+    "synthetics:setup": "./tests/run-datadog-synthetics.sh",
+    "synthetics:test": "node ./tests/setup-datadog-synthetics.js",
+    "synthetics:ci": "DD_API_KEY=$DD_API_KEY DD_APP_KEY=$DD_APP_KEY node ./tests/setup-datadog-synthetics.js",
+    "synthetics:verify": "node hooks/verify-datadog-synthetics.js",
+    "synthetics:validate": "node terraform/validate-config.js",
+    "synthetics:direct-setup": "node tests/direct-datadog-setup.js",
+    "synthetics:visual": "node hooks/visual-validation.js",
+    "synthetics:mcp": "node hooks/mcp-datadog-validator.js",
+    "hooks:install": "node hooks/install-hooks.js",
+    "precommit": "node hooks/verify-datadog-synthetics.js",
+    "validate:terraform": "cd terraform && ./validate-terraform.sh",
+    "deploy:terraform": "cd terraform && terraform apply"
   },
   "repository": {
     "type": "git",
@@ -29,12 +52,27 @@
   "homepage": "https://github.com/jasonhand/ai-tools-experiments#readme",
   "dependencies": {
     "@datadog/browser-rum": "^4.31.0",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "sharp": "^0.34.1"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.2.6",
+    "@axe-core/puppeteer": "^4.10.1",
+    "@datadog/datadog-api-client": "^1.34.1",
+    "@datadog/datadog-ci": "^3.0.1",
+    "dotenv": "^16.4.5",
+    "vite-plugin-datadog-ci": "^1.0.6",
+    "web-vitals": "^3.5.2",
     "@playwright/test": "^1.52.0",
+    "@testing-library/dom": "^10.4.0",
     "astro": "^5.7.10",
-    "puppeteer": "^24.8.0"
+    "axios": "^1.9.0",
+    "canvas": "^3.1.0",
+    "cheerio": "^1.0.0",
+    "jest-image-snapshot": "^6.4.0",
+    "jsdom": "^26.1.0",
+    "pixelmatch": "^7.1.0",
+    "puppeteer": "^24.8.0",
+    "vitest": "^3.1.2"
   }
 }

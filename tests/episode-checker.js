@@ -2,6 +2,7 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const { exec } = require('child_process');
 
 // Ensure screenshots directory exists
 const screenshotsDir = path.join(__dirname, 'episode-screenshots');
@@ -9,8 +10,49 @@ if (!fs.existsSync(screenshotsDir)) {
   fs.mkdirSync(screenshotsDir, { recursive: true });
 }
 
+// Helper function to determine the port to use
+async function getServerPort() {
+  // Default port
+  const DEFAULT_PORT = 4321;
+  
+  // Check for PORT environment variable
+  if (process.env.PORT) {
+    console.log(`Using port from environment variable: ${process.env.PORT}`);
+    return process.env.PORT;
+  }
+  
+  // Check for port argument
+  const portArg = process.argv.find(arg => arg.startsWith('--port='));
+  if (portArg) {
+    const port = parseInt(portArg.split('=')[1], 10);
+    console.log(`Using port from command line argument: ${port}`);
+    return port;
+  }
+  
+  // Try to detect running Astro server
+  return new Promise((resolve) => {
+    exec('lsof -i -P | grep LISTEN | grep node', (error, stdout) => {
+      if (stdout) {
+        const portMatch = stdout.match(/:43[0-9]{2}/g);
+        if (portMatch && portMatch.length > 0) {
+          const detectedPort = parseInt(portMatch[0].substring(1), 10);
+          console.log(`Detected existing Astro server on port: ${detectedPort}`);
+          return resolve(detectedPort);
+        }
+      }
+      console.log(`No server detected, using default port: ${DEFAULT_PORT}`);
+      return resolve(DEFAULT_PORT);
+    });
+  });
+}
+
 async function checkEpisodes() {
   console.log('Starting episode check...');
+  
+  // Get the port to use
+  const port = await getServerPort();
+  const baseUrl = `http://localhost:${port}`;
+  console.log(`Using base URL: ${baseUrl}`);
   
   // Launch browser
   const browser = await puppeteer.launch({
@@ -26,7 +68,7 @@ async function checkEpisodes() {
     
     // Navigate to homepage
     console.log('Navigating to homepage...');
-    await page.goto('http://localhost:4322', { waitUntil: 'networkidle2' });
+    await page.goto(baseUrl, { waitUntil: 'networkidle2' });
     
     // Get all episode links
     const episodeLinks = await page.evaluate(() => {
@@ -72,6 +114,43 @@ async function checkEpisodes() {
         
         const hasContent = contentText.length > 50; // Arbitrary threshold to check if there's meaningful content
         
+        // Check for common HTML elements that should be in transcript
+        const htmlElements = {
+          videoContainer: await page.$('.video-container'),
+          episodeContent: await page.$('.episode-content'),
+          jumpToSection: await page.$('.chapter-markers'),
+          transcript: await page.$('.transcript')
+        };
+        
+        // Find resources section using JavaScript evaluation instead of CSS selector
+        const hasResourcesSection = await page.evaluate(() => {
+          // Look for h2 headers containing 'Resources' text
+          const headers = Array.from(document.querySelectorAll('h2'));
+          const resourcesHeader = headers.find(h => h.textContent.includes('Resources'));
+          
+          // Also check for takeaways list as alternative
+          const takeawaysList = document.querySelector('ul.takeaways');
+          
+          return (resourcesHeader !== undefined) || (takeawaysList !== null);
+        });
+        
+        // Evaluate iframe exists for potential video embeds
+        const hasIframe = await page.evaluate(() => {
+          return document.querySelectorAll('iframe').length > 0;
+        });
+        
+        // Check for transcript timestamps (evidence of proper formatting)
+        const hasTimestamps = await page.evaluate(() => {
+          return document.querySelectorAll('.transcript-timestamp').length > 0;
+        });
+        
+        // Check for images (thumbnails, etc)
+        const hasImages = await page.evaluate(() => {
+          return document.querySelectorAll('img').length > 0;
+        });
+        
+        const contentStructureScore = Object.values(htmlElements).filter(Boolean).length;
+        
         const episodeResult = {
           id: episodeId,
           url: episodeUrl,
@@ -80,6 +159,17 @@ async function checkEpisodes() {
           hasTranscriptContent: !!transcriptContent,
           hasSubstantialContent: hasContent,
           contentLength: contentText.length,
+          contentStructure: {
+            hasVideoContainer: !!htmlElements.videoContainer,
+            hasEpisodeContent: !!htmlElements.episodeContent,
+            hasJumpToSection: !!htmlElements.jumpToSection,
+            hasResourcesSection: hasResourcesSection,
+            hasTranscriptSection: !!htmlElements.transcript,
+            hasIframe: hasIframe,
+            hasTimestamps: hasTimestamps,
+            hasImages: hasImages,
+            structureScore: Object.values(htmlElements).filter(Boolean).length + (hasResourcesSection ? 1 : 0)
+          },
           status: (!!title && !!backLink && !!transcriptContent && hasContent) ? 'success' : 'issues'
         };
         
@@ -96,6 +186,16 @@ async function checkEpisodes() {
         console.log(`- Has back link: ${!!backLink}`);
         console.log(`- Has transcript content: ${!!transcriptContent}`);
         console.log(`- Has substantial content: ${hasContent} (${contentText.length} chars)`);
+        console.log(`- Content structure:`);
+        console.log(`  - Video container: ${!!htmlElements.videoContainer}`);
+        console.log(`  - Episode content: ${!!htmlElements.episodeContent}`);
+        console.log(`  - Jump to section: ${!!htmlElements.jumpToSection}`);
+        console.log(`  - Resources section: ${hasResourcesSection}`);
+        console.log(`  - Transcript section: ${!!htmlElements.transcript}`);
+        console.log(`  - Has iframe: ${hasIframe}`);
+        console.log(`  - Has timestamps: ${hasTimestamps}`);
+        console.log(`  - Has images: ${hasImages}`);
+        console.log(`  - Structure score: ${Object.values(htmlElements).filter(Boolean).length + (hasResourcesSection ? 1 : 0)}/5`);
         console.log(`- Status: ${episodeResult.status}`);
         
       } catch (error) {

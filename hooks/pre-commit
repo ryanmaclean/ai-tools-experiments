@@ -1,0 +1,116 @@
+#!/bin/bash
+
+# Datadog Synthetics Verification Pre-commit Hook
+# This hook verifies that all synthetic tests are properly configured and passing
+# before allowing commits that could potentially break the site.
+
+# ANSI colors
+GREEN="\033[0;32m"
+RED="\033[0;31m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+NC="\033[0m" # No Color
+
+echo -e "\n${BLUE}Pre-commit Hook: Verifying Datadog Synthetics Tests${NC}"
+
+# Check if Docker is running
+if ! docker info > /dev/null 2>&1; then
+  echo -e "${YELLOW}Warning: Docker is not running. Some validation checks may be skipped.${NC}"
+  # Continue anyway, but with reduced validation
+fi
+
+# Check if we're committing changes to key files that could affect the site
+GIT_DIFF=$(git diff --name-only --cached)
+
+# Only run verification for changes to critical files
+SHOULD_VERIFY=false
+CRITICAL_PATTERNS=("src/" "astro.config" "package.json" "public/" ".github/workflows/" "tests/")
+
+for pattern in "${CRITICAL_PATTERNS[@]}"; do
+  if echo "$GIT_DIFF" | grep -q "$pattern"; then
+    SHOULD_VERIFY=true
+    break
+  fi
+done
+
+if [ "$SHOULD_VERIFY" = false ]; then
+  echo -e "${GREEN}No critical files changed, skipping synthetic tests verification.${NC}"
+  exit 0
+fi
+
+# Ensure the Datadog API keys are available
+if [ -z "$DD_API_KEY" ] || [ -z "$DD_APP_KEY" ]; then
+  if [ -f .env ]; then
+    echo -e "${YELLOW}Loading Datadog API keys from .env file...${NC}"
+    export $(grep -v '^#' .env | xargs)
+  else
+    echo -e "${RED}ERROR: Datadog API keys not found in environment or .env file.${NC}"
+    echo -e "${YELLOW}Set DD_API_KEY and DD_APP_KEY environment variables or create an .env file.${NC}"
+    echo -e "${YELLOW}Pre-commit hook verification cannot proceed without API keys.${NC}"
+    exit 1
+  fi
+fi
+
+# First stage: Verify synthetic tests exist in Datadog and are passing
+echo -e "\n${BLUE}Stage 1: Verifying synthetic tests in Datadog...${NC}"
+node hooks/verify-datadog-synthetics.js
+VERIFY_EXIT_CODE=$?
+
+if [ $VERIFY_EXIT_CODE -ne 0 ]; then
+  echo -e "\n${RED}ERROR: Datadog synthetics tests verification failed!${NC}"
+  echo -e "${YELLOW}Please ensure all synthetic tests are properly configured and passing.${NC}"
+  echo -e "${YELLOW}Run 'node hooks/verify-datadog-synthetics.js' to see detailed errors.${NC}"
+  echo -e "\n${RED}Commit aborted.${NC}"
+  exit 1
+fi
+
+# Second stage: Run local Docker validation if Docker is running
+if docker info > /dev/null 2>&1; then
+  echo -e "\n${BLUE}Stage 2: Running Docker validation tests...${NC}"
+  
+  # Extract any test-related changes
+  TEST_CHANGES=$(echo "$GIT_DIFF" | grep -E "^(src/|public/|tests/)")
+  if [ -n "$TEST_CHANGES" ]; then
+    echo -e "${YELLOW}Detected changes to testable files. Running validation in Docker...${NC}"
+    
+    # Build and run tests in Docker
+    docker-compose -f docker-compose-test.yml build > /dev/null 2>&1
+    docker-compose -f docker-compose-test.yml run --rm app npm run test:comprehensive
+    DOCKER_EXIT_CODE=$?
+    
+    if [ $DOCKER_EXIT_CODE -ne 0 ]; then
+      echo -e "\n${RED}ERROR: Docker validation tests failed!${NC}"
+      echo -e "${YELLOW}Please fix the failing tests before committing.${NC}"
+      echo -e "\n${RED}Commit aborted.${NC}"
+      exit 1
+    fi
+    
+    echo -e "${GREEN}Docker validation tests passed.${NC}"
+  else
+    echo -e "${GREEN}No test-related changes detected, skipping Docker validation.${NC}"
+  fi
+else
+  echo -e "${YELLOW}Skipping Docker validation tests (Docker not running).${NC}"
+fi
+
+# Third stage: Visual validation against staging site URL patterns
+echo -e "\n${BLUE}Stage 3: Visual validation...${NC}"
+
+# Check if we can run the Puppeteer test
+if command -v node > /dev/null && [ -f "tests/visual-url-validation.js" ]; then
+  echo -e "${YELLOW}Running Puppeteer visual validation...${NC}"
+  node tests/visual-url-validation.js
+  PUPPETEER_EXIT_CODE=$?
+  
+  if [ $PUPPETEER_EXIT_CODE -ne 0 ]; then
+    echo -e "\n${RED}ERROR: Visual validation failed!${NC}"
+    echo -e "${YELLOW}Please review the visual validation errors before committing.${NC}"
+    echo -e "\n${RED}Commit aborted.${NC}"
+    exit 1
+  fi
+fi
+
+# All checks passed
+echo -e "\n${GREEN}All pre-commit verifications passed!${NC}"
+echo -e "${GREEN}Your changes meet the required standards and can be committed.${NC}"
+exit 0

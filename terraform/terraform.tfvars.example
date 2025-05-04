@@ -1,0 +1,14 @@
+# Datadog API credentials
+# OPTION 1: Copy this file to terraform.tfvars and fill in your actual API keys
+# OPTION 2: Use environment variables (recommended):
+#   export TF_VAR_datadog_api_key="your_api_key"
+#   export TF_VAR_datadog_app_key="your_app_key"
+
+# Only uncomment and set these if not using environment variables
+# datadog_api_key = "" # Better to use TF_VAR_datadog_api_key environment variable
+# datadog_app_key = "" # Better to use TF_VAR_datadog_app_key environment variable
+
+# Other optional configurations
+environment = "production" # or "staging"
+test_frequency = 300 # 5 minutes in seconds
+notification_emails = ["your-email@example.com"]

@@ -1,0 +1,54 @@
+# Dockerfile.test for AI Tools Lab visual testing
+FROM node:18-alpine
+
+# Install dependencies needed for testing
+RUN apk add --no-cache \
+    curl \
+    imagemagick \
+    git \
+    bash \
+    python3 \
+    chromium \
+    # Dependencies for Puppeteer
+    nss \
+    freetype \
+    harfbuzz \
+    ca-certificates \
+    ttf-freefont \
+    # Needed for node canvas
+    build-base \
+    g++ \
+    cairo-dev \
+    jpeg-dev \
+    pango-dev \
+    giflib-dev
+
+# Set environment variables for Puppeteer
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files first for better layer caching
+COPY package*.json ./
+RUN npm ci
+
+# Install Datadog dependencies
+RUN npm install -D \
+    @datadog/browser-rum \
+    @datadog/datadog-ci \
+    vite-plugin-datadog-ci
+
+# Copy test files and configuration
+COPY tests ./tests
+COPY vitest.config.js ./
+
+# Create directories for test artifacts
+RUN mkdir -p ./test-results ./coverage ./tests/screenshots/local ./tests/screenshots/prod ./tests/screenshots/diff
+
+# Set environment variables
+ENV NODE_ENV=test
+
+# Command to run the tests
+CMD ["npm", "run", "test:visual"]

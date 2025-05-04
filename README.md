@@ -51,6 +51,9 @@ This project contains the website for AI Tools Lab, a collection of experiments 
 - `tests/`: Automated tests
   - `docker-build-test.js`: Puppeteer tests for Docker builds
   - `run-tests.sh`: Test runner script
+- `terraform/`: Infrastructure as code for Datadog monitoring
+  - `datadog_synthetics.tf`: Synthetic test definitions
+  - `api_tests.tf`: API tests for episode pages
 
 ## Running Locally
 
@@ -185,3 +188,161 @@ To add new resources to the resource library:
 ## Contributing
 
 Contributions to improve the site are welcome! Please submit a pull request with your proposed changes.
+
+## Extended Development Tools
+
+The project includes custom tools to enhance development workflows:
+
+### Windsurf Custom Rules
+
+The repository includes a `windsurfrules.json` file containing custom rules for the Windsurf linter. These rules help ensure code follows the strategic roadmap goals and best practices:
+
+- **Data Source Consistency**: Detects data duplication across the codebase
+- **Visual Test Outdated**: Identifies when visual test screenshots need updating
+- **Resource Extraction**: Reminds about extracting data from HTML to JS
+- **Image Optimization**: Suggests optimizing large images and converting to modern formats
+- **Astro 5.0+ Features**: Recommends implementing View Transitions API
+- **Datadog Integration**: Ensures proper monitoring configuration
+- **Content Collections**: Suggests migrating HTML content to Astro Content Collections
+
+### MCP Servers for AI Assistance
+
+The project includes Model Context Protocol (MCP) servers in the `tools/` directory that extend Claude's capabilities:
+
+- **Datadog Monitor**: Integrates with Datadog API for synthetic tests and RUM configuration
+- **Image Optimizer**: Provides tools for optimizing and converting images
+- **Ollama Visual Analyzer**: Uses Ollama for visual analysis of screenshots and UI elements
+- **Astro Content Manager**: Helps manage and migrate Astro content
+- **Performance Analyzer**: Analyzes Core Web Vitals and website performance
+
+To set up these tools, see the instructions in `tools/README.md`.
+
+# Strategic Roadmap
+
+This section outlines the current project roadmap with prioritized tasks and improvement plans.
+
+## 1. Foundation (P0, Q2 2025)
+
+### 1.1 Testing Infrastructure Reliability
+- **Objective**: Ensure visual testing produces consistent, reliable results
+- **Key Results**:
+  - [ ] Capture new production site screenshots for baseline comparisons
+  - [ ] Update test scripts to use new screenshots
+  - [ ] Achieve <5% false positive rate in visual testing
+
+### 1.2 Data Source Consolidation
+- **Objective**: Eliminate data duplication and establish single sources of truth
+- **Key Results**:
+  - [ ] Complete extraction of resource data from HTML to JavaScript (see `src/data/resources.js` TODO)
+  - [ ] Refactor resources.astro to use only the JS data source
+  - [ ] Implement automated validation to ensure data integrity
+
+### 1.3 CI/CD Pipeline Stability
+- **Objective**: Create consistent, reproducible build and test environments
+- **Key Results**:
+  - [ ] Create Dockerfile.test with all dependencies (Node.js, ImageMagick, etc.)
+  - [ ] Build docker-compose-test.yml with Ollama and Datadog services
+  - [ ] Achieve 99% build success rate in CI pipeline
+
+## 2. Observability (P1, Q3 2025)
+
+### 2.1 Comprehensive Monitoring
+- **Objective**: Implement end-to-end visibility into application performance
+- **Key Results**:
+  - [ ] Configure element-level analysis for precise visual comparison
+  - [ ] Implement advanced selector-based element comparison
+  - [ ] Create visual element maps for critical UI components
+
+### 2.2 Unified Service Monitoring
+- **Objective**: Establish holistic view of system performance
+- **Key Results**:
+  - [ ] Set up cross-service tracing between Astro SSR and APIs
+  - [ ] Configure end-to-end latency monitoring across the entire stack
+  - [ ] Enable correlated errors between frontend and backend
+
+### 2.3 Feature Flagging System
+- **Objective**: Enable controlled rollout of new features
+- **Key Results**:
+  - [ ] Implement feature flag SDK for client-side and server-side features
+  - [ ] Set up A/B testing for resource card layouts
+  - [ ] Configure targeted rollouts based on user segments
+
+## 3. Performance Optimization (P1, Q4 2025)
+
+### 3.1 Asset Optimization
+- **Objective**: Reduce page load times by 50%
+- **Key Results**:
+  - [ ] Address network payload size (target: 30% reduction)
+  - [ ] Properly size images contributing to LCP
+  - [ ] Convert images to next-gen formats (WebP/AVIF)
+
+### 3.2 Core Web Vitals Improvement
+- **Objective**: Achieve "Good" rating on all Core Web Vitals
+- **Key Results**:
+  - [ ] Optimize Largest Contentful Paint (<2.5s)
+  - [ ] Improve Cumulative Layout Shift (<0.1)
+  - [ ] Enhance First Input Delay (<100ms)
+
+### 3.3 Build Optimization
+- **Objective**: Reduce build times by 40%
+- **Key Results**:
+  - [ ] Implement multi-stage Docker builds
+  - [ ] Optimize layer caching for faster builds
+  - [ ] Add BuildKit capabilities via BuildX
+
+## 4. Modern Architecture (P2, 2026)
+
+### 4.1 Astro 5.0+ Migration
+- **Objective**: Leverage latest Astro capabilities for improved UX
+- **Key Results**:
+  - [ ] Implement View Transitions API for smooth page navigation
+  - [ ] Add `<ViewTransitions />` component to MainLayout.astro
+  - [ ] Configure transition animations between episode pages
+
+### 4.2 Content Management Modernization
+- **Objective**: Improve content type safety and management
+- **Key Results**:
+  - [ ] Migrate transcript HTML files to Content Collections
+  - [ ] Create a `transcripts` collection with appropriate schema
+  - [ ] Update [slug].astro to use Content Collections API
+
+### 4.3 Image System Overhaul
+- **Objective**: Implement modern image delivery system
+- **Key Results**:
+  - [ ] Replace static image references with `<Image />` component
+  - [ ] Configure optimal formats with appropriate dimensions
+  - [ ] Add proper loading strategies (eager for above-fold, lazy for below)
+
+## 5. Developer Experience (P2, Ongoing)
+
+### 5.1 Tooling Modernization
+- **Objective**: Reduce development friction and improve productivity
+- **Key Results**:
+  - [ ] Evaluate Bun as Node.js/npm replacement
+  - [ ] Test Bun for faster dependency installation
+  - [ ] Create Bun-optimized Dockerfile variant
+
+### 5.2 Documentation Enhancement
+- **Objective**: Ensure comprehensive, up-to-date documentation
+- **Key Results**:
+  - [ ] Document architecture decisions and patterns
+  - [ ] Create onboarding guide for new developers
+  - [ ] Implement automated documentation for component API
+
+### 5.3 Docker Improvements
+- **Objective**: Enhance Docker development environment
+- **Key Results**:
+  - [ ] Implement multi-stage builds to reduce image size by 50-60%
+  - [ ] Add health checks and graceful shutdown to Docker configurations
+  - [ ] Optimize for ARM64 architecture for better cloud cost efficiency
+
+## Success Metrics
+
+The success of this roadmap will be measured by:
+
+1. **Reliability**: 99.9% uptime, <1% test flakiness
+2. **Performance**: 90+ PageSpeed score, <2s LCP
+3. **Developer Velocity**: 30% reduction in time-to-first-PR for new contributors
+4. **User Experience**: 20% improvement in session duration and pages per visit
+
+_Note: This roadmap replaces the previous TODO.md file. All planned tasks have been consolidated here to provide a clearer, more strategic overview of the project's direction._

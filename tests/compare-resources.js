@@ -92,11 +92,19 @@ async function compareImages(localPath, prodPath) {
     `;
     
     try {
+      console.log('Connecting to Ollama API at', ollamaEndpoint);
+      
+      // Specifically use the llama3.2-vision model
+      const modelToUse = 'llama3.2-vision';
+      console.log(`Using vision model: ${modelToUse}`);
+      
       const response = await axios.post(ollamaEndpoint, {
-        model: 'llama3.2-vision',
+        model: modelToUse,
         prompt: prompt,
         images: [localImageBase64, prodImageBase64],
         stream: false
+      }, {
+        timeout: 120000 // 2 minute timeout for Ollama processing
       });
       
       const llmResponse = response.data.response;

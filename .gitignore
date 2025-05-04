@@ -47,3 +47,16 @@ tests/*.png
 tests/llm-screenshots/
 tests/llm-reports/
 tests/*-results.json
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+tf.json
+crash.*.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json

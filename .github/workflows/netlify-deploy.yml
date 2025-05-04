@@ -37,24 +37,41 @@ jobs:
       - name: Install dependencies
         run: npm ci
       
+      - name: Configure Datadog Test Optimization
+        id: datadog-test-visibility
+        uses: datadog/test-visibility-github-action@v2
+        with:
+          languages: js
+          api_key: ${{ secrets.DD_API_KEY }}
+          site: datadoghq.com
+      
+      - name: Run tests
+        shell: bash
+        run: npm run test:resources
+        env:
+          NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
+      
       - name: Inject Datadog API Keys
         run: |
           # Check if secrets are available (will be masked in logs)
-          if [ -n "${{ secrets.DD_API_KEY }}" ]; then
+          if [[ -n "$DD_API_KEY" ]]; then
             echo "DD_API_KEY is available"
           else
             echo "WARNING: DD_API_KEY is not set in repository secrets!"
           fi
           
-          if [ -n "${{ secrets.DD_APP_KEY }}" ]; then
+          if [[ -n "$DD_APP_KEY" ]]; then
             echo "DD_APP_KEY is available"
           else
             echo "WARNING: DD_APP_KEY is not set in repository secrets!"
           fi
           
           # Replace placeholder values with secrets in script.js
-          sed -i "s|__DD_API_KEY__|${{ secrets.DD_API_KEY }}|g" script.js
-          sed -i "s|__DD_APP_KEY__|${{ secrets.DD_APP_KEY }}|g" script.js
+          sed -i "s|__DD_API_KEY__|$DD_API_KEY|g" script.js
+          sed -i "s|__DD_APP_KEY__|$DD_APP_KEY|g" script.js
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY }}
+          DD_APP_KEY: ${{ secrets.DD_APP_KEY }}
       
       - name: Build Astro site
         run: npm run build

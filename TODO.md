@@ -13,15 +13,27 @@
 
 - [ ] Implement Datadog Continuous Testing for visual comparisons
   - [ ] Replace current screenshot testing with Datadog's ML-powered difference detection
+    - [x] Create vitest.config.js with Datadog CI plugin integration
+    - [x] Set up screenshot capture utility using Puppeteer MCP
+    - [x] Implement ImageMagick comparison for precise image diff detection
+    - [x] Integrate Ollama's vision capabilities for ML-powered visual analysis
+    - [x] Configure test result reporting to Datadog CI Visibility
+    - [ ] Create a Dockerfile.test with all dependencies (Node.js, ImageMagick, etc.)
+    - [ ] Build docker-compose-test.yml with Ollama and Datadog services
   - [ ] Configure element-level analysis for more precise comparison results
+    - [ ] Implement advanced selector-based element comparison
+    - [ ] Create visual element maps for critical UI components
   - [ ] Set up test impact analysis to optimize CI/CD pipeline
-- [ ] Add RUM with Session Replay for user experience monitoring
-  - [ ] Implement privacy-aware session recordings with masked user inputs
-  - [ ] Configure Core Web Vitals dashboards for performance tracking
-  - [ ] Set up frustration tracking (rage clicks, error clicks, thrashing)
-- [ ] Set up Edge Runtime monitoring for Astro Edge deployment
-  - [ ] Integrate Edge Performance Metrics for CDN monitoring
-  - [ ] Configure Edge Error Tracking with source maps for Astro components
+    - [ ] Configure test metadata reporting for build correlation
+    - [ ] Implement test flakiness detection with retry logic
+- [x] Enhance existing RUM with Session Replay for user experience monitoring (free tier compatible)
+  - [x] Update the existing browser-rum script in MainLayout.astro
+    - [x] Add trackFrustrations: true to detect rage clicks, dead clicks, and error clicks
+    - [x] Ensure defaultPrivacyLevel is set to mask-user-input for GDPR compliance
+    - [x] Optimize sessionReplaySampleRate (20%) to balance performance and coverage
+  - [x] Implement Core Web Vitals tracking via the API instead of using built-in Netlify integration
+  - [x] Add custom user flow tracking for better session replay context
+  - [x] Configure a serverless proxy function that works on Netlify free tier for API calls
   - [ ] Implement Edge Network Monitoring for API calls
 - [ ] Implement Unified Service Monitoring for holistic views
   - [ ] Set up cross-service tracing between Astro SSR and APIs
