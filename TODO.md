@@ -8,7 +8,9 @@
 
 ## URGENT TASKS (2025-05-03)
 
-- [ ] Fix missing resource links in the resources page
+- [x] Fix missing resource links in the resources page ✅
+  - Fixed: Updated all image references to use PNG instead of JPEG
+  - Verified: All 21 resource card images displaying correctly (shown in tests/inspect-resources.js)
 - [x] Update about page styling/structure to match production site (Restored from previous commit)
 - [x] Fix episode navigation test failures in post-git commit hook (Fixed with improved JavaScript click handling for back link)
 
@@ -17,23 +19,23 @@
 
 - [x] Start local development server.
 - [x] Compare Homepage (visuals, structure, content).
-- [ ] Compare Transcript Page (ep01) (visuals, structure, content).
-- [ ] Compare Transcript Page (ep02) (visuals, structure, content).
-- [ ] Compare Transcript Page (ep03) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep04) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep05) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep06) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep07) (visuals, structure, content).
-- [ ] Compare Transcript Page (ep08) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep09) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep10) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep11) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep12) (visuals, structure, content). 
-- [ ] Compare Transcript Page (ep13) (visuals, structure, content). 
-- [] Compare Transcript Page (ep14) (visuals, structure, content). 
-- [] Compare Transcript Page (ep15) (visuals, structure, content). 
-- [] Compare Transcript Page (ep16) (visuals, structure, content). 
-- [] Compare Transcript Page (ep17) (visuals, structure, content). 
+- [x] Compare Transcript Page (ep01) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep02) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep03) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep04) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep05) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep06) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep07) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep08) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep09) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep10) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep11) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep12) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep13) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep14) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep15) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep16) (visuals, structure, content). Verified with enhanced episode-checker.js.
+- [x] Compare Transcript Page (ep17) (visuals, structure, content). Verified with enhanced episode-checker.js. 
 - [x] Compare Header & Footer (visuals, structure).
 - [x] Compare Global Styles (styles.css).
 - [x] Document discrepancies found.
@@ -75,9 +77,9 @@ Note: The file `src/pages/about.astro` appears obsolete and doesn't match the li
 
 ## Phase 3: Final Review & Commit
 
-- [ ] Review all changes made.
-- [ ] Ensure site visually matches ai-tools-lab.com where intended.
-- [ ] Run final checks (linting, build).
+- [x] Review all changes made.
+- [x] Ensure site visually matches ai-tools-lab.com where intended.
+- [x] Run final checks (linting, build).
 - [x] Commit changes to `test` branch and push to ryanmaclean remote.
 
 ## Phase 4: Performance Analysis & Optimization (Lower Priority)
