@@ -10,10 +10,6 @@ interface Props {
 
 // Get props
 const { title } = Astro.props;
-
-// Import client-side scripts
-import '../js/user-flow-tracking.js';
-import { initClientFeatures } from '../js/client-scripts.js';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -36,16 +32,19 @@ import { initClientFeatures } from '../js/client-scripts.js';
 	<Header />
 	<slot /> <!-- Page content will be injected here -->
 	<Footer />
-	<script client:only="js">
-		// Initialize client-side features after DOM is loaded
-		if (typeof document !== 'undefined') {
-			window.addEventListener('DOMContentLoaded', () => {
-				// Import client features asynchronously to avoid SSR issues
-				import('../js/client-scripts.js').then(module => {
-					module.initClientFeatures();
+	<script is:inline>
+		// Simple script to ensure header and footer are accessible
+		document.addEventListener('DOMContentLoaded', () => {
+			// Toggle mobile menu if elements exist
+			const hamburger = document.querySelector('.hamburger-menu');
+			const mobileNav = document.querySelector('.mobile-nav');
+			
+			if (hamburger && mobileNav) {
+				hamburger.addEventListener('click', () => {
+					mobileNav.classList.toggle('open');
 				});
-			});
-		}
+			}
+		});
 	</script>
  </body>
  </html>

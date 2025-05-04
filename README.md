@@ -223,14 +223,23 @@ This section outlines the current project roadmap with prioritized tasks and imp
 
 ## 1. Foundation (P0, Q2 2025)
 
-### 1.1 Testing Infrastructure Reliability
+### 1.1 Sequential Web Testing
+- **Objective**: Replace multiple Datadog API tests with a single comprehensive sequential web test
+- **Key Results**:
+  - [ ] Implement end-to-end flow validation using Puppeteer
+  - [ ] Test critical components (header, footer, resource cards) in a single test
+  - [ ] Handle URL pattern differences between test and production environments
+  - [ ] Run tests in Docker for consistent environment
+  - [ ] Integrate with pre-commit hooks and CI/CD pipeline
+
+### 1.2 Testing Infrastructure Reliability
 - **Objective**: Ensure visual testing produces consistent, reliable results
 - **Key Results**:
   - [ ] Capture new production site screenshots for baseline comparisons
   - [ ] Update test scripts to use new screenshots
   - [ ] Achieve <5% false positive rate in visual testing
 
-### 1.2 Data Source Consolidation
+### 1.3 Data Source Consolidation
 - **Objective**: Eliminate data duplication and establish single sources of truth
 - **Key Results**:
   - [ ] Complete extraction of resource data from HTML to JavaScript (see `src/data/resources.js` TODO)

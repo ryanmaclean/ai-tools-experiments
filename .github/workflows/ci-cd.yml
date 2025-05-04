@@ -41,17 +41,37 @@ jobs:
       - name: Install Puppeteer
         run: npm install --save-dev puppeteer
       
+      - name: Configure Datadog Test Optimization
+        id: datadog-test-visibility
+        uses: datadog/test-visibility-github-action@v2
+        with:
+          languages: js
+          api_key: ${{secrets.DD_API_KEY}}
+          site: datadoghq.com
+      
       - name: Start Docker container
         run: docker-compose up -d
       
       - name: Wait for container to be ready
         run: sleep 10
       
+      - name: Run sequential web test
+        run: npm run synthetics:sequential
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY }}
+          NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
+      
       - name: Run basic Puppeteer tests
         run: node ./tests/docker-build-test.js
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY }}
+          NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
       
       - name: Run comprehensive site tests
         run: node ./tests/comprehensive-site-test.js
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY }}
+          NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
       
       - name: Stop Docker container
         run: docker-compose down

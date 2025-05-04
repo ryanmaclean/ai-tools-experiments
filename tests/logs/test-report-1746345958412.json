@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-05-04T08:05:58.411Z",
+  "baseUrl": "http://localhost:4324",
+  "errors": [
+    "Header not found on page. Tried selectors: header, div.site-header, .header, [class*=\"header\"], [class*=\"Header\"], body > header, body > div.header",
+    "Footer not found on page. Tried selectors: footer, div.site-footer, .footer, [class*=\"footer\"], [class*=\"Footer\"], body > footer, body > div.footer",
+    "No resource cards found on the resources page"
+  ],
+  "warnings": [],
+  "info": [
+    "Console: debug: [vite] connecting...",
+    "Console: debug: [vite] connected.",
+    "DOM structure saved to homepage-dom.json",
+    "Saved raw HTML to homepage-html.html for debugging",
+    "Trying resources URL: http://localhost:4324/resources",
+    "Console: debug: [vite] connecting...",
+    "Console: debug: [vite] connected.",
+    "Console: debug: [vite] connecting...",
+    "Console: debug: [vite] connected.",
+    "Successfully loaded resources page at: http://localhost:4324/resources",
+    "DOM structure saved to resources-dom.json",
+    "Searching for resource cards...",
+    "Standard selectors failed, using advanced detection...",
+    "Found 0 potential resource cards through advanced detection"
+  ],
+  "success": false
+}

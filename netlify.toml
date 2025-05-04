@@ -17,6 +17,40 @@
 [dev]
   functions = "proxy"
   
+# URL pattern redirects for compatibility between test and production environments
+[[redirects]]
+  from = "/pages/about"
+  to = "/about"
+  status = 301
+
+[[redirects]]
+  from = "/pages/resources"
+  to = "/resources"
+  status = 301
+
+[[redirects]]
+  from = "/pages/observations"
+  to = "/observations"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/pages/about"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/resources"
+  to = "/pages/resources"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/observations"
+  to = "/pages/observations"
+  status = 200
+  force = true
+
 [[redirects]]
   from = "/api/datadog/*"
   to = "/.netlify/functions/datadog-proxy"

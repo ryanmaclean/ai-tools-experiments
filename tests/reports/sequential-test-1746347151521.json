@@ -1,0 +1,114 @@
+{
+  "testName": "Datadog Sequential Web Test",
+  "startTime": "2025-05-04T08:25:51.521Z",
+  "duration": 8151,
+  "steps": [
+    {
+      "name": "Homepage Load",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:45.526Z",
+      "duration": 2157,
+      "message": "Page title: Home | AI Tools Lab | AI Tools Experiments"
+    },
+    {
+      "name": "Header Detection",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:45.537Z",
+      "duration": 10,
+      "message": "Found header with selector: header"
+    },
+    {
+      "name": "Navigation Links",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:45.554Z",
+      "duration": 17,
+      "message": "Found all required navigation links"
+    },
+    {
+      "name": "Footer Detection",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:45.555Z",
+      "duration": 1,
+      "message": "Found footer with selector: footer"
+    },
+    {
+      "name": "Resources Page Navigation",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:46.562Z",
+      "duration": 1007,
+      "message": "Successfully loaded resources page at: http://localhost:4321/resources"
+    },
+    {
+      "name": "Resource Cards",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:46.574Z",
+      "duration": 12,
+      "message": "Found 21 resource cards with selector: .resource-card",
+      "count": 21
+    },
+    {
+      "name": "Resource Card Link",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:48.739Z",
+      "duration": 2165,
+      "message": "Successfully opened resource link: https://www.adithyan.io/blog/writing-cursor-rules-with-a-cursor-rule",
+      "url": "https://www.adithyan.io/blog/writing-cursor-rules-with-a-cursor-rule"
+    },
+    {
+      "name": "Observations Page Navigation",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:49.631Z",
+      "duration": 892,
+      "message": "Successfully loaded observations page at: http://localhost:4321/observations"
+    },
+    {
+      "name": "Observations Content",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:49.639Z",
+      "duration": 8,
+      "message": "Found 5 observation elements"
+    },
+    {
+      "name": "Return to Homepage",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:50.478Z",
+      "duration": 839,
+      "message": "Successfully returned to homepage"
+    },
+    {
+      "name": "Mobile Responsiveness",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:51.412Z",
+      "duration": 934,
+      "message": "Mobile navigation detected via selector: .hamburger-menu"
+    },
+    {
+      "name": "Mobile Menu",
+      "status": "warn",
+      "timestamp": "2025-05-04T08:25:51.423Z",
+      "duration": 11,
+      "message": "Error clicking mobile menu: page.waitForTimeout is not a function"
+    },
+    {
+      "name": "Critical Component Validation",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:25:51.521Z",
+      "duration": 98,
+      "message": "All critical components validated successfully"
+    }
+  ],
+  "errors": [],
+  "warnings": [
+    {
+      "step": "Mobile Menu",
+      "message": "Error clicking mobile menu: page.waitForTimeout is not a function"
+    }
+  ],
+  "success": true,
+  "summary": {
+    "total": 13,
+    "passed": 12,
+    "warnings": 1,
+    "errors": 0
+  }
+}

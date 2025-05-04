@@ -51,18 +51,29 @@ if [ -z "$DD_API_KEY" ] || [ -z "$DD_APP_KEY" ]; then
   fi
 fi
 
-# First stage: Verify synthetic tests exist in Datadog and are passing
-echo -e "\n${BLUE}Stage 1: Verifying synthetic tests in Datadog...${NC}"
-node hooks/verify-datadog-synthetics.js
-VERIFY_EXIT_CODE=$?
+# First stage: Run the sequential web test to validate all components
+echo -e "\n${BLUE}Stage 1: Running sequential web validation...${NC}"
+
+# Use Docker for testing if available (user preference)
+if docker info > /dev/null 2>&1; then
+  echo -e "${YELLOW}Running sequential web test in Docker (consistent environment)...${NC}"
+  docker-compose run --rm app npm run synthetics:sequential
+  VERIFY_EXIT_CODE=$?
+else
+  echo -e "${YELLOW}Running sequential web test locally...${NC}"
+  npm run synthetics:sequential
+  VERIFY_EXIT_CODE=$?
+fi
 
 if [ $VERIFY_EXIT_CODE -ne 0 ]; then
-  echo -e "\n${RED}ERROR: Datadog synthetics tests verification failed!${NC}"
-  echo -e "${YELLOW}Please ensure all synthetic tests are properly configured and passing.${NC}"
-  echo -e "${YELLOW}Run 'node hooks/verify-datadog-synthetics.js' to see detailed errors.${NC}"
+  echo -e "\n${RED}ERROR: Sequential web test validation failed!${NC}"
+  echo -e "${YELLOW}Critical components failed validation.${NC}"
+  echo -e "${YELLOW}Run 'npm run synthetics:sequential' to see detailed errors.${NC}"
   echo -e "\n${RED}Commit aborted.${NC}"
   exit 1
 fi
+
+echo -e "${GREEN}✅ Sequential web test passed. All critical components validated!${NC}"
 
 # Second stage: Run local Docker validation if Docker is running
 if docker info > /dev/null 2>&1; then
@@ -94,7 +105,13 @@ else
 fi
 
 # Third stage: Visual validation against staging site URL patterns
-echo -e "\n${BLUE}Stage 3: Visual validation...${NC}"
+echo -e "\n${BLUE}Stage 3: URL validation...${NC}"
+
+# Component validation is already handled by sequential test in Stage 1
+echo -e "${GREEN}Component validation already completed in Stage 1.${NC}"
+
+# Visual URL pattern validation
+echo -e "\n${BLUE}Stage 4: Visual validation...${NC}"
 
 # Check if we can run the Puppeteer test
 if command -v node > /dev/null && [ -f "tests/visual-url-validation.js" ]; then

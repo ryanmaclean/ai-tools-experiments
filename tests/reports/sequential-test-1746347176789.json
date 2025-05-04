@@ -1,0 +1,109 @@
+{
+  "testName": "Datadog Sequential Web Test",
+  "startTime": "2025-05-04T08:26:16.789Z",
+  "duration": 6859,
+  "steps": [
+    {
+      "name": "Homepage Load",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:11.546Z",
+      "duration": 1617,
+      "message": "Page title: Home | AI Tools Lab | AI Tools Experiments"
+    },
+    {
+      "name": "Header Detection",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:11.556Z",
+      "duration": 9,
+      "message": "Found header with selector: header"
+    },
+    {
+      "name": "Navigation Links",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:11.573Z",
+      "duration": 17,
+      "message": "Found all required navigation links"
+    },
+    {
+      "name": "Footer Detection",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:11.574Z",
+      "duration": 1,
+      "message": "Found footer with selector: footer"
+    },
+    {
+      "name": "Resources Page Navigation",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:12.314Z",
+      "duration": 740,
+      "message": "Successfully loaded resources page at: http://localhost:4321/resources"
+    },
+    {
+      "name": "Resource Cards",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:12.324Z",
+      "duration": 10,
+      "message": "Found 21 resource cards with selector: .resource-card",
+      "count": 21
+    },
+    {
+      "name": "Resource Card Link",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:13.632Z",
+      "duration": 1308,
+      "message": "Successfully opened resource link: https://www.adithyan.io/blog/writing-cursor-rules-with-a-cursor-rule",
+      "url": "https://www.adithyan.io/blog/writing-cursor-rules-with-a-cursor-rule"
+    },
+    {
+      "name": "Observations Page Navigation",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:14.344Z",
+      "duration": 712,
+      "message": "Successfully loaded observations page at: http://localhost:4321/observations"
+    },
+    {
+      "name": "Observations Content",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:14.352Z",
+      "duration": 8,
+      "message": "Found 5 observation elements"
+    },
+    {
+      "name": "Return to Homepage",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:15.185Z",
+      "duration": 833,
+      "message": "Successfully returned to homepage"
+    },
+    {
+      "name": "Mobile Responsiveness",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:15.942Z",
+      "duration": 757,
+      "message": "Mobile navigation detected via selector: .hamburger-menu"
+    },
+    {
+      "name": "Mobile Menu",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:16.698Z",
+      "duration": 756,
+      "message": "Successfully clicked mobile menu"
+    },
+    {
+      "name": "Critical Component Validation",
+      "status": "pass",
+      "timestamp": "2025-05-04T08:26:16.789Z",
+      "duration": 91,
+      "message": "All critical components validated successfully"
+    }
+  ],
+  "errors": [],
+  "warnings": [],
+  "success": true,
+  "summary": {
+    "total": 13,
+    "passed": 13,
+    "warnings": 0,
+    "errors": 0
+  }
+}

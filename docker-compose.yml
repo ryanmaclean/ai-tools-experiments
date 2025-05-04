@@ -1,6 +1,28 @@
 version: '3'
 
 services:
+  # Testing service for running sequential web tests
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app
+      - /app/node_modules  # Prevent node_modules from being overwritten
+    environment:
+      - NODE_ENV=test
+      - DEBUG=false
+      - TEST_URL=http://dev:4321  # Point tests to the dev service
+    depends_on:
+      - dev
+    networks:
+      - ai-tools-network
+    # Don't start automatically
+    profiles: [test]
+    # Expose DD API key when provided
+    env_file:
+      - .env.local
+
   # Development service with hot-reloading
   dev:
     build:
@@ -16,6 +38,8 @@ services:
     environment:
       - NODE_ENV=development
     restart: unless-stopped
+    networks:
+      - ai-tools-network
     # Show log output in console
     tty: true
     stdin_open: true
@@ -31,3 +55,9 @@ services:
     environment:
       - NODE_ENV=production
     restart: unless-stopped
+    networks:
+      - ai-tools-network
+
+networks:
+  ai-tools-network:
+    driver: bridge

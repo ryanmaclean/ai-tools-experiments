@@ -95,33 +95,81 @@ async function main() {
   }
   
   try {
-    // Run MCP visual validation if enabled
+    // Run comprehensive sequential web test instead of API-based tests
+    let sequentialResults = { success: true, details: {} };
+    try {
+      console.log(`${colors.blue}Running comprehensive sequential web test...${colors.reset}`);
+      
+      // Use Docker for consistent testing environment when available
+      const useDocker = process.env.USE_DOCKER !== 'false';
+      let testCommand;
+      
+      if (useDocker && fs.existsSync('docker-compose.yml')) {
+        console.log(`${colors.cyan}Running test in Docker for consistent environment...${colors.reset}`);
+        testCommand = 'docker-compose run --rm app npm run synthetics:sequential';
+      } else {
+        console.log(`${colors.yellow}Running test in local environment...${colors.reset}`);
+        testCommand = 'node tests/datadog-sequential-test.js';
+      }
+      
+      // Run the test and capture output
+      const testOutput = execSync(testCommand, { encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] });
+      
+      // Parse out results (basic success/failure detection)
+      const success = !testOutput.includes('❌ Tests failed') && !testOutput.includes('ERROR');
+      const errorMatch = testOutput.match(/Errors: (\d+)/);
+      const warningMatch = testOutput.match(/Warnings: (\d+)/);
+      
+      sequentialResults = {
+        success,
+        details: {
+          errors: errorMatch ? parseInt(errorMatch[1]) : 0,
+          warnings: warningMatch ? parseInt(warningMatch[1]) : 0,
+          raw: testOutput
+        }
+      };
+      
+      if (success) {
+        console.log(`${colors.green}✅ Sequential web test passed${colors.reset}`);
+      } else {
+        console.log(`${colors.red}❌ Sequential web test failed${colors.reset}`);
+        console.log(`${colors.yellow}See test report for details${colors.reset}`);
+      }
+    } catch (error) {
+      console.error(`${colors.red}Error running sequential test: ${error.message}${colors.reset}`);
+      sequentialResults = {
+        success: false,
+        details: {
+          errors: 1,
+          warnings: 0,
+          raw: error.toString()
+        }
+      };
+    }
+    
+    // Optional: Still run visual validation with MCP if needed
     let visualResults = { success: true };
     if (USE_MCP) {
       visualResults = await runMcpVisualValidation();
     }
     
-    // Get existing tests from Datadog
-    const existingTests = await getAllSyntheticTests();
-    console.log(`${colors.green}Found ${existingTests.length} existing synthetic tests${colors.reset}\n`);
-    
-    // Verify all expected tests exist in Datadog
-    const verificationResults = verifyExpectedTests(existingTests);
-    
-    // Check test statuses
-    const testStatusResults = await getTestStatuses(existingTests, verificationResults.foundTests);
-    
-    // Final evaluation
-    const missingTestsIssue = verificationResults.missingTests.length > 0;
-    const failingTestsIssue = testStatusResults.failingTests.length > 0;
+    // Final evaluation based on sequential test results
+    const sequentialTestIssue = !sequentialResults.success;
     const visualValidationIssue = !visualResults.success;
+    const failingTestsIssue = false;
     
-    if (missingTestsIssue || failingTestsIssue || visualValidationIssue) {
-      console.log(`\n${colors.red}${colors.bright}VALIDATION FAILED${colors.reset}`);
+    if (sequentialTestIssue || visualValidationIssue || failingTestsIssue) {
+      console.log(`
+${colors.red}${colors.bright}VALIDATION FAILED${colors.reset}`);
       
-      if (missingTestsIssue) {
-        console.log(`${colors.red}❌ Missing ${verificationResults.missingTests.length} tests in Datadog${colors.reset}`);
-        console.log(`${colors.red}  These tests must be created before committing changes${colors.reset}`);
+      if (sequentialTestIssue) {
+        console.log(`${colors.red}❌ Sequential web test failed${colors.reset}`);
+        console.log(`${colors.red}  See test report for details${colors.reset}`);
+      }
+      
+      if (visualValidationIssue) {
+        console.log(`${colors.red}❌ Visual validation test failed${colors.reset}`);
+        console.log(`${colors.red}  See Visual testing log for details${colors.reset}`);
       }
       
       if (failingTestsIssue) {
@@ -291,16 +339,7 @@ async function getTestStatuses(tests, foundTests) {
     }
   }
   
-  // Log results
-  if (failingTests.length === 0) {
-    console.log(`${colors.green}✅ All tests are active and passing${colors.reset}`);
-  } else {
-    console.log(`${colors.red}❌ ${failingTests.length} tests are not active${colors.reset}`);
-    failingTests.forEach(test => {
-      console.log(`  ${colors.red}- ${test.name}: ${test.status}${colors.reset}`);
-    });
-  }
-  
+  // We no longer check individual test statuses since we use the sequential test
   return { passingTests, failingTests };
 }
 
