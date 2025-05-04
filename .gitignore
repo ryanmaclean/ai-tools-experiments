@@ -30,34 +30,20 @@ yarn-error.log*
 # Local Netlify folder
 .netlify
 
-# Tests
-tests/episode-screenshots/episode-ep01.png
-tests/episode-screenshots/episode-ep02.png
-tests/episode-screenshots/episode-ep03.png
-tests/episode-screenshots/episode-ep04.png
-tests/episode-screenshots/episode-ep05.png
-tests/episode-screenshots/episode-ep06.png
-tests/episode-screenshots/episode-ep07.png
-tests/episode-screenshots/episode-ep08.png
-tests/episode-screenshots/episode-ep09.png
-tests/episode-screenshots/episode-ep10.png
-tests/episode-screenshots/episode-ep11.png
-tests/episode-screenshots/episode-ep12.png
-tests/episode-screenshots/episode-ep13.png
-tests/episode-screenshots/episode-ep14.png
-tests/episode-screenshots/episode-ep15.png
-tests/episode-screenshots/episode-ep16.png
-tests/episode-screenshots/episode-ep17.png
+# Tests - Comprehensive Exclusion
+tests/__image_snapshots__/
+tests/screenshots/
+tests/episode-screenshots/
+tests/deploy-verification/
+tests/image-comparison/
+tests/puppeteer-output/
+tests/ollama-test-output/
+tests/performance-analysis/
+tests/a11y-reports/
+tests/*.json
+tests/*.png
 
-# Visual comparison screenshots
-tests/screenshots/*.png
+# Exclude comparison results but not the scripts themselves
 tests/llm-screenshots/
 tests/llm-reports/
-tests/screenshots/resources-analysis.json
-
-# Original screenshot list (keeping for reference)
-# tests/screenshots/about-page.png
-# tests/screenshots/episode-page.png
-# tests/screenshots/homepage.png
-# tests/screenshots/observations-page.png
-# tests/screenshots/resources-page.png
+tests/*-results.json
