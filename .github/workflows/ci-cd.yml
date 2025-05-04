@@ -44,18 +44,14 @@ jobs:
       # Handle Datadog API key safely - using GitHub Actions standard pattern
       - name: Check for Datadog API key
         id: check-dd-key
-        shell: bash
         run: |
-          # Using a safer pattern to check if a secret exists
-          if [ -n "$DD_API_KEY_CHECK" ]; then
+          if [[ -n "${{ secrets.DD_API_KEY }}" ]]; then
             echo "Datadog API key is available"
             echo "has_dd_key=true" >> $GITHUB_OUTPUT
           else
             echo "Datadog API key is not available"
             echo "has_dd_key=false" >> $GITHUB_OUTPUT
           fi
-        env:
-          DD_API_KEY_CHECK: ${{ secrets.DD_API_KEY }}
       
       - name: Configure Datadog Test Optimization
         id: datadog-test-visibility
@@ -99,7 +95,7 @@ jobs:
           NODE_ENV: test
           NETLIFY: "true"
           DATADOG_API_KEY: ${{ secrets.DD_API_KEY }}
-          NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
+          NODE_OPTIONS: ${{ steps.check-dd-key.outputs.has_dd_key == 'true' && format('-r {0} --import {1}', steps.datadog-test-visibility.outputs.dd-trace-package, steps.datadog-test-visibility.outputs.dd-trace-esm-import) || '' }}
           MAX_WORKERS: 4
           MAX_RETRIES: 2
       
@@ -108,13 +104,13 @@ jobs:
         env:
           DATADOG_API_KEY: ${{ secrets.DD_API_KEY }}
           DD_TEST_REPORT: 'true'
-          NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
+          NODE_OPTIONS: ${{ steps.check-dd-key.outputs.has_dd_key == 'true' && format('-r {0} --import {1}', steps.datadog-test-visibility.outputs.dd-trace-package, steps.datadog-test-visibility.outputs.dd-trace-esm-import) || '' }}
       
       - name: Run comprehensive site tests
         run: node ./tests/comprehensive-site-test.js
         env:
           DATADOG_API_KEY: ${{ secrets.DD_API_KEY }}
-          NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
+          NODE_OPTIONS: ${{ steps.check-dd-key.outputs.has_dd_key == 'true' && format('-r {0} --import {1}', steps.datadog-test-visibility.outputs.dd-trace-package, steps.datadog-test-visibility.outputs.dd-trace-esm-import) || '' }}
       
       - name: Stop Docker container
         run: docker-compose down

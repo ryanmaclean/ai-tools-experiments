@@ -1,0 +1,24 @@
+
+> ai-tools-experiments@1.0.0 dev
+> astro dev --host 0.0.0.0
+
+[1G[0K[34m▶ Astro collects anonymous usage data.[39m
+  This information helps us improve Astro.
+  Run "astro telemetry disable" to opt-out.
+  [36m[4mhttps://astro.build/telemetry[24m[39m
+
+[33m[1m20:00:58[22m [WARN][39m Unsupported file type [1m/app/src/pages/pages/slug.astro.bak[22m found. Prefix filename with an underscore (`_`) to ignore.
+[2m20:00:58[22m [34m[types][39m Generated [2m1ms[22m
+[2m20:00:59[22m [34m[content][39m Syncing content
+[33m[1m20:00:59[22m [WARN] [glob-loader][39m No files found matching "**/*{.md,.mdx},!**/_*/**/*{.md,.mdx},!**/_*{.md,.mdx}" in directory "src/content/transcripts"
+[2m20:00:59[22m [34m[content][39m Synced content
+
+[42m[1m astro [22m[49m [32mv5.7.10[39m [2mready in[22m 791 [2mms[22m
+
+[2m┃[22m Local    [36mhttp://localhost:4321/[39m
+[2m┃[22m Network  [36mhttp://172.19.0.2:4321/[39m
+
+[2m20:00:59[22m [32mwatching for file changes...[39m
+[2m20:01:00[22m [34m[200][39m / [2m37ms[22m
+[2m20:01:00[22m [33m[404][39m /scripts/datadog-rum.js [2m7ms[22m
+[33m[1m20:01:02[22m [WARN][39m Unsupported file type [1m/app/src/pages/pages/slug.astro.bak[22m found. Prefix filename with an underscore (`_`) to ignore.

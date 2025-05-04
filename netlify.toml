@@ -2,6 +2,14 @@
   command = "./scripts/build-safe.sh"
   publish = "dist"
   functions = "proxy"
+  
+  # Add environment variables to fix the dependency installation
+  environment = { NODE_VERSION = "18", NPM_FLAGS = "--no-optional --platform=linux --arch=arm64", NETLIFY = "true" }
+  
+  # Define pre and post install/build hooks
+  [build.lifecycle]
+    onPreDependencies = "./scripts/docker-entrypoint.sh && node ./scripts/netlify-arm64-verify.js"
+    onPostBuild = "node ./scripts/netlify-postbuild.js"
 
 # Explicitly specify the production branch
 [context.production]

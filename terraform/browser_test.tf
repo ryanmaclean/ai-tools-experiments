@@ -43,6 +43,10 @@ resource "datadog_synthetics_test" "main_pages" {
     timeout = 0
     params {
       value = "https://ai-tools-lab.com"
+      delay = 0
+      with_click = false
+      x = 0
+      y = 0
     }
   }
   
@@ -53,6 +57,10 @@ resource "datadog_synthetics_test" "main_pages" {
     timeout = 0
     params {
       element = "body"
+      with_click = false
+      check = "present"
+      x = 0
+      y = 0
     }
   }
 }

@@ -2,6 +2,34 @@
 
 # TODO LIST FOR DATADOG SYNTHETIC TESTS FIXES
 
+## Development Status - Critical Blockers
+
+> **IMPORTANT**: This list represents key issues blocking our push to the dev branch. Please prioritize these items.
+
+1. **GitHub Actions CI/CD Workflow Issues**
+   - Persistent lint errors related to DD_API_KEY secret context handling
+   - Improper environment variable handling in conditional steps
+   - Need proper GitHub Actions secrets management
+
+2. **Dependency and API Improvements**
+   - Replace deprecated `inflight` package with `lru-cache` as per official recommendations
+   - Integrate Datadog API collection from Postman (https://www.postman.com/datadog/datadog-s-public-workspace/collection/yp38wxl/datadog-api-collection)
+   - Update tests to use new API endpoints for monitoring
+
+3. **Docker Configuration Issues**
+   - Need to ensure the new `HANDLE_404_WARNINGS` environment variable is properly implemented
+   - Container networking configuration for test services needs verification
+   - Cross-architecture compatibility needs testing on both ARM and x86
+
+4. **CSS Validation in Tests**
+   - Missing explicit CSS property validation for critical UI elements
+   - Need checks for header background colors and other styling elements
+   - Font styling and positioning validations incomplete
+
+5. **Terraform Configuration Updates**
+   - Test scripts changes must be reflected in `/terraform/*.tf` files
+   - CSS validation needs to be added to Terraform synthetic tests
+
 ## Completed Tasks
 
 - [x] Fix header CSS background color issue in synthetic tests
@@ -10,9 +38,12 @@
   - Fixed CSS validation in the header and resource cards
   
 - [x] Fix Docker build issues
-  - Added proper build dependencies to Dockerfile.dev (Python, make, g++, pixman, cairo, etc.)
-  - Updated package-lock.json to match package.json after removing problematic dependency
-  - Added PYTHON environment variable in docker-compose.yml to help node-gyp find Python
+  - Switched from Alpine to Ubuntu 24.04 for better native module compatibility
+  - Updated Node.js to version 22.x (latest LTS as of May 2025)
+  - Upgraded npm to version 11.3.0
+  - Updated glob to version 11.0.2 and rimraf to version 6.0.1
+  - Moved canvas to optionalDependencies and used --omit=optional for Docker builds
+  - Added proper build dependencies for native modules
   - Fixed docker-compose.yml to remove obsolete version attribute
   
 - [x] Updated Terraform for synthetic tests
@@ -101,9 +132,18 @@ This project contains the website for AI Tools Lab, a collection of experiments 
 
 ### Prerequisites
 
-- Node.js 18.x or higher
-- npm 9.x or higher
+- Node.js 22.x (latest LTS as of May 2025)
+- npm 11.3.0 or higher
 - Docker and Docker Compose (for running tests)
+
+### Package Version Requirements
+
+This project requires the following specific package versions to ensure compatibility:
+
+- glob: ^9.3.5 (ensuring compatibility with Node.js modules)
+- rimraf: ^6.0.1
+
+The Docker images have been updated to use Ubuntu 24.04 for better compatibility with native Node.js modules, particularly for ARM architectures.
 - Datadog account (for monitoring)
 
 ### Installation
@@ -269,17 +309,25 @@ This will build the Docker container, run the Puppeteer tests, and trigger a Net
 
 #### Using Docker for Consistent Testing
 
-For the most reliable testing environment, always use Docker when running tests:
+We recommend using Docker for testing to ensure a consistent environment. The Docker-based test environment:
+
+- Provides isolation from local system dependencies
+- Ensures cross-architecture compatibility testing
+- Delivers more accurate test results that better reflect the production environment
+
+#### Verifying Package Versions
+
+To verify that you have the correct versions of Node.js, npm, glob, and rimraf installed, use the provided verification script:
 
 ```bash
-# Start Docker container
-docker-compose up -d
+# Make the script executable (if needed)
+chmod +x ./scripts/verify-versions.sh
 
-# Run tests against the Docker container
-node tests/comprehensive-site-test.js --port=4321
+# Run the verification script
+./scripts/verify-versions.sh
 ```
 
-This ensures consistent testing across different machines and environments.
+This script will check the installed versions in both your local environment and any running Docker containers for this project.
 
 #### Browser Preview
 
