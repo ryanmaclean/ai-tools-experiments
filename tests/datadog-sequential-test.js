@@ -54,9 +54,25 @@ class TestReport {
 
     // Log step
     const icon = status === 'pass' ? '✅' : status === 'warn' ? '⚠️' : '❌';
-    console.log(`${icon} ${name}`);
+    // Use a logging utility that can be captured by Datadog
+    const logMessage = `${icon} ${name}`;
+    console.log(logMessage);
     if (details.message) {
       console.log(`   ${details.message}`);
+    }
+    // Add trace if Datadog is available
+    try {
+      const tracer = require('dd-trace');
+      const span = tracer.scope().active();
+      if (span) {
+        span.addTags({
+          'test.step': name,
+          'test.status': status,
+          'test.message': details.message || ''
+        });
+      }
+    } catch (e) {
+      // Datadog tracing not available, continue without it
     }
 
     // Track failures

@@ -1,34 +1,120 @@
+<div align="center">
+
+# AI Tools Lab 🧪
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/94b1b695-e156-4836-9f22-aa64256e4d05/deploy-status)](https://app.netlify.com/sites/ai-tools-lab-tst/deploys)
+[![Test Site](https://img.shields.io/badge/Test_Site-ai--tools--lab--tst.netlify.app-00C7B7?style=flat&logo=netlify)](https://ai-tools-lab-tst.netlify.app/)
+[![Production](https://img.shields.io/badge/Production-ai--tools--lab.com-00C7B7?style=flat&logo=netlify)](https://ai-tools-lab.com/)
+[![Datadog](https://img.shields.io/badge/Monitoring-Datadog-632CA6?style=flat&logo=datadog)](https://app.datadoghq.com/)
 
-[![Netlify](https://ai-tools-lab-tst.netlify.app/)](https://ai-tools-lab-tst.netlify.app/)
+<a href="https://ai-tools-lab-tst.netlify.app/" target="_blank">
+  <img src="https://github.com/user-attachments/assets/9e985980-4722-48d7-9cca-9caf4d3948d3" alt="AI Tools Lab Screenshot" width="600px" />
+</a>
 
-![image](https://github.com/user-attachments/assets/9e985980-4722-48d7-9cca-9caf4d3948d3)
+</div>
 
-# What is This? 
+## About AI Tools Lab
 
-~30-40 minute recorded technical demonstrations of hands-on (early or first) experiences with AI-related tooling for developers.
+AI Tools Lab provides ~30-40 minute recorded technical demonstrations of hands-on experiences with AI-related tooling for developers. The project aims to help teams navigate the rapidly evolving AI landscape through practical exploration and honest evaluation.
 
-# Why do This?
+### Why AI Tools Lab Exists
 
-Helping the team and beyond to navigate the AI era by leading discussions, demos, and observations that are grounded in curiosity and honest experiences that can be shared in order to remain leaders, not laggers, through this transition.
+As the definition of software development evolves with AI integration, our approach to developer advocacy must adapt accordingly. AI Tools Lab addresses this need by:
 
-# Why Now?
+- **Hands-on Exploration**: Testing new AI tools in real development scenarios
+- **Honest Evaluation**: Providing unfiltered feedback on tool effectiveness
+- **Knowledge Sharing**: Creating accessible learning resources for the entire team
+- **Collaborative Growth**: Building expertise together through shared experiments
 
-What it means to be a developer is is changing rapidly. Therefore, what it means to be a developer advocate is changing rapidly.
+### Mission & Goals
 
-# Goals
+1. Educate and form evidence-based opinions on emerging AI technologies to better understand modern development challenges
 
-1. To educate ourselves and form opinions on new (AI-related) technologies, tools, and processes in order to better understand today's challenges, solutions, and current thinking in order to be a better advocate for the modern developer
+2. Establish credibility as leaders in AI-enhanced engineering excellence and thought leadership
 
-2. Build credibility and reputation as leaders in engineering excellence as it relates to AI developer tools and thought leadership
+3. Share practical knowledge about new development approaches across all technical teams
 
-3. Educate team about new technology and approaches in our space
+4. Foster collaboration and collective learning among teammates
 
-4. Collaboration with teammates
-
-# AI Tools Lab
+## Quick Start
 
 This project contains the website for AI Tools Lab, a collection of experiments and resources related to AI tools.
+
+### Prerequisites
+
+- Node.js 18.x or higher
+- npm 9.x or higher
+- Docker and Docker Compose (for running tests)
+- Datadog account (for monitoring)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/jasonhand/ai-tools-experiments.git
+cd ai-tools-experiments
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your configuration values
+```
+
+### Development
+
+```bash
+# Start the development server
+npm run dev
+
+# The site will be available at http://localhost:4321
+```
+
+### Testing
+
+```bash
+# Run sequential tests (recommended for local development)
+npm run synthetics:sequential
+
+# Run multithreaded tests (faster, used in CI/CD)
+npm run synthetics:parallel
+
+# Run component-specific tests
+npm run test:components
+```
+
+### Deployment
+
+The project is automatically deployed to Netlify when changes are pushed to the main branch.
+
+```bash
+# Manual deployment
+npm run build
+# Deploy using Netlify CLI (if installed)
+npm run deploy
+```
+
+### Datadog Integration
+
+Monitoring is provided through Datadog. Set your API key in the `.env` file:
+
+```
+DD_API_KEY=your_api_key_here
+```
+
+Activate various Datadog features:
+
+```bash
+# Run with Datadog Application Security
+DD_APPSEC_ENABLED=true npm run dev
+
+# Run with Datadog Profiler
+DD_PROFILING_ENABLED=true npm run dev
+
+# Run with minimal security monitoring (no APM)
+DD_APM_TRACING_ENABLED=false DD_APPSEC_ENABLED=true npm run dev
+```
 
 ## Directory Structure
 
@@ -262,6 +348,8 @@ This section outlines the current project roadmap with prioritized tasks and imp
   - [ ] Create Dockerfile.test with all dependencies (Node.js, ImageMagick, etc.)
   - [ ] Build docker-compose-test.yml with Ollama and Datadog services
   - [ ] Achieve 99% build success rate in CI pipeline
+  - [ ] Align test and production environments with identical Vite/Astro configurations
+  - [ ] Use environment-specific URL patterns with consistent detection logic
 
 ## 2. Observability (P1, Q3 2025)
 
@@ -286,6 +374,25 @@ This section outlines the current project roadmap with prioritized tasks and imp
   - [ ] Set up A/B testing for resource card layouts
   - [ ] Configure targeted rollouts based on user segments
 
+### 1.6 Application Security Standalone Setup
+- **Objective**: Implement Datadog Application Security without full APM tracing
+- **Key Results**:
+  - [ ] Configure with `DD_APM_TRACING_ENABLED=false` and `DD_APPSEC_ENABLED=true`
+  - [ ] Set up minimal data collection for security monitoring
+  - [ ] Implement threat detection for injection attacks and suspicious behavior
+  - [ ] Create custom security rules for application-specific threats
+  - [ ] Set up alerting for critical security events
+  - [ ] Document security posture and remediation procedures
+  
+### 1.7 Profiler Integration
+- **Objective**: Implement Datadog Profiler for performance optimization
+- **Key Results**:
+  - [ ] Set up continuous profiling for both server and client code
+  - [ ] Identify CPU and memory bottlenecks in application code
+  - [ ] Establish performance baselines for critical user flows
+  - [ ] Create custom dashboards for performance monitoring
+  - [ ] Document optimization opportunities based on profiler data
+
 ## 3. Performance Optimization (P1, Q4 2025)
 
 ### 3.1 Asset Optimization
@@ -299,6 +406,18 @@ This section outlines the current project roadmap with prioritized tasks and imp
 - **Objective**: Achieve "Good" rating on all Core Web Vitals
 - **Key Results**:
   - [ ] Optimize Largest Contentful Paint (<2.5s)
+  - [ ] Implement Interaction to Next Paint (<200ms)
+  - [ ] Ensure Cumulative Layout Shift (<0.1)
+  - [ ] Set up real-user monitoring with Datadog RUM
+
+### 3.3 UI Framework Enhancement
+- **Objective**: Improve component system with ShadCN and TailwindCSS
+- **Key Results**:
+  - [ ] Set up TailwindCSS with proper configuration for Astro
+  - [ ] Implement ShadCN component library with proper theming
+  - [ ] Create component showcase and documentation
+  - [ ] Refactor existing components to use the new framework
+  - [ ] Ensure accessibility compliance across all components
   - [ ] Improve Cumulative Layout Shift (<0.1)
   - [ ] Enhance First Input Delay (<100ms)
 
