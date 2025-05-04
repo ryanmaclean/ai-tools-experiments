@@ -30,11 +30,76 @@ async function runTest() {
   // Take a screenshot of the resources page
   await page.screenshot({ fullPage: true });
   
+  // Check header styling
+  const headerChecks = await page.evaluate(() => {
+    const header = document.querySelector('header');
+    if (!header) return { className: '', styles: {} };
+    
+    const styles = window.getComputedStyle(header);
+    return {
+      className: header.className,
+      styles: {
+        backgroundColor: styles.backgroundColor,
+        color: styles.color,
+        position: styles.position,
+        zIndex: styles.zIndex,
+        padding: styles.padding
+      }
+    };
+  });
+  
+  // Validate header styles
+  assert(
+    headerChecks.className.includes('site-header'),
+    `Header should have class 'site-header', but found: ${headerChecks.className}`
+  );
+  
+  // Validate header background color
+  const validHeaderBgColors = [
+    'rgb(147, 172, 181)', // Direct #93ACB5 color
+    'rgba(147, 172, 181, 1)', // Same with full alpha
+    '#93acb5' // Hex format
+  ];
+  
+  assert(
+    validHeaderBgColors.some(color => headerChecks.styles.backgroundColor.toLowerCase().includes(color.toLowerCase())),
+    `Header background color is invalid. Expected a shade of #93ACB5, but got: ${headerChecks.styles.backgroundColor}`
+  );
+  
   // Check for resource cards
   const resourceCardCount = await page.evaluate(() => {
     const cards = document.querySelectorAll('.resource-card, .card');
     return cards.length;
   });
+  
+  // Check resource card styling
+  const resourceCardStyles = await page.evaluate(() => {
+    const cards = document.querySelectorAll('.resource-card, .card');
+    if (cards.length === 0) return { hasCorrectStyles: false, styles: {} };
+    
+    // Check the first card's styles
+    const firstCard = cards[0];
+    const styles = window.getComputedStyle(firstCard);
+    
+    return {
+      hasCards: cards.length > 0,
+      hasCorrectStyles: styles.borderRadius !== '0px' && styles.boxShadow !== 'none',
+      styles: {
+        backgroundColor: styles.backgroundColor,
+        borderRadius: styles.borderRadius,
+        boxShadow: styles.boxShadow
+      }
+    };
+  });
+  
+  // Validate resource card styling
+  if (resourceCardCount > 0) {
+    assert(
+      resourceCardStyles.hasCorrectStyles,
+      `Resource cards are missing proper styling - should have border-radius and box-shadow
+      Found: ${JSON.stringify(resourceCardStyles.styles)}`
+    );
+  }
   
   // Check if resource cards have images and links
   const resourceCardsWithImages = await page.evaluate(() => {

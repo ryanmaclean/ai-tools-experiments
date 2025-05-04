@@ -2,10 +2,14 @@
 
 # TODO LIST FOR DATADOG SYNTHETIC TESTS FIXES
 
-1. **Fix Missing Critical CSS Classes**
+1. **Fix Missing Critical CSS Classes & Properties**
    - Ensure `site-footer` class is added to Footer component
    - Verify `site-header` class is present on Header component
    - Check that resource cards have `resource-card` class
+   - **CRITICAL**: Validate actual CSS properties not just class names:
+     - Verify header has correct background-color (#93ACB5 or var(--secondary-color))
+     - Test element positioning, z-index, and visibility
+     - Confirm text colors match production site
 
 2. **Fix Missing Synthetic Tests**
    - Create/set up the following missing tests:
