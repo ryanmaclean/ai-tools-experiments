@@ -27,41 +27,33 @@ const { title } = Astro.props;
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Revalia&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="/styles.css?v=1.0.1" /> <!-- Added version parameter for cache busting -->
  
-	<!-- Datadog RUM monitoring - NPM package approach -->
-	<script>
-		// Import Datadog browser RUM directly using the CDN approach to avoid 404s
-		!function(e,t,n,a,s){e[a]=e[a]||[],e[a].push({
-			'api_key': 'pub3ab714d81ea179c4cf78b41467d1090b',
-			'application_id': '719fdc0f-589e-4c5a-bf1c-fa42f53208fd',
-			'site': 'datadoghq.com',
-			'service': 'ai-tools-lab-tst',
-			'env': window.location.hostname.includes('ai-tools-lab-tst') ? 'staging' : 
-				(window.location.hostname.includes('ai-tools-lab.com') ? 'production' : 'development'),
-			'session_sample_rate': 100,
-			'session_replay_sample_rate': 100,
-			'default_privacy_level': 'mask-user-input',
-			'track_user_interactions': true,
-			'track_resources': true,
-			'track_long_tasks': true,
-			// Enable error tracking
-			'forward_errors': true,
-			// Use most reliable beacon transport
-			'use_beacon': true,
-			'use_fetch': false
-		});
-		
-		// Initialize the RUM SDK
-		var i=t.createElement(n);i.async=1;i.src='https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js';
-		var r=t.getElementsByTagName(n)[0];r.parentNode.insertBefore(i,r);
-		
-		// Log to console for verification
-		console.log('[Datadog] RUM initialized with application ID: 719fdc0f-589e-4c5a-bf1c-fa42f53208fd');
-		
-		// Debugging handler
-		window.addEventListener('datadog:initialized', function() {
-			console.log('[Datadog] RUM SDK initialized successfully!');
-		});
-		}(window,document,'script','DD_RUM','DD_RUM_CONFIGS');
+	<!-- Datadog RUM monitoring - Using is:inline for Astro SSR compatibility -->
+	<script is:inline>
+		(function(h,o,u,n,d) {
+		  h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
+		  d=o.createElement(u);d.async=1;d.src=n
+		  n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
+		})(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js','DD_RUM')
+		window.DD_RUM.onReady(function() {
+		  window.DD_RUM.init({
+		    clientToken: 'pub3ab714d81ea179c4cf78b41467d1090b',
+		    applicationId: '719fdc0f-589e-4c5a-bf1c-fa42f53208fd',
+		    site: 'datadoghq.com',
+		    service: 'ai-tools-lab',
+		    env: window.location.hostname.includes('ai-tools-lab-tst') ? 'staging' : 
+		      (window.location.hostname.includes('ai-tools-lab.com') ? 'production' : 'development'),
+		    // Session configuration
+		    sessionSampleRate: 100,
+		    sessionReplaySampleRate: 100,
+		    trackResources: true,
+		    trackLongTasks: true,
+		    trackUserInteractions: true,
+		    defaultPrivacyLevel: 'mask-user-input'
+		  })
+		  
+		  // Log successful initialization to console
+		  console.log('[Datadog] RUM initialized successfully')
+		})
 	</script>
 </head>
 <body>
