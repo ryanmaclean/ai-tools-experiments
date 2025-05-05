@@ -95,6 +95,11 @@ docker-compose down
    - Add component validation to CI process
    - Update README with component validation instructions
 
+7. **Netlify Build Issues**
+   - Fix dependency installation failures in Netlify builds
+   - Create Netlify-specific build script that properly handles ARM64 dependencies
+   - Update netlify.toml configuration to avoid using docker-entrypoint.sh in build process
+
 ---
 
 # AI Tools Lab 🧪
