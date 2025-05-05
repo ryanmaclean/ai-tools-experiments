@@ -96,23 +96,35 @@ async function compareSites(prodUrl, testUrl) {
       }
     }
 
-    // Test 2: Resources page comparison
-    console.log('\nTest 2: Comparing resources pages...');
-    await Promise.all([
-      prodPage.goto(`${prodUrl}/resources`, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT }),
-      testPage.goto(`${testUrl}/resources`, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT })
-    ]);
+    // Test 2: Check critical pages
+    const criticalPages = ['about', 'resources', 'observations'];
+    console.log('\nTest 2: Checking critical pages...');
+    
+    for (const page of criticalPages) {
+      console.log(`\nChecking /pages/${page}...`);
+      const [prodResponse, testResponse] = await Promise.all([
+        prodPage.goto(`${prodUrl}/pages/${page}`, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT }),
+        testPage.goto(`${testUrl}/pages/${page}`, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT })
+      ]);
 
-    // Take screenshots
-    await prodPage.screenshot({ path: path.join(screenshotsDir, 'prod-resources.png') });
-    await testPage.screenshot({ path: path.join(screenshotsDir, 'test-resources.png') });
+      // Take screenshots
+      await prodPage.screenshot({ path: path.join(screenshotsDir, `prod-${page}.png`) });
+      await testPage.screenshot({ path: path.join(screenshotsDir, `test-${page}.png`) });
 
-    // Compare resource cards
-    const prodCards = await prodPage.$$('.card');
-    const testCards = await testPage.$$('.card');
+      // Check if pages exist
+      if (prodResponse.status() === 200 && testResponse.status() !== 200) {
+        testResults.addError(`/pages/${page} page missing on test site`);
+      }
 
-    if (prodCards.length !== testCards.length) {
-      testResults.addError(`Resource card count mismatch - Prod: ${prodCards.length}, Test: ${testCards.length}`);
+      // If it's the resources page, check for cards
+      if (page === 'resources' && testResponse.status() === 200) {
+        const prodCards = await prodPage.$$('.card');
+        const testCards = await testPage.$$('.card');
+
+        if (prodCards.length !== testCards.length) {
+          testResults.addError(`Resource card count mismatch - Prod: ${prodCards.length}, Test: ${testCards.length}`);
+        }
+      }
     }
 
     // Display test results summary
