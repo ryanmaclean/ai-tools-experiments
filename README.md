@@ -1,34 +1,41 @@
 <div align="center">
 
-# TODO LIST FOR DATADOG SYNTHETIC TESTS FIXES
+# AI Tools Lab - Experiment and Test Repository
 
-## Development Status - Critical Blockers
+<img src="public/images/ai-tools-lab-logo.webp" alt="AI Tools Lab Logo" width="150" />
 
-> **IMPORTANT**: This list represents key issues blocking our push to the dev branch. Please prioritize these items.
+_Advanced Monitoring and Testing Platform for AI Tools Experimentation_
+
+</div>
+
+## Recent Improvements
+
+### Datadog RUM Integration and Synthetic Tests
+
+- **Datadog RUM** (Real User Monitoring) has been successfully integrated using the CDN approach for better cross-platform compatibility
+- **Synthetic Tests** have been updated to use the latest Datadog API format with proper assertion steps
+- **Architecture-specific modules handling** has been implemented for better ARM64 compatibility
+- **API Test Quota Management** implemented through test consolidation to stay within Datadog's 20-test quota
+
+### Cross-Architecture Compatibility
+
+- Added docker-entrypoint.sh script that detects architecture and ensures proper native modules for both ARM64 and x86
+- Fixed environment variables handling in Docker configurations
+- Improved native module handling for esbuild and rollup in different environments
+
+### Remaining Tasks
 
 1. **GitHub Actions CI/CD Workflow Issues**
-   - Persistent lint errors related to DD_API_KEY secret context handling
-   - Improper environment variable handling in conditional steps
-   - Need proper GitHub Actions secrets management
+   - Fix lint errors related to DD_API_KEY secret context handling
+   - Improve environment variable handling in conditional steps
 
-2. **Dependency and API Improvements**
-   - Replace deprecated `inflight` package with `lru-cache` as per official recommendations
+2. **Monitoring Enhancements**
    - Integrate Datadog API collection from Postman (https://www.postman.com/datadog/datadog-s-public-workspace/collection/yp38wxl/datadog-api-collection)
-   - Update tests to use new API endpoints for monitoring
+   - Verify RUM data is properly collected in Datadog dashboard
 
-3. **Docker Configuration Issues**
-   - Need to ensure the new `HANDLE_404_WARNINGS` environment variable is properly implemented
-   - Container networking configuration for test services needs verification
-   - Cross-architecture compatibility needs testing on both ARM and x86
-
-4. **CSS Validation in Tests**
-   - Missing explicit CSS property validation for critical UI elements
-   - Need checks for header background colors and other styling elements
-   - Font styling and positioning validations incomplete
-
-5. **Terraform Configuration Updates**
-   - Test scripts changes must be reflected in `/terraform/*.tf` files
-   - CSS validation needs to be added to Terraform synthetic tests
+3. **Docker Environment Refinements**
+   - Verify proper `HANDLE_404_WARNINGS` environment variable functionality
+   - Further optimize container networking configuration
 
 ## Completed Tasks
 
