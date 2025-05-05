@@ -1,0 +1,639 @@
+Test: Visual LLM
+Date: 2025-05-05T22:16:12.265Z
+Duration: 5.97 seconds
+Exit Code: 0
+Status: PASSED
+
+OUTPUT:
+Datadog API keys not found, metrics will not be sent
+Starting Visual LLM-assisted tests...
+
+Analyzing about page...
+Comparing /Users/string/ai-tools-experiments/tests/llm-screenshots/about-local-analysis.png vs /Users/string/ai-tools-experiments/tests/llm-screenshots/about-prod-simulated.png using Ollama vision model...
+Error calling Ollama API: AxiosError [AggregateError]
+    at AxiosError.from (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:863:14)
+    at RedirectableRequest.handleRequestError (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:3187:25)
+    at RedirectableRequest.emit (node:events:507:28)
+    at eventHandlers.<computed> (/Users/string/ai-tools-experiments/node_modules/follow-redirects/index.js:49:24)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at Socket.socketErrorListener (node:_http_client:518:5)
+    at Socket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at Axios.request (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:4276:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async comparePagesVisually (/Users/string/ai-tools-experiments/tests/visual-llm-test.js:104:24)
+    at async runVisualLLMTests (/Users/string/ai-tools-experiments/tests/visual-llm-test.js:256:32) {
+  code: 'ECONNREFUSED',
+  errors: [
+    Error: connect ECONNREFUSED ::1:11434
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 11434
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:11434
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 11434
+    }
+  ],
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      'User-Agent': 'axios/1.9.0',
+      'Content-Length': '284553',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'http://localhost:11434/api/generate',
+    data: `{"model":"llama3.2-vision","prompt":"\\n      I'm showing you two screenshots of the same web page. \\n      The first is from a test environment, the second is from production.\\n      \\n      Please analyze these images and tell me:\\n      1. Are there any visual differences between them?\\n      2. If there are differences, describe them in detail\\n      3. Rate the visual similarity on a scale of 0-10 where 10 is identical\\n      4. Are there any UI elements missing or incorrectly styled?\\n      5. Is the content structured the same way in both versions?\\n      \\n      Please be specific and detailed in your analysis.\\n    ","images":["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`... 274553 more characters,
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Function: handleRequestSocket]
+    },
+    _writableState: WritableState {
+      highWaterMark: 65536,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 17580812,
+      [Symbol(kBufferedValue)]: null
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'http:',
+      path: '/api/generate',
+      method: 'POST',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      hostname: 'localhost',
+      port: '11434',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/api/generate'
+    },
+    _ended: false,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 284553,
+    _requestBodyBuffers: [ [Object] ],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 284553,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      _closed: false,
+      _header: 'POST /api/generate HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'User-Agent: axios/1.9.0\r\n' +
+        'Content-Length: 284553\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: localhost:11434\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/generate',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'localhost',
+      protocol: 'http:',
+      _redirectable: [Circular *1],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(corked)]: 0,
+      [Symbol(kChunkedBuffer)]: [],
+      [Symbol(kChunkedLength)]: 0,
+      [Symbol(kSocket)]: [Socket],
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 65536,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    _currentUrl: 'http://localhost:11434/api/generate',
+    [Symbol(shapeMode)]: true,
+    [Symbol(kCapture)]: false
+  },
+  cause: AggregateError [ECONNREFUSED]: 
+      at internalConnectMultiple (node:net:1139:18)
+      at afterConnectMultiple (node:net:1714:7) {
+    code: 'ECONNREFUSED',
+    [errors]: [ [Error], [Error] ]
+  }
+}
+Falling back to ImageMagick comparison...
+- Structure analysis: {
+  "title": "FailedToLoadModuleSSR",
+  "headerExists": false,
+  "footerExists": false,
+  "mainContentExists": false,
+  "hasImages": false,
+  "hasLinks": false,
+  "hasText": false,
+  "totalElements": 6
+}
+- Visual comparison result: Fallback analysis using ImageMagick (Ollama not available): Pages appear visually identical or have negligible differences.
+- Conclusion: Page visually matches expected output
+
+Analyzing resources page...
+Comparing /Users/string/ai-tools-experiments/tests/llm-screenshots/resources-local-analysis.png vs /Users/string/ai-tools-experiments/tests/llm-screenshots/resources-prod-simulated.png using Ollama vision model...
+Error calling Ollama API: AxiosError [AggregateError]
+    at AxiosError.from (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:863:14)
+    at RedirectableRequest.handleRequestError (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:3187:25)
+    at RedirectableRequest.emit (node:events:507:28)
+    at eventHandlers.<computed> (/Users/string/ai-tools-experiments/node_modules/follow-redirects/index.js:49:24)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at Socket.socketErrorListener (node:_http_client:518:5)
+    at Socket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at Axios.request (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:4276:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async comparePagesVisually (/Users/string/ai-tools-experiments/tests/visual-llm-test.js:104:24)
+    at async runVisualLLMTests (/Users/string/ai-tools-experiments/tests/visual-llm-test.js:256:32) {
+  code: 'ECONNREFUSED',
+  errors: [
+    Error: connect ECONNREFUSED ::1:11434
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 11434
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:11434
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 11434
+    }
+  ],
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      'User-Agent': 'axios/1.9.0',
+      'Content-Length': '281417',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'http://localhost:11434/api/generate',
+    data: `{"model":"llama3.2-vision","prompt":"\\n      I'm showing you two screenshots of the same web page. \\n      The first is from a test environment, the second is from production.\\n      \\n      Please analyze these images and tell me:\\n      1. Are there any visual differences between them?\\n      2. If there are differences, describe them in detail\\n      3. Rate the visual similarity on a scale of 0-10 where 10 is identical\\n      4. Are there any UI elements missing or incorrectly styled?\\n      5. Is the content structured the same way in both versions?\\n      \\n      Please be specific and detailed in your analysis.\\n    ","images":["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`... 271417 more characters,
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Function: handleRequestSocket]
+    },
+    _writableState: WritableState {
+      highWaterMark: 65536,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 17580812,
+      [Symbol(kBufferedValue)]: null
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'http:',
+      path: '/api/generate',
+      method: 'POST',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      hostname: 'localhost',
+      port: '11434',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/api/generate'
+    },
+    _ended: false,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 281417,
+    _requestBodyBuffers: [ [Object] ],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 281417,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      _closed: false,
+      _header: 'POST /api/generate HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'User-Agent: axios/1.9.0\r\n' +
+        'Content-Length: 281417\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: localhost:11434\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/generate',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'localhost',
+      protocol: 'http:',
+      _redirectable: [Circular *1],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(corked)]: 0,
+      [Symbol(kChunkedBuffer)]: [],
+      [Symbol(kChunkedLength)]: 0,
+      [Symbol(kSocket)]: [Socket],
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 65536,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    _currentUrl: 'http://localhost:11434/api/generate',
+    [Symbol(shapeMode)]: true,
+    [Symbol(kCapture)]: false
+  },
+  cause: AggregateError [ECONNREFUSED]: 
+      at internalConnectMultiple (node:net:1139:18)
+      at afterConnectMultiple (node:net:1714:7) {
+    code: 'ECONNREFUSED',
+    [errors]: [ [Error], [Error] ]
+  }
+}
+Falling back to ImageMagick comparison...
+- Structure analysis: {
+  "title": "FailedToLoadModuleSSR",
+  "headerExists": false,
+  "footerExists": false,
+  "mainContentExists": false,
+  "hasImages": false,
+  "hasLinks": false,
+  "hasText": false,
+  "totalElements": 6
+}
+- Visual comparison result: Fallback analysis using ImageMagick (Ollama not available): Pages appear visually identical or have negligible differences.
+- Conclusion: Page visually matches expected output
+
+Analyzing observations page...
+Comparing /Users/string/ai-tools-experiments/tests/llm-screenshots/observations-local-analysis.png vs /Users/string/ai-tools-experiments/tests/llm-screenshots/observations-prod-simulated.png using Ollama vision model...
+Error calling Ollama API: AxiosError [AggregateError]
+    at AxiosError.from (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:863:14)
+    at RedirectableRequest.handleRequestError (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:3187:25)
+    at RedirectableRequest.emit (node:events:507:28)
+    at eventHandlers.<computed> (/Users/string/ai-tools-experiments/node_modules/follow-redirects/index.js:49:24)
+    at ClientRequest.emit (node:events:507:28)
+    at emitErrorEvent (node:_http_client:104:11)
+    at Socket.socketErrorListener (node:_http_client:518:5)
+    at Socket.emit (node:events:507:28)
+    at emitErrorNT (node:internal/streams/destroy:170:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:129:3)
+    at Axios.request (/Users/string/ai-tools-experiments/node_modules/axios/dist/node/axios.cjs:4276:41)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async comparePagesVisually (/Users/string/ai-tools-experiments/tests/visual-llm-test.js:104:24)
+    at async runVisualLLMTests (/Users/string/ai-tools-experiments/tests/visual-llm-test.js:256:32) {
+  code: 'ECONNREFUSED',
+  errors: [
+    Error: connect ECONNREFUSED ::1:11434
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '::1',
+      port: 11434
+    },
+    Error: connect ECONNREFUSED 127.0.0.1:11434
+        at createConnectionError (node:net:1677:14)
+        at afterConnectMultiple (node:net:1707:16) {
+      errno: -61,
+      code: 'ECONNREFUSED',
+      syscall: 'connect',
+      address: '127.0.0.1',
+      port: 11434
+    }
+  ],
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false
+    },
+    adapter: [ 'xhr', 'http', 'fetch' ],
+    transformRequest: [ [Function: transformRequest] ],
+    transformResponse: [ [Function: transformResponse] ],
+    timeout: 0,
+    xsrfCookieName: 'XSRF-TOKEN',
+    xsrfHeaderName: 'X-XSRF-TOKEN',
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: { FormData: [Function [FormData]], Blob: [class Blob] },
+    validateStatus: [Function: validateStatus],
+    headers: Object [AxiosHeaders] {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+      'User-Agent': 'axios/1.9.0',
+      'Content-Length': '279817',
+      'Accept-Encoding': 'gzip, compress, deflate, br'
+    },
+    method: 'post',
+    url: 'http://localhost:11434/api/generate',
+    data: `{"model":"llama3.2-vision","prompt":"\\n      I'm showing you two screenshots of the same web page. \\n      The first is from a test environment, the second is from production.\\n      \\n      Please analyze these images and tell me:\\n      1. Are there any visual differences between them?\\n      2. If there are differences, describe them in detail\\n      3. Rate the visual similarity on a scale of 0-10 where 10 is identical\\n      4. Are there any UI elements missing or incorrectly styled?\\n      5. Is the content structured the same way in both versions?\\n      \\n      Please be specific and detailed in your analysis.\\n    ","images":["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`... 269817 more characters,
+    allowAbsoluteUrls: true
+  },
+  request: <ref *1> Writable {
+    _events: {
+      close: undefined,
+      error: [Function: handleRequestError],
+      prefinish: undefined,
+      finish: undefined,
+      drain: undefined,
+      response: [Function: handleResponse],
+      socket: [Function: handleRequestSocket]
+    },
+    _writableState: WritableState {
+      highWaterMark: 65536,
+      length: 0,
+      corked: 0,
+      onwrite: [Function: bound onwrite],
+      writelen: 0,
+      bufferedIndex: 0,
+      pendingcb: 0,
+      [Symbol(kState)]: 17580812,
+      [Symbol(kBufferedValue)]: null
+    },
+    _maxListeners: undefined,
+    _options: {
+      maxRedirects: 21,
+      maxBodyLength: Infinity,
+      protocol: 'http:',
+      path: '/api/generate',
+      method: 'POST',
+      headers: [Object: null prototype],
+      agents: [Object],
+      auth: undefined,
+      family: undefined,
+      beforeRedirect: [Function: dispatchBeforeRedirect],
+      beforeRedirects: [Object],
+      hostname: 'localhost',
+      port: '11434',
+      agent: undefined,
+      nativeProtocols: [Object],
+      pathname: '/api/generate'
+    },
+    _ended: false,
+    _ending: true,
+    _redirectCount: 0,
+    _redirects: [],
+    _requestBodyLength: 279817,
+    _requestBodyBuffers: [ [Object] ],
+    _eventsCount: 3,
+    _onNativeResponse: [Function (anonymous)],
+    _currentRequest: ClientRequest {
+      _events: [Object: null prototype],
+      _eventsCount: 7,
+      _maxListeners: undefined,
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: false,
+      _last: false,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: true,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      strictContentLength: false,
+      _contentLength: 279817,
+      _hasBody: true,
+      _trailer: '',
+      finished: false,
+      _headerSent: true,
+      _closed: false,
+      _header: 'POST /api/generate HTTP/1.1\r\n' +
+        'Accept: application/json, text/plain, */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'User-Agent: axios/1.9.0\r\n' +
+        'Content-Length: 279817\r\n' +
+        'Accept-Encoding: gzip, compress, deflate, br\r\n' +
+        'Host: localhost:11434\r\n' +
+        'Connection: keep-alive\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'POST',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      joinDuplicateHeaders: undefined,
+      path: '/api/generate',
+      _ended: false,
+      res: null,
+      aborted: false,
+      timeoutCb: [Function: emitRequestTimeout],
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: 'localhost',
+      protocol: 'http:',
+      _redirectable: [Circular *1],
+      [Symbol(shapeMode)]: false,
+      [Symbol(kCapture)]: false,
+      [Symbol(kBytesWritten)]: 0,
+      [Symbol(kNeedDrain)]: true,
+      [Symbol(corked)]: 0,
+      [Symbol(kChunkedBuffer)]: [],
+      [Symbol(kChunkedLength)]: 0,
+      [Symbol(kSocket)]: [Socket],
+      [Symbol(kOutHeaders)]: [Object: null prototype],
+      [Symbol(errored)]: null,
+      [Symbol(kHighWaterMark)]: 65536,
+      [Symbol(kRejectNonStandardBodyWrites)]: false,
+      [Symbol(kUniqueHeaders)]: null
+    },
+    _currentUrl: 'http://localhost:11434/api/generate',
+    [Symbol(shapeMode)]: true,
+    [Symbol(kCapture)]: false
+  },
+  cause: AggregateError [ECONNREFUSED]: 
+      at internalConnectMultiple (node:net:1139:18)
+      at afterConnectMultiple (node:net:1714:7) {
+    code: 'ECONNREFUSED',
+    [errors]: [ [Error], [Error] ]
+  }
+}
+Falling back to ImageMagick comparison...
+- Structure analysis: {
+  "title": "FailedToLoadModuleSSR",
+  "headerExists": false,
+  "footerExists": false,
+  "mainContentExists": false,
+  "hasImages": false,
+  "hasLinks": false,
+  "hasText": false,
+  "totalElements": 6
+}
+- Visual comparison result: Fallback analysis using ImageMagick (Ollama not available): Pages appear visually identical or have negligible differences.
+- Conclusion: Page visually matches expected output
+
+Visual similarity summary:
+- about: 0.0000 difference score
+- observations: 0.0000 difference score
+- resources: 0.0000 difference score
+
+LLM-assisted visual tests completed!
+LLM-assisted visual tests completed successfully!
+

@@ -9,9 +9,7 @@
     "build": "astro build",
     "lint": "astro check && eslint . --ext .astro,.js,.jsx,.ts,.tsx",
     "test": "npm run test:docker",
-    "test:netlify": "vitest run tests/netlify-deployment.test.js --reporter verbose",
-    "test:netlify:ci": "NETLIFY_SITE_ID=\"$(netlify sites:current --json | jq -r .id)\" DD_TEST_REPORT=true vitest run tests/netlify-deployment.test.js --reporter json --outputFile ./test-results/netlify-deployment-results.json",
-    "verify:deps": "node ./scripts/netlify-postbuild.js",
+    "verify:deps": "node ./scripts/verify-dependencies.js",
     "serverless:instrument": "./scripts/instrument-lambda.sh",
     "serverless:list": "DD_SITE=datadoghq.com datadog-ci lambda list-functions",
     "test:visual": "node tests/visual-comparison-test.js",
@@ -53,8 +51,7 @@
     "precommit": "npm run test:components && node hooks/verify-datadog-synthetics.js",
     "validate:terraform": "cd terraform && ./validate-terraform.sh",
     "deploy:terraform": "cd terraform && terraform apply",
-    "key:rotate": "netlify functions:invoke datadog-key-rotation",
-    "key:status": "netlify functions:list | grep datadog-key-rotation",
+
     "key:verify": "node tests/verify-key-rotation.js"
   },
   "repository": {
@@ -74,7 +71,7 @@
   "homepage": "https://github.com/ryanmaclean/ai-tools-experiments#readme",
   "dependencies": {
     "@datadog/browser-rum": "^4.31.0",
-    "@netlify/functions": "^2.6.0",
+
     "dd-trace": "^3.32.0",
     "hot-shots": "^10.0.0",
     "node-fetch": "^2.6.7",
@@ -85,33 +82,21 @@
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.2.6",
-    "@axe-core/puppeteer": "^4.10.1",
     "@datadog/datadog-api-client": "^1.34.1",
     "@datadog/datadog-ci": "^3.0.1",
-    "@playwright/test": "^1.52.0",
     "@testing-library/dom": "^10.4.0",
     "astro": "^5.7.10",
     "axios": "^1.9.0",
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.5",
-    "glob": "^9.3.5",
     "jest-image-snapshot": "^6.4.0",
     "jsdom": "^26.1.0",
-    "lru-cache": "^10.4.3",
     "pixelmatch": "^7.1.0",
-    "puppeteer": "^24.8.0",
-    "rimraf": "^6.0.1",
     "vitest": "^3.1.2",
     "web-vitals": "^3.5.2"
   },
   "resolutions": {
-    "glob": "^9.3.5",
-    "rimraf": "^6.0.1",
     "@rollup/rollup-linux-arm64-gnu": "latest"
   },
-  "overrides": {
-    "glob@<9.0.0": "^9.3.5",
-    "rimraf@<4.0.0": "^6.0.1",
-    "inflight": "npm:lru-cache@10.4.3"
-  }
+  "overrides": {}
 }

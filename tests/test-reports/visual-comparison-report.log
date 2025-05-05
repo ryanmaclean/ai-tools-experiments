@@ -1,0 +1,17 @@
+Test: Visual Comparison
+Date: 2025-05-05T22:15:53.189Z
+Duration: 23.02 seconds
+Exit Code: 1
+Status: FAILED
+
+OUTPUT:
+Starting visual comparison tests...
+Detected existing Astro server on port: 4321
+Using local base URL: http://localhost:4321
+
+Testing about page...
+- Testing new URL pattern (http://localhost:4321/pages/about)...
+- Testing legacy URL pattern (http://localhost:4321/about)...
+  ✗ Legacy URL redirects to http://localhost:4321/about instead of http://localhost:4321/pages/about
+Tests failed!
+

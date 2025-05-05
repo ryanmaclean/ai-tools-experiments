@@ -1,6 +1,6 @@
 :root {
-    --primary-color: #6C756B;
-    --secondary-color: #93ACB5;
+    --primary-color: #4A5049;
+    --secondary-color: #5B7C8B;
     --accent-color: #96C5F7;
     --light-color: #F2F4FF;
     --dark-color: #6C756B;
@@ -53,6 +53,22 @@ ul {
 img {
     max-width: 100%;
     height: auto;
+}
+
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary-color);
+    color: white;
+    padding: 8px;
+    z-index: 100;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
 }
 
 /* Header Styles - Matching live site */

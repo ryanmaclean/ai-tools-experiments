@@ -82,17 +82,28 @@ async function compareVisuals() {
     await localPage.setViewport({ width: 1280, height: 900 });
     await prodPage.setViewport({ width: 1280, height: 900 });
     
-    // Define pages to test
+    // Define pages to test with both new and legacy URLs for regression testing
     const pagesToTest = [
       {
         name: 'about',
         localUrl: `${localBaseUrl}/pages/about`,
-        prodUrl: 'https://ai-tools-lab.com/pages/about'
+        prodUrl: 'https://ai-tools-lab.com/pages/about',
+        legacyUrl: `${localBaseUrl}/about`,  // Test legacy URL pattern
+        expectedRedirect: `${localBaseUrl}/pages/about`
       },
       {
         name: 'resources',
-        localUrl: `${localBaseUrl}/resources`,
-        prodUrl: 'https://ai-tools-lab.com/pages/resources'
+        localUrl: `${localBaseUrl}/pages/resources`,
+        prodUrl: 'https://ai-tools-lab.com/pages/resources',
+        legacyUrl: `${localBaseUrl}/resources`,  // Test legacy URL pattern
+        expectedRedirect: `${localBaseUrl}/pages/resources`
+      },
+      {
+        name: 'observations',
+        localUrl: `${localBaseUrl}/pages/observations`,
+        prodUrl: 'https://ai-tools-lab.com/pages/observations',
+        legacyUrl: `${localBaseUrl}/observations`,  // Test legacy URL pattern
+        expectedRedirect: `${localBaseUrl}/pages/observations`
       }
     ];
     
@@ -110,7 +121,8 @@ async function compareVisuals() {
     for (const page of pagesToTest) {
       console.log(`\nTesting ${page.name} page...`);
       
-      // Navigate to the pages
+      // Test new URL pattern
+      console.log(`- Testing new URL pattern (${page.localUrl})...`);
       await Promise.all([
         localPage.goto(page.localUrl, { waitUntil: 'networkidle2', timeout: 30000 }),
         prodPage.goto(page.prodUrl, { waitUntil: 'networkidle2', timeout: 30000 })
@@ -119,6 +131,24 @@ async function compareVisuals() {
       // Take screenshots
       await localPage.screenshot({ path: path.join(screenshotsDir, `${page.name}-local.png`), fullPage: true });
       await prodPage.screenshot({ path: path.join(screenshotsDir, `${page.name}-prod.png`), fullPage: true });
+      
+      // Test legacy URL pattern
+      if (page.legacyUrl) {
+        console.log(`- Testing legacy URL pattern (${page.legacyUrl})...`);
+        const response = await localPage.goto(page.legacyUrl, { waitUntil: 'networkidle2', timeout: 30000 });
+        
+        // Check if we got redirected to the correct URL
+        const finalUrl = response.url();
+        if (finalUrl === page.expectedRedirect) {
+          console.log(`  ✓ Legacy URL redirects correctly to ${page.expectedRedirect}`);
+        } else {
+          console.error(`  ✗ Legacy URL redirects to ${finalUrl} instead of ${page.expectedRedirect}`);
+          return false;
+        }
+        
+        // Take screenshot of legacy URL result
+        await localPage.screenshot({ path: path.join(screenshotsDir, `${page.name}-legacy.png`), fullPage: true });
+      }
       console.log(`- Screenshots captured for ${page.name}`);
       
       // Check for duplicate headers in local version
@@ -164,22 +194,37 @@ async function compareVisuals() {
       }
       
       // Test alternate URL pattern (only for pages with alternate patterns)
-      if (page.name === 'about') {
-        // Test /about URL (should redirect to the same content)
-        await localPage.goto(`http://localhost:4325/about`, { waitUntil: 'networkidle2' });
-        await localPage.screenshot({ path: path.join(screenshotsDir, `${page.name}-alternate-url.png`), fullPage: true });
+      // Check for duplicate elements and correct structure
+      const headerCount = await localPage.evaluate(() => document.querySelectorAll('header').length);
+      const footerCount = await localPage.evaluate(() => document.querySelectorAll('footer').length);
+      const navCount = await localPage.evaluate(() => document.querySelectorAll('nav').length);
+      
+      console.log('- Checking page structure:');
+      console.log(`  - Headers: ${headerCount} (expected: 1)`);
+      console.log(`  - Footers: ${footerCount} (expected: 1)`);
+      console.log(`  - Navigation: ${navCount} (expected: 1)`);
+      
+      if (headerCount !== 1 || footerCount !== 1 || navCount !== 1) {
+        console.error(`  ✗ Page structure has duplicate or missing elements`);
+        return false;
+      } else {
+        console.log(`  ✓ Page structure is correct`);
+      }
+      
+      // For resources page, check for resource cards
+      if (page.name === 'resources') {
+        const cardCount = await localPage.evaluate(() => document.querySelectorAll('.card').length);
+        const prodCardCount = await prodPage.evaluate(() => document.querySelectorAll('.card').length);
         
-        // Check that content is the same
-        const headersCountAlt = await localPage.evaluate(() => {
-          return document.querySelectorAll('header').length;
-        });
+        console.log('- Checking resource cards:');
+        console.log(`  - Local site: ${cardCount} cards`);
+        console.log(`  - Production site: ${prodCardCount} cards`);
         
-        console.log(`- Testing alternate URL pattern /about:`);
-        console.log(`  - Header count: ${headersCountAlt}`);
-        if (headersCountAlt === headersCount) {
-          console.log(`  ✓ Alternate URL pattern works correctly`);
+        if (cardCount !== prodCardCount) {
+          console.error(`  ✗ Resource card count mismatch`);
+          return false;
         } else {
-          console.error(`  WARNING: Alternate URL pattern shows different content`);
+          console.log(`  ✓ Resource card count matches production`);
         }
       }
     }

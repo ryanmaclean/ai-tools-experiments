@@ -30,9 +30,10 @@ async function runAccessibilityTests() {
     
     // Define pages to test
     const pagesToTest = [
-      { name: 'home', url: 'http://localhost:4325/' },
-      { name: 'about', url: 'http://localhost:4325/pages/about' },
-      { name: 'resources', url: 'http://localhost:4325/resources' }
+      { name: 'home', url: 'http://localhost:4321/pages/' },
+      { name: 'about', url: 'http://localhost:4321/pages/about' },
+      { name: 'resources', url: 'http://localhost:4321/pages/resources' },
+      { name: 'observations', url: 'http://localhost:4321/pages/observations' }
     ];
     
     // Test each page

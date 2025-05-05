@@ -224,8 +224,9 @@ async function runVisualLLMTests() {
     
     // Define pages to test
     const pagesToTest = [
-      { name: 'about', localUrl: 'http://localhost:4325/pages/about' },
-      { name: 'resources', localUrl: 'http://localhost:4325/resources' }
+      { name: 'about', localUrl: 'http://localhost:4321/pages/about' },
+      { name: 'resources', localUrl: 'http://localhost:4321/pages/resources' },
+      { name: 'observations', localUrl: 'http://localhost:4321/pages/observations' }
     ];
     
     // Simulate prod URLs since we can't actually access them in this test

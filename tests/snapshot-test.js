@@ -12,7 +12,7 @@ const fs = require('fs');
 const { createHash } = require('crypto');
 
 // Configuration
-const LOCAL_URL = 'http://localhost:4325';
+const LOCAL_URL = 'http://localhost:4321';
 const PROD_URL = 'https://ai-tools-lab.com';
 const SNAPSHOT_DIR = path.join(__dirname, 'snapshots');
 
@@ -267,10 +267,13 @@ describe('Visual and DOM Structure Tests', () => {
   
   describe('URL Pattern Tests', () => {
     const urlPatterns = [
-      { path: '/', title: 'AI Tools Lab' },
-      { path: '/resources', title: 'Resources' },
+      { path: '/pages/', title: 'AI Tools Lab' },
       { path: '/pages/resources', title: 'Resources' },
+      { path: '/pages/observations', title: 'Observations' },
       { path: '/pages/about', title: 'About' },
+      // Legacy URLs should redirect
+      { path: '/resources', title: 'Resources' },
+      { path: '/observations', title: 'Observations' },
       { path: '/about', title: 'About' }
     ];
     
@@ -286,7 +289,8 @@ describe('Visual and DOM Structure Tests', () => {
     test('should have similar DOM structure to production', async () => {
       const pagesToCompare = [
         { path: '/pages/about', selector: 'main' },
-        { path: '/resources', selector: 'main' }
+        { path: '/pages/resources', selector: 'main' },
+        { path: '/pages/observations', selector: 'main' }
       ];
       
       for (const { path, selector } of pagesToCompare) {

@@ -9,6 +9,10 @@ const ogImageUrl = "/images/ai-tools-lab-logo.png"; // Use the logo as a default
 ---
 
 <MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
-  <!-- Render the imported HTML content from yesterday -->
-  <Fragment set:html={AboutContent} />
+  <div class="container">
+    <article class="about-content">
+      <h1>About AI Tools Lab</h1>
+      <Fragment set:html={AboutContent} />
+    </article>
+  </div>
 </MainLayout>

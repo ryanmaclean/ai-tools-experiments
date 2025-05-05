@@ -6,7 +6,7 @@ import MainLayout from '../layouts/MainLayout.astro';
 export async function getStaticPaths() {
   try {
     // Use import.meta.glob for more reliable file loading
-    const transcriptModulesMeta = import.meta.glob('../content/transcripts/*.html', { query: 'raw', eager: true });
+    const transcriptModulesMeta = import.meta.glob('../../content/transcripts/*.html', { query: 'raw', eager: true });
     
     // Create paths for all HTML files in the transcripts directory
     const contentPaths = Object.entries(transcriptModulesMeta).map(([filePath, rawHtmlContent]) => {

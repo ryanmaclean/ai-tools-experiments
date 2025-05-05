@@ -1,0 +1,21 @@
+npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+npm warn config `--include=optional` to include them.
+npm warn config
+npm warn config       Default value does install optional deps unless otherwise omitted.
+npm warn using --force Recommended protections disabled.
+
+> ai-tools-experiments@1.0.0 test:a11y
+> node tests/accessibility-test.js
+
+Starting accessibility tests...
+
+Testing accessibility for home page...
+Error during accessibility testing: TimeoutError: Navigation timeout of 30000 ms exceeded
+    at new Deferred (/Users/string/ai-tools-experiments/node_modules/puppeteer-core/lib/cjs/puppeteer/util/Deferred.js:60:34)
+    at Deferred.create (/Users/string/ai-tools-experiments/node_modules/puppeteer-core/lib/cjs/puppeteer/util/Deferred.js:21:16)
+    at new LifecycleWatcher (/Users/string/ai-tools-experiments/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/LifecycleWatcher.js:69:60)
+    at CdpFrame.goto (/Users/string/ai-tools-experiments/node_modules/puppeteer-core/lib/cjs/puppeteer/cdp/Frame.js:148:29)
+    at CdpFrame.<anonymous> (/Users/string/ai-tools-experiments/node_modules/puppeteer-core/lib/cjs/puppeteer/util/decorators.js:109:27)
+    at CdpPage.goto (/Users/string/ai-tools-experiments/node_modules/puppeteer-core/lib/cjs/puppeteer/api/Page.js:574:43)
+    at runAccessibilityTests (/Users/string/ai-tools-experiments/tests/accessibility-test.js:42:18)
+Accessibility tests failed!

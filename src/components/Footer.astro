@@ -17,22 +17,22 @@ const currentYear = new Date().getFullYear();
       
       <div class="footer-logo">
         <!-- Using live site logo path - assuming it exists locally -->
-         <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img">
-        <div>
+        <a href="/pages/" class="logo-link" aria-label="AI Tools Lab Home">
+          <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img" width="48" height="48">
+          <div>
             <h2>AI Tools Lab</h2>
-            <!-- Updated tagline -->
             <p>Exploring the landscape of AI tools and technologies</p>
-        </div>
+          </div>
+        </a>
       </div>
 
       <!-- Consolidated links under one heading -->
-      <div class="footer-links">
+      <div class="footer-links" role="navigation" aria-label="Footer navigation">
         <h3>Quick Links</h3>
         <ul>
-          <!-- Using local paths -->
-          <li><a href="/">Home</a></li>
-          <li><a href="/resources">Resources</a></li>
-          <li><a href="/observations">Observations</a></li>
+          <li><a href="/pages/">Home</a></li>
+          <li><a href="/pages/resources">Resources</a></li>
+          <li><a href="/pages/observations">Observations</a></li>
           <li><a href="/pages/about">About</a></li>
         </ul>
       </div>
@@ -41,7 +41,7 @@ const currentYear = new Date().getFullYear();
 
     <div class="footer-bottom">
       <!-- Added Pi symbol span, kept dynamic year -->
-      <p>&copy; {currentYear} AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg">π</span></p> 
+      <p>&copy; {currentYear} AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg" role="button" tabindex="0" aria-label="Easter egg">π</span></p> 
       <!-- Maybe add privacy/terms links -->
       <!-- <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p> -->
     </div>

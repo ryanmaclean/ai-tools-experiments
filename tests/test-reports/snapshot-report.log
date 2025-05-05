@@ -1,0 +1,24 @@
+Test: Snapshot
+Date: 2025-05-05T22:15:54.328Z
+Duration: 1.14 seconds
+Exit Code: 1
+Status: FAILED
+
+OUTPUT:
+npm warn config optional Use `--omit=optional` to exclude optional dependencies, or
+npm warn config `--include=optional` to include them.
+npm warn config
+npm warn config       Default value does install optional deps unless otherwise omitted.
+npm warn using --force Recommended protections disabled.
+Datadog CI plugin not available - will run tests without Datadog integration
+
+ RUN  v3.1.2 /Users/string/ai-tools-experiments/tests
+
+No test files found, exiting with code 1
+
+filter: /Users/string/ai-tools-experiments/tests/snapshot-test.js
+include: **/*.{test,spec}.?(c|m)[jt]s?(x)
+exclude:  **/node_modules/**, **/dist/**, **/cypress/**, **/.{idea,git,cache,output,temp}/**, **/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build,eslint,prettier}.config.*
+
+JSON report written to /Users/string/ai-tools-experiments/tests/test-results/vitest-results.json
+
