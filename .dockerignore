@@ -26,13 +26,13 @@ logs/
 .DS_Store
 Thumbs.db
 
-# Test files - not needed in container
-tests/
+# Test files - needed for test container, ignored otherwise
+# tests/
 test-results/
 **/__image_snapshots__/
 **/__snapshots__/
-**/*.spec.js
-**/*.test.js
+# **/*.spec.js
+# **/*.test.js
 
 # Documentation - not needed for runtime
 docs/

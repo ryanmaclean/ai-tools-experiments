@@ -42,17 +42,17 @@ COPY package*.json ./
 COPY .npmrc ./
 
 # Fix for Rollup ARM64 issue (https://github.com/npm/cli/issues/4828)
-RUN echo '{"name":"rollup-fix","dependencies":{"@rollup/rollup-linux-arm64-gnu":"latest"}}' > rollup-fix.json \
-    && npm install --no-save --no-package-lock -f --prefix ./rollup-fix $(pwd)/rollup-fix.json \
-    && mkdir -p node_modules/@rollup/ \
-    && cp -r rollup-fix/node_modules/@rollup/rollup-linux-arm64-gnu node_modules/@rollup/ || true
+RUN mkdir -p rollup-fix \
+    && echo '{"name":"rollup-fix","dependencies":{"@rollup/rollup-linux-x64-gnu":"latest"}}' > rollup-fix/package.json \
+    && cd rollup-fix && npm install --no-save --no-package-lock -f \
+    && cd .. && mkdir -p node_modules/@rollup/ \
+    && cp -r rollup-fix/node_modules/@rollup/rollup-linux-x64-gnu node_modules/@rollup/ || true
 
 # Use npm install instead of npm ci to handle testing dependencies properly
 RUN npm install --omit=optional
 RUN npm install -D \
     @datadog/browser-rum \
-    @datadog/datadog-ci \
-    vite-plugin-datadog-ci
+    @datadog/datadog-ci
 
 # Copy test files and configuration
 COPY tests ./tests

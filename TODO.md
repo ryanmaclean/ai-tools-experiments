@@ -160,9 +160,18 @@ Our goal is to make the test environment match the production environment while 
    - [ ] Add notification webhook configuration for key rotation events
    - [ ] Implement automatic GitHub Actions secret updates post-rotation
 
-#### Rspack Migration Strategy
+#### Build Performance Testing and Optimization
+
+> Note: Build performance testing has been moved to a separate project to avoid conflicting with the main application testing. The decision has been made to use Rspack for improved build performance.
 
 - [x] Benchmark and document Rspack performance compared to alternatives
+- [x] Decision made: Use Rspack as primary bundler replacement for esbuild
+- [ ] Create new repository `build-perf-testing` for isolated build performance testing
+- [ ] Move existing build comparison tests to new repository
+- [ ] Document build performance testing methodology
+
+#### Rspack Migration Strategy
+
 - [ ] Create POC branch with Rspack configuration equivalent to current ESBuild setup
 - [ ] Update Docker configuration to properly support Rspack in all environments
 - [ ] Modify CI/CD pipeline to use Rspack for builds

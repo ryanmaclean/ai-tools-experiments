@@ -4,3 +4,17 @@
 project_id: bd5797a6-e372-4c5a-81a4-ca42c57f4d9f
 # The framework of the web application (examples: nextjs, react, vue, etc.)
 framework: astro
+# The provider of the web application (examples: vercel, netlify, aws, etc.)
+provider: netlify
+# The branch of the web application (examples: main, master, etc.)
+branch: test
+# The directory of the web application (examples: /, /app, etc.)
+directory: /
+# The build command of the web application (examples: npm run build, yarn build, etc.)
+build_command: npm run build
+# The deploy command of the web application (examples: npm run deploy, yarn deploy, etc.)
+deploy_command: npm run deploy
+# The deploy message of the web application (examples: Deploy from Windsurf, etc.)
+deploy_message: Deploy from Windsurf
+# The deploy token of the web application (examples: your-deploy-token, etc.)
+deploy_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
