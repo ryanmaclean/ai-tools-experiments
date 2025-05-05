@@ -195,6 +195,16 @@ Our goal is to make the test environment match the production environment while 
 
 - [x] Benchmark and document Rspack performance compared to alternatives
 - [x] Decision made: Use Rspack as primary bundler replacement for esbuild
+
+## Critical: Site Content Mismatch
+
+- [ ] Fix content mismatch between https://ai-tools-lab.com and https://ai-tools-lab-tst.netlify.app
+  - [ ] Compare and sync HTML content from production site
+  - [ ] Verify all pages and routes match
+  - [ ] Re-run all tests to ensure functionality
+  - [ ] Update Astro v5 templates to match production styling
+
+## Decision
 - [ ] Create new repository `build-perf-testing` for isolated build performance testing
 - [ ] Move existing build comparison tests to new repository
 - [ ] Document build performance testing methodology

@@ -5,6 +5,8 @@ const fs = require("fs");
 
 // Configuration
 const TEST_TIMEOUT = 60000; // 60 seconds timeout
+const PROD_URL = 'https://ai-tools-lab.com';
+const TEST_URL = 'https://ai-tools-lab-tst.netlify.app';
 
 // Helper function to find an available port
 async function getAvailablePort() {
@@ -47,6 +49,100 @@ const testResults = {
     return this.errors.length > 0;
   }
 };
+
+async function compareSites(prodUrl, testUrl) {
+  console.log('Starting site comparison tests...');
+  console.log(`Production URL: ${prodUrl}`);
+  console.log(`Test URL: ${testUrl}`);
+
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+
+  try {
+    const prodPage = await browser.newPage();
+    const testPage = await browser.newPage();
+
+    // Set viewport size for both pages
+    await prodPage.setViewport({ width: 1280, height: 800 });
+    await testPage.setViewport({ width: 1280, height: 800 });
+
+    // Test 1: Homepage comparison
+    console.log('\nTest 1: Comparing homepages...');
+    await Promise.all([
+      prodPage.goto(prodUrl, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT }),
+      testPage.goto(testUrl, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT })
+    ]);
+
+    // Take screenshots
+    await prodPage.screenshot({ path: path.join(screenshotsDir, 'prod-homepage.png') });
+    await testPage.screenshot({ path: path.join(screenshotsDir, 'test-homepage.png') });
+
+    // Compare content
+    const prodContent = await prodPage.content();
+    const testContent = await testPage.content();
+
+    if (prodContent !== testContent) {
+      testResults.addError('Homepage content mismatch');
+      // Compare specific elements
+      const elements = ['header', 'footer', 'main', 'nav'];
+      for (const el of elements) {
+        const prodEl = await prodPage.$(el);
+        const testEl = await testPage.$(el);
+        if ((prodEl && !testEl) || (!prodEl && testEl)) {
+          testResults.addError(`${el} element mismatch between sites`);
+        }
+      }
+    }
+
+    // Test 2: Resources page comparison
+    console.log('\nTest 2: Comparing resources pages...');
+    await Promise.all([
+      prodPage.goto(`${prodUrl}/resources`, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT }),
+      testPage.goto(`${testUrl}/resources`, { waitUntil: 'networkidle2', timeout: TEST_TIMEOUT })
+    ]);
+
+    // Take screenshots
+    await prodPage.screenshot({ path: path.join(screenshotsDir, 'prod-resources.png') });
+    await testPage.screenshot({ path: path.join(screenshotsDir, 'test-resources.png') });
+
+    // Compare resource cards
+    const prodCards = await prodPage.$$('.card');
+    const testCards = await testPage.$$('.card');
+
+    if (prodCards.length !== testCards.length) {
+      testResults.addError(`Resource card count mismatch - Prod: ${prodCards.length}, Test: ${testCards.length}`);
+    }
+
+    // Display test results summary
+    console.log('\n== TEST RESULTS SUMMARY ==');
+
+    if (testResults.warnings.length > 0) {
+      console.log('\n⚠️ WARNINGS:');
+      testResults.warnings.forEach((warn, i) => {
+        console.log(`${i+1}. ${warn}`);
+      });
+    }
+
+    if (testResults.errors.length > 0) {
+      console.log('\n❌ ERRORS:');
+      testResults.errors.forEach((err, i) => {
+        console.log(`${i+1}. ${err}`);
+      });
+      console.log('\nTests failed!');
+      return false;
+    }
+
+    console.log('\n✅ All tests completed successfully!');
+    return true;
+  } catch (error) {
+    console.error('\n❌ Error during site comparison:', error);
+    return false;
+  } finally {
+    await browser.close();
+  }
+}
 
 async function testSite(baseUrl) {
   console.log("Starting comprehensive site tests...");
@@ -206,12 +302,7 @@ async function testSite(baseUrl) {
 
 // Main function to run tests
 async function runTests() {
-  // Get port and set base URL
-  const TEST_PORT = await getAvailablePort();
-  const BASE_URL = `http://localhost:${TEST_PORT}`;
-  console.log(`Base URL for tests: ${BASE_URL}`);
-
-  return testSite(BASE_URL);
+  return compareSites(PROD_URL, TEST_URL);
 }
 
 // Run the tests
