@@ -9,8 +9,9 @@ services:
         - NODE_ENV=test
     volumes:
       - ./:/app
+      - /app/node_modules
       - ./scripts:/app/scripts
-      # Don't mount node_modules as a volume to prevent overriding native modules
+      # Use anonymous volume to protect node_modules from being overridden by host
     environment:
       - NODE_ENV=test
       - DEBUG=false
@@ -50,8 +51,9 @@ services:
     volumes:
       # Mount everything needed for development with hot-reloading
       - ./:/app
+      - /app/node_modules
       - ./scripts:/app/scripts
-      # Don't mount node_modules as a volume to prevent overriding native modules
+      # Use anonymous volume to protect node_modules from being overridden by host
     environment:
       - NODE_ENV=development
       # Address potential 404 warnings in the tests rather than suppressing them

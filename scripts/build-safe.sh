@@ -16,21 +16,21 @@ cp src/pages/observations.astro .build-backup/
 
 # 2. Replace problematic client-side script tags for build
 echo "🔄 Temporarily modifying scripts for SSR compatibility"
-sed -i '' 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/layouts/MainLayout.astro
-sed -i '' 's/document\.querySelector/\/* document.querySelector/g' src/layouts/MainLayout.astro
-sed -i '' 's/document\.getElementById/\/* document.getElementById/g' src/layouts/MainLayout.astro
+sed -i 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/layouts/MainLayout.astro
+sed -i 's/document\.querySelector/\/* document.querySelector/g' src/layouts/MainLayout.astro
+sed -i 's/document\.getElementById/\/* document.getElementById/g' src/layouts/MainLayout.astro
 
-sed -i '' 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/components/Header.astro
-sed -i '' 's/document\.querySelector/\/* document.querySelector/g' src/components/Header.astro
+sed -i 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/components/Header.astro
+sed -i 's/document\.querySelector/\/* document.querySelector/g' src/components/Header.astro
 
-sed -i '' 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/pages/index.astro
-sed -i '' 's/document\.querySelector/\/* document.querySelector/g' src/pages/index.astro
+sed -i 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/pages/index.astro
+sed -i 's/document\.querySelector/\/* document.querySelector/g' src/pages/index.astro
 
-sed -i '' 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/pages/resources.astro
-sed -i '' 's/document\.querySelector/\/* document.querySelector/g' src/pages/resources.astro
+sed -i 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/pages/resources.astro
+sed -i 's/document\.querySelector/\/* document.querySelector/g' src/pages/resources.astro
 
-sed -i '' 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/pages/observations.astro
-sed -i '' 's/document\.querySelector/\/* document.querySelector/g' src/pages/observations.astro
+sed -i 's/document\.addEventListener/console.log("Build mode"); \/* document.addEventListener/g' src/pages/observations.astro
+sed -i 's/document\.querySelector/\/* document.querySelector/g' src/pages/observations.astro
 
 # 3. Run the build
 echo "🏗️ Running Astro build"

@@ -53,9 +53,9 @@ RUN mkdir -p rollup-fix \
     && cd .. && mkdir -p node_modules/@rollup/ \
     && cp -r rollup-fix/node_modules/@rollup/rollup-linux-arm64-gnu node_modules/@rollup/ || true
 
-# Install dependencies but skip optional ones which can cause build issues
+# Install dependencies including optional ones for architecture-specific binaries
 # Use npm install instead of npm ci to handle version updates properly
-RUN npm install --omit=optional --no-audit
+RUN npm install --no-audit
 
 # We don't copy the source here - docker-compose will mount it
 # This enables hot reloading without container rebuilds
