@@ -45,7 +45,7 @@ jobs:
       - name: Check for Datadog API key
         id: check-dd-key
         run: |
-          if [[ -n "$DATADOG_API_KEY" ]]; then
+          if [[ -n "${{ secrets.DATADOG_API_KEY || '' }}" ]]; then
             echo "Datadog API key is available"
             echo "has_dd_key=true" >> $GITHUB_OUTPUT
           else
@@ -59,12 +59,12 @@ jobs:
         uses: datadog/test-visibility-github-action@f9c37a3e981cfcd76b29a38bc1071d36485be55f # v2.0.4
         with:
           languages: js
-          api_key: $DATADOG_API_KEY
+          api_key: ${{ secrets.DATADOG_API_KEY || '' }}
           site: datadoghq.com
       
       - name: Start Docker container
         env:
-          DATADOG_API_KEY: "${{ secrets.DATADOG_API_KEY }}"
+          DATADOG_API_KEY: "${{ secrets.DATADOG_API_KEY || '' }}"
           NODE_ENV: test
           NPM_FLAGS: "--no-optional --platform=linux --arch=arm64"
         run: |
@@ -78,7 +78,7 @@ jobs:
       - name: Run multithreaded tests
         run: npm run synthetics:parallel:ci
         env:
-          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY || '' }}
           DD_TEST_REPORT: 'true'
       
       - name: Run post-deployment tests with Vitest
@@ -87,14 +87,14 @@ jobs:
           DEPLOYMENT_URL: http://localhost:4321
           NETLIFY: "true"
           CONTEXT: "test"
-          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY || '' }}
           
       - name: Verify dependency installation
         run: npm run verify:deps
         env:
           NODE_ENV: test
           NETLIFY: "true"
-          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY || '' }}
           NODE_OPTIONS: ${{ steps.check-dd-key.outputs.has_dd_key == 'true' && format('-r {0} --import {1}', steps.datadog-test-visibility.outputs.dd-trace-package, steps.datadog-test-visibility.outputs.dd-trace-esm-import) || '' }}
           MAX_WORKERS: 4
           MAX_RETRIES: 2
@@ -102,14 +102,14 @@ jobs:
       - name: Run basic Puppeteer tests
         run: node ./tests/docker-build-test.js
         env:
-          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY || '' }}
           DD_TEST_REPORT: 'true'
           NODE_OPTIONS: ${{ steps.check-dd-key.outputs.has_dd_key == 'true' && format('-r {0} --import {1}', steps.datadog-test-visibility.outputs.dd-trace-package, steps.datadog-test-visibility.outputs.dd-trace-esm-import) || '' }}
       
       - name: Run comprehensive site tests
         run: node ./tests/comprehensive-site-test.js
         env:
-          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY || '' }}
           NODE_OPTIONS: ${{ steps.check-dd-key.outputs.has_dd_key == 'true' && format('-r {0} --import {1}', steps.datadog-test-visibility.outputs.dd-trace-package, steps.datadog-test-visibility.outputs.dd-trace-esm-import) || '' }}
       
       - name: Stop Docker container
