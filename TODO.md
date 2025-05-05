@@ -17,6 +17,23 @@ Our goal is to make the test environment match the production environment while 
 - [x] Verify Docker configurations using [Docker best practices](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/) for Node.js applications (verified: smaller base images, non-root user, direct node execution)
 - [x] Ensure multi-stage builds are implemented where appropriate per [Docker docs](https://docs.docker.com/build/building/multi-stage/) (verified: 1.39GB production image vs 2.32GB dev image)
 - [x] Create development and production Docker Compose configurations that match Netlify environments (verified: NETLIFY=true and CONTEXT=production present)
+- [ ] Verify proper `HANDLE_404_WARNINGS` environment variable functionality
+- [ ] Further optimize container networking configuration
+
+### GitHub Actions and CI/CD Workflow
+- [ ] Fix lint errors related to DD_API_KEY secret context handling
+- [ ] Improve environment variable handling in conditional steps
+
+### Monitoring and Datadog Integration
+
+- [x] Create scripts to send Docker build logs to Datadog
+- [x] Implement log checking for deprecated package warnings
+- [ ] Configure proper RUM (Real User Monitoring) based on [Datadog RUM documentation](https://docs.datadoghq.com/real_user_monitoring/browser/)
+- [ ] Set up API testing with Datadog synthetic monitoring per [official documentation](https://docs.datadoghq.com/synthetics/api_tests/)
+- [ ] Implement browser tests using proper CSS validation techniques
+- [ ] Configure Datadog APM for Node.js applications following [official instructions](https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/nodejs/)
+- [ ] Integrate Datadog API collection from Postman (https://www.postman.com/datadog/datadog-s-public-workspace/collection/yp38wxl/datadog-api-collection)
+- [ ] Verify RUM data is properly collected in Datadog dashboard
 
 ### Dependency Management
 
@@ -36,6 +53,14 @@ Our goal is to make the test environment match the production environment while 
 - [x] Implement Netlify post-build verification script to diagnose dependency issues
 - [x] Update GitHub Actions workflow to handle environment variables properly
 - [x] Configure Netlify environment to use the same Docker entrypoint script for build consistency
+- [ ] Apply Terraform configuration with actual Datadog credentials
+  ```bash
+  cd terraform
+  terraform apply -var datadog_api_key=YOUR_DD_API_KEY -var datadog_app_key=YOUR_DD_APP_KEY
+  ```
+- [ ] Fix dependency installation failures in Netlify builds
+- [ ] Create Netlify-specific build script that properly handles ARM64 dependencies
+- [ ] Update netlify.toml configuration to avoid using docker-entrypoint.sh in build process
 
 #### Cross-Architecture Compatibility Testing
 - [x] Test native module dependency installation on local x64 environment (Docker)
@@ -50,7 +75,7 @@ Our goal is to make the test environment match the production environment while 
 - [x] Document proper approach for supporting both architectures in one codebase
 
 #### Datadog Monitoring & Deployment Verification
-- [ ] Set up basic Datadog API test to verify credentials and connectivity
+- [x] Set up basic Datadog API test to verify credentials and connectivity
 - [ ] Create Datadog synthetic test with visual CSS validation for Netlify site
 - [ ] Implement post-deployment hook to trigger Datadog synthetic tests
 - [ ] Configure Datadog dashboard to visualize deployment success metrics
@@ -58,16 +83,12 @@ Our goal is to make the test environment match the production environment while 
 - [x] Remove existing modules to prevent conflicts
 - [x] Install exact matching version with architecture-specific binaries
 - [x] Verify binary version matches package version
+- [x] Implement secure API key handling with automated rotation using Netlify Functions
 
 #### Docker Configuration Improvements
 - [x] Use official Node images for better architecture support
 - [x] Properly configure Docker Compose commands
 - [x] Fix working directory issues with shell-based execution
-
-#### Datadog Integration
-- [x] Fix GitHub Actions workflow for secure API key handling
-- [x] Add appropriate container labels for monitoring
-- [x] Ensure proper environment variable access
 
 #### Verification & Testing
 - [x] Create test script covering all failure scenarios
@@ -81,6 +102,19 @@ Our goal is to make the test environment match the production environment while 
 - [x] Document reference materials and official patterns used
 - [ ] Implement package.json settings to ensure compatibility with [Node.js 22 features](https://nodejs.org/en/blog/release/v22.0.0)
 - [ ] Review all dependencies for Astro v5 compatibility per [Astro upgrade guide](https://docs.astro.build/en/guides/upgrade-to/v5/)
+- [ ] Document the correct HTML structure requirements
+- [ ] Add component validation to CI process
+- [ ] Update README with component validation instructions
+
+### Path and URL Inconsistencies
+- [ ] Fix inconsistent URLs between test and production:
+     - Production: `https://ai-tools-lab.com/pages/observations`
+     - Test: `https://ai-tools-lab-tst.netlify.app/observations`
+- [ ] Diagnose why all 17 API Episode Page Tests are failing
+- [ ] Create consistent paths between test and production environments
+- [ ] Create consistent HTML structure between test and production
+- [ ] Avoid URL pattern workarounds in test scripts
+- [ ] Implement proper environment-aware testing
 
 ### Critical Project Priorities
 
@@ -115,11 +149,16 @@ Our goal is to make the test environment match the production environment while 
    - [ ] Document the complete promotion workflow with necessary approvals
    
 5. **Security and API Key Management**
-   - [ ] Implement Datadog SCA scans at all stages (pre-commit, post-commit, pre-push, post-push, pre-deploy)
-   - [ ] Set up secret scanning to prevent API key leakage
-   - [ ] Create zero-tolerance policy document for API key management
-   - [ ] Migrate sensitive values to Netlify environment variables
-   - [ ] Add Datadog security monitoring for unauthorized access attempts
+   - [x] Implement Datadog SCA scans at all stages (pre-commit, post-commit, pre-push, post-push, pre-deploy)
+   - [x] Set up secret scanning to prevent API key leakage
+   - [x] Create zero-tolerance policy document for API key management
+   - [x] Migrate sensitive values to Netlify environment variables
+   - [x] Add Datadog security monitoring for unauthorized access attempts
+   - [x] Implement automated API key rotation system using Netlify Functions and scheduled jobs
+   - [x] Create comprehensive documentation on secure API key handling
+   - [x] Add verification test script for key rotation system
+   - [ ] Add notification webhook configuration for key rotation events
+   - [ ] Implement automatic GitHub Actions secret updates post-rotation
 
 #### Rspack Migration Strategy
 
@@ -154,15 +193,6 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Set appropriate environment variables in Netlify to match Docker configuration
 - [ ] Implement build hooks for testing per [Netlify build hooks documentation](https://docs.netlify.com/configure-builds/build-hooks/)
 - [ ] Ensure proper caching configurations per [Netlify build caching docs](https://docs.netlify.com/configure-builds/setting-cache-control-headers/)
-
-### Datadog Integration
-
-- [x] Create scripts to send Docker build logs to Datadog
-- [x] Implement log checking for deprecated package warnings
-- [ ] Configure proper RUM (Real User Monitoring) based on [Datadog RUM documentation](https://docs.datadoghq.com/real_user_monitoring/browser/)
-- [ ] Set up API testing with Datadog synthetic monitoring per [official documentation](https://docs.datadoghq.com/synthetics/api_tests/)
-- [ ] Implement browser tests using proper CSS validation techniques
-- [ ] Configure Datadog APM for Node.js applications following [official instructions](https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/nodejs/)
 
 ### Testing Infrastructure
 

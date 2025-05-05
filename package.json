@@ -52,7 +52,10 @@
     "hooks:install": "node hooks/install-hooks.js",
     "precommit": "npm run test:components && node hooks/verify-datadog-synthetics.js",
     "validate:terraform": "cd terraform && ./validate-terraform.sh",
-    "deploy:terraform": "cd terraform && terraform apply"
+    "deploy:terraform": "cd terraform && terraform apply",
+    "key:rotate": "netlify functions:invoke datadog-key-rotation",
+    "key:status": "netlify functions:list | grep datadog-key-rotation",
+    "key:verify": "node tests/verify-key-rotation.js"
   },
   "repository": {
     "type": "git",
@@ -71,6 +74,7 @@
   "homepage": "https://github.com/ryanmaclean/ai-tools-experiments#readme",
   "dependencies": {
     "@datadog/browser-rum": "^4.31.0",
+    "@netlify/functions": "^2.6.0",
     "dd-trace": "^3.32.0",
     "hot-shots": "^10.0.0",
     "node-fetch": "^2.6.7",

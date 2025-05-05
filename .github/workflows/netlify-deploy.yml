@@ -50,31 +50,51 @@ jobs:
         run: npm run test:resources
         env:
           NODE_OPTIONS: -r ${{ steps.datadog-test-visibility.outputs.dd-trace-package }} --import ${{ steps.datadog-test-visibility.outputs.dd-trace-esm-import }}
-      
-      - name: Inject Datadog API Keys
-        run: |
-          # Check if secrets are available (will be masked in logs)
-          if [[ -n "$DD_API_KEY" ]]; then
-            echo "DD_API_KEY is available"
-          else
-            echo "WARNING: DD_API_KEY is not set in repository secrets!"
-          fi
-          
-          if [[ -n "$DD_APP_KEY" ]]; then
-            echo "DD_APP_KEY is available"
-          else
-            echo "WARNING: DD_APP_KEY is not set in repository secrets!"
-          fi
-          
-          # Replace placeholder values with secrets in script.js
-          sed -i "s|__DD_API_KEY__|$DD_API_KEY|g" script.js
-          sed -i "s|__DD_APP_KEY__|$DD_APP_KEY|g" script.js
-        env:
           DD_API_KEY: ${{ secrets.DD_API_KEY }}
           DD_APP_KEY: ${{ secrets.DD_APP_KEY }}
       
+      - name: Create Datadog config file
+        run: |
+          # Create a configuration file for Datadog that will be bundled
+          cat > src/js/datadog-config.js << EOL
+          // This file is auto-generated during build - do not edit manually
+          export const DATADOG_CONFIG = {
+            applicationId: '${{ secrets.DD_RUM_APP_ID || '' }}',
+            clientToken: '${{ secrets.DD_CLIENT_TOKEN || '' }}',
+            site: 'datadoghq.com',
+            service: 'ai-tools-lab',
+            env: 'production',
+            version: '1.0.0',
+            // No API keys are stored in the frontend code
+          }
+          EOL
+          
+          # Verify API keys are available (values will be automatically masked in logs)
+          if [[ -n "${{ secrets.DD_API_KEY }}" ]]; then
+            echo "✅ DD_API_KEY is available"
+          else
+            echo "⚠️ WARNING: DD_API_KEY is not set in repository secrets!"
+          fi
+          
+          if [[ -n "${{ secrets.DD_APP_KEY }}" ]]; then
+            echo "✅ DD_APP_KEY is available"
+          else
+            echo "⚠️ WARNING: DD_APP_KEY is not set in repository secrets!"
+          fi
+          
+          if [[ -n "${{ secrets.DD_CLIENT_TOKEN }}" ]]; then
+            echo "✅ DD_CLIENT_TOKEN is available"
+          else
+            echo "⚠️ WARNING: DD_CLIENT_TOKEN is not set in repository secrets!"
+          fi
+      
       - name: Build Astro site
         run: npm run build
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY }}
+          DD_APP_KEY: ${{ secrets.DD_APP_KEY }}
+          DD_CLIENT_TOKEN: ${{ secrets.DD_CLIENT_TOKEN }}
+          DD_RUM_APP_ID: ${{ secrets.DD_RUM_APP_ID }}
       
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@776676e806d17d7d129ef03acb5f71f2e38b1ed5 # v2.1.0

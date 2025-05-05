@@ -6,73 +6,83 @@
  */
 
 import { datadogRum } from '@datadog/browser-rum';
+import { DATADOG_CONFIG } from './datadog-config';
 
 /**
- * Initialize Datadog RUM with Session Replay
- * 
- * Configuration is environment-aware and uses privacy settings
- * to mask sensitive user inputs automatically.
+ * Initialize Datadog RUM client if configuration is available
+ * No API keys are directly embedded in this file - they come from the build process
+ * and are stored only in environment variables and GitHub Secrets
  */
-function initDatadogRum() {
-  // Only initialize in production or if explicitly enabled in development
-  const isDev = window.location.hostname === 'localhost' || 
-                window.location.hostname === '127.0.0.1';
-  
-  // Allow testing in development with a special flag
-  const forceRumInDev = window.localStorage.getItem('DD_RUM_DEV') === 'true';
-  
-  if (isDev && !forceRumInDev) {
-    console.log('Datadog RUM disabled in development mode');
-    // Create a stub for development so calls don't fail
-    window.DD_RUM = {
-      init: () => console.log('DD_RUM.init called in dev mode'),
-      startSessionReplayRecording: () => console.log('DD_RUM.startSessionReplayRecording called in dev mode'),
-      addRumGlobalContext: () => console.log('DD_RUM.addRumGlobalContext called in dev mode'),
-      setUser: () => console.log('DD_RUM.setUser called in dev mode'),
-      addAction: () => console.log('DD_RUM.addAction called in dev mode'),
-      addError: () => console.log('DD_RUM.addError called in dev mode'),
-      startView: () => console.log('DD_RUM.startView called in dev mode'),
-      addTiming: () => console.log('DD_RUM.addTiming called in dev mode')
-    };
-    return;
+export function initDatadogRum() {
+  // Only initialize if we have the required configuration
+  if (DATADOG_CONFIG.clientToken && DATADOG_CONFIG.applicationId) {
+    try {
+      datadogRum.init({
+        applicationId: DATADOG_CONFIG.applicationId,
+        clientToken: DATADOG_CONFIG.clientToken,
+        site: DATADOG_CONFIG.site || 'datadoghq.com',
+        service: DATADOG_CONFIG.service || 'ai-tools-lab',
+        env: DATADOG_CONFIG.env || 'production',
+        version: DATADOG_CONFIG.version || '1.0.0',
+        sessionSampleRate: 100,
+        sessionReplaySampleRate: 20,
+        trackUserInteractions: true,
+        trackResources: true,
+        trackLongTasks: true,
+        defaultPrivacyLevel: 'mask-user-input'
+      });
+      
+      // Add global metadata
+      datadogRum.addRumGlobalContext('app', {
+        framework: 'astro',
+        isProduction: process.env.NODE_ENV === 'production',
+        viewport: `${window.innerWidth}x${window.innerHeight}`
+      });
+      
+      console.log('✅ Datadog RUM initialized successfully');
+      return true;
+    } catch (error) {
+      console.error('❌ Failed to initialize Datadog RUM:', error);
+      // Send error to server-side logging via the proxy
+      sendErrorToProxy({
+        message: 'Failed to initialize Datadog RUM',
+        error: error.message,
+        stack: error.stack
+      });
+      return false;
+    }
+  } else {
+    console.warn('⚠️ Datadog RUM configuration incomplete - skipping initialization');
+    return false;
   }
+}
+
+/**
+ * Send errors to the server-side proxy which will forward to Datadog
+ * This avoids exposing API keys on the client side
+ */
+function sendErrorToProxy(errorData) {
+  const proxyUrl = '/api/datadog';
   
-  try {
-    datadogRum.init({
-      applicationId: '__DATADOG_APPLICATION_ID__', // Will be replaced during build
-      clientToken: '__DATADOG_CLIENT_TOKEN__',     // Will be replaced during build
-      site: 'datadoghq.com',
-      service: 'ai-tools-lab',
-      env: isDev ? 'development' : 'production',
-      version: '1.0.0',
-      sessionSampleRate: 100,
-      sessionReplaySampleRate: 20,  // Record 20% of sessions for replay
-      trackUserInteractions: true,  // Track clicks, taps, and input changes
-      trackResources: true,          // Track resources (images, fonts, etc.)
-      trackLongTasks: true,          // Track tasks that take >50ms
-      defaultPrivacyLevel: 'mask-user-input',
-      trackFrustrations: true,       // Track rage clicks, error clicks, etc.
+  // Only attempt in production environments that have the proxy
+  if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+    fetch(proxyUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify([{
+        message: 'Client Error',
+        ddsource: 'browser-rum',
+        service: DATADOG_CONFIG.service || 'ai-tools-lab',
+        hostname: window.location.hostname,
+        status: 'error',
+        error: errorData
+      }])
+    }).catch(err => {
+      // Silent fail - we don't want to cause additional errors
+      console.warn('Failed to send error to logging proxy', err);
     });
-    
-    // Start session replay recording
-    datadogRum.startSessionReplayRecording();
-    
-    // Add global context that will be attached to all RUM events
-    datadogRum.addRumGlobalContext('app_version', '1.0.0');
-    datadogRum.addRumGlobalContext('theme', document.documentElement.dataset.theme || 'light');
-    
-    // Add core web vitals tracking
-    trackCoreWebVitals();
-    
-    // Add custom user actions tracking
-    trackCustomUserActions();
-    
-    // Expose globally for debugging and custom usage
-    window.DD_RUM = datadogRum;
-    
-    console.log('Datadog RUM initialized successfully');
-  } catch (error) {
-    console.error('Failed to initialize Datadog RUM:', error);
   }
 }
 
@@ -184,12 +194,14 @@ function trackCustomUserActions() {
   console.log('Custom user actions tracking initialized');
 }
 
-// Initialize when the DOM is fully loaded
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initDatadogRum);
-} else {
-  initDatadogRum();
+// Auto-initialize when included if window is available
+if (typeof window !== 'undefined') {
+  // Wait for DOM content to be loaded
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    initDatadogRum();
+  } else {
+    document.addEventListener('DOMContentLoaded', initDatadogRum);
+  }
 }
 
-// Export the initialization function for use in other modules
-export default initDatadogRum;
+export default { initDatadogRum };
