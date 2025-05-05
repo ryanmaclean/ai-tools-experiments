@@ -1,6 +1,51 @@
 # Build Performance Testing
 
-This directory contains isolated build performance testing for comparing different bundlers (esbuild, Rspack, etc.) in various environments.
+This directory contains all build performance testing for comparing different bundlers (esbuild, Rspack, etc.) in various environments. All build performance related code has been consolidated here to keep it separate from the main application.
+
+## Directory Structure
+
+```
+build-perf-testing/
+├── docker/           # Docker configuration for build testing
+├── results/          # Test results and benchmarks
+└── scripts/          # Test implementation files
+```
+
+## Available Tests
+
+1. `build-tools-benchmark.js` - Main benchmark suite for comparing different bundlers
+2. `performance-strategy.js` - Performance testing strategy implementation
+
+## Running Tests
+
+### Using Docker (Recommended)
+
+```bash
+# Run all bundler benchmarks
+cd docker
+docker-compose run --rm build-benchmark
+
+# Run Rspack-specific benchmarks
+docker-compose run --rm rspack-benchmark
+```
+
+### Local Development
+
+```bash
+# Install dependencies
+npm install
+
+# Run benchmarks
+node scripts/build-tools-benchmark.js
+```
+
+## Results
+
+Benchmark results are saved to `results/build-tools-benchmark-results.json`. This file contains:
+- Individual build times for each tool
+- Average build times
+- Bundle size information
+- Architecture compatibility details
 
 ## Decision
 

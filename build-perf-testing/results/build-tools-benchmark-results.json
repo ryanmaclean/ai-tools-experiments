@@ -1,0 +1,98 @@
+{
+  "environment": {
+    "platform": "linux",
+    "arch": "arm64",
+    "nodeVersion": "v22.15.0",
+    "cpus": 10,
+    "memory": "8 GB",
+    "date": "2025-05-04T23:12:57.114Z"
+  },
+  "tools": {
+    "esbuild": {
+      "name": "esbuild",
+      "category": "Fast bundlers (non-JS)",
+      "installTime": 469,
+      "buildTimes": [
+        79,
+        79,
+        79
+      ],
+      "averageBuildTime": 79,
+      "errors": [
+        "Command failed: node ./node_modules/.bin/esbuild src/index.js --bundle --outfile=dist/bundle.js",
+        "Command failed: node ./node_modules/.bin/esbuild src/index.js --bundle --outfile=dist/bundle.js",
+        "Command failed: node ./node_modules/.bin/esbuild src/index.js --bundle --outfile=dist/bundle.js"
+      ],
+      "successful": false
+    },
+    "webpack": {
+      "name": "webpack",
+      "category": "Traditional bundlers",
+      "installTime": 4477,
+      "buildTimes": [
+        1412,
+        1443,
+        1957
+      ],
+      "averageBuildTime": 1604,
+      "errors": [],
+      "successful": true,
+      "outputSize": 42357
+    },
+    "rollup": {
+      "name": "rollup",
+      "category": "Traditional bundlers",
+      "installTime": 1533,
+      "buildTimes": [
+        543,
+        480,
+        471
+      ],
+      "averageBuildTime": 498,
+      "errors": [],
+      "successful": true,
+      "outputSize": 78113
+    },
+    "vite": {
+      "name": "vite",
+      "category": "Modern dev tools",
+      "installTime": 2516,
+      "buildTimes": [
+        552,
+        493,
+        1031
+      ],
+      "averageBuildTime": 692,
+      "errors": [],
+      "successful": false
+    },
+    "rolldown": {
+      "name": "rolldown",
+      "category": "Rust-based bundlers",
+      "installTime": 3530,
+      "buildTimes": [
+        23,
+        22,
+        21
+      ],
+      "averageBuildTime": 22,
+      "errors": [],
+      "successful": false
+    },
+    "rspack": {
+      "name": "rspack",
+      "category": "Rust-based bundlers",
+      "installTime": 8490,
+      "buildTimes": [
+        209,
+        166,
+        171
+      ],
+      "averageBuildTime": 182,
+      "errors": [],
+      "successful": true,
+      "outputSize": 42570
+    }
+  },
+  "summary": "\n=== Build Tools Benchmark Results ===\n\nPlatform: linux (arm64)\nNode.js: v22.15.0\nCPUs: 10\nMemory: 8 GB\n\nFast bundlers (non-JS):\n🥇 ✗ esbuild    Build: 79ms     Bundle: N/A\n\nTraditional bundlers:\n🥇 ✓ rollup     Build: 498ms    Bundle: 76.28 KB\n🥈 ✓ webpack    Build: 1604ms   Bundle: 41.36 KB\n\nModern dev tools:\n🥇 ✗ vite       Build: 692ms    Bundle: N/A\n\nRust-based bundlers:\n🥇 ✗ rolldown   Build: 22ms     Bundle: N/A\n🥈 ✓ rspack     Build: 182ms    Bundle: 41.57 KB\n\nArchitecture Compatibility:\nCurrent Architecture: arm64\n\nesbuild    Supports: x64, arm64 (current)\nwebpack    Supports: x64, arm64 (current)\nrollup     Supports: x64, arm64 (current)\nvite       Supports: x64, arm64 (current)\nrolldown   Supports: x64, arm64 (current)\nrspack     Supports: x64, arm64 (current)\n\nOverall Performance Ranking:\n🥇 rspack     182ms (100% relative speed)\n🥈 rollup     498ms (37% relative speed)\n🥉 webpack    1604ms (11% relative speed)\n"
+}
