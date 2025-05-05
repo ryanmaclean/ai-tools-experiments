@@ -1,0 +1,7 @@
+# Datadog API Key patterns
+DD_API_KEY=[a-f0-9]{32}
+DD_APP_KEY=[a-f0-9]{40}
+DATADOG_API_KEY=[a-f0-9]{32}
+DATADOG_APP_KEY=[a-f0-9]{40}
+datadog.*api.*key.*=.*[a-f0-9]{32}
+datadog.*app.*key.*=.*[a-f0-9]{40}

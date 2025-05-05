@@ -118,6 +118,29 @@ Our goal is to make the test environment match the production environment while 
 
 ### Critical Project Priorities
 
+> **HIGHEST PRIORITY: API Key Security**
+- [ ] 1. Add patterns to .gitignore for Datadog configuration:
+  ```
+  # Datadog configuration
+  .env.datadog
+  **/datadog.config.js
+  **/*.env*
+  !.env.example
+  ```
+- [ ] 2. Implement pre-commit hook to check for API keys:
+  - Create .git/hooks/pre-commit script
+  - Add patterns for Datadog API keys
+  - Test with sample API keys
+  - Document bypass procedure for legitimate cases
+- [ ] 4. Set up secret scanning service in CI/CD pipeline:
+  - Configure GitHub secret scanning
+  - Add Datadog API key patterns
+  - Set up immediate notifications
+  - Create incident response procedure
+
+**THIS IS A CRITICAL SECURITY ISSUE - DO NOT SKIP THESE STEPS**
+
+
 > **HIGH PRIORITY 1: Error Handling Strategy**
    - [ ] Address all existing build errors directly rather than suppressing them
    - [ ] Fix GitHub Actions workflow DD_API_KEY context access errors in CI/CD configuration

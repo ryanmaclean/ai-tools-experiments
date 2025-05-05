@@ -22,6 +22,12 @@ pnpm-debug.log*
 .env
 .env*.local
 
+# Datadog configuration
+.env.datadog
+**/datadog.config.js
+**/*.env*
+!.env.example
+
 # JetBrains
 .idea
 
