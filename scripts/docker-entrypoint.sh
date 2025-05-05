@@ -24,10 +24,7 @@ install_arch_specific_packages() {
     # Install rollup for specific architecture
     echo "Installing @rollup/rollup-$os-$arch-gnu"
     npm install --no-save @rollup/rollup-$os-$arch-gnu || true
-    
-
-
-fi
+}
 
 # Call the function with detected OS and architecture
 if [ "$ARCH" = "arm64" ] || [ "$ARCH" = "aarch64" ]; then
