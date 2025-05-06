@@ -37,22 +37,64 @@ const logger = {
   }
 };
 
-// Safe file reader function to address non-literal path issue
-function safeReadFile(filePath) {
-  // Validate path to ensure it's within the project directory
-  const normalizedPath = path.normalize(filePath);
-  const projectRoot = process.cwd();
-  
-  if (!normalizedPath.startsWith(projectRoot)) {
-    logger.error(`Attempted to access file outside project: ${filePath}`);
+// Completely segregated file readers for each specific file
+// This approach completely avoids any dynamic path handling to satisfy security requirements
+
+// Individual file reader functions with hardcoded literal paths
+function readMainLayoutFile() {
+  try {
+    // Using completely static string literal path
+    return fs.readFileSync('/Users/studio/ai-tools-experiments/src/layouts/MainLayout.astro', 'utf8');
+  } catch (err) {
+    logger.error(`Error reading MainLayout.astro: ${err.message}`);
     return null;
   }
-  
+}
+
+function readDatadogConfigFile() {
   try {
-    return fs.readFileSync(normalizedPath, 'utf8');
+    // Using completely static string literal path
+    return fs.readFileSync('/Users/studio/ai-tools-experiments/src/js/datadog-config.js', 'utf8');
   } catch (err) {
-    logger.error(`Error reading file ${normalizedPath}: ${err.message}`);
+    logger.error(`Error reading datadog-config.js: ${err.message}`);
     return null;
+  }
+}
+
+function readClientScriptsFile() {
+  try {
+    // Using completely static string literal path
+    return fs.readFileSync('/Users/studio/ai-tools-experiments/src/js/client-scripts.js', 'utf8');
+  } catch (err) {
+    logger.error(`Error reading client-scripts.js: ${err.message}`);
+    return null;
+  }
+}
+
+function readTranscriptsIndexFile() {
+  try {
+    // Using completely static string literal path
+    return fs.readFileSync('/Users/studio/ai-tools-experiments/src/content/transcripts/index.html', 'utf8');
+  } catch (err) {
+    logger.error(`Error reading transcripts/index.html: ${err.message}`);
+    return null;
+  }
+}
+
+// Dispatch function that routes to the appropriate file reader
+function safeReadFile(filePath) {
+  switch(filePath) {
+    case 'src/layouts/MainLayout.astro':
+      return readMainLayoutFile();
+    case 'src/js/datadog-config.js':
+      return readDatadogConfigFile();
+    case 'src/js/client-scripts.js':
+      return readClientScriptsFile();
+    case 'src/content/transcripts/index.html':
+      return readTranscriptsIndexFile();
+    default:
+      logger.error(`File not allowed: ${filePath}`);
+      return null;
   }
 }
 
