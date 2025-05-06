@@ -30,12 +30,12 @@ Our goal is to make the test environment match the production environment while 
 
 - [x] Create scripts to send Docker build logs to Datadog
 - [x] Implement log checking for deprecated package warnings
-- [ ] Configure proper RUM (Real User Monitoring) based on [Datadog RUM documentation](https://docs.datadoghq.com/real_user_monitoring/browser/)
+- [x] Configure proper RUM (Real User Monitoring) based on [Datadog RUM documentation](https://docs.datadoghq.com/real_user_monitoring/browser/)
 - [ ] Set up API testing with Datadog synthetic monitoring per [official documentation](https://docs.datadoghq.com/synthetics/api_tests/)
 - [ ] Implement browser tests using proper CSS validation techniques
 - [ ] Configure Datadog APM for Node.js applications following [official instructions](https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/nodejs/)
 - [ ] Integrate Datadog API collection from Postman (https://www.postman.com/datadog/datadog-s-public-workspace/collection/yp38wxl/datadog-api-collection)
-- [ ] Verify RUM data is properly collected in Datadog dashboard
+- [x] Verify RUM data is properly collected in Datadog dashboard
 
 ### Dependency Management
 
@@ -43,6 +43,18 @@ Our goal is to make the test environment match the production environment while 
 - [x] Update rimraf to v6.0.1
 - [x] Replace deprecated inflight package with lru-cache
 - [x] Add resolutions/overrides in package.json to handle transitive dependencies
+
+### Deployment Preflight Checklist
+
+- [x] Verify build-safe.sh script works in both local and CI environments using portable sed syntax
+- [x] Confirm all required environment variables are set in Netlify (DD_API_KEY, DD_APP_KEY)
+- [ ] Test local build with Netlify CLI before pushing to GitHub
+- [x] Check for file path discrepancies between local and Netlify environments
+- [x] Validate src directory structure integrity for Astro build process
+- [x] Ensure Datadog RUM configuration matches Netlify environment
+- [ ] Verify Node.js and npm versions match between local, Docker, and Netlify environments
+- [ ] Test incremental builds locally before deployment
+- [ ] Check for script execution permissions in shell scripts (chmod +x)
 
 ### ARM64 Compatibility Implementation Strategy
 
@@ -283,6 +295,14 @@ Our goal is to make the test environment match the production environment while 
 2. Test Astro v5 components in Docker environment
 3. Verify build process in Netlify matches local Docker results
 4. Confirm Datadog integration is properly capturing metrics
+5. Run Datadog RUM verification script to check implementation integrity:
+   ```bash
+   node scripts/check-datadog-rum.js
+   ```
+6. Verify consistent environment detection across both test and production:
+   - Test: https://ai-tools-lab-tst.netlify.app → should report as 'staging'
+   - Production: https://ai-tools-lab.com → should report as 'production'
+7. Check Datadog dashboard to ensure events are tagged with correct environment
 5. Run all automated tests against both environments to ensure parity
 
 ## References

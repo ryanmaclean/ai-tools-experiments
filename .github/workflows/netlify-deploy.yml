@@ -57,16 +57,40 @@ jobs:
         run: |
           # Create a configuration file for Datadog that will be bundled
           cat > src/js/datadog-config.js << EOL
-          // This file is auto-generated during build - do not edit manually
+          /**
+           * Datadog RUM Configuration
+           * 
+           * This file is auto-generated during build - do not edit manually
+           * Environment detection is handled on the client-side based on hostname
+           */
+
+          // Default values that can be overridden by environment variables
           export const DATADOG_CONFIG = {
+            // Application ID and client token should be set in environment variables
             applicationId: '${{ secrets.DD_RUM_APP_ID || '' }}',
             clientToken: '${{ secrets.DD_CLIENT_TOKEN || '' }}',
+            
+            // Other configuration values
             site: 'datadoghq.com',
             service: 'ai-tools-lab',
-            env: 'production',
-            version: '1.0.0',
+            
+            // Environment detection based on hostname
+            getEnvironment: function() {
+              if (typeof window !== 'undefined') {
+                if (window.location.hostname.includes('ai-tools-lab-tst.netlify.app')) {
+                  return 'staging';
+                } else if (window.location.hostname.includes('ai-tools-lab.com')) {
+                  return 'production';
+                } else {
+                  return 'development';
+                }
+              }
+              return process.env.CONTEXT || 'development';
+            },
+            
+            version: '${{ github.sha || '1.0.0' }}',  // Use commit SHA as version if available
             // No API keys are stored in the frontend code
-          }
+          };
           EOL
           
           # Verify API keys are available (values will be automatically masked in logs)
@@ -90,6 +114,16 @@ jobs:
       
       - name: Build Astro site
         run: npm run build
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY }}
+          DD_APP_KEY: ${{ secrets.DD_APP_KEY }}
+          DD_CLIENT_TOKEN: ${{ secrets.DD_CLIENT_TOKEN }}
+          DD_RUM_APP_ID: ${{ secrets.DD_RUM_APP_ID }}
+      
+      - name: Verify Datadog RUM configuration
+        run: |
+          echo 'Verifying Datadog RUM implementation...'
+          node scripts/check-datadog-rum.js
         env:
           DD_API_KEY: ${{ secrets.DD_API_KEY }}
           DD_APP_KEY: ${{ secrets.DD_APP_KEY }}

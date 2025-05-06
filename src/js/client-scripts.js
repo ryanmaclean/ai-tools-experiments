@@ -36,37 +36,57 @@ export function setupMobileNav() {
 
 // Initialize Datadog RUM
 export function setupDatadogRUM() {
-  if (typeof window !== 'undefined' && window.DD_RUM) {
+  // Import Datadog config from window global or use local config
+  const { DATADOG_CONFIG } = typeof window !== 'undefined' && window.datadogConfig || {};
+  
+  // Check if Datadog RUM is already initialized to prevent duplicate initialization
+  if (typeof window !== 'undefined' && window.DD_RUM && !window.DD_RUM_INITIALIZED && 
+      DATADOG_CONFIG && DATADOG_CONFIG.applicationId && DATADOG_CONFIG.clientToken) {
+    
+    // Get environment from centralized config or fallback to local function
+    const environment = DATADOG_CONFIG.getEnvironment ? DATADOG_CONFIG.getEnvironment() : getEnvironment();
+    
+    // Initialize Datadog RUM with values from centralized configuration
     window.DD_RUM.init({
-      clientToken: 'pub501e7bdae51f592b13b33adf351655a3',
-      applicationId: 'db2aad17-02cf-4e95-bee7-09293dd29f1a',
-      site: 'datadoghq.com',
-      service: 'ai-tools-lab',
-      env: window.location.hostname.includes('localhost') ? 'development' : 'production',
-      version: '1.0.0',
+      applicationId: DATADOG_CONFIG.applicationId,
+      clientToken: DATADOG_CONFIG.clientToken,
+      site: DATADOG_CONFIG.site || 'datadoghq.com',
+      service: DATADOG_CONFIG.service || 'ai-tools-lab',
+      env: environment,
+      version: DATADOG_CONFIG.version || '1.0.0',
       sessionSampleRate: 100,
       sessionReplaySampleRate: 20,
-      trackUserInteractions: true,
       trackResources: true,
       trackLongTasks: true,
-      trackFrustrations: true,
+      trackUserInteractions: true,
       defaultPrivacyLevel: 'mask-user-input'
     });
+
+    // Set the initialized flag to prevent duplicate initializations
+    window.DD_RUM_INITIALIZED = true;
+    console.log(`Datadog RUM initialized in ${environment} environment`);
+  }
+  
+  // Track performance metrics even if Datadog RUM is already initialized
+  if (typeof window !== 'undefined' && window.DD_RUM && window.DD_RUM_INITIALIZED && typeof window.performance !== 'undefined') {
+    const paintEntries = window.performance.getEntriesByType('paint');
+    const fcp = paintEntries.find(entry => entry.name === 'first-contentful-paint');
     
-    window.DD_RUM.startSessionReplayRecording();
-    window.DD_RUM.addRumGlobalContext('app_version', '1.0.0');
-    
+    if (fcp && window.DD_RUM) {
+      window.DD_RUM.addTimingToPageLoad('first-contentful-paint', fcp.startTime);
+    }
+  }  
+  if (window.performance.timing) {
+    const timing = window.performance.timing;
+    window.DD_RUM.addTiming('dom_interactive', timing.domInteractive - timing.navigationStart);
+    window.DD_RUM.addTiming('dom_complete', timing.domComplete - timing.navigationStart);
+  } else if (window.DD_RUM && window.DD_RUM_INITIALIZED) {
+    // If already initialized, just add performance metrics
     if (typeof window.performance !== 'undefined') {
       const paintEntries = window.performance.getEntriesByType('paint');
       const fcp = paintEntries.find(entry => entry.name === 'first-contentful-paint');
       if (fcp) {
         window.DD_RUM.addTiming('first_contentful_paint', fcp.startTime);
-      }
-      
-      if (window.performance.timing) {
-        const timing = window.performance.timing;
-        window.DD_RUM.addTiming('dom_interactive', timing.domInteractive - timing.navigationStart);
-        window.DD_RUM.addTiming('dom_complete', timing.domComplete - timing.navigationStart);
       }
     }
   }
