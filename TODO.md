@@ -25,6 +25,11 @@ Our goal is to make the test environment match the production environment while 
 ### GitHub Actions and CI/CD Workflow
 - [ ] Fix lint errors related to DD_API_KEY secret context handling
 - [ ] Improve environment variable handling in conditional steps
+- [ ] Add visual comparison tests to CI/CD pipeline:
+  - [ ] Run visual-comparison-test.js as part of test:resources or add a new test:visual target
+  - [ ] Add post-deployment visual verification step to the Netlify workflow
+  - [ ] Configure CI to fail on significant visual differences between environments
+  - [ ] Add CSS style validation to ensure consistent fonts, colors, and layout elements
 
 ### Monitoring and Datadog Integration
 
