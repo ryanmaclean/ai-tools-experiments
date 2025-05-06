@@ -1,108 +1,126 @@
 {
-  "environment": "Production",
-  "checkedUrls": {
-    "https://ai-tools-lab.com/pages/": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/resources": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/observations": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/about": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep20": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep17": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep16": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep15": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep14": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep13": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep12": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep11": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep10": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep09": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep08": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep07": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep06": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep05": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep04": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep03": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep02": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/ep01": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/pages/observations#": {
-      "status": "success",
-      "code": 200
-    },
-    "https://ai-tools-lab.com/": {
-      "status": "success",
-      "code": 200
-    }
-  },
-  "brokenLinks": [],
+  "startTime": "2025-05-06T06:53:10.634Z",
+  "endTime": "2025-05-06T06:53:16.656Z",
+  "duration": 6022,
   "totalLinks": 2167,
   "successfulLinks": 24,
-  "brokenCount": 0,
-  "startTime": "2025-05-06T06:34:11.188Z",
-  "endTime": "2025-05-06T06:34:33.299Z",
-  "duration": 22111
+  "brokenCount": 2,
+  "checkedUrls": {
+    "/pages/ep04": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep03": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep01": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep02": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep05": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep06": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep09": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep08": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep07": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep10": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep14": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep12": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep13": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep11": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep18": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep19": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep16": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep15": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep17": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/about": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep20": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/resources": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/observations": {
+      "status": 200,
+      "success": true
+    },
+    "/": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/observations#": {
+      "status": 200,
+      "success": true
+    }
+  },
+  "brokenLinks": [
+    {
+      "url": "/pages/ep18",
+      "status": 404,
+      "referrer": "direct"
+    },
+    {
+      "url": "/pages/ep19",
+      "status": 404,
+      "referrer": "direct"
+    }
+  ]
 }

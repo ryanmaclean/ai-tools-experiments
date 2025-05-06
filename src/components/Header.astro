@@ -6,19 +6,13 @@
 // - Production (ai-tools-lab.com): URL_PREFIX = '/pages'
 // - Test (ai-tools-lab-tst.netlify.app): URL_PREFIX = ''
 
-// Step 1: Get URL prefix from environment variables
-let pathPrefix = import.meta.env.URL_PREFIX || process.env.URL_PREFIX || '';
+// STANDARDIZED APPROACH: Make test environment match production exactly
+// Always use /pages prefix for all environments to ensure consistency
+// This matches the change in [episode].astro and fixes the URL structure mismatch
+let pathPrefix = '/pages';
 
-// Step 2: Fallback detection (server-side) based on hostname
-if (pathPrefix === '') {
-  if (Astro.url.hostname === 'ai-tools-lab.com') {
-    // Production environment needs /pages prefix
-    pathPrefix = '/pages';
-  } else {
-    // Test environment uses direct routes
-    pathPrefix = '';
-  }
-}
+// No conditional environment detection - standardizing on one pattern for simplicity
+// This reduces configuration complexity and follows the 'less configuration is better' principle
 
 
 // Create environment-aware paths for navigation
@@ -203,7 +197,7 @@ const aboutPath = `${pathPrefix}/about`;
 
 </style>
 
-<script is:client>
+<script define:vars={{pathPrefix}}>
   // Client-side code - only runs in the browser
   document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu functionality

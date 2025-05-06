@@ -17,11 +17,11 @@
   publish = "dist"
   environment = { CONTEXT = "production", URL_PREFIX = "/pages" }
 
-# Test environment settings
+# Test environment settings - use same URL_PREFIX as production for consistency
 [context.test]
   command = "./scripts/build-safe.sh"
   publish = "dist"
-  environment = { CONTEXT = "test", URL_PREFIX = "" }
+  environment = { CONTEXT = "test", URL_PREFIX = "/pages" }
 
 # Development settings
 [dev]
@@ -62,21 +62,41 @@
   force = true
   conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
 
-# For Test: Ensure episode pages are properly accessible
+# STANDARDIZED URL STRUCTURE: Make both environments use the same format
+# All episode content is accessed using the /pages/ep01 format in both environments
+
+# Handle legacy /episodes/ep1 format in both environments
 [[redirects]]
-  from = "/episodes/:episode"
-  to = "/episodes/:episode/index.html"
-  status = 200
-  force = false
-  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+  from = "/episodes/ep:id([0-9])"
+  to = "/pages/ep0:id"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/episodes/ep:id([0-9][0-9])"
+  to = "/pages/ep:id"
+  status = 301
+  force = true
   
-# For Production: Ensure episode pages are properly accessible
+# Handle old episode URL format in production
 [[redirects]]
-  from = "/pages/episodes/:episode"
-  to = "/pages/episodes/:episode/index.html"
+  from = "/pages/episodes/ep:id([0-9])"
+  to = "/pages/ep0:id"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pages/episodes/ep:id([0-9][0-9])"
+  to = "/pages/ep:id"
+  status = 301
+  force = true
+  
+# Ensure direct access to episode pages works
+[[redirects]]
+  from = "/pages/ep:id([0-9][0-9])"
+  to = "/pages/ep:id/index.html"
   status = 200
   force = false
-  conditions = {host = ["ai-tools-lab.com"]}
 
 # For Test: Make sure direct routes work properly
 [[redirects]]

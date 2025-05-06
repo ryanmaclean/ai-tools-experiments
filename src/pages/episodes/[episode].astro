@@ -11,23 +11,18 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import fs from 'node:fs';
 import path from 'node:path';
 
-// Get URL prefix from environment variables - same logic as in Header.astro
-let pathPrefix = import.meta.env.URL_PREFIX || process.env.URL_PREFIX || '';
+// IMPORTANT: To make test match production exactly, we are standardizing URL structure
+// All environments will use /pages/ prefix, making test environment match production exactly
+// This solves the root cause of the URL structure mismatch
 
-// Fallback detection based on hostname
-if (pathPrefix === '') {
-  if (Astro.url.hostname === 'ai-tools-lab.com') {
-    // Production environment needs /pages prefix
-    pathPrefix = '/pages';
-  } else {
-    // Test environment uses direct routes
-    pathPrefix = '';
-  }
-}
+// Get URL prefix - always use /pages for episodes to match production structure exactly
+let pathPrefix = '/pages';
+
+// No conditional logic - same structure everywhere for consistency
 
 // Get all episode files that exist in our content directory
 export function getStaticPaths() {
-  // Explicitly define all 20 episodes to ensure consistency
+  // Create routes for all 20 episodes - now that we've fixed placeholders for ep18 and ep19
   const episodes = Array.from({ length: 20 }, (_, i) => {
     const num = i + 1;
     const paddedNum = num.toString().padStart(2, '0');

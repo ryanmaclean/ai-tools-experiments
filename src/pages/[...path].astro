@@ -1,0 +1,70 @@
+---
+/**
+ * Catch-all route handler
+ * 
+ * This component handles various URL patterns to ensure consistency between environments,
+ * particularly for episode content. It standardizes URLs to match production format.
+ */
+import { getCollection } from 'astro:content';
+import MainLayout from '../layouts/MainLayout.astro';
+
+// Get the path segments from the URL
+const { path } = Astro.params;
+
+// Map episode URLs to a standard format that matches production
+let redirectTo = null;
+
+// Handle episodes in all environments to match production format
+if (path?.includes('episodes/')) {
+  // Extract episode number from URL like /episodes/ep1, /episodes/ep01, etc.
+  const episodeMatch = path.match(/episodes\/ep([0-9]{1,2})/);
+  
+  if (episodeMatch) {
+    // Get the episode number and ensure it's zero-padded for single digits
+    const episodeNum = parseInt(episodeMatch[1]);
+    const paddedNum = episodeNum.toString().padStart(2, '0');
+    
+    // Redirect to /pages/ep01 format (production format)
+    redirectTo = `/pages/ep${paddedNum}`;
+  }
+}
+
+// Perform redirect if needed
+if (redirectTo) {
+  return Astro.redirect(redirectTo);
+}
+
+// Default 404 response for unhandled paths
+Astro.response.status = 404;
+---
+
+<MainLayout title="Page Not Found">
+  <div class="not-found-container">
+    <h1>404 - Page Not Found</h1>
+    <p>The page you're looking for doesn't exist.</p>
+    <p><a href="/pages/">Return to Home</a></p>
+  </div>
+</MainLayout>
+
+<style>
+  .not-found-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  a {
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+</style>
