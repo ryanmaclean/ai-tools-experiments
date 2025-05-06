@@ -107,6 +107,27 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Add component validation to CI process
 - [ ] Update README with component validation instructions
 
+### Astro v5 Migration and Content-Focused Features
+
+- [ ] Upgrade Astro to v5 following the [official migration guide](https://docs.astro.build/en/guides/upgrade-to/v5/)
+- [ ] Update configuration in astro.config.mjs for v5 compatibility
+- [ ] Refactor code to use new Astro v5 APIs and features
+- [ ] Test all components with Astro v5's new rendering system
+- [ ] Implement [Astro v5 View Transitions](https://docs.astro.build/en/guides/view-transitions/) for improved UX
+- [ ] Adopt Astro's zero-JavaScript approach for content-focused pages to reduce client-side load, as highlighted in [Astro for Docs](https://astrofordocs.vercel.app/)
+- [ ] Integrate Markdown files as pages using Astro’s MDX for documentation, per [Using MDX files](https://astrofordocs.vercel.app/docs/using-mdx-files)
+- [ ] Utilize TailwindCSS with Astro for styling documentation pages, following [Using TailwindCSS](https://astrofordocs.vercel.app/docs/using-tailwindcss)
+- [ ] Design nested layouts for better developer experience in documentation, as described in [Nested Layouts](https://astrofordocs.vercel.app/docs/nested-layouts)
+- [ ] Ensure type safety in layouts to prevent runtime errors, per [Typesafety in Layouts](https://astrofordocs.vercel.app/docs/typesafety)
+- [ ] Leverage Astro's Runtime APIs to build dynamic components for documentation, following [Runtime APIs](https://astrofordocs.vercel.app/docs/runtime-apis)
+
+### Documentation and Content Strategy
+
+- [ ] Create comprehensive documentation using Astro as a language for content-focused websites, inspired by [Astro as a language](https://astrofordocs.vercel.app/docs/astro-language)
+- [ ] Document the benefits of Astro's server-first approach and minimal JavaScript for performance, referencing [Why Astro - Easy to Use](https://docs.astro.build/en/concepts/why-astro/) and [MPAs vs SPAs](https://docs.astro.build/en/concepts/mpa-vs-spa/)
+- [ ] Explore and document integration options with other UI frameworks (React, Svelte, Vue) for flexibility, as per [Integrations](https://astro.build/integrations/)
+- [ ] Summarize the benefits and conclusions of using Astro for documentation in a dedicated section, inspired by [Conclusion](https://astrofordocs.vercel.app/docs/conclusion)
+
 ### Path and URL Inconsistencies
 - [ ] Fix inconsistent URLs between test and production:
      - Production: `https://ai-tools-lab.com/pages/observations`
@@ -227,14 +248,6 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Evaluate Bazel for potential long-term enterprise build solution
 - [ ] Document migration path from Rspack to Bazel if justified by project scale
 
-### Astro v5 Migration
-
-- [ ] Upgrade Astro to v5 following the [official migration guide](https://docs.astro.build/en/guides/upgrade-to/v5/)
-- [ ] Update configuration in astro.config.mjs for v5 compatibility
-- [ ] Refactor code to use new Astro v5 APIs and features
-- [ ] Test all components with Astro v5's new rendering system
-- [ ] Implement [Astro v5 View Transitions](https://docs.astro.build/en/guides/view-transitions/) for improved UX
-
 ### Netlify Configuration
 
 - [ ] Create or update netlify.toml to specify build settings that match Docker environments
@@ -264,7 +277,6 @@ Our goal is to make the test environment match the production environment while 
 - [Docker Documentation](https://docs.docker.com/)
 - [Node.js Documentation](https://nodejs.org/docs/latest-v22.x/api/)
 - [Astro Documentation](https://docs.astro.build/)
+- [Astro for Docs](https://astrofordocs.vercel.app/)
 - [Netlify Documentation](https://docs.netlify.com/)
 - [Datadog Documentation](https://docs.datadoghq.com/)
-
-> Note: Always verify assumptions against official documentation when implementing these changes. This TODO list should be updated as tasks are completed or new requirements emerge.
