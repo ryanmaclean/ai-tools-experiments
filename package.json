@@ -61,6 +61,7 @@
     "verify-datadog": "node ./scripts/verify-datadog.js",
     "pre-deploy-check": "mkdir -p test-results && node ./scripts/pre-deploy-check.js",
     "post-deploy-check": "mkdir -p test-results && node ./scripts/post-deploy-check.js",
+    "compare-environments": "mkdir -p test-results/comparison && playwright test tests/compare-environments.js",
     "sync-content": "node ./scripts/sync-content.js",
     "sync-episodes": "node ./scripts/sync-episodes.js",
     "sync-all": "node ./scripts/sync-all-content.js",

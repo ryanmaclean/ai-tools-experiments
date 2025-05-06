@@ -79,9 +79,27 @@ const environments = [
   }
 ];
 
-async function runPostDeployChecks() {
-  let success = true;
+// Main function to run all checks
+const runChecks = async () => {
   console.log('Starting post-deployment validation checks...');
+  
+  // Run environment comparison tests if requested
+  if (process.env.RUN_COMPARISON === 'true') {
+    try {
+      console.log('\n=== Running Environment Comparison Tests ===');
+      console.log('This will compare all pages between test and production environments.\n');
+      
+      // Run the comparison test through the Playwright test runner
+      execSync('npm run compare-environments', { stdio: 'inherit' });
+      console.log('\n=== Environment Comparison Complete ===');
+      console.log('Check test-results/comparison/ directory for screenshots.\n');
+    } catch (error) {
+      console.error('\n❌ Environment comparison failed:', error.message);
+    }
+  }
+  
+  let success = true;
+  console.log('\n=== Starting Post-Deployment Validation ===');
   
   // Launch browser
   const browser = await chromium.launch();
