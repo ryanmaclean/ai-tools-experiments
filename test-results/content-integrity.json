@@ -4,9 +4,22 @@
     "src/pages",
     "public"
   ],
-  "scannedFiles": 36,
+  "scannedFiles": 40,
   "duplicates": [],
-  "contentViolations": [],
-  "timestamp": "2025-05-06T17:19:20.915Z",
-  "success": true
+  "contentViolations": [
+    {
+      "file": "/Users/studio/ai-tools-experiments/src/content/imported/about.html",
+      "pattern": "/<header[\\s\\S]*?<\\/header>/i"
+    },
+    {
+      "file": "/Users/studio/ai-tools-experiments/src/content/imported/home.html",
+      "pattern": "/<header[\\s\\S]*?<\\/header>/i"
+    },
+    {
+      "file": "/Users/studio/ai-tools-experiments/src/content/imported/observations.html",
+      "pattern": "/<header[\\s\\S]*?<\\/header>/i"
+    }
+  ],
+  "timestamp": "2025-05-06T17:50:05.732Z",
+  "success": false
 }

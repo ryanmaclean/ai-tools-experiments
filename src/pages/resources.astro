@@ -1,6 +1,7 @@
 ---
 // src/pages/resources.astro - UPDATED PATH
 import MainLayout from '../layouts/MainLayout.astro';
+// Import resources HTML directly to preserve base64 images
 import ResourcesContent from '../content/imported/resources.html?raw';
 
 const pageTitle = "Resources";
@@ -8,9 +9,10 @@ const description = "A curated collection of resources for AI tools and experime
 const ogImageUrl = "/images/ai-tools-lab-logo.png"; // Using the site logo instead of placeholder
 ---
 
-<MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
-  <!-- Render the imported HTML content -->
-  <Fragment set:html={ResourcesContent} />
+<MainLayout title={pageTitle} description={description}>
+  <!-- Render the imported HTML content directly -->
+  <!-- Render the imported HTML directly, header and footer blocks already removed -->
+<Fragment set:html={ResourcesContent} />
 
   <style is:global>
   /* Inline styles from resources.html lines 24-155 */
@@ -135,12 +137,12 @@ const ogImageUrl = "/images/ai-tools-lab-logo.png"; // Using the site logo inste
   }
 </style>
 
-  <script is:client>
-    console.log("Build mode"); // Client-side initialization
-    console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
+  <script is:inline>
+    // Client-side initialization
+    document.addEventListener('DOMContentLoaded', () => {
       // --- Resource Filtering Logic ---
-      const filterButtons = /* /* /* document.querySelectorAll('.tag-filter');
-      const resourceCards = /* /* /* document.querySelectorAll('.resource-card');
+      const filterButtons = document.querySelectorAll('.tag-filter');
+      const resourceCards = document.querySelectorAll('.resource-card');
 
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {

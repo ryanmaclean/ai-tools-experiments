@@ -1,14 +1,14 @@
 ---
 // src/pages/about.astro - FIXED to use the standard imported content path
 import MainLayout from '../layouts/MainLayout.astro';
-import AboutContent from '../content/imported/about.html?raw';
+import AboutContent from '../content/imported/about-content.html?raw';
 
 const pageTitle = "About";
 const description = "Learn more about the AI Tools Lab project, its goals, and the host.";
 const ogImageUrl = "/images/ai-tools-lab-logo.png"; // Use the logo as a default OG image
 ---
 
-<MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
+<MainLayout title={pageTitle} description={description}>
   <div class="container">
     <article class="about-content">
       <h1>About AI Tools Lab</h1>

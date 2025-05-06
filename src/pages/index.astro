@@ -1,14 +1,14 @@
 ---
 // src/pages/index.astro - HOME PAGE
 import MainLayout from '../layouts/MainLayout.astro';
-import HomeContent from '../content/imported/home.html?raw';
+import HomeContent from '../content/imported/home-content.html?raw';
 
 const pageTitle = "Home | AI Tools Lab";
 const description = "Collection of AI tools experiments and resources.";
 const ogImageUrl = "/images/ai-tools-lab-logo.png";
 ---
 
-<MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
+<MainLayout title={pageTitle} description={description}>
   <!-- Render the imported HTML content directly without manipulation -->
   <Fragment set:html={HomeContent} />
 </MainLayout>
