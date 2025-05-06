@@ -1,0 +1,87 @@
+---
+/**
+ * Dynamic Episode Page
+ * 
+ * This component dynamically loads episode content from the imported HTML files
+ * while maintaining consistent headers and footers through MainLayout.
+ */
+import MainLayout from '../../layouts/MainLayout.astro';
+import fs from 'node:fs';
+import path from 'node:path';
+
+// Get all episode files that exist in our content directory
+export function getStaticPaths() {
+  const episodesDir = path.join(process.cwd(), 'src/content/imported/episodes');
+  
+  // Only include episodes that actually exist as files
+  const episodes = fs.existsSync(episodesDir) 
+    ? fs.readdirSync(episodesDir)
+      .filter(file => file.startsWith('ep') && file.endsWith('.html'))
+      .map(file => ({
+        params: { episode: path.basename(file, '.html') }
+      }))
+    : [];
+    
+  return episodes;
+}
+
+// Load the episode content
+const { episode } = Astro.params;
+let content = '';
+
+try {
+  // Import episode content directly using Astro's ?raw import
+  content = await import(`../../content/imported/episodes/${episode}.html?raw`);
+} catch (e) {
+  // Fallback content if episode not found
+  content = { default: `<div class="episode-content"><h1>Episode ${episode}</h1><p>Content coming soon.</p></div>` };
+}
+
+// Determine episode number for title
+const episodeNum = episode.replace('ep', '');
+const title = `Episode ${episodeNum} | AI Tools Lab`;
+---
+
+<MainLayout title={title}>
+  <div class="episode-container">
+    <!-- Dynamically insert the episode content without headers/footers -->
+    <div set:html={content.default} />
+    
+    <!-- Episode navigation -->
+    <div class="episode-navigation">
+      <div class="episode-nav-links">
+        <a href="/episodes" class="episode-back">← Back to Episodes</a>
+      </div>
+    </div>
+  </div>
+</MainLayout>
+
+<style>
+  .episode-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .episode-navigation {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #eaeaea;
+  }
+  
+  .episode-nav-links {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .episode-back {
+    display: inline-block;
+    margin-right: auto;
+    color: #0070f3;
+    text-decoration: none;
+  }
+  
+  .episode-back:hover {
+    text-decoration: underline;
+  }
+</style>

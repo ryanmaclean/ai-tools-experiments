@@ -1,0 +1,60 @@
+---
+/**
+ * Episodes Index Page
+ * 
+ * Lists all available episodes with links to individual episode pages.
+ * Uses imported HTML content from the synchronization script.
+ */
+import MainLayout from '../../layouts/MainLayout.astro';
+
+// Import episodes index content directly
+let episodesContent;
+try {
+  episodesContent = await import('../../content/imported/episodes.html?raw');
+} catch (e) {
+  // Fallback content if episodes index not found
+  episodesContent = { 
+    default: `<div class="episodes-container">
+      <h1>Episodes</h1>
+      <p>Episodes content will be available soon.</p>
+    </div>`
+  };
+}
+---
+
+<MainLayout title="Episodes | AI Tools Lab">
+  <div class="episodes-page">
+    <!-- Use the imported episode index content -->
+    <div set:html={episodesContent.default} />
+  </div>
+</MainLayout>
+
+<style>
+  .episodes-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  :global(.episodes-container ul) {
+    list-style-type: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  :global(.episodes-container li) {
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #eaeaea;
+  }
+  
+  :global(.episodes-container a) {
+    color: #0070f3;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  :global(.episodes-container a:hover) {
+    text-decoration: underline;
+  }
+</style>

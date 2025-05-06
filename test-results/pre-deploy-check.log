@@ -1,0 +1,27 @@
+[2025-05-06T05:59:51.471Z] [INFO] Starting pre-deployment checks...
+[2025-05-06T05:59:51.476Z] [INFO] Checking required directories...
+[2025-05-06T05:59:51.476Z] [INFO] ✅ Directory exists: src/content/imported
+[2025-05-06T05:59:51.476Z] [INFO] ✅ Directory exists: src/content/imported/episodes
+[2025-05-06T05:59:51.476Z] [INFO] ✅ Directory exists: src/pages/episodes
+[2025-05-06T05:59:51.476Z] [INFO] 
+Checking required files...
+[2025-05-06T05:59:51.476Z] [INFO] ✅ File exists: src/pages/episodes/[episode].astro
+[2025-05-06T05:59:51.476Z] [INFO] ✅ File exists: src/pages/episodes/index.astro
+[2025-05-06T05:59:51.476Z] [INFO] 
+Running content integrity check...
+[2025-05-06T05:59:51.630Z] [INFO] ✅ Content integrity check passed
+[2025-05-06T05:59:51.631Z] [INFO] 
+Checking Datadog configuration...
+[2025-05-06T05:59:59.792Z] [INFO] ✅ Datadog configuration check passed
+[2025-05-06T05:59:59.792Z] [INFO] 
+Checking episode content...
+[2025-05-06T05:59:59.792Z] [INFO] Found 18 episode files
+[2025-05-06T05:59:59.792Z] [INFO] 
+--- Pre-Deployment Check Summary ---
+[2025-05-06T05:59:59.792Z] [INFO] Required directories: ✅ All present
+[2025-05-06T05:59:59.793Z] [INFO] Required files: ✅ All present
+[2025-05-06T05:59:59.793Z] [INFO] Content integrity: ✅ Pass
+[2025-05-06T05:59:59.793Z] [INFO] Datadog configuration: ✅ Pass
+[2025-05-06T05:59:59.793Z] [INFO] Episode content: ✅ Complete
+[2025-05-06T05:59:59.793Z] [INFO] 
+Overall result: ✅ READY FOR DEPLOYMENT

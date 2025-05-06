@@ -59,7 +59,13 @@
     "test:post-deploy:ci": "playwright test tests/post-deploy-visual-comparison.js --reporter=json",
     "verify-environments": "node ./scripts/verify-environments.js",
     "verify-datadog": "node ./scripts/verify-datadog.js",
-    "post-deploy-check": "mkdir -p test-results && node ./scripts/post-deploy-check.js"
+    "pre-deploy-check": "mkdir -p test-results && node ./scripts/pre-deploy-check.js",
+    "post-deploy-check": "mkdir -p test-results && node ./scripts/post-deploy-check.js",
+    "sync-content": "node ./scripts/sync-content.js",
+    "sync-episodes": "node ./scripts/sync-episodes.js",
+    "sync-all": "node ./scripts/sync-all-content.js",
+    "verify-episodes": "mkdir -p test-results && node ./tests/verify-episodes.js",
+    "verify-content-integrity": "mkdir -p test-results && node ./tests/verify-content-integrity.js"
   },
   "repository": {
     "type": "git",
