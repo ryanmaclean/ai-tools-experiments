@@ -1,234 +1,219 @@
 {
-  "startTime": "2025-05-06T16:01:19.315Z",
-  "endTime": "2025-05-06T16:01:34.288Z",
-  "duration": 14973,
-  "totalLinks": 66,
-  "successfulLinks": 2,
-  "brokenCount": 24,
+  "startTime": "2025-05-06T16:08:09.114Z",
+  "endTime": "2025-05-06T16:08:34.778Z",
+  "duration": 25664,
+  "totalLinks": 2442,
+  "successfulLinks": 50,
+  "brokenCount": 1,
   "checkedUrls": {
     "/pages/ep02": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep01": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep04": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
     },
     "/pages/ep03": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep04": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep01": {
+      "status": 200,
+      "success": true
     },
     "/": {
       "status": 200,
       "success": true
     },
-    "/pages/ep08": {
-      "status": 404,
-      "success": false
-    },
     "/pages/ep05": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep09": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
     },
     "/pages/ep07": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep09": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep08": {
+      "status": 200,
+      "success": true
     },
     "/pages/ep06": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep12": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep11": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep14": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
     },
     "/pages/ep10": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep12": {
+      "status": 200,
+      "success": true
     },
     "/pages/ep13": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
     },
-    "/pages/ep15": {
-      "status": 404,
-      "success": false
+    "/pages/ep14": {
+      "status": 200,
+      "success": true
     },
-    "/pages/ep19": {
-      "status": 404,
-      "success": false
+    "/pages/ep11": {
+      "status": 200,
+      "success": true
     },
     "/pages/ep18": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep15": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep19": {
+      "status": 200,
+      "success": true
     },
     "/pages/ep17": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
     },
     "/pages/ep16": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep20": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/": {
-      "status": 404,
-      "success": false
+      "status": 200,
+      "success": true
     },
     "/pages/observations": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep20": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/resources": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep02#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep03#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/$%7BpathPrefix%7D/episodes": {
       "status": 404,
       "success": false
     },
-    "/pages/resources": {
-      "status": 404,
-      "success": false
+    "/pages/ep01#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep04#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/about": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep07#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep09#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep08#main-content": {
+      "status": 200,
+      "success": true
     },
     "/#main-content": {
       "status": 200,
       "success": true
     },
-    "/pages/about": {
-      "status": 404,
-      "success": false
+    "/pages/ep05#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep06#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep12#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep13#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep14#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep10#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep19#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep18#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep11#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep15#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep17#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/observations#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep20#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep16#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/resources#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/#main-content": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/about#main-content": {
+      "status": 200,
+      "success": true
     }
   },
   "brokenLinks": [
     {
-      "url": "/pages/ep02",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep01",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep04",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep03",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep08",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep05",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep09",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep07",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep06",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep12",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep11",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep14",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep10",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep13",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep15",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep19",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep18",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep17",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep16",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep20",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/observations",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/resources",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/about",
+      "url": "/pages/$%7BpathPrefix%7D/episodes",
       "status": 404,
       "referrer": "direct"
     }

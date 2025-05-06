@@ -14,12 +14,12 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-// Environment configurations
+// Environment configurations - STANDARDIZED URL PATTERNS
 const environments = [
   {
     name: 'Test',
     baseUrl: 'https://ai-tools-lab-tst.netlify.app',
-    pathPrefix: '',
+    pathPrefix: '/pages', // Now using same prefix as production for URL standardization
     skipPattern: /\.(jpg|jpeg|png|gif|svg|webp|css|js)$/i, // Skip assets
     // Skip only problematic protocol handlers, test all page URLs
     knownIssuePattern: /^(javascript:|mailto:|tel:)/i,
