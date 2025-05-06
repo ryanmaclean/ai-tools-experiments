@@ -178,7 +178,7 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
   <div set:html={indexHtmlContent} />
 
   <script is:client>
-    console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', function() {
+    console.log("Build mode"); /* console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', function() {
       // Add play icons to any video containers that don't have them
       addPlayIconsToVideos();
 
@@ -239,7 +239,7 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
 
     // Function to sort episode cards by date (newest first)
     function sortEpisodesByDate() {
-      const cardsContainer = /* document.querySelector('.recording-grid');
+      const cardsContainer = /* /* document.querySelector('.recording-grid');
       if (!cardsContainer) return;
       
       console.log('Sorting episodes by date (newest first)');
@@ -265,7 +265,7 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
 
     // Make video containers clickable (thumbnail area)
     function makeVideoContainersClickable() {
-      const videoContainers = /* document.querySelectorAll('.video-container');
+      const videoContainers = /* /* document.querySelectorAll('.video-container');
       
       videoContainers.forEach(container => {
         const link = container.querySelector('a');
@@ -298,7 +298,7 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
 
     // Add play icons to video containers
     function addPlayIconsToVideos() {
-      const videoContainers = /* document.querySelectorAll('.video-container');
+      const videoContainers = /* /* document.querySelectorAll('.video-container');
       
       videoContainers.forEach(container => {
         const link = container.querySelector('a');
@@ -346,7 +346,7 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
 
     function filterCardsByTags(activeTags) {
       // Works for both recording-card and resource-card
-      const cards = /* document.querySelectorAll('.recording-card, .resource-card');
+      const cards = /* /* document.querySelectorAll('.recording-card, .resource-card');
       const categoryFilter = document.getElementById('episode-category-filter');
       const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
       
@@ -361,9 +361,9 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
 
     // Initialize any tag filters on the page
     function initializeTagFilters() {
-      const tagFilters = /* document.querySelectorAll('.tag-filter');
+      const tagFilters = /* /* document.querySelectorAll('.tag-filter');
       const categoryFilter = document.getElementById('episode-category-filter');
-      const tagButtonsContainer = /* document.querySelector('.tag-buttons');
+      const tagButtonsContainer = /* /* document.querySelector('.tag-buttons');
       
       if (tagFilters.length === 0) return;
       
@@ -386,14 +386,14 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
       if (categoryFilter) {
         categoryFilter.addEventListener('change', function() {
           const selectedCategory = this.value;
-          const cards = /* document.querySelectorAll('.recording-card, .resource-card');
+          const cards = /* /* document.querySelectorAll('.recording-card, .resource-card');
           
           cards.forEach(card => {
             const cardCategory = card.getAttribute('data-category');
             
             if (selectedCategory === 'all' || cardCategory === selectedCategory) {
               // Only show if it also passes the tag filters
-              const activeFilters = Array.from(/* document.querySelectorAll('.tag-filter.active'))
+              const activeFilters = Array.from(/* /* document.querySelectorAll('.tag-filter.active'))
                 .map(el => el.getAttribute('data-tag'));
               
               if (shouldShowCardByTags(card, activeFilters)) {
@@ -431,7 +431,7 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
           this.classList.add('active');
           
           // Get all currently active filters
-          const activeFilters = Array.from(/* document.querySelectorAll('.tag-filter.active'))
+          const activeFilters = Array.from(/* /* document.querySelectorAll('.tag-filter.active'))
             .map(el => el.getAttribute('data-tag'));
           
           // Filter the cards
