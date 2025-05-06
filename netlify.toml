@@ -11,53 +11,56 @@
     onPreDependencies = "./scripts/docker-entrypoint.sh && node ./scripts/netlify-arm64-verify.js"
     onPostBuild = "node ./scripts/netlify-postbuild.js"
 
-# Explicitly specify the production branch
+# Environment-specific settings
 [context.production]
   command = "./scripts/build-safe.sh"
   publish = "dist"
+  environment = { CONTEXT = "production", URL_PREFIX = "/pages" }
 
-# Specify that the test branch should be treated as production
+# Test environment settings
 [context.test]
   command = "./scripts/build-safe.sh"
   publish = "dist"
+  environment = { CONTEXT = "test", URL_PREFIX = "" }
 
 # Development settings
 [dev]
   functions = "proxy"
   
-# URL pattern redirects for compatibility between test and production environments
-[[redirects]]
-  from = "/pages/about"
-  to = "/about"
-  status = 301
+# Simplified URL redirects - only keep what's essential
+# In production, both /observations and /pages/observations will work
+# In test, we focus on direct routes without /pages prefix
 
-[[redirects]]
-  from = "/pages/resources"
-  to = "/resources"
-  status = 301
-
-[[redirects]]
-  from = "/pages/observations"
-  to = "/observations"
-  status = 301
-
+# For Production: Ensure direct routes work by redirecting to /pages/
 [[redirects]]
   from = "/about"
   to = "/pages/about"
   status = 200
-  force = true
+  force = false
+  conditions = {host = ["ai-tools-lab.com"]}
 
 [[redirects]]
   from = "/resources"
   to = "/pages/resources"
   status = 200
-  force = true
+  force = false
+  conditions = {host = ["ai-tools-lab.com"]}
 
 [[redirects]]
   from = "/observations"
   to = "/pages/observations"
   status = 200
-  force = true
+  force = false
+  conditions = {host = ["ai-tools-lab.com"]}
+
+# For Test: Ensure /pages routes redirect to direct routes
+[[redirects]]
+  from = "/pages/*"
+  to = "/:splat"
+  status = 301
+  force = false
+  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+
 
 [[redirects]]
   from = "/api/datadog/*"
