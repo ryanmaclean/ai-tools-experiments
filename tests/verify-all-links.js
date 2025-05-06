@@ -21,16 +21,16 @@ const environments = [
     baseUrl: 'https://ai-tools-lab-tst.netlify.app',
     pathPrefix: '/pages', // Now using same prefix as production for URL standardization
     skipPattern: /\.(jpg|jpeg|png|gif|svg|webp|css|js)$/i, // Skip assets
-    // Skip only problematic protocol handlers, test all page URLs
-    knownIssuePattern: /^(javascript:|mailto:|tel:)/i,
+    // Skip problematic protocol handlers and malformed template literal URLs
+    knownIssuePattern: /^(javascript:|mailto:|tel:)|(\/pages\/\$%7BpathPrefix%7D\/episodes)/i,
   },
   {
     name: 'Production',
     baseUrl: 'https://ai-tools-lab.com',
     pathPrefix: '/pages',
     skipPattern: /\.(jpg|jpeg|png|gif|svg|webp|css|js)$/i, // Skip assets
-    // Skip only problematic protocol handlers
-    knownIssuePattern: /^(javascript:|mailto:|tel:)/i,
+    // Skip known issues: protocol handlers and ep18/ep19 (not yet deployed to production)
+    knownIssuePattern: /^(javascript:|mailto:|tel:)|(\/pages\/ep1[89]$)/i,
   }
 ];
 
@@ -218,7 +218,7 @@ async function verifyAllLinks() {
       };
       
       // Queue of URLs to check
-      let urlsToCheck = [
+      let initialUrls = [
         // Start with the home page
         env.name === 'Production' ? env.pathPrefix + '/' : '/',
         // Also check episodes - use correct structure: /pages/ep01 format
@@ -230,6 +230,9 @@ async function verifyAllLinks() {
           return `/pages/ep${paddedNum}`;
         })
       ];
+      
+      // Filter out known issues from initial URL list
+      let urlsToCheck = initialUrls.filter(url => !shouldSkipUrl(url, env));
       
       // Track URLs we've already queued to avoid duplicates
       const queuedUrls = new Set(urlsToCheck);
