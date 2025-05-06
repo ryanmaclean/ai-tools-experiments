@@ -96,17 +96,99 @@ try {
 log('\nChecking episode content...');
 const episodesDir = 'src/content/imported/episodes';
 let episodeContentComplete = false;
+let episodePathConsistent = true;
+let allEpisodesPresent = false;
 
 if (fs.existsSync(episodesDir)) {
   const episodes = fs.readdirSync(episodesDir).filter(f => f.startsWith('ep') && f.endsWith('.html'));
   log(`Found ${episodes.length} episode files`);
+  
+  // Check if we have all 20 episodes (ep01 through ep20)
+  const expectedEpisodes = Array.from({ length: 20 }, (_, i) => {
+    const num = i + 1;
+    const paddedNum = num.toString().padStart(2, '0');
+    return `ep${paddedNum}.html`;
+  });
+  
+  const missingEpisodes = expectedEpisodes.filter(ep => !episodes.includes(ep));
+  
+  if (missingEpisodes.length > 0) {
+    log(`❌ Missing ${missingEpisodes.length} episode files: ${missingEpisodes.join(', ')}`, 'error');
+    allEpisodesPresent = false;
+  } else {
+    log(`✅ All 20 episodes (ep01-ep20) present`);
+    allEpisodesPresent = true;
+  }
+  
   episodeContentComplete = episodes.length > 0;
   
   if (episodes.length === 0) {
     log('❌ No episode content found. Run npm run sync-all first.', 'error');
   }
+  
+  // Verify episode content doesn't contain site-wide headers/footers
+  log('\nVerifying episode content integrity...');
+  let episodeContentErrors = 0;
+  
+  // Sample check on a few episodes to keep it efficient
+  const sampleEpisodes = ['ep01.html', 'ep10.html', 'ep20.html'].filter(ep => episodes.includes(ep));
+  
+  for (const episode of sampleEpisodes) {
+    const content = fs.readFileSync(path.join(episodesDir, episode), 'utf8');
+    
+    // Check for header/footer elements that might cause duplication
+    if (content.includes('<header class="site-header">') || 
+        content.includes('<footer>') || 
+        content.includes('<title>')) {
+      log(`❌ ${episode} contains site header/footer elements`, 'error');
+      episodeContentErrors++;
+    }
+  }
+  
+  if (episodeContentErrors === 0 && sampleEpisodes.length > 0) {
+    log(`✅ Sample episode content checks passed (${sampleEpisodes.length} episodes checked)`);
+  }
 } else {
   log(`❌ Episodes directory not found: ${episodesDir}`, 'error');
+}
+
+// Verify environment-specific path configuration
+log('\nVerifying environment path configuration...');
+let environmentPathsConfigured = false;
+
+// Check Header.astro for environment path handling
+const headerFile = 'src/components/Header.astro';
+if (fs.existsSync(headerFile)) {
+  const headerContent = fs.readFileSync(headerFile, 'utf8');
+  
+  if (headerContent.includes('pathPrefix') && 
+      (headerContent.includes('URL_PREFIX') || headerContent.includes('process.env.URL_PREFIX')) && 
+      headerContent.includes('ai-tools-lab.com')) {
+    log('✅ Header component has environment-specific path handling');
+    environmentPathsConfigured = true;
+  } else {
+    log('❌ Header component missing environment-specific path handling', 'error');
+  }
+} else {
+  log(`❌ Header component not found: ${headerFile}`, 'error');
+}
+
+// Check [episode].astro for environment path handling
+const episodeFile = 'src/pages/episodes/[episode].astro';
+let episodeRouteConfigured = false;
+
+if (fs.existsSync(episodeFile)) {
+  const episodeContent = fs.readFileSync(episodeFile, 'utf8');
+  
+  if (episodeContent.includes('pathPrefix') && 
+      episodeContent.includes('${pathPrefix}/episodes')) {
+    log('✅ Episode route has environment-specific path handling');
+    episodeRouteConfigured = true;
+  } else {
+    log('❌ Episode route missing environment-specific path handling', 'error');
+  }
+} else {
+  log(`❌ Episode route template not found: ${episodeFile}`, 'error');
 }
 
 // Summary
@@ -116,13 +198,19 @@ log(`Required files: ${fileErrors === 0 ? '✅ All present' : `❌ ${fileErrors}
 log(`Content integrity: ${contentIntegritySuccess ? '✅ Pass' : '❌ Fail'}`);
 log(`Datadog configuration: ${datadogConfigSuccess ? '✅ Pass' : '❌ Fail'}`);
 log(`Episode content: ${episodeContentComplete ? '✅ Complete' : '❌ Incomplete'}`);
+log(`All 20 episodes present: ${allEpisodesPresent ? '✅ Yes' : '❌ No'}`);
+log(`Environment path configuration: ${environmentPathsConfigured ? '✅ Configured' : '❌ Not configured'}`);
+log(`Episode route configuration: ${episodeRouteConfigured ? '✅ Configured' : '❌ Not configured'}`);
 
 const allChecksPass = 
   dirErrors === 0 && 
   fileErrors === 0 && 
   contentIntegritySuccess && 
   datadogConfigSuccess && 
-  episodeContentComplete;
+  episodeContentComplete && 
+  allEpisodesPresent && 
+  environmentPathsConfigured && 
+  episodeRouteConfigured;
 
 log(`\nOverall result: ${allChecksPass ? '✅ READY FOR DEPLOYMENT' : '❌ NOT READY - FIX ERRORS BEFORE DEPLOYING'}`);
 
