@@ -1,15 +1,14 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-const pageTitle = "Home | AI Tools Lab"; // Or derive dynamically
+const pageTitle = "Home | AI Tools Lab";
 const description = "Collection of AI tools experiments and resources.";
 
-// Use import.meta.glob with ?raw to get the HTML content as a string - UPDATED PATH
+// Load the HTML content directly from the imported file
 const htmlFiles = import.meta.glob('../content/imported/home.html', { query: '?raw', eager: true });
-const indexHtmlContent = htmlFiles['../content/imported/home.html'].default; // Access the standardized raw content
+const indexHtmlContent = htmlFiles['../content/imported/home.html'].default;
 ---
 
 <MainLayout title={pageTitle} description={description}>
-  {/* Featured Episode Styles (Inline) */}
   <style is:inline>
     /* Header logo font styling */
     .logo a {
