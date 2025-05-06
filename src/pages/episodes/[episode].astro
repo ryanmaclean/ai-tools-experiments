@@ -11,30 +11,29 @@ import path from 'node:path';
 
 // Get all episode files that exist in our content directory
 export function getStaticPaths() {
-  const episodesDir = path.join(process.cwd(), 'src/content/imported/episodes');
-  
-  // Only include episodes that actually exist as files
-  const episodes = fs.existsSync(episodesDir) 
-    ? fs.readdirSync(episodesDir)
-      .filter(file => file.startsWith('ep') && file.endsWith('.html'))
-      .map(file => ({
-        params: { episode: path.basename(file, '.html') }
-      }))
-    : [];
+  // Explicitly define all 20 episodes to ensure consistency
+  const episodes = Array.from({ length: 20 }, (_, i) => {
+    const num = i + 1;
+    const paddedNum = num.toString().padStart(2, '0');
+    return {
+      params: { episode: `ep${paddedNum}` }
+    };
+  });
     
   return episodes;
 }
 
 // Load the episode content
 const { episode } = Astro.params;
-let content = '';
+let contentHtml = '';
 
 try {
   // Import episode content directly using Astro's ?raw import
-  content = await import(`../../content/imported/episodes/${episode}.html?raw`);
+  const importedContent = await import(`../../content/imported/episodes/${episode}.html?raw`);
+  contentHtml = importedContent.default;
 } catch (e) {
   // Fallback content if episode not found
-  content = { default: `<div class="episode-content"><h1>Episode ${episode}</h1><p>Content coming soon.</p></div>` };
+  contentHtml = `<div class="episode-content"><h1>Episode ${episode}</h1><p>Content coming soon.</p></div>`;
 }
 
 // Determine episode number for title
@@ -45,7 +44,7 @@ const title = `Episode ${episodeNum} | AI Tools Lab`;
 <MainLayout title={title}>
   <div class="episode-container">
     <!-- Dynamically insert the episode content without headers/footers -->
-    <div set:html={content.default} />
+    <div set:html={contentHtml} />
     
     <!-- Episode navigation -->
     <div class="episode-navigation">
