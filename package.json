@@ -51,7 +51,12 @@
     "precommit": "npm run test:components && node hooks/verify-datadog-synthetics.js",
     "validate:terraform": "cd terraform && ./validate-terraform.sh",
     "deploy:terraform": "cd terraform && terraform apply",
-    "key:verify": "node tests/verify-key-rotation.js"
+    "key:verify": "node tests/verify-key-rotation.js",
+    "test:post-deploy": "playwright test tests/post-deploy-visual-comparison.js",
+    "test:post-deploy:chrome": "playwright test tests/post-deploy-visual-comparison.js --project=chromium",
+    "test:post-deploy:safari": "playwright test tests/post-deploy-visual-comparison.js --project=webkit",
+    "test:post-deploy:mobile": "playwright test tests/post-deploy-visual-comparison.js --project='Mobile Chrome'",
+    "test:post-deploy:ci": "playwright test tests/post-deploy-visual-comparison.js --reporter=datadog"
   },
   "repository": {
     "type": "git",
