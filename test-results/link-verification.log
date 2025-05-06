@@ -1,128 +1,249 @@
-Link Verification started at 2025-05-06T06:33:58.366Z
-[2025-05-06T06:33:58.367Z] [INFO] Starting link verification across 2 environments
-[2025-05-06T06:33:58.481Z] [INFO] 
+Link Verification started at 2025-05-06T06:42:23.827Z
+[2025-05-06T06:42:23.828Z] [INFO] Starting link verification across 2 environments
+[2025-05-06T06:42:23.934Z] [INFO] 
 Checking Test environment at https://ai-tools-lab-tst.netlify.app
-[2025-05-06T06:33:58.484Z] [INFO] Crawling at depth 1 (1 URLs in queue)
-[2025-05-06T06:33:58.548Z] [INFO] Checking: https://ai-tools-lab-tst.netlify.app/
-[2025-05-06T06:34:06.871Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:06.871Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:06.872Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
-[2025-05-06T06:34:06.872Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
-[2025-05-06T06:34:06.872Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
-[2025-05-06T06:34:06.872Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:06.872Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
-[2025-05-06T06:34:06.872Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
-[2025-05-06T06:34:06.872Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep16
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep15
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep14
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep13
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep12
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep11
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep10
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep09
-[2025-05-06T06:34:06.873Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep08
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep07
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep06
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep05
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep04
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep03
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep02
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep01
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
-[2025-05-06T06:34:06.874Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
-[2025-05-06T06:34:06.880Z] [INFO] Crawling at depth 2 (1 URLs in queue)
-[2025-05-06T06:34:06.916Z] [INFO] Checking: https://ai-tools-lab-tst.netlify.app/#main-content
-[2025-05-06T06:34:11.166Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:11.166Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:11.166Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep16
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep15
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep14
-[2025-05-06T06:34:11.167Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep13
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep12
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep11
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep10
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep09
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep08
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep07
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep06
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep05
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep04
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep03
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep02
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep01
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
-[2025-05-06T06:34:11.168Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
-[2025-05-06T06:34:11.169Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
-[2025-05-06T06:34:11.172Z] [INFO] 
+[2025-05-06T06:42:23.935Z] [INFO] Crawling at depth 1 (1 URLs in queue)
+[2025-05-06T06:42:24.005Z] [INFO] Checking: https://ai-tools-lab-tst.netlify.app/
+[2025-05-06T06:42:26.410Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:26.410Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:26.410Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
+[2025-05-06T06:42:26.410Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
+[2025-05-06T06:42:26.410Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
+[2025-05-06T06:42:26.410Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep16
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep15
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep14
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep13
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep12
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep11
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep10
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep09
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep08
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep07
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep06
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep05
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep04
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep03
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep02
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep01
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
+[2025-05-06T06:42:26.411Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
+[2025-05-06T06:42:26.418Z] [INFO] Crawling at depth 2 (1 URLs in queue)
+[2025-05-06T06:42:26.451Z] [INFO] Checking: https://ai-tools-lab-tst.netlify.app/#main-content
+[2025-05-06T06:42:42.571Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep17
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep16
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep15
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep14
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep13
+[2025-05-06T06:42:42.572Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep12
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep11
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep10
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep09
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep08
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep07
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep06
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep05
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep04
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep03
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep02
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/ep01
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/resources
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/observations
+[2025-05-06T06:42:42.573Z] [WARN] Skipping test environment /pages/ URL: https://ai-tools-lab-tst.netlify.app/pages/about
+[2025-05-06T06:42:42.577Z] [INFO] 
 --- Test Environment Results ---
-[2025-05-06T06:34:11.172Z] [INFO] URLs checked: 2
-[2025-05-06T06:34:11.172Z] [INFO] Total links found: 66
-[2025-05-06T06:34:11.172Z] [INFO] Successful links: 2
-[2025-05-06T06:34:11.173Z] [INFO] Broken links: 0
-[2025-05-06T06:34:11.173Z] [INFO] u2705 No broken links found in this environment!
-[2025-05-06T06:34:11.173Z] [INFO] Detailed results saved to: test-results/link-verification-test.json
-[2025-05-06T06:34:11.188Z] [INFO] 
+[2025-05-06T06:42:42.577Z] [INFO] URLs checked: 2
+[2025-05-06T06:42:42.577Z] [INFO] Total links found: 66
+[2025-05-06T06:42:42.577Z] [INFO] Successful links: 2
+[2025-05-06T06:42:42.577Z] [INFO] Broken links: 0
+[2025-05-06T06:42:42.577Z] [INFO] u2705 No broken links found in this environment!
+[2025-05-06T06:42:42.577Z] [INFO] Detailed results saved to: test-results/link-verification-test.json
+[2025-05-06T06:42:42.592Z] [INFO] 
 Checking Production environment at https://ai-tools-lab.com/pages
-[2025-05-06T06:34:11.188Z] [INFO] Crawling at depth 1 (1 URLs in queue)
-[2025-05-06T06:34:11.221Z] [INFO] Checking: https://ai-tools-lab.com/pages/
-[2025-05-06T06:34:12.456Z] [INFO] Crawling at depth 2 (21 URLs in queue)
-[2025-05-06T06:34:12.487Z] [INFO] Checking: https://ai-tools-lab.com/pages/resources
-[2025-05-06T06:34:13.307Z] [INFO] Checking: https://ai-tools-lab.com/pages/observations
-[2025-05-06T06:34:14.483Z] [INFO] Checking: https://ai-tools-lab.com/pages/about
-[2025-05-06T06:34:15.268Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep20
-[2025-05-06T06:34:16.132Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep17
-[2025-05-06T06:34:17.045Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep16
-[2025-05-06T06:34:17.985Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep15
-[2025-05-06T06:34:18.819Z] [WARN] Skipping known issue URL (pre-normalization): javascript:history.back()
-[2025-05-06T06:34:18.857Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep14
-[2025-05-06T06:34:19.801Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep13
-[2025-05-06T06:34:20.654Z] [INFO] Processed 10/21 URLs at depth 2
-[2025-05-06T06:34:20.685Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep12
-[2025-05-06T06:34:21.523Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep11
-[2025-05-06T06:34:22.384Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep10
-[2025-05-06T06:34:23.243Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep09
-[2025-05-06T06:34:24.107Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep08
-[2025-05-06T06:34:24.970Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep07
-[2025-05-06T06:34:25.826Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep06
-[2025-05-06T06:34:26.724Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep05
-[2025-05-06T06:34:27.571Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep04
-[2025-05-06T06:34:28.393Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep03
-[2025-05-06T06:34:29.262Z] [INFO] Processed 20/21 URLs at depth 2
-[2025-05-06T06:34:29.292Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep02
-[2025-05-06T06:34:30.141Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep01
-[2025-05-06T06:34:30.933Z] [INFO] Crawling at depth 3 (22 URLs in queue)
-[2025-05-06T06:34:30.965Z] [INFO] Checking: https://ai-tools-lab.com/pages/observations#
-[2025-05-06T06:34:32.075Z] [INFO] Checking: https://ai-tools-lab.com/
-[2025-05-06T06:34:33.299Z] [INFO] 
---- Production Environment Results ---
-[2025-05-06T06:34:33.299Z] [INFO] URLs checked: 24
-[2025-05-06T06:34:33.299Z] [INFO] Total links found: 2167
-[2025-05-06T06:34:33.299Z] [INFO] Successful links: 24
-[2025-05-06T06:34:33.299Z] [INFO] Broken links: 0
-[2025-05-06T06:34:33.299Z] [INFO] u2705 No broken links found in this environment!
-[2025-05-06T06:34:33.300Z] [INFO] Detailed results saved to: test-results/link-verification-production.json
-[2025-05-06T06:34:33.316Z] [INFO] 
-=== Overall Link Verification Results ===
-[2025-05-06T06:34:33.316Z] [INFO] Test: u2705 All links OK
-[2025-05-06T06:34:33.316Z] [INFO] Production: u2705 All links OK
-[2025-05-06T06:34:33.316Z] [INFO] 
-Final result: u2705 PASS
-[2025-05-06T06:34:33.316Z] [INFO] 
-Link verification complete. Exiting with code 0
+[2025-05-06T06:42:42.592Z] [INFO] Crawling at depth 1 (1 URLs in queue)
+[2025-05-06T06:42:42.625Z] [INFO] Checking: https://ai-tools-lab.com/pages/
+[2025-05-06T06:42:43.865Z] [INFO] Crawling at depth 2 (21 URLs in queue)
+[2025-05-06T06:42:43.898Z] [INFO] Checking: https://ai-tools-lab.com/pages/resources
+[2025-05-06T06:42:44.766Z] [INFO] Checking: https://ai-tools-lab.com/pages/observations
+[2025-05-06T06:42:45.886Z] [INFO] Checking: https://ai-tools-lab.com/pages/about
+[2025-05-06T06:42:46.657Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep20
+[2025-05-06T06:42:47.544Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep17
+[2025-05-06T06:42:48.438Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep16
+[2025-05-06T06:42:49.378Z] [INFO] Checking: https://ai-tools-lab.com/pages/ep15
+[2025-05-06T06:42:49.994Z] [ERROR] u274c Error accessing https://ai-tools-lab.com/pages/ep15: page.goto: Target page, context or browser has been closed
+Call log:
+[2m  - navigating to "https://ai-tools-lab.com/pages/ep15", waiting until "networkidle"[22m
+
+[2025-05-06T06:42:49.997Z] [ERROR] Error in link verification: browserContext.close: Target page, context or browser has been closed
+Browser logs:
+
+[pid=99499][err] [0505/234247.017526:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.034002:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.050037:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.067341:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.084239:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.100760:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.117488:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.134192:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.150351:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.167510:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.183323:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.200842:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.217427:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.233699:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.250884:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.268000:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.284309:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.301834:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.317085:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.334215:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.350826:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.367785:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.385191:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.401895:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.418477:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.434512:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.451075:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.466896:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.484422:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.500692:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.517287:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234247.517349:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234247.517363:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234247.517823:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.544393:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.631909:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.785015:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.804318:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.821695:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.836867:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.850879:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.867264:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.883563:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.900736:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.916510:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.934067:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.950106:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.966815:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234247.983251:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.000813:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.017486:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.034112:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.050934:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.067710:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.084219:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.100856:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.116812:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.134061:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.150746:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.167544:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.183546:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.200761:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.217960:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.234635:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.252563:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.268415:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.285006:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.302111:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.317808:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.334121:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.350446:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.367080:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.383475:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.399976:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.409722:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234248.409778:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234248.409794:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234248.410273:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.437915:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.596308:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.715364:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.725072:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.736403:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.753939:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.770122:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.784587:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.800694:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.817306:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.834087:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.850492:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.866761:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.884038:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.900761:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.917444:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.934112:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.950760:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.967584:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234248.984140:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.000096:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.017477:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.034027:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.050736:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.067419:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.083548:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.099907:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.117290:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.133832:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.150213:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.167585:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.183733:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.200900:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.217252:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.234239:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.250180:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.267692:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.283906:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.301114:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.317722:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.334415:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.350263:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234249.350322:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234249.350338:ERROR:ui/display/mac/cv_display_link_mac.mm:165] CVDisplayLinkCreateWithCGDisplay failed. CVReturn: -6670
+[pid=99499][err] [0505/234249.350853:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.377925:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.485156:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.607735:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.618433:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.640316:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.653486:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.667357:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.684561:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.702591:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.717595:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.733743:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.750059:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.767210:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.783382:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.800765:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.817440:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.834150:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.850541:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.867531:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.884246:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.900230:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.917378:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.934078:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.950781:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.967430:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499][err] [0505/234249.983537:ERROR:ui/gl/gl_display.cc:508] EGL Driver message (Error) eglQueryDeviceAttribEXT: Bad attribute.
+[pid=99499] <gracefully close start>

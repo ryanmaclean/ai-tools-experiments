@@ -21,8 +21,8 @@ const environments = [
     baseUrl: 'https://ai-tools-lab-tst.netlify.app',
     pathPrefix: '',
     skipPattern: /\.(jpg|jpeg|png|gif|svg|webp|css|js)$/i, // Skip assets
-    // Known issues pattern - skip URLs that are known to cause 404s until deployment is complete
-    knownIssuePattern: /^\/pages\//i,
+    // Only skip problematic JavaScript URLs, not actual content paths
+    knownIssuePattern: /javascript:|mailto:|tel:/i,
   },
   {
     name: 'Production',
@@ -37,10 +37,11 @@ const environments = [
 // Configuration
 const config = {
   maxDepth: 3,                // Maximum crawl depth
-  concurrentRequests: 1,      // Number of concurrent page instances
+  concurrentRequests: 3,      // Increased concurrency for faster execution
   timeout: 30000,             // Timeout for each page load in ms
   logFile: path.join('test-results', 'link-verification.log'),
   statusLogInterval: 10,      // Log crawl status every N pages
+  disablePathPrefixCheck: true // Disable path prefix checking to test all URLs
 };
 
 // Datadog logging helper
@@ -132,8 +133,8 @@ function normalizeUrl(url, baseUrl, pathPrefix) {
     normalizedUrl = `/${url}`;
   }
   
-  // For production environment, handle paths correctly
-  if (baseUrl.includes('ai-tools-lab.com') && !normalizedUrl.startsWith(pathPrefix)) {
+  // For production environment, handle paths correctly - respect disablePathPrefixCheck
+  if (!config.disablePathPrefixCheck && baseUrl.includes('ai-tools-lab.com') && !normalizedUrl.startsWith(pathPrefix)) {
     if (normalizedUrl === '/') {
       normalizedUrl = pathPrefix + '/';
     } else if (!normalizedUrl.startsWith(pathPrefix + '/')) {
@@ -298,30 +299,41 @@ async function verifyAllLinks() {
           results.checkedUrls[url] = { status: 'error', message: error.message };
           log(`u274c Error accessing ${url}: ${error.message}`, 'error');
         } finally {
-          await page.close();
-          await context.close();
         }
-      }
+      });
+      
+      // Wait for all batch promises to complete
+      await Promise.all(batchPromises);
+      
+      // Log progress
+      log(`Progress: ${Object.keys(results.checkedUrls).length} pages checked, ${urlsToCheck.length} remaining...`);
+    }
+    
+    // Clean up all browser contexts
+    for (const context of activeBrowserContexts) {
+      await context.close();
     }
     
     // Summarize results for this environment
     results.endTime = new Date().toISOString();
     results.duration = new Date(results.endTime) - new Date(results.startTime);
     
-    log(`\n--- ${env.name} Environment Results ---`);
+    log(`
+--- ${env.name} Environment Results ---`);
     log(`URLs checked: ${Object.keys(results.checkedUrls).length}`);
     log(`Total links found: ${results.totalLinks}`);
     log(`Successful links: ${results.successfulLinks}`);
     log(`Broken links: ${results.brokenCount}`);
     
     if (results.brokenCount > 0) {
-      log('\nBroken links found:');
+      log('
+Broken links found:');
       results.brokenLinks.forEach(link => {
         log(`- ${link.url} (${link.status || link.error})`, 'error');
       });
       overallSuccess = false;
     } else {
-      log('u2705 No broken links found in this environment!');
+      log('✅ No broken links found in this environment!');
     }
     
     // Save detailed results to JSON
