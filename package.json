@@ -67,7 +67,9 @@
     "sync-all": "node ./scripts/sync-all-content.js",
     "verify-episodes": "mkdir -p test-results && node ./tests/verify-episodes.js",
     "verify-content-integrity": "mkdir -p test-results && node ./tests/verify-content-integrity.js",
-    "verify-links": "mkdir -p test-results && node ./tests/verify-all-links.js"
+    "verify-links": "mkdir -p test-results && node ./tests/verify-all-links.js",
+    "visual-compare": "mkdir -p test-results/visual-comparison && node ./tests/content-visual-comparison.js",
+    "verify-all": "npm run verify-content-integrity && npm run verify-links && npm run visual-compare"
   },
   "repository": {
     "type": "git",
