@@ -10,7 +10,10 @@
  */
 
 const { chromium } = require('playwright');
+const fs = require('fs');
+const path = require('path');
 const https = require('https');
+const { execSync } = require('child_process');
 
 // Datadog logging helper
 function logToDatadog(message, status, additionalTags = {}) {
@@ -80,7 +83,7 @@ const environments = [
 ];
 
 // Main function to run all checks
-const runChecks = async () => {
+async function runPostDeployChecks() {
   console.log('Starting post-deployment validation checks...');
   
   // Run environment comparison tests if requested

@@ -9,6 +9,7 @@
  * Logs results to Datadog for monitoring.
  */
 
+// @ts-check
 const { test, expect } = require('@playwright/test');
 const fs = require('fs');
 const path = require('path');

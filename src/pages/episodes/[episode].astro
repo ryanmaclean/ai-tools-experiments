@@ -4,10 +4,26 @@
  * 
  * This component dynamically loads episode content from the imported HTML files
  * while maintaining consistent headers and footers through MainLayout.
+ * 
+ * Uses environment-aware URL paths to ensure consistency across environments.
  */
 import MainLayout from '../../layouts/MainLayout.astro';
 import fs from 'node:fs';
 import path from 'node:path';
+
+// Get URL prefix from environment variables - same logic as in Header.astro
+let pathPrefix = import.meta.env.URL_PREFIX || process.env.URL_PREFIX || '';
+
+// Fallback detection based on hostname
+if (pathPrefix === '') {
+  if (Astro.url.hostname === 'ai-tools-lab.com') {
+    // Production environment needs /pages prefix
+    pathPrefix = '/pages';
+  } else {
+    // Test environment uses direct routes
+    pathPrefix = '';
+  }
+}
 
 // Get all episode files that exist in our content directory
 export function getStaticPaths() {
@@ -49,7 +65,7 @@ const title = `Episode ${episodeNum} | AI Tools Lab`;
     <!-- Episode navigation -->
     <div class="episode-navigation">
       <div class="episode-nav-links">
-        <a href="/episodes" class="episode-back">← Back to Episodes</a>
+        <a href="${pathPrefix}/episodes" class="episode-back">← Back to Episodes</a>
       </div>
     </div>
   </div>

@@ -66,7 +66,8 @@
     "sync-episodes": "node ./scripts/sync-episodes.js",
     "sync-all": "node ./scripts/sync-all-content.js",
     "verify-episodes": "mkdir -p test-results && node ./tests/verify-episodes.js",
-    "verify-content-integrity": "mkdir -p test-results && node ./tests/verify-content-integrity.js"
+    "verify-content-integrity": "mkdir -p test-results && node ./tests/verify-content-integrity.js",
+    "verify-links": "mkdir -p test-results && node ./tests/verify-all-links.js"
   },
   "repository": {
     "type": "git",

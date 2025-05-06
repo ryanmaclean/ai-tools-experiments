@@ -1,0 +1,210 @@
+{
+  "environment": "Test",
+  "checkedUrls": {
+    "https://ai-tools-lab-tst.netlify.app/": {
+      "status": "success",
+      "code": 200
+    },
+    "https://ai-tools-lab-tst.netlify.app/#main-content": {
+      "status": "success",
+      "code": 200
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/resources": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/observations": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/about": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep17": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep16": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep15": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep14": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep13": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep12": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep11": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep10": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep09": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep08": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep07": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep06": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep05": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep04": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep03": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep02": {
+      "status": "broken",
+      "code": 404
+    },
+    "https://ai-tools-lab-tst.netlify.app/pages/ep01": {
+      "status": "broken",
+      "code": 404
+    }
+  },
+  "brokenLinks": [
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/resources",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/observations",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/about",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep17",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep16",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep15",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep14",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep13",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep12",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep11",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep10",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep09",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep08",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep07",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep06",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep05",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep04",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep03",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep02",
+      "status": 404,
+      "referrer": "direct navigation"
+    },
+    {
+      "url": "https://ai-tools-lab-tst.netlify.app/pages/ep01",
+      "status": 404,
+      "referrer": "direct navigation"
+    }
+  ],
+  "totalLinks": 66,
+  "successfulLinks": 2,
+  "brokenCount": 21,
+  "startTime": "2025-05-06T06:27:01.193Z",
+  "endTime": "2025-05-06T06:27:29.072Z",
+  "duration": 27879
+}

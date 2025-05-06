@@ -54,12 +54,29 @@
   conditions = {host = ["ai-tools-lab.com"]}
 
 # For Test: Ensure /pages routes redirect to direct routes
+# This fixes the primary issue found in link verification
 [[redirects]]
   from = "/pages/*"
   to = "/:splat"
   status = 301
+  force = true
+  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+
+# For Test: Ensure episode pages are properly accessible
+[[redirects]]
+  from = "/episodes/:episode"
+  to = "/episodes/:episode/index.html"
+  status = 200
   force = false
   conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+  
+# For Production: Ensure episode pages are properly accessible
+[[redirects]]
+  from = "/pages/episodes/:episode"
+  to = "/pages/episodes/:episode/index.html"
+  status = 200
+  force = false
+  conditions = {host = ["ai-tools-lab.com"]}
 
 # For Test: Make sure direct routes work properly
 [[redirects]]
@@ -84,6 +101,15 @@
   conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
 
 
+# Fix the javascript:history.back() issue found in production
+[[redirects]]
+  from = "/pages/javascript:*"
+  to = "/pages/"
+  status = 301
+  force = true
+  conditions = {host = ["ai-tools-lab.com"]}
+
+# Datadog API proxy
 [[redirects]]
   from = "/api/datadog/*"
   to = "/.netlify/functions/datadog-proxy"
