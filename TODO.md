@@ -154,11 +154,11 @@ Our goal is to make the test environment match the production environment while 
     - [ ] Correct errors in Descript to improve future transcription accuracy
 
 ### Path and URL Inconsistencies
-- [ ] Fix inconsistent URLs between test and production:
+- [x] Fix inconsistent URLs between test and production:
      - Production: `https://ai-tools-lab.com/pages/observations`
      - Test: `https://ai-tools-lab-tst.netlify.app/observations`
 - [ ] Diagnose why all 17 API Episode Page Tests are failing
-- [ ] Create consistent paths between test and production environments
+- [x] Create consistent paths between test and production environments
 - [ ] Create consistent HTML structure between test and production
 - [ ] Avoid URL pattern workarounds in test scripts
 - [ ] Implement proper environment-aware testing
@@ -245,9 +245,10 @@ Our goal is to make the test environment match the production environment while 
 
 ## Critical: Site Content Mismatch
 
-- [ ] Fix content mismatch between https://ai-tools-lab.com and https://ai-tools-lab-tst.netlify.app
+- [x] Fix URL structure mismatch between https://ai-tools-lab.com and https://ai-tools-lab-tst.netlify.app
+- [ ] Fix content mismatch between production and test environments:
   - [ ] Compare and sync HTML content from production site
-  - [ ] Verify all pages and routes match
+  - [x] Verify all pages and routes match
   - [ ] Re-run all tests to ensure functionality
   - [ ] Update Astro v5 templates to match production styling
 
