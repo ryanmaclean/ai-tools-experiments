@@ -36,7 +36,7 @@ export function initDatadogRum() {
       datadogRum.addRumGlobalContext('app', {
         framework: 'astro',
         isProduction: process.env.NODE_ENV === 'production',
-        viewport: `${window.innerWidth}x${window.innerHeight}`
+        viewport: window.innerWidth + 'x' + window.innerHeight
       });
       
       console.log('✅ Datadog RUM initialized successfully');
