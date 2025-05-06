@@ -1,14 +1,14 @@
 ---
+// src/pages/index.astro - HOME PAGE
 import MainLayout from '../layouts/MainLayout.astro';
+import HomeContent from '../content/imported/home.html?raw';
+
 const pageTitle = "Home | AI Tools Lab";
 const description = "Collection of AI tools experiments and resources.";
-
-// Load the HTML content directly from the imported file
-const htmlFiles = import.meta.glob('../content/imported/home.html', { query: '?raw', eager: true });
-const indexHtmlContent = htmlFiles['../content/imported/home.html'].default;
+const ogImageUrl = "/images/ai-tools-lab-logo.png";
 ---
 
-<MainLayout title={pageTitle} description={description}>
-  {/* Simply render the imported raw HTML content without any custom JavaScript or styling */}
-  <div set:html={indexHtmlContent} />
+<MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
+  <!-- Render the imported HTML content directly without manipulation -->
+  <Fragment set:html={HomeContent} />
 </MainLayout>

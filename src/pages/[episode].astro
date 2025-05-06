@@ -1,0 +1,32 @@
+---
+// Dynamic episode template that loads HTML content directly without manipulation
+import MainLayout from '../layouts/MainLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get the episode parameter from the URL
+const { episode } = Astro.params;
+
+// If this is a episode slug (ep01, ep02, etc.), load the corresponding HTML
+let episodeContent = "";
+let pageTitle = "Episode Not Found";
+let description = "This episode could not be found.";
+
+if (episode && episode.match(/^ep\d+$/)) {
+  try {
+    // Import the episode HTML content directly using dynamic import
+    const importedContent = await import(`../content/imported/episodes/${episode}.html?raw`);
+    episodeContent = importedContent.default;
+    
+    // Set basic metadata
+    pageTitle = `${episode.toUpperCase()} | AI Tools Lab`;
+    description = `AI Tools Lab Episode ${episode.replace('ep', '')}`;
+  } catch (error) {
+    console.error(`Could not load episode: ${episode}`, error);
+  }
+}
+---
+
+<MainLayout title={pageTitle} description={description}>
+  {/* Simply render the imported HTML content directly */}
+  <Fragment set:html={episodeContent} />
+</MainLayout>

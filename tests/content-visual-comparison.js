@@ -78,17 +78,16 @@ async function captureScreenshots() {
         const pages = await Promise.all(
           contexts.map(async ({ env, context }) => {
             const page = await context.newPage();
-            // Construct URL based on environment
-            const url = `${env.baseUrl}${env.pathPrefix}/episodes/${episode}`;
+            // Construct URL based on environment - using standardized /pages/ep## format
+            const url = `${env.baseUrl}${env.pathPrefix}/${episode}`;
             await page.goto(url, { waitUntil: 'networkidle' });
             
             // Wait for content to be fully loaded
-            await page.waitForSelector('.episode-content', { state: 'visible' });
+            await page.waitForLoadState('networkidle');
             
-            // Take screenshot of just the content area
-            const contentArea = await page.$('.episode-content');
+            // Take full page screenshot since we don't know exact content structure
             const screenshotPath = path.join(screenshotDir, `${env.name}-${episode}.png`);
-            await contentArea.screenshot({ path: screenshotPath });
+            await page.screenshot({ path: screenshotPath, fullPage: true });
             
             return { env, page, screenshotPath };
           })
