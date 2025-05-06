@@ -246,6 +246,17 @@ Our goal is to make the test environment match the production environment while 
 ## Critical: Site Content Mismatch
 
 - [x] Fix URL structure mismatch between https://ai-tools-lab.com and https://ai-tools-lab-tst.netlify.app
+- [ ] Fix visual inconsistencies between environments:
+  - [ ] Standardize CSS loading and path handling between environments
+  - [ ] Fix inconsistent resource paths (images, CSS, JS) to use environment-aware paths
+  - [ ] Address font size, color, and layout differences between test and production
+  - [ ] Fix play button styling inconsistencies across environments
+  - [ ] Uncomment environment detection code in Header.astro component
+    - [ ] Enable the commented-out DOMContentLoaded event listener
+    - [ ] Uncomment the fixEnvironmentLinks() function
+    - [ ] Fix document.querySelector calls that are commented out
+  - [ ] Create a centralized resource path handler for all assets (CSS, images, scripts)
+  - [ ] Refactor inline styles to use external stylesheets with environment-aware paths
 - [ ] Fix content mismatch between production and test environments:
   - [ ] Compare and sync HTML content from production site
   - [x] Verify all pages and routes match
