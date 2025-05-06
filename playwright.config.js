@@ -25,8 +25,7 @@ module.exports = defineConfig({
   /* Reporter to use */
   reporter: [
     ['html'],
-    ['json', { outputFile: 'test-results/test-results.json' }],
-    ['datadog', { ddApiKey: process.env.DD_API_KEY }]
+    ['json', { outputFile: 'test-results/test-results.json' }]
   ],
   
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */

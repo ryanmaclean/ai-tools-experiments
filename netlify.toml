@@ -61,6 +61,28 @@
   force = false
   conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
 
+# For Test: Make sure direct routes work properly
+[[redirects]]
+  from = "/resources"
+  to = "/resources/index.html"
+  status = 200
+  force = false
+  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+
+[[redirects]]
+  from = "/observations"
+  to = "/observations/index.html"
+  status = 200
+  force = false
+  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+
+[[redirects]]
+  from = "/about"
+  to = "/about/index.html"
+  status = 200
+  force = false
+  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+
 
 [[redirects]]
   from = "/api/datadog/*"
