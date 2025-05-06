@@ -2,6 +2,7 @@
 // Import components
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { DATADOG_CONFIG } from '../js/datadog-config.js';
 
 // Define props interface
 interface Props {
@@ -29,31 +30,47 @@ const { title } = Astro.props;
  
 	<!-- Datadog RUM monitoring - Using is:inline for Astro SSR compatibility -->
 	<script is:inline>
-		(function(h,o,u,n,d) {
-		  h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}}
-		  d=o.createElement(u);d.async=1;d.src=n
-		  n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n)
-		})(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js','DD_RUM')
-		window.DD_RUM.onReady(function() {
-		  window.DD_RUM.init({
-		    clientToken: 'pub3ab714d81ea179c4cf78b41467d1090b',
-		    applicationId: '719fdc0f-589e-4c5a-bf1c-fa42f53208fd',
-		    site: 'datadoghq.com',
-		    service: 'ai-tools-lab',
-		    env: window.location.hostname.includes('ai-tools-lab-tst') ? 'staging' : 
-		      (window.location.hostname.includes('ai-tools-lab.com') ? 'production' : 'development'),
-		    // Session configuration
-		    sessionSampleRate: 100,
-		    sessionReplaySampleRate: 100,
-		    trackResources: true,
-		    trackLongTasks: true,
-		    trackUserInteractions: true,
-		    defaultPrivacyLevel: 'mask-user-input'
-		  })
+		// Datadog config as JSON string since we can't directly import in inline scripts
+		const datadogConfig = {
+		  clientToken: 'pub3ab714d81ea179c4cf78b41467d1090b',
+		  applicationId: '719fdc0f-589e-4c5a-bf1c-fa42f53208fd',
+		  site: 'datadoghq.com',
+		  service: 'ai-tools-lab',
+		  // Environment detection based on hostname
+		  env: function() {
+		    if (window.location.hostname.includes('ai-tools-lab-tst.netlify.app')) {
+		      return 'staging';
+		    } else if (window.location.hostname.includes('ai-tools-lab.com')) {
+		      return 'production';
+		    } else {
+		      return 'development';
+		    }
+		  }(),
+		  // Session configuration
+		  sessionSampleRate: 100,
+		  sessionReplaySampleRate: 100,
+		  trackResources: true,
+		  trackLongTasks: true,
+		  trackUserInteractions: true,
+		  defaultPrivacyLevel: 'mask-user-input'
+		};
+
+		// Only initialize if not already done
+		if (!window.DD_RUM_INITIALIZED) {
+		  (function(h,o,u,n,d) {
+		    h=h[d]=h[d]||{q:[],onReady:function(c){h.q.push(c)}};
+		    d=o.createElement(u);d.async=1;d.src=n;
+		    n=o.getElementsByTagName(u)[0];n.parentNode.insertBefore(d,n);
+		  })(window,document,'script','https://www.datadoghq-browser-agent.com/us1/v5/datadog-rum.js','DD_RUM');
 		  
-		  // Log successful initialization to console
-		  console.log('[Datadog] RUM initialized successfully')
-		})
+		  window.DD_RUM.onReady(function() {
+		    window.DD_RUM.init(datadogConfig);
+		    // Mark as initialized to prevent duplicate initialization
+		    window.DD_RUM_INITIALIZED = true;
+		    // Log successful initialization to console
+		    console.log('[Datadog] RUM initialized successfully');
+		  });
+		}
 	</script>
 </head>
 <body>

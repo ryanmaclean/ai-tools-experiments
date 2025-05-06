@@ -1,5 +1,24 @@
 ---
-// Header component adapted to match live site structure
+// Header component adapted to match live site structure with environment detection
+
+// Use URL_PREFIX environment variable set in netlify.toml
+// This simplifies configuration and ensures consistency
+// - Production (ai-tools-lab.com): URL_PREFIX = '/pages'
+// - Test (ai-tools-lab-tst.netlify.app): URL_PREFIX = ''
+let pathPrefix = import.meta.env.URL_PREFIX || process.env.URL_PREFIX || '';
+
+// Fallback detection in case environment variable isn't available
+if (pathPrefix === '' && Astro.url.hostname.includes('ai-tools-lab.com')) {
+  // Only in production we need the /pages prefix
+  pathPrefix = '/pages';
+}
+
+
+// Create environment-aware paths for navigation
+const homePath = `${pathPrefix}/`;
+const resourcesPath = `${pathPrefix}/resources`;
+const observationsPath = `${pathPrefix}/observations`;
+const aboutPath = `${pathPrefix}/about`;
 ---
 <!-- Header with site-header class for Datadog test detection -->
 <header class="site-header">
@@ -15,7 +34,7 @@
   <div class="container header-content-container"> {/* Renamed class to avoid conflict */} 
     <div class="logo">
       <!-- Structure matching live site -->
-      <a href="/pages/" class="logo-link" aria-label="AI Tools Lab Home">
+      <a href={homePath} class="logo-link" aria-label="AI Tools Lab Home">
         <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo" width="48" height="48">
         <span>AI Tools Lab</span>
       </a>
@@ -24,10 +43,10 @@
     <!-- Desktop Navigation -->
     <nav class="main-nav" role="navigation" aria-label="Main navigation">
       <ul>
-        <li><a href="/pages/" class:list={{ active: Astro.url.pathname === '/pages/' }}>Home</a></li>
-        <li><a href="/pages/resources" class:list={{ active: Astro.url.pathname === '/pages/resources' || Astro.url.pathname.startsWith('/pages/resources/') }}>Resources</a></li>
-        <li><a href="/pages/observations" class:list={{ active: Astro.url.pathname === '/pages/observations' || Astro.url.pathname.startsWith('/pages/observations/') }}>Observations</a></li>
-        <li><a href="/pages/about" class:list={{ active: Astro.url.pathname === '/pages/about' }}>About</a></li>
+        <li><a href={homePath} class:list={{ active: Astro.url.pathname === homePath }}>Home</a></li>
+        <li><a href={resourcesPath} class:list={{ active: Astro.url.pathname === resourcesPath || Astro.url.pathname.startsWith(`${resourcesPath}/`) }}>Resources</a></li>
+        <li><a href={observationsPath} class:list={{ active: Astro.url.pathname === observationsPath || Astro.url.pathname.startsWith(`${observationsPath}/`) }}>Observations</a></li>
+        <li><a href={aboutPath} class:list={{ active: Astro.url.pathname === aboutPath }}>About</a></li>
       </ul>
     </nav>
 
@@ -39,10 +58,10 @@
     <!-- Mobile Navigation (adapting structure from previous local version) --> 
     <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
       <ul>
-        <li><a href="/pages/">Home</a></li>
-        <li><a href="/pages/resources">Resources</a></li>
-        <li><a href="/pages/observations">Observations</a></li>
-        <li><a href="/pages/about">About</a></li>
+        <li><a href={homePath}>Home</a></li>
+        <li><a href={resourcesPath}>Resources</a></li>
+        <li><a href={observationsPath}>Observations</a></li>
+        <li><a href={aboutPath}>About</a></li>
       </ul>
     </nav>
 
