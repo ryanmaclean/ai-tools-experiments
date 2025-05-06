@@ -77,14 +77,75 @@ function downloadContent(url) {
   });
 }
 
-// Extract main content by removing header and footer
+// Extract main content by removing header, footer, and other site-specific elements
 function extractMainContent(html) {
-  // Remove header
-  let content = html.replace(/\s*<header[\s\S]*?<\/header>/gi, '');
-  // Remove footer
-  content = content.replace(/\s*<footer[\s\S]*?<\/footer>/gi, '');
-  // Clean up any script tags (optional)
+  // Start with complete document
+  let content = html;
+  
+  // 1. First attempt to extract just the main content area if it exists
+  const mainContentRegex = /<main[^>]*>([\s\S]*?)<\/main>/i;
+  const mainMatch = content.match(mainContentRegex);
+  
+  if (mainMatch && mainMatch[1]) {
+    // Use just the content inside <main> tags
+    content = mainMatch[1];
+  } else {
+    // If no <main> tag, try to identify and remove common site elements
+    
+    // Remove doctype, html, head elements completely
+    content = content.replace(/<!DOCTYPE[^>]*>/i, '');
+    content = content.replace(/<html[^>]*>[\s\S]*?<body[^>]*>/i, '');
+    content = content.replace(/<\/body>[\s\S]*?<\/html>/i, '');
+    
+    // Remove headers with various class names
+    content = content.replace(/\s*<header[^>]*>[\s\S]*?<\/header>/gi, '');
+    
+    // Remove all navigation elements
+    content = content.replace(/\s*<nav[^>]*>[\s\S]*?<\/nav>/gi, '');
+    
+    // Remove footers with various class names
+    content = content.replace(/\s*<footer[^>]*>[\s\S]*?<\/footer>/gi, '');
+    
+    // Remove site-specific elements by class or ID
+    [
+      'site-header', 'header-container', 'main-nav', 'mobile-nav',
+      'footer', 'site-footer', 'copyright', 'menu', 'search',
+      'sidebar', 'newsletter', 'social-media',
+      'cookie-notice', 'banner'
+    ].forEach(selector => {
+      const classRegex = new RegExp(`\\s*<[^>]*class=[^>]*${selector}[^>]*>[\\s\\S]*?<\\/[^>]*>`, 'gi');
+      const idRegex = new RegExp(`\\s*<[^>]*id=[^>]*${selector}[^>]*>[\\s\\S]*?<\\/[^>]*>`, 'gi');
+      content = content.replace(classRegex, '');
+      content = content.replace(idRegex, '');
+    });
+  }
+  
+  // 2. Final cleanup regardless of extraction method
+  
+  // Remove any remaining scripts
   content = content.replace(/<script[\s\S]*?<\/script>/gi, '');
+  
+  // Remove style tags
+  content = content.replace(/<style[\s\S]*?<\/style>/gi, '');
+  
+  // Remove comments
+  content = content.replace(/<!--[\s\S]*?-->/g, '');
+  
+  // Remove meta tags
+  content = content.replace(/<meta[^>]*>/gi, '');
+  
+  // Remove link tags
+  content = content.replace(/<link[^>]*>/gi, '');
+  
+  // Remove title tags
+  content = content.replace(/<title[^>]*>[\s\S]*?<\/title>/gi, '');
+  
+  // Log that we've cleaned the content (for debugging)
+  console.log('Content cleaned of headers/footers and site-specific elements');
+  
+  // Clean up any duplicate line breaks
+  content = content.replace(/\n\s*\n/g, '\n');
+  
   return content;
 }
 

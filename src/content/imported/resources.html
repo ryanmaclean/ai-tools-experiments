@@ -1,190 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources | AI Tools Lab</title>
-    <meta name="description" content="A curated collection of resources for AI tools and experiments.">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Resources | AI Tools Lab">
-    <meta property="og:description" content="Discover articles, tutorials, and case studies about AI tools and technologies from industry leaders.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aitoolslab.com/pages/resources.html">
-    <meta property="og:image" content="../images/resource-placeholder.jpg">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="../images/ai-tools-lab-logo.png" type="image/png">
-    <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="../styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
-    
-    <style>
-        /* Header logo font styling */
-        .logo a {
-            font-family: 'Revalia', cursive;
-            font-size: 3rem;
-        }
-        
-        .resource-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 100%;
-        }
-        
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .resource-card-image {
-            height: 180px;
-            overflow: hidden;
-        }
-        
-        .resource-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        
-        .resource-card:hover .resource-card-image img {
-            transform: scale(1.05);
-        }
-        
-        .resource-card-content {
-            padding: 20px;
-            background: #ffffff;
-        }
-        
-        .resource-card-content h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
-            color: #333;
-            line-height: 1.4;
-        }
-        
-        .resource-card-content p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-        
-        .resource-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: #888;
-        }
-        
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-        
-        .suggest-resource {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 12px;
-            margin: 50px 0;
-            text-align: center;
-        }
-        
-        .suggest-resource h2 {
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .suggest-resource p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-        
-        #resource-form {
-            max-width: 600px;
-            margin: 30px auto 0;
-            text-align: left;
-        }
-        
-        #resource-form .form-group {
-            margin-bottom: 20px;
-        }
-        
-        #resource-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        #resource-form input,
-        #resource-form select,
-        #resource-form textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-family: inherit;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        @media (max-width: 768px) {
-            .resource-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .resource-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .resource-card-image {
-                height: 160px;
-            }
-        }
-    </style>
-</head>
-<body>
 
-    <div class="filter-container">
-        <div class="container">
-            <div class="episodes-filters">
-                <div class="filter-group resources-filter-group">
-                    <div class="tag-buttons">
-                        <button class="tag-filter active" data-tag="all">All Tags</button>
-                        <button class="tag-filter" data-tag="prompt-engineering">Prompt Engineering</button>
-                        <button class="tag-filter" data-tag="code-assistants">Code Assistants</button>
-                        <button class="tag-filter" data-tag="llm">LLMs</button>
-                        <button class="tag-filter" data-tag="image-generation">Image Generation</button>
-                        <button class="tag-filter" data-tag="agi">AGI</button>
-                        <button class="tag-filter" data-tag="web-scraping">Web Scraping</button>
-                        <button class="tag-filter" data-tag="software-engineering">Software Engineering</button>
-                        <button class="tag-filter" data-tag="security">Security</button>
-                        <button class="tag-filter" data-tag="mcp">MCP</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <main class="container resources-section">
         <div class="resources-header">
             <p class="resources-intro"></p>
         </div>
-        
         <div class="resource-grid">
-            <!-- Writing Cursor Rules with a Cursor Rule -->
             <div class="resource-card" data-category="tutorial" data-tags="code-assistants,developer-tools,prompt-engineering">
                 <a href="https://www.adithyan.io/blog/writing-cursor-rules-with-a-cursor-rule" target="_blank">
                     <div class="resource-card-image">
@@ -200,8 +18,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- AI code suggestions sabotage software supply chain -->
             <div class="resource-card" data-category="security" data-tags="security,code-assistants,developer-tools">
                 <a href="https://www.theregister.com/2025/04/12/ai_code_suggestions_sabotage_supply_chain/" target="_blank">
                     <div class="resource-card-image">
@@ -217,8 +33,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Anthropic Education Report -->
             <div class="resource-card" data-category="research" data-tags="llm,education,ai-usage">
                 <a href="https://www.anthropic.com/news/anthropic-education-report-how-university-students-use-claude" target="_blank">
                     <div class="resource-card-image">
@@ -234,8 +48,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Meta Unveils LLaMA 4 -->
             <div class="resource-card" data-category="industry" data-tags="llm,open-source,ai-models">
                 <a href="https://frontbackgeek.com/meta-unveils-llama-4-a-game-changer-in-open-source-ai/" target="_blank">
                     <div class="resource-card-image">
@@ -251,8 +63,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- KubeCon Europe -->
             <div class="resource-card" data-category="industry" data-tags="infrastructure,llm,developer-tools">
                 <a href="https://thenewstack.io/kubecon-europe-how-kubernetes-handles-6g-llms-and-deep-space/" target="_blank">
                     <div class="resource-card-image">
@@ -268,8 +78,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Google Firebase Studio -->
             <div class="resource-card" data-category="industry" data-tags="code-assistants,developer-tools,vibe-coding">
                 <a href="https://www.bleepingcomputer.com/news/google/google-takes-on-cursor-with-firebase-studio-its-ai-builder-for-vibe-coding/" target="_blank">
                     <div class="resource-card-image">
@@ -285,8 +93,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Agent2Agent Protocol -->
             <div class="resource-card" data-category="industry" data-tags="ai-agents,interoperability,mcp">
                 <a href="https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/" target="_blank">
                     <div class="resource-card-image">
@@ -302,8 +108,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- The artifact isn't the art -->
             <div class="resource-card" data-category="opinion" data-tags="creativity,art,ai-generation">
                 <a href="https://www.freethink.com/opinion/studio-ghibli-chatgpt-creativity" target="_blank">
                     <div class="resource-card-image">
@@ -319,8 +123,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- The Curve is Bending -->
             <div class="resource-card" data-category="research" data-tags="ai-economics,developer-tools,industry-trends">
                 <a href="https://grantslatton.com/the-curve-is-bending" target="_blank">
                     <div class="resource-card-image">
@@ -336,8 +138,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- 10 Years of Netlify -->
             <div class="resource-card" data-category="industry" data-tags="web-development,ai-agents,software-engineering">
                 <a href="https://biilmann.blog/articles/10-years-of-netlify/" target="_blank">
                     <div class="resource-card-image">
@@ -353,8 +153,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- The day I taught AI to think like a Senior Developer -->
             <div class="resource-card" data-category="tutorial" data-tags="code-assistants,developer-tools,programming">
                 <a href="https://nmn.gl/blog/ai-understand-senior-developer" target="_blank">
                     <div class="resource-card-image">
@@ -370,8 +168,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- AI 2027 -->
             <div class="resource-card" data-category="research" data-tags="agi,llm,research">
                 <a href="https://ai-2027.com/" target="_blank">
                     <div class="resource-card-image">
@@ -387,8 +183,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- There is no Vibe Engineering -->
             <div class="resource-card" data-category="opinion" data-tags="software-engineering,developers,vibe-coding">
                 <a href="https://serce.me/posts/2025-31-03-there-is-no-vibe-engineering" target="_blank">
                     <div class="resource-card-image">
@@ -404,8 +198,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Wikimedia Foundation bemoans AI bot bandwidth burden -->
             <div class="resource-card" data-category="industry" data-tags="web-scraping,infrastructure,data-training">
                 <a href="https://www.theregister.com/2025/04/03/wikimedia_foundation_bemoans_bot_bandwidth/" target="_blank">
                     <div class="resource-card-image">
@@ -421,8 +213,6 @@
                     </div>
                 </a>
             </div>
-            
-            <!-- The Death of the Software Engineer by a Thousand Prompts -->
             <div class="resource-card" data-category="opinion" data-tags="software-engineering,developers,industry-trends">
                 <a href="https://verdikapuku.com/posts/the-death-of-the-software-engineer-by-a-thousand-prompts/" target="_blank">
                     <div class="resource-card-image">
@@ -438,8 +228,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Anthropic Economic Index -->
             <div class="resource-card" data-category="research" data-tags="llm,economics,ai-analysis">
                 <a href="https://www.anthropic.com/news/anthropic-economic-index-insights-from-claude-sonnet-3-7" target="_blank">
                     <div class="resource-card-image">
@@ -455,8 +243,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- The End of Complex UIs -->
             <div class="resource-card" data-category="industry" data-tags="mcp,ui-design,user-experience">
                 <a href="https://cline.bot/blog/the-end-of-complex-uis-how-mcp-servers-are-eliminating-software-learning-curves" target="_blank">
                     <div class="resource-card-image">
@@ -472,8 +258,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- What is MCP -->
             <div class="resource-card" data-category="explainer" data-tags="mcp,llm,developer-tools">
                 <a href="https://read.highgrowthengineer.com/p/mcps-simply-explained" target="_blank">
                     <div class="resource-card-image">
@@ -489,8 +273,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- Revenge of the junior developer -->
             <div class="resource-card" data-category="opinion" data-tags="code-assistants,developers,career-development">
                 <a href="https://sourcegraph.com/blog/revenge-of-the-junior-developer" target="_blank">
                     <div class="resource-card-image">
@@ -506,8 +288,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- When AI Thinks It Will Lose, It Sometimes Cheats -->
             <div class="resource-card" data-category="research" data-tags="ai-safety,agi,ethics">
                 <a href="https://time.com/7259395/ai-chess-cheating-palisade-research/" target="_blank">
                     <div class="resource-card-image">
@@ -523,8 +303,6 @@
                     </div>
                 </a>
             </div>
-
-            <!-- 2025 GitHub Copilot vulnerabilities -->
             <div class="resource-card" data-category="security" data-tags="security,code-assistants,vulnerability">
                 <a href="https://www.apexhq.ai/blog/blog/2025-github-copilot-vulnerabilities-technical-overview/" target="_blank">
                     <div class="resource-card-image">
@@ -541,29 +319,24 @@
                 </a>
             </div>
         </div>
-        
         <div class="suggest-resource">
             <h2>Suggest a Resource</h2>
             <p>Know of a great article, tutorial, or case study about AI tools that we should include? Let us know!</p>
             <button id="suggest-resource-btn" class="btn">Suggest a Resource</button>
-            
             <div id="resource-form" class="hidden">
                 <form id="resource-suggestion-form">
                     <div class="form-group">
                         <label for="resource-title">Resource Title</label>
                         <input type="text" id="resource-title" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="resource-url">URL</label>
                         <input type="url" id="resource-url" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="resource-source">Source/Publisher</label>
                         <input type="text" id="resource-source" required>
                     </div>
-                    
                     <div class="form-group">
                         <label for="resource-category">Category</label>
                         <select id="resource-category" required>
@@ -576,36 +349,20 @@
                             <option value="opinion">Opinion & Analysis</option>
                         </select>
                     </div>
-                    
                     <div class="form-group">
                         <label for="resource-description">Brief Description</label>
                         <textarea id="resource-description" rows="4" required></textarea>
                     </div>
-                    
                     <div class="form-group">
                         <label for="your-name">Your Name (optional)</label>
                         <input type="text" id="your-name">
                     </div>
-                    
                     <div class="form-group">
                         <label for="your-email">Your Email (optional)</label>
                         <input type="email" id="your-email">
                     </div>
-                    
                     <button type="submit" class="btn">Submit Suggestion</button>
                 </form>
             </div>
         </div>
-    </main>
     
-    <!-- Easter Egg Modal -->
-    <div id="easter-egg-modal" class="easter-egg-modal">
-        <div class="easter-egg-modal-content">
-            <span class="easter-egg-close">&times;</span>
-            <p>Sandy?</p>
-        </div>
-    </div>
-    
-    
-</body>
-</html>

@@ -38,3 +38,41 @@ Verifying environment path configuration...
 [2025-05-06T06:30:36.874Z] [INFO] Episode route configuration: ✅ Configured
 [2025-05-06T06:30:36.874Z] [INFO] 
 Overall result: ✅ READY FOR DEPLOYMENT
+[2025-05-06T06:33:05.979Z] [INFO] Starting pre-deployment checks...
+[2025-05-06T06:33:05.984Z] [INFO] Checking required directories...
+[2025-05-06T06:33:05.984Z] [INFO] ✅ Directory exists: src/content/imported
+[2025-05-06T06:33:05.984Z] [INFO] ✅ Directory exists: src/content/imported/episodes
+[2025-05-06T06:33:05.984Z] [INFO] ✅ Directory exists: src/pages/episodes
+[2025-05-06T06:33:05.984Z] [INFO] 
+Checking required files...
+[2025-05-06T06:33:05.984Z] [INFO] ✅ File exists: src/pages/episodes/[episode].astro
+[2025-05-06T06:33:05.984Z] [INFO] ✅ File exists: src/pages/episodes/index.astro
+[2025-05-06T06:33:05.984Z] [INFO] 
+Running content integrity check...
+[2025-05-06T06:33:06.135Z] [INFO] ✅ Content integrity check passed
+[2025-05-06T06:33:06.135Z] [INFO] 
+Checking Datadog configuration...
+[2025-05-06T06:33:10.110Z] [INFO] ✅ Datadog configuration check passed
+[2025-05-06T06:33:10.110Z] [INFO] 
+Checking episode content...
+[2025-05-06T06:33:10.110Z] [INFO] Found 20 episode files
+[2025-05-06T06:33:10.111Z] [INFO] ✅ All 20 episodes (ep01-ep20) present
+[2025-05-06T06:33:10.111Z] [INFO] 
+Verifying episode content integrity...
+[2025-05-06T06:33:10.111Z] [INFO] ✅ Sample episode content checks passed (3 episodes checked)
+[2025-05-06T06:33:10.111Z] [INFO] 
+Verifying environment path configuration...
+[2025-05-06T06:33:10.111Z] [INFO] ✅ Header component has environment-specific path handling
+[2025-05-06T06:33:10.111Z] [INFO] ✅ Episode route has environment-specific path handling
+[2025-05-06T06:33:10.111Z] [INFO] 
+--- Pre-Deployment Check Summary ---
+[2025-05-06T06:33:10.111Z] [INFO] Required directories: ✅ All present
+[2025-05-06T06:33:10.111Z] [INFO] Required files: ✅ All present
+[2025-05-06T06:33:10.112Z] [INFO] Content integrity: ✅ Pass
+[2025-05-06T06:33:10.112Z] [INFO] Datadog configuration: ✅ Pass
+[2025-05-06T06:33:10.112Z] [INFO] Episode content: ✅ Complete
+[2025-05-06T06:33:10.112Z] [INFO] All 20 episodes present: ✅ Yes
+[2025-05-06T06:33:10.112Z] [INFO] Environment path configuration: ✅ Configured
+[2025-05-06T06:33:10.112Z] [INFO] Episode route configuration: ✅ Configured
+[2025-05-06T06:33:10.112Z] [INFO] 
+Overall result: ✅ READY FOR DEPLOYMENT
