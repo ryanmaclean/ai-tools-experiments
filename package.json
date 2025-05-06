@@ -88,9 +88,11 @@
   "homepage": "https://github.com/ryanmaclean/ai-tools-experiments#readme",
   "dependencies": {
     "@datadog/browser-rum": "^4.31.0",
+    "chromium": "^3.0.3",
     "dd-trace": "^3.32.0",
     "hot-shots": "^10.0.0",
     "node-fetch": "^2.6.7",
+    "playwright": "^1.52.0",
     "sharp": "^0.34.1"
   },
   "optionalDependencies": {
