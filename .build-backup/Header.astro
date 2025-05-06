@@ -15,17 +15,19 @@
   <div class="container header-content-container"> {/* Renamed class to avoid conflict */} 
     <div class="logo">
       <!-- Structure matching live site -->
-      <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo"> 
-      <a href="/">AI Tools Lab</a> 
+      <a href="/pages/" class="logo-link" aria-label="AI Tools Lab Home">
+        <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo" width="48" height="48">
+        <span>AI Tools Lab</span>
+      </a>
     </div>
     
     <!-- Desktop Navigation -->
-    <nav class="main-nav"> <!-- Keep class for desktop visibility control --> 
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
       <ul>
-        <li><a href="/" class:list={{ active: Astro.url.pathname === '/' }}>Home</a></li>
-        <li><a href="/resources" class:list={{ active: Astro.url.pathname === '/resources' || Astro.url.pathname.startsWith('/resources/') }}>Resources</a></li>
-        <li><a href="/observations" class:list={{ active: Astro.url.pathname === '/observations' || Astro.url.pathname.startsWith('/observations/') }}>Observations</a></li>
-        <li><a href="/about" class:list={{ active: Astro.url.pathname === '/about' }}>About</a></li>
+        <li><a href="/pages/" class:list={{ active: Astro.url.pathname === '/pages/' }}>Home</a></li>
+        <li><a href="/pages/resources" class:list={{ active: Astro.url.pathname === '/pages/resources' || Astro.url.pathname.startsWith('/pages/resources/') }}>Resources</a></li>
+        <li><a href="/pages/observations" class:list={{ active: Astro.url.pathname === '/pages/observations' || Astro.url.pathname.startsWith('/pages/observations/') }}>Observations</a></li>
+        <li><a href="/pages/about" class:list={{ active: Astro.url.pathname === '/pages/about' }}>About</a></li>
       </ul>
     </nav>
 
@@ -35,12 +37,12 @@
     </div>
 
     <!-- Mobile Navigation (adapting structure from previous local version) --> 
-    <nav class="mobile-nav"> 
+    <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/resources">Resources</a></li>
-        <li><a href="/observations">Observations</a></li>
-        <li><a href="/about">About</a></li>
+        <li><a href="/pages/">Home</a></li>
+        <li><a href="/pages/resources">Resources</a></li>
+        <li><a href="/pages/observations">Observations</a></li>
+        <li><a href="/pages/about">About</a></li>
       </ul>
     </nav>
 

@@ -18,7 +18,8 @@ Our goal is to make the test environment match the production environment while 
 - [x] Ensure multi-stage builds are implemented where appropriate per [Docker docs](https://docs.docker.com/build/building/multi-stage/) (verified: 1.39GB production image vs 2.32GB dev image)
 - [x] Create development and production Docker Compose configurations that match Netlify environments (verified: NETLIFY=true and CONTEXT=production present)
 - [x] Verify Docker setup aligns with current engineering practices for local testing (verified: setup uses Node 22 images, multi-stage builds, and ARM64 compatibility fixes)
-- [ ] Verify proper `HANDLE_404_WARNINGS` environment variable functionality
+- [ ] Verify proper Docker operations and container management
+- [ ] `HANDLE_404_WARNINGS` environment variable functionality
 - [ ] Further optimize container networking configuration
 
 ### GitHub Actions and CI/CD Workflow
@@ -127,6 +128,18 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Document the benefits of Astro's server-first approach and minimal JavaScript for performance, referencing [Why Astro - Easy to Use](https://docs.astro.build/en/concepts/why-astro/) and [MPAs vs SPAs](https://docs.astro.build/en/concepts/mpa-vs-spa/)
 - [ ] Explore and document integration options with other UI frameworks (React, Svelte, Vue) for flexibility, as per [Integrations](https://astro.build/integrations/)
 - [ ] Summarize the benefits and conclusions of using Astro for documentation in a dedicated section, inspired by [Conclusion](https://astrofordocs.vercel.app/docs/conclusion)
+- [ ] Implement a content workflow from Descript to YouTube and MD to MDX for documentation:
+  - [ ] Use Descript for recording and editing content, utilizing automatic transcription, per [Descript Help](https://help.descript.com/hc/en-us)
+  - [ ] Publish directly to YouTube from Descript for streamlined video content delivery
+  - [ ] Export transcriptions as Markdown (MD) files from Descript
+  - [ ] Convert MD to MDX files with necessary frontmatter and interactive components for Astro
+  - [ ] Integrate MDX files as documentation pages in Astro site, maintaining server-first approach
+  - [ ] Automate content updates and monitor workflow with Datadog for pipeline health
+  - [ ] Set up a spot-checking process for video transcriptions to ensure accuracy in homophones (e.g., 'two' vs. 'too') and tech terminology capitalization (e.g., 'Cursor' vs. 'cursor'):
+    - [ ] Manually review transcriptions with audio context in Descript for homophone accuracy
+    - [ ] Use a tech terminology glossary to ensure correct spelling and capitalization
+    - [ ] Employ regular expressions or scripts to flag potential errors during MD to MDX conversion
+    - [ ] Correct errors in Descript to improve future transcription accuracy
 
 ### Path and URL Inconsistencies
 - [ ] Fix inconsistent URLs between test and production:
@@ -280,3 +293,5 @@ Our goal is to make the test environment match the production environment while 
 - [Astro for Docs](https://astrofordocs.vercel.app/)
 - [Netlify Documentation](https://docs.netlify.com/)
 - [Datadog Documentation](https://docs.datadoghq.com/)
+
+> NOTE: Always verify assumptions against official documentation when implementing these changes. This TODO list should be updated as tasks are completed or new requirements emerge.
