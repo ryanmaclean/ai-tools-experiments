@@ -17,7 +17,7 @@ const environments = {
   test: {
     name: 'Test',
     baseUrl: 'https://ai-tools-lab-tst.netlify.app',
-    pathPrefix: '' // Test environment uses direct routes without prefix
+    pathPrefix: '/pages' // Now using same prefix as production for URL standardization
   }
 };
 
