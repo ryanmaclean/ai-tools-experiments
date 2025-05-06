@@ -1,7 +1,7 @@
 ---
-// src/pages/observations.astro
+// src/pages/observations.astro - UPDATED PATH
 import MainLayout from '../layouts/MainLayout.astro';
-import ObservationsContent from '../content/transcripts/observations.html?raw';
+import ObservationsContent from '../content/imported/observations.html?raw';
 
 // Page metadata with optimized image reference
 const pageTitle = "Observations & Insights";
@@ -167,7 +167,8 @@ const ogImageUrl = "/images/observations-placeholder.jpg";
 
     <script is:client>
         // Observation page functionality - optimized for performance
-        console.log("Build mode"); /* console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
+        console.log("Build mode"); // Client-side initialization
+        document.addEventListener('DOMContentLoaded', () => {
             // Cache DOM selectors for better performance
             const filterInputs = /* /* document.querySelectorAll('.observations-sidebar input[name="filter"]');
             const viewRadios = /* /* document.querySelectorAll('.observations-sidebar input[name="view"]');

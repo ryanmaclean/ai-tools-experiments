@@ -1,19 +1,11 @@
 {
-  "startTime": "2025-05-06T06:52:54.707Z",
-  "endTime": "2025-05-06T06:53:10.617Z",
-  "duration": 15910,
+  "startTime": "2025-05-06T16:01:19.315Z",
+  "endTime": "2025-05-06T16:01:34.288Z",
+  "duration": 14973,
   "totalLinks": 66,
   "successfulLinks": 2,
   "brokenCount": 24,
   "checkedUrls": {
-    "/pages/ep04": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep03": {
-      "status": 404,
-      "success": false
-    },
     "/pages/ep02": {
       "status": 404,
       "success": false
@@ -22,19 +14,19 @@
       "status": 404,
       "success": false
     },
+    "/pages/ep04": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep03": {
+      "status": 404,
+      "success": false
+    },
     "/": {
       "status": 200,
       "success": true
     },
-    "/pages/ep06": {
-      "status": 404,
-      "success": false
-    },
     "/pages/ep08": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep09": {
       "status": 404,
       "success": false
     },
@@ -42,23 +34,15 @@
       "status": 404,
       "success": false
     },
+    "/pages/ep09": {
+      "status": 404,
+      "success": false
+    },
     "/pages/ep07": {
       "status": 404,
       "success": false
     },
-    "/pages/ep11": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep13": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep10": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep14": {
+    "/pages/ep06": {
       "status": 404,
       "success": false
     },
@@ -66,15 +50,23 @@
       "status": 404,
       "success": false
     },
-    "/pages/ep17": {
+    "/pages/ep11": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep14": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep10": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep13": {
       "status": 404,
       "success": false
     },
     "/pages/ep15": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep16": {
       "status": 404,
       "success": false
     },
@@ -86,11 +78,19 @@
       "status": 404,
       "success": false
     },
-    "/pages/": {
+    "/pages/ep17": {
       "status": 404,
       "success": false
     },
-    "/pages/resources": {
+    "/pages/ep16": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep20": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/": {
       "status": 404,
       "success": false
     },
@@ -98,7 +98,7 @@
       "status": 404,
       "success": false
     },
-    "/pages/ep20": {
+    "/pages/resources": {
       "status": 404,
       "success": false
     },
@@ -113,16 +113,6 @@
   },
   "brokenLinks": [
     {
-      "url": "/pages/ep04",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep03",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
       "url": "/pages/ep02",
       "status": 404,
       "referrer": "direct"
@@ -133,7 +123,12 @@
       "referrer": "direct"
     },
     {
-      "url": "/pages/ep06",
+      "url": "/pages/ep04",
+      "status": 404,
+      "referrer": "direct"
+    },
+    {
+      "url": "/pages/ep03",
       "status": 404,
       "referrer": "direct"
     },
@@ -143,12 +138,12 @@
       "referrer": "direct"
     },
     {
-      "url": "/pages/ep09",
+      "url": "/pages/ep05",
       "status": 404,
       "referrer": "direct"
     },
     {
-      "url": "/pages/ep05",
+      "url": "/pages/ep09",
       "status": 404,
       "referrer": "direct"
     },
@@ -158,22 +153,7 @@
       "referrer": "direct"
     },
     {
-      "url": "/pages/ep11",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep13",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep10",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep14",
+      "url": "/pages/ep06",
       "status": 404,
       "referrer": "direct"
     },
@@ -183,17 +163,27 @@
       "referrer": "direct"
     },
     {
-      "url": "/pages/ep17",
+      "url": "/pages/ep11",
+      "status": 404,
+      "referrer": "direct"
+    },
+    {
+      "url": "/pages/ep14",
+      "status": 404,
+      "referrer": "direct"
+    },
+    {
+      "url": "/pages/ep10",
+      "status": 404,
+      "referrer": "direct"
+    },
+    {
+      "url": "/pages/ep13",
       "status": 404,
       "referrer": "direct"
     },
     {
       "url": "/pages/ep15",
-      "status": 404,
-      "referrer": "direct"
-    },
-    {
-      "url": "/pages/ep16",
       "status": 404,
       "referrer": "direct"
     },
@@ -208,12 +198,22 @@
       "referrer": "direct"
     },
     {
-      "url": "/pages/",
+      "url": "/pages/ep17",
       "status": 404,
       "referrer": "direct"
     },
     {
-      "url": "/pages/resources",
+      "url": "/pages/ep16",
+      "status": 404,
+      "referrer": "direct"
+    },
+    {
+      "url": "/pages/ep20",
+      "status": 404,
+      "referrer": "direct"
+    },
+    {
+      "url": "/pages/",
       "status": 404,
       "referrer": "direct"
     },
@@ -223,7 +223,7 @@
       "referrer": "direct"
     },
     {
-      "url": "/pages/ep20",
+      "url": "/pages/resources",
       "status": 404,
       "referrer": "direct"
     },

@@ -1,12 +1,12 @@
 {
-  "startTime": "2025-05-06T06:53:10.634Z",
-  "endTime": "2025-05-06T06:53:16.656Z",
-  "duration": 6022,
+  "startTime": "2025-05-06T16:01:34.303Z",
+  "endTime": "2025-05-06T16:01:42.817Z",
+  "duration": 8514,
   "totalLinks": 2167,
   "successfulLinks": 24,
   "brokenCount": 2,
   "checkedUrls": {
-    "/pages/ep04": {
+    "/pages/ep02": {
       "status": 200,
       "success": true
     },
@@ -14,11 +14,11 @@
       "status": 200,
       "success": true
     },
-    "/pages/ep01": {
+    "/pages/ep04": {
       "status": 200,
       "success": true
     },
-    "/pages/ep02": {
+    "/pages/ep01": {
       "status": 200,
       "success": true
     },
@@ -30,7 +30,7 @@
       "status": 200,
       "success": true
     },
-    "/pages/ep06": {
+    "/pages/ep08": {
       "status": 200,
       "success": true
     },
@@ -38,15 +38,19 @@
       "status": 200,
       "success": true
     },
-    "/pages/ep08": {
-      "status": 200,
-      "success": true
-    },
     "/pages/ep07": {
       "status": 200,
       "success": true
     },
+    "/pages/ep06": {
+      "status": 200,
+      "success": true
+    },
     "/pages/ep10": {
+      "status": 200,
+      "success": true
+    },
+    "/pages/ep13": {
       "status": 200,
       "success": true
     },
@@ -58,23 +62,7 @@
       "status": 200,
       "success": true
     },
-    "/pages/ep13": {
-      "status": 200,
-      "success": true
-    },
     "/pages/ep11": {
-      "status": 200,
-      "success": true
-    },
-    "/pages/ep18": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep19": {
-      "status": 404,
-      "success": false
-    },
-    "/pages/ep16": {
       "status": 200,
       "success": true
     },
@@ -82,15 +70,23 @@
       "status": 200,
       "success": true
     },
+    "/pages/ep19": {
+      "status": 404,
+      "success": false
+    },
+    "/pages/ep18": {
+      "status": 404,
+      "success": false
+    },
     "/pages/ep17": {
       "status": 200,
       "success": true
     },
-    "/pages/about": {
+    "/pages/ep16": {
       "status": 200,
       "success": true
     },
-    "/pages/ep20": {
+    "/pages/about": {
       "status": 200,
       "success": true
     },
@@ -102,23 +98,27 @@
       "status": 200,
       "success": true
     },
-    "/": {
+    "/pages/ep20": {
       "status": 200,
       "success": true
     },
     "/pages/observations#": {
       "status": 200,
       "success": true
+    },
+    "/": {
+      "status": 200,
+      "success": true
     }
   },
   "brokenLinks": [
     {
-      "url": "/pages/ep18",
+      "url": "/pages/ep19",
       "status": 404,
       "referrer": "direct"
     },
     {
-      "url": "/pages/ep19",
+      "url": "/pages/ep18",
       "status": 404,
       "referrer": "direct"
     }

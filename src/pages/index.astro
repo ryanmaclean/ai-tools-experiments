@@ -3,9 +3,9 @@ import MainLayout from '../layouts/MainLayout.astro';
 const pageTitle = "Home | AI Tools Lab"; // Or derive dynamically
 const description = "Collection of AI tools experiments and resources.";
 
-// Use import.meta.glob with ?raw to get the HTML content as a string
-const htmlFiles = import.meta.glob('../content/transcripts/index.html', { query: '?raw', eager: true });
-const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default; // Access the raw string
+// Use import.meta.glob with ?raw to get the HTML content as a string - UPDATED PATH
+const htmlFiles = import.meta.glob('../content/imported/home.html', { query: '?raw', eager: true });
+const indexHtmlContent = htmlFiles['../content/imported/home.html'].default; // Access the standardized raw content
 ---
 
 <MainLayout title={pageTitle} description={description}>
@@ -178,7 +178,8 @@ const indexHtmlContent = htmlFiles['../content/transcripts/index.html'].default;
   <div set:html={indexHtmlContent} />
 
   <script is:client>
-    console.log("Build mode"); /* console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', function() {
+    console.log("Build mode"); // Client-side initialization
+    document.addEventListener('DOMContentLoaded', function() {
       // Add play icons to any video containers that don't have them
       addPlayIconsToVideos();
 
