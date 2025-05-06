@@ -298,7 +298,13 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Update test configuration to work with Docker and Netlify environments
 - [ ] Ensure consistent path handling between test and production environments
 - [ ] Implement visual regression testing with proper browser automation
+  - [ ] Fix visual-comparison-test.js to properly compare CSS styles instead of just structure
+  - [ ] Add computed style comparison for critical elements (fonts, colors, spacing)
+  - [ ] Implement pixel-difference tolerance for screenshots rather than binary comparison
+  - [ ] Compare specific components (header, play button, cards) individually rather than full page
 - [ ] Update Datadog synthetic tests using Terraform for both structural and visual validations
+  - [ ] Add CSS-specific validation checks in synthetic tests
+  - [ ] Configure regular visual comparison scheduled checks between environments
 - [ ] Create comprehensive test documentation for future developers
 
 ## Content Synchronization and Verification Roadmap
