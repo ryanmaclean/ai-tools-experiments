@@ -1,9 +1,25 @@
 #!/bin/bash
 
-# A script to safely build the site by handling client-side JavaScript issues
+# A script to safely build the site while preserving environment-aware routing
 set -e
 
-echo "🔧 Running safe build process"
+echo "Running safe build process"
+
+# Detect environment for consistent URL paths
+if [[ "${NETLIFY}" == "true" ]]; then
+  # We're in a Netlify environment
+  if [[ "${CONTEXT}" == "production" ]]; then
+    echo "Detected production environment, using /pages prefix"
+    export URL_PREFIX="/pages"
+  else
+    echo "Detected test environment, using direct routes without prefix"
+    export URL_PREFIX=""
+  fi
+else
+  # Local development
+  echo "Detected local development, using direct routes without prefix"
+  export URL_PREFIX=""
+fi
 
 # 1. Create backup of files that cause SSR issues
 echo "📦 Backing up client-side scripts"
@@ -50,10 +66,16 @@ cp .build-tmp/observations.astro.2 src/pages/observations.astro
 echo "🏗️ Running Astro build"
 npm run build
 
-# 4. Restore original files
-echo "♻️ Restoring original client-side scripts"
+# 4. Partial file restoration - preserve environment awareness in Header
+echo "Partially restoring original files while preserving environment settings"
 cp .build-backup/MainLayout.astro src/layouts/
-cp .build-backup/Header.astro src/components/
+# DO NOT restore Header.astro to preserve environment URL paths
+# Instead, only fix the client-side scripts in the current Header
+cp src/components/Header.astro .build-tmp/preserved-header.astro
+sed -i.bak 's/\/\* document\.querySelector/document.querySelector/g' .build-tmp/preserved-header.astro
+cp .build-tmp/preserved-header.astro src/components/Header.astro
+
+# Restore other files
 cp .build-backup/index.astro src/pages/
 cp .build-backup/resources.astro src/pages/
 cp .build-backup/observations.astro src/pages/
