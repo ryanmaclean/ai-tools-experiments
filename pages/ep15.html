@@ -40,12 +40,14 @@
             background-color: #fcfcfc;
         }
         
-        .transcript-content p {
-            margin-bottom: 12px;
+        .transcript pre {
+            font-family: inherit;
+            white-space: pre-wrap;
+            margin: 0;
             line-height: 1.5;
         }
         
-        .timestamp-link {
+        .transcript-timestamp {
             color: #0066cc;
             font-family: monospace;
             text-decoration: none;
@@ -54,29 +56,15 @@
             border-radius: 3px;
         }
         
-        .timestamp-link:hover {
+        .transcript-timestamp:hover {
             background-color: #d0e5ff;
         }
         
-        .read-more-transcript {
-            text-align: center;
-            padding: 10px;
-            margin-top: 15px;
-            border-top: 1px solid #e0e0e0;
+        .transcript-speaker {
+            font-weight: bold;
         }
         
-        .read-more-transcript a {
-            display: inline-block;
-            padding: 8px 16px;
-            background-color: #0066cc;
-            color: white;
-            border-radius: 4px;
-            text-decoration: none;
-        }
-        
-        .read-more-transcript a:hover {
-            background-color: #0055aa;
-        }
+        /* Transcript controls styling */
         
         .transcript-navigation {
             display: flex;
@@ -219,51 +207,48 @@
             <h2>Full Transcript</h2>
             <div class="transcript-navigation">
                 <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = 0">Top</button>
-                <a href="https://youtu.be/DcnbH45lfkU" target="_blank" class="transcript-control youtube-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-                        <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-                    </svg>
-                    Watch Full Video
-                </a>
+                <span>Scroll or use controls to navigate</span>
                 <button class="transcript-control" onclick="document.querySelector('.transcript').scrollTop = document.querySelector('.transcript').scrollHeight">Bottom</button>
             </div>
             
-            <div class="timestamp-note">
-                <strong>💡 Tip:</strong> Click on any timestamp to jump to that point in the YouTube video.
+            <div class="timestamp-note" style="background-color: #f0f7ff; padding: 10px; margin: 10px 0; border-radius: 5px; border-left: 4px solid #0066cc;">
+                <strong>💡 Tip:</strong> Click on the 🕒 icons above or timestamps in the transcript below to jump to that point in the YouTube video.
             </div>
             
             <div class="transcript">
-                <div class="transcript-content">
-                    <!-- Transcript content -->
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=0" target="_blank" class="timestamp-link">[00:00:00]</a> <strong>Jason Hand:</strong> Hey, Ryan. Happy Monday.</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=1" target="_blank" class="timestamp-link">[00:00:01]</a> <strong>Ryan MacLean:</strong> Happy Monday. It's time to talk about AI stuff again. Indeed. It's like it never ends.</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=7" target="_blank" class="timestamp-link">[00:00:07]</a> <strong>Jason Hand:</strong> Yeah. And I guess we can do a quick recap of what we've been talking about. I'll go ahead and share my screen. There's a few things I wanna talk about here on the site. The first thing is the last episode that we did is not necessarily this episode.</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=22" target="_blank" class="timestamp-link">[00:00:22]</a> <strong>Ryan MacLean:</strong> Right? Yeah. Sometimes there's one in progress or one in the queue.</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=25" target="_blank" class="timestamp-link">[00:00:25]</a> <strong>Jason Hand:</strong> Right? So I did just post this on Friday, however you and I got together Thursday, I think it was, and it...</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=32" target="_blank" class="timestamp-link">[00:00:32]</a> <strong>Ryan MacLean:</strong> Might even have been Friday. Yeah. Last week was a blur.</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=34" target="_blank" class="timestamp-link">[00:00:34]</a> <strong>Jason Hand:</strong> Maybe it was Thursday, Friday, I can't remember. Yeah. Everything's a blur. Anyway, we got together again and decided to hit record and had a really great conversation. So that's in the pipeline getting processed now. And that's gonna go up. And yeah, so just just to give you a little idea of what we've been talking about recently is Bolt and that second video is like an extension of that conversation where we go a little bit further.</p>
+                <pre>
+<a href="https://youtu.be/DcnbH45lfkU?t=0" target="_blank" class="transcript-timestamp">[00:00:00]</a> <span class="transcript-speaker">Jason Hand:</span> Hey, Ryan. Happy Monday.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=1" target="_blank" class="transcript-timestamp">[00:00:01]</a> <span class="transcript-speaker">Ryan MacLean:</span> Happy Monday. It's time to talk about AI stuff again. Indeed. It's like it never ends.
+<a href="https://youtu.be/DcnbH45lfkU?t=7" target="_blank" class="transcript-timestamp">[00:00:07]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. And I guess we can do a quick recap of what we've been talking about. I'll go ahead and share my screen. There's a few things I wanna talk about here on the site. The first thing is the last episode that we did is not necessarily this episode.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=22" target="_blank" class="transcript-timestamp">[00:00:22]</a> <span class="transcript-speaker">Ryan MacLean:</span> Right? Yeah. Sometimes there's one in progress or one in the queue.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=25" target="_blank" class="transcript-timestamp">[00:00:25]</a> <span class="transcript-speaker">Jason Hand:</span> Right? So I did just post this on Friday, however you and I got together Thursday, I think it was, and it...
+
+<a href="https://youtu.be/DcnbH45lfkU?t=32" target="_blank" class="transcript-timestamp">[00:00:32]</a> <span class="transcript-speaker">Ryan MacLean:</span> Might even have been Friday. Yeah. Last week was a blur.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=34" target="_blank" class="transcript-timestamp">[00:00:34]</a> <span class="transcript-speaker">Jason Hand:</span> Maybe it was Thursday, Friday, I can't remember. Yeah. Everything's a blur. Anyway, we got together again and decided to hit record and had a really great conversation. So that's in the pipeline getting processed now. And that's gonna go up. And yeah, so just just to give you a little idea of what we've been talking about recently is Bolt and that second video is like an extension of that conversation where we go a little bit further.
                     
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=60" target="_blank" class="timestamp-link">[00:01:00]</a> <strong>Jason Hand:</strong> We'll cover that, I guess maybe, in the next shortly.</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=62" target="_blank" class="timestamp-link">[00:01:02]</a> <strong>Ryan MacLean:</strong> Yeah. As soon as I edit the video homework, and I...</p>
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=65" target="_blank" class="timestamp-link">[00:01:05]</a> <strong>Jason Hand:</strong> Exactly. But if you've been on the site here lately, you may notice that this looks a little different. And that is, we've got these images now, I guess thumbnails you could call 'em, but just these I don't know, imagery to go with the aesthetic of the site here. And I, I... I don't know. I might've gone against the grain here. Unpopular opinion for some people on using Gen AI, but those are all gen AI images that I created using Sora. And I think that the main takeaway for me here is I'm on the big I'm big, like anti AI slop. Same talk about AI slop a lot.</p>
+<a href="https://youtu.be/DcnbH45lfkU?t=60" target="_blank" class="transcript-timestamp">[00:01:00]</a> <span class="transcript-speaker">Jason Hand:</span> We'll cover that, I guess maybe, in the next shortly.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=62" target="_blank" class="transcript-timestamp">[00:01:02]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. As soon as I edit the video homework, and I...
+
+<a href="https://youtu.be/DcnbH45lfkU?t=65" target="_blank" class="transcript-timestamp">[00:01:05]</a> <span class="transcript-speaker">Jason Hand:</span> Exactly. But if you've been on the site here lately, you may notice that this looks a little different. And that is, we've got these images now, I guess thumbnails you could call 'em, but just these I don't know, imagery to go with the aesthetic of the site here. And I, I... I don't know. I might've gone against the grain here. Unpopular opinion for some people on using Gen AI, but those are all gen AI images that I created using Sora. And I think that the main takeaway for me here is I'm on the big I'm big, like anti AI slop. Same talk about AI slop a lot.
                     
-                    <!-- Continue with more transcript content -->
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=107" target="_blank" class="timestamp-link">[00:01:47]</a> <strong>Ryan MacLean:</strong> I feel like that's the unwritten rule of this podcast is that we're trying to do like the non slop AI usage or something like that. I totally agree with you.</p>
-                    
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=115" target="_blank" class="timestamp-link">[00:01:55]</a> <strong>Jason Hand:</strong> We, at GTC, we saw everybody there. Adobe Firefly half a dozen tools that are using like. Avatars, right? So you know, it's here.</p>
-                    
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=126" target="_blank" class="timestamp-link">[00:02:06]</a> <strong>Ryan MacLean:</strong> I remember that Adobe skateboard video pretty clearly because it was on Candy Valley. There's something weird about the feet pushing the board or something. Anyway I do remember the skateboard.</p>
-                    
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=136" target="_blank" class="timestamp-link">[00:02:16]</a> <strong>Jason Hand:</strong> Yeah, so it, anyway, it's here and some of it's not great and it falls into that category of slop and we all know it when we see it, and we're just kinda we were just, in fact, we were just laughing about some of the stuff that's on the Sora like website. That's just Exactly, because Sora is mostly a video.</p>
-                    
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=150" target="_blank" class="timestamp-link">[00:02:30]</a> <strong>Ryan MacLean:</strong> However that I think so that, that's what I had heard of anyway. Yeah.</p>
-                    
-                    <p><a href="https://youtu.be/DcnbH45lfkU?t=152" target="_blank" class="timestamp-link">[00:02:32]</a> <strong>Jason Hand:</strong> But it does image. Okay. I started off playing around just in the OpenAI ecosystem over the weekend with all of this, because some of the recent models now. Are actually doing quite well when it comes to generating images that contain text. And that is, I think, one area for me that it's not slop necessarily.</p>
-                    
-                    <p class="read-more-transcript"><a href="https://youtu.be/DcnbH45lfkU" target="_blank">Watch the full video on YouTube for the complete conversation</a></p>
-                </div>
-            </div>
+<a href="https://youtu.be/DcnbH45lfkU?t=107" target="_blank" class="transcript-timestamp">[00:01:47]</a> <span class="transcript-speaker">Ryan MacLean:</span> I feel like that's the unwritten rule of this podcast is that we're trying to do like the non slop AI usage or something like that. I totally agree with you.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=115" target="_blank" class="transcript-timestamp">[00:01:55]</a> <span class="transcript-speaker">Jason Hand:</span> We, at GTC, we saw everybody there. Adobe Firefly half a dozen tools that are using like. Avatars, right? So you know, it's here.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=126" target="_blank" class="transcript-timestamp">[00:02:06]</a> <span class="transcript-speaker">Ryan MacLean:</span> I remember that Adobe skateboard video pretty clearly because it was on Candy Valley. There's something weird about the feet pushing the board or something. Anyway I do remember the skateboard.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=136" target="_blank" class="transcript-timestamp">[00:02:16]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah, so it, anyway, it's here and some of it's not great and it falls into that category of slop and we all know it when we see it, and we're just kinda we were just, in fact, we were just laughing about some of the stuff that's on the Sora like website. That's just Exactly, because Sora is mostly a video.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=150" target="_blank" class="transcript-timestamp">[00:02:30]</a> <span class="transcript-speaker">Ryan MacLean:</span> However that I think so that, that's what I had heard of anyway. Yeah.
+
+<a href="https://youtu.be/DcnbH45lfkU?t=152" target="_blank" class="transcript-timestamp">[00:02:32]</a> <span class="transcript-speaker">Jason Hand:</span> But it does image. Okay. I started off playing around just in the OpenAI ecosystem over the weekend with all of this, because some of the recent models now. Are actually doing quite well when it comes to generating images that contain text. And that is, I think, one area for me that it's not slop necessarily.
+       </pre>
+   </div>
             
         </div>
     </main>
@@ -279,7 +264,7 @@
                         <h3>Claude 3.7, Claude Pro, and Gmail Integration</h3>
                         <div class="video-container">
                             <a href="ep14.html">
-                                <img src="../images/thumbnails/ep14.png" alt="Episode 14 Thumbnail" style="max-width: 240px; height: auto;">
+                                <img src="../images/thumbnails/ep14.png" alt="Episode 14 Thumbnail">
                                 <span class="play-icon"></span>
                             </a>
                         </div>
@@ -288,9 +273,16 @@
                 </div>
                 
                 <div class="nav-item">
-                    <span class="nav-direction">Latest Episode:</span>
+                    <span class="nav-direction">Next Episode:</span>
                     <div class="recording-card">
-                        <h3>You are watching the latest episode</h3>
+                        <h3>Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context</h3>
+                        <div class="video-container">
+                            <a href="ep16.html">
+                                <img src="../images/thumbnails/ep16.png" alt="Episode 16 Thumbnail">
+                                <span class="play-icon"></span>
+                            </a>
+                        </div>
+                        <a href="ep16.html" class="btn">Watch Episode</a>
                     </div>
                 </div>
             </div>

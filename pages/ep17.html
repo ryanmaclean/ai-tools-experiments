@@ -14,7 +14,7 @@ What makes this discussion particularly valuable is the candid assessment of bot
 
 What makes this discussion particularly valuable is the candid assessment of both the strengths and limitations of current AI models. They discuss common pain points including hallucinations, context limitations, and code quality issues, while noting that many of these problems are being addressed as models continue to improve. The duo examines how AI is impacting development workflows at different scales, from individual developers to team-wide adoption, referencing the DORA report which suggests that generative AI might actually have negative impacts on software delivery at organizational levels despite individual productivity gains. The conversation concludes with an exploration of Google's Notebook LM tool, which they demonstrate as a powerful resource for synthesizing information from multiple sources, highlighting the evolving landscape of AI tools designed to help knowledge workers manage and make sense of abundant information.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://aitoolslab.com/pages/ep170.html">
+    <meta property="og:url" content="https://aitoolslab.com/pages/ep17.html">
     <meta property="og:image" content="../images/ai-tools-lab-logo.png">
     
     <!-- Favicon -->
@@ -133,274 +133,274 @@ What makes this discussion particularly valuable is the candid assessment of bot
             </div>
             
             <div class="transcript">
-                <div class="transcript-content">
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=0" target="_blank" class="timestamp-link">[00:00:00]</a> <strong>Jason Hand:</strong> Hey, Ryan, how's it going?</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=1" target="_blank" class="timestamp-link">[00:00:01]</a> <strong>Ryan MacLean:</strong> Not bad at all. How you doing?</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=3" target="_blank" class="timestamp-link">[00:00:03]</a> <strong>Jason Hand:</strong> I'm doing great. Doing great. I wanted to share some things. I shared with you something this morning because I think it's worth going over a little bit. Absolutely. And given our thoughts and then sharing that out.</p>
-                    
-                    <p>And that is this latest report called The State of AI 2025.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=18" target="_blank" class="timestamp-link">[00:00:18]</a> <strong>Ryan MacLean:</strong> And who put this one out? Remind me.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=21" target="_blank" class="timestamp-link">[00:00:21]</a> <strong>Jason Hand:</strong> This is done by, if we go to the, about here, let's see, yeah, my screen's up now. Does it explain it here in this beginning?</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=34" target="_blank" class="timestamp-link">[00:00:34]</a> <strong>Ryan MacLean:</strong> Vercel. Okay. Oh, not a, not the one. Yeah. It's not the one</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=38" target="_blank" class="timestamp-link">[00:00:38]</a> <strong>Jason Hand:</strong> from Vercel, and I don't</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=39" target="_blank" class="timestamp-link">[00:00:39]</a> <strong>Ryan MacLean:</strong> mean to look for that, but it's some of the time is who, who wrote it? Is there any bias or anything like that? No,</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=42" target="_blank" class="timestamp-link">[00:00:42]</a> <strong>Jason Hand:</strong> I think that's a good, clearly that was something we actually about. Okay. So there, okay. There are several reports out there claiming, state of whatever, a popular term. Datadog even has.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=51" target="_blank" class="timestamp-link">[00:00:51]</a> <strong>Ryan MacLean:</strong> Of course. Yeah. That's exactly what I was thinking is we've got them for a reason to not to be, disingenuous, but a lot of these companies will put out reports to to, to vy for position or what <a href="https://youtu.be/AcPDrBKy_Uw?t=60" target="_blank" class="timestamp-link">[00:01:00]</a> have you.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=60" target="_blank" class="timestamp-link">[00:01:00]</a> <strong>Jason Hand:</strong> But as far as who put this one out, ran by there. It's</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=66" target="_blank" class="timestamp-link">[00:01:06]</a> <strong>Ryan MacLean:</strong> okay. Msty.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=69" target="_blank" class="timestamp-link">[00:01:09]</a> <strong>Jason Hand:</strong> Okay. From Msty, which I'm not familiar with, Msty,</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=72" target="_blank" class="timestamp-link">[00:01:12]</a> <strong>Ryan MacLean:</strong> I am because I mostly because I'm on another podcast where the host is big on Msty ai. So I think the goal of Msty is to make, using AI models easy is their claim to fame and they get a few tools about that.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=85" target="_blank" class="timestamp-link">[00:01:25]</a> <strong>Jason Hand:</strong> Okay. It's always good to know where your survey data is coming from just to understand. Who's sharing this type of stuff, what their motivations might be, that kind of thing.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=96" target="_blank" class="timestamp-link">[00:01:36]</a> <strong>Ryan MacLean:</strong> Yeah. But as my understanding is, oh, sorry. My understanding is that Msty is similar to LM Studio basically having not used it before.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=103" target="_blank" class="timestamp-link">[00:01:43]</a> <strong>Jason Hand:</strong> Okay. Good to know. Good to know. I want to add it to the list of something I wants to play around with, but I, this showed up on the, TL;DR if you're familiar with I, the TL;DR newsletter. Yeah.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=113" target="_blank" class="timestamp-link">[00:01:53]</a> <strong>Ryan MacLean:</strong> Yes, I am. That's, that is one of the things in my email mailbox that I've got clean up one of those newsletters that, that helps add to the <a href="https://youtu.be/AcPDrBKy_Uw?t=120" target="_blank" class="timestamp-link">[00:02:00]</a> 3.5 million.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=120" target="_blank" class="timestamp-link">[00:02:00]</a> <strong>Jason Hand:</strong> Yeah it, like you, it's I read it also. It's really one of the few that I, I actually look at probably daily,</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=128" target="_blank" class="timestamp-link">[00:02:08]</a> <strong>Ryan MacLean:</strong> a lot better signal to noise, I think than a lot of the others is where they come in for me.</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=132" target="_blank" class="timestamp-link">[00:02:12]</a> <strong>Jason Hand:</strong> Yeah, and they have different categories. There's an InfoSec one, there's a product one, there's an AI one. I think just a general tech one, a web dev one there, so you can dial in if you just want certain subjects. I get 'em all and then just kinda look through 'em in the morning. But anyway, as I was looking through TL;DR this morning, this report or this state of AI report web dev AI. Was in there and I started looking through it and I thought there was some interesting things in here and that's why I shared it with you. And I thought, let's just go, let's just get on a call and actually go through it.</p>
-                    
-                    <p>I like the layout over here, first of all. 'cause I think it's all, it is always important to understand like, who responded to this report. Yes. Looks like a little over 4,000 people, so not huge, but still pretty good size. Also, sorry. <a href="https://youtu.be/AcPDrBKy_Uw?t=180" target="_blank" class="timestamp-link">[00:03:00]</a> Ryan, you're only represented here by about, I think that's</p>
-                    
-                    <p><a href="https://youtu.be/AcPDrBKy_Uw?t=183" target="_blank" class="timestamp-link">[00:03:03]</a> <strong>Ryan MacLean:</strong> proportional to to be kind to this survey. That I think the fact of the matter is that maybe the people using more gen AI tooling may actually be in, in the US and in fact, if this survey is in English and you're looking at population of English speaking users using Gen ai, I did expect India to be a lot higher on this list. However, as a result just in terms of the prevalence that I've seen of. Of, of certain countries using more AI than others. Yeah. Interesting. Pretty close to the same.</p>
+                <pre>
+<a href="https://youtu.be/AcPDrBKy_Uw?t=0" target="_blank" class="transcript-timestamp">[00:00:00]</a> <span class="transcript-speaker">Jason Hand:</span> Hey, Ryan, how's it going?
 
-[00:03:31] **Jason Hand:** Anyway, that, that's kinda where these respondents are coming from. A little bit of a breakdown on age.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=1" target="_blank" class="transcript-timestamp">[00:00:01]</a> <span class="transcript-speaker">Ryan MacLean:</span> Not bad at all. How you doing?
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=3" target="_blank" class="transcript-timestamp">[00:00:03]</a> <span class="transcript-speaker">Jason Hand:</span> I'm doing great. Doing great. I wanted to share some things. I shared with you something this morning because I think it's worth going over a little bit. Absolutely. And given our thoughts and then sharing that out.
+
+And that is this latest report called The State of AI 2025.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=18" target="_blank" class="transcript-timestamp">[00:00:18]</a> <span class="transcript-speaker">Ryan MacLean:</span> And who put this one out? Remind me.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=21" target="_blank" class="transcript-timestamp">[00:00:21]</a> <span class="transcript-speaker">Jason Hand:</span> This is done by, if we go to the, about here, let's see, yeah, my screen's up now. Does it explain it here in this beginning?
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=34" target="_blank" class="transcript-timestamp">[00:00:34]</a> <span class="transcript-speaker">Ryan MacLean:</span> Vercel. Okay. Oh, not a, not the one. Yeah. It's not the one
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=38" target="_blank" class="transcript-timestamp">[00:00:38]</a> <span class="transcript-speaker">Jason Hand:</span> from Vercel, and I don't
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=39" target="_blank" class="transcript-timestamp">[00:00:39]</a> <span class="transcript-speaker">Ryan MacLean:</span> mean to look for that, but it's some of the time is who, who wrote it? Is there any bias or anything like that? No,
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=42" target="_blank" class="transcript-timestamp">[00:00:42]</a> <span class="transcript-speaker">Jason Hand:</span> I think that's a good, clearly that was something we actually about. Okay. So there, okay. There are several reports out there claiming, state of whatever, a popular term. Datadog even has.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=51" target="_blank" class="transcript-timestamp">[00:00:51]</a> <span class="transcript-speaker">Ryan MacLean:</span> Of course. Yeah. That's exactly what I was thinking is we've got them for a reason to not to be, disingenuous, but a lot of these companies will put out reports to to, to vy for position or what <a href="https://youtu.be/AcPDrBKy_Uw?t=60" target="_blank" class="transcript-timestamp">[00:01:00]</a> have you.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=60" target="_blank" class="transcript-timestamp">[00:01:00]</a> <span class="transcript-speaker">Jason Hand:</span> But as far as who put this one out, ran by there. It's
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=66" target="_blank" class="transcript-timestamp">[00:01:06]</a> <span class="transcript-speaker">Ryan MacLean:</span> okay. Msty.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=69" target="_blank" class="transcript-timestamp">[00:01:09]</a> <span class="transcript-speaker">Jason Hand:</span> Okay. From Msty, which I'm not familiar with, Msty,
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=72" target="_blank" class="transcript-timestamp">[00:01:12]</a> <span class="transcript-speaker">Ryan MacLean:</span> I am because I mostly because I'm on another podcast where the host is big on Msty ai. So I think the goal of Msty is to make, using AI models easy is their claim to fame and they get a few tools about that.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=85" target="_blank" class="transcript-timestamp">[00:01:25]</a> <span class="transcript-speaker">Jason Hand:</span> Okay. It's always good to know where your survey data is coming from just to understand. Who's sharing this type of stuff, what their motivations might be, that kind of thing.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=96" target="_blank" class="transcript-timestamp">[00:01:36]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. But as my understanding is, oh, sorry. My understanding is that Msty is similar to LM Studio basically having not used it before.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=103" target="_blank" class="transcript-timestamp">[00:01:43]</a> <span class="transcript-speaker">Jason Hand:</span> Okay. Good to know. Good to know. I want to add it to the list of something I wants to play around with, but I, this showed up on the, TL;DR if you're familiar with I, the TL;DR newsletter. Yeah.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=113" target="_blank" class="transcript-timestamp">[00:01:53]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yes, I am. That's, that is one of the things in my email mailbox that I've got clean up one of those newsletters that, that helps add to the <a href="https://youtu.be/AcPDrBKy_Uw?t=120" target="_blank" class="transcript-timestamp">[00:02:00]</a> 3.5 million.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=120" target="_blank" class="transcript-timestamp">[00:02:00]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah it, like you, it's I read it also. It's really one of the few that I, I actually look at probably daily,
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=128" target="_blank" class="transcript-timestamp">[00:02:08]</a> <span class="transcript-speaker">Ryan MacLean:</span> a lot better signal to noise, I think than a lot of the others is where they come in for me.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=132" target="_blank" class="transcript-timestamp">[00:02:12]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah, and they have different categories. There's an InfoSec one, there's a product one, there's an AI one. I think just a general tech one, a web dev one there, so you can dial in if you just want certain subjects. I get 'em all and then just kinda look through 'em in the morning. But anyway, as I was looking through TL;DR this morning, this report or this state of AI report web dev AI. Was in there and I started looking through it and I thought there was some interesting things in here and that's why I shared it with you. And I thought, let's just go, let's just get on a call and actually go through it.
+
+I like the layout over here, first of all. 'cause I think it's all, it is always important to understand like, who responded to this report. Yes. Looks like a little over 4,000 people, so not huge, but still pretty good size. Also, sorry. <a href="https://youtu.be/AcPDrBKy_Uw?t=180" target="_blank" class="transcript-timestamp">[00:03:00]</a> Ryan, you're only represented here by about, I think that's
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=183" target="_blank" class="transcript-timestamp">[00:03:03]</a> <span class="transcript-speaker">Ryan MacLean:</span> proportional to to be kind to this survey. That I think the fact of the matter is that maybe the people using more gen AI tooling may actually be in, in the US and in fact, if this survey is in English and you're looking at population of English speaking users using Gen ai, I did expect India to be a lot higher on this list. However, as a result just in terms of the prevalence that I've seen of. Of, of certain countries using more AI than others. Yeah. Interesting. Pretty close to the same.
+
+<a href="https://youtu.be/AcPDrBKy_Uw?t=211" target="_blank" class="transcript-timestamp">[00:03:31]</a> <span class="transcript-speaker">Jason Hand:</span> Anyway, that, that's kinda where these respondents are coming from. A little bit of a breakdown on age.
 
 Looks like the average age is around 33. In age or so. 
 
-[00:03:43] **Ryan MacLean:** So we're probably at, if we're thinking outta college maybe it takes you about three to four years to get a promotion. Worst case scenario, so we're at, we're probably at about senior intermediate. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=223" target="_blank" class="transcript-timestamp">[00:03:43]</a> <span class="transcript-speaker">Ryan MacLean:</span> So we're probably at, if we're thinking outta college maybe it takes you about three to four years to get a promotion. Worst case scenario, so we're at, we're probably at about senior intermediate. 
 
 At that point. 
 
-[00:03:53] **Jason Hand:** Yeah. And then to add to that in terms of experience.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=233" target="_blank" class="transcript-timestamp">[00:03:53]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. And then to add to that in terms of experience.
 
-Yeah. Yeah. Closing on 10 years of experience [00:04:00] as the majority, the average is 21.5. 
+Yeah. Yeah. Closing on 10 years of experience <a href="https://youtu.be/AcPDrBKy_Uw?t=240" target="_blank" class="transcript-timestamp">[00:04:00]</a> as the majority, the average is 21.5. 
 
-[00:04:07] **Ryan MacLean:** That's a lot of years. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=247" target="_blank" class="transcript-timestamp">[00:04:07]</a> <span class="transcript-speaker">Ryan MacLean:</span> That's a lot of years. 
 
-[00:04:09] **Jason Hand:** That's up there with us. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=249" target="_blank" class="transcript-timestamp">[00:04:09]</a> <span class="transcript-speaker">Jason Hand:</span> That's up there with us. 
 
-[00:04:10] **Ryan MacLean:** Indeed. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=250" target="_blank" class="transcript-timestamp">[00:04:10]</a> <span class="transcript-speaker">Ryan MacLean:</span> Indeed. 
 
-[00:04:13] **Jason Hand:** And then what else We got company size. This is always important to get an idea 'cause there's a huge difference in what's going on at the Yes. Larger companies like, even Datadog versus a startup.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=253" target="_blank" class="transcript-timestamp">[00:04:13]</a> <span class="transcript-speaker">Jason Hand:</span> And then what else We got company size. This is always important to get an idea 'cause there's a huge difference in what's going on at the Yes. Larger companies like, even Datadog versus a startup.
 
 So a lot of these, most of them look like they come from a hundred plus. 
 
-[00:04:29] **Ryan MacLean:** Can we do a quick side quest here? 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=269" target="_blank" class="transcript-timestamp">[00:04:29]</a> <span class="transcript-speaker">Ryan MacLean:</span> Can we do a quick side quest here? 
 
-[00:04:30] **Jason Hand:** Thousand Sure. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=270" target="_blank" class="transcript-timestamp">[00:04:30]</a> <span class="transcript-speaker">Jason Hand:</span> Thousand Sure. 
 
-[00:04:31] **Ryan MacLean:** What's that? Query builder at the top? 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=271" target="_blank" class="transcript-timestamp">[00:04:31]</a> <span class="transcript-speaker">Ryan MacLean:</span> What's that? Query builder at the top? 
 
-[00:04:33] **Jason Hand:** Yeah. I'm glad you asked. I have not gone down this. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=273" target="_blank" class="transcript-timestamp">[00:04:33]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. I'm glad you asked. I have not gone down this. 
 
-[00:04:38] **Ryan MacLean:** Oh, we don't need to do this now, but this is, yeah, this is the kind of survey I like.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=278" target="_blank" class="transcript-timestamp">[00:04:38]</a> <span class="transcript-speaker">Ryan MacLean:</span> Oh, we don't need to do this now, but this is, yeah, this is the kind of survey I like.
 
 This is fantastic. Here's our data. Have fun with it. 
 
-[00:04:44] **Jason Hand:** Yeah. Come up with your own. Fantastic. Okay. That's really cool. Kinda like Datadog. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=284" target="_blank" class="transcript-timestamp">[00:04:44]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. Come up with your own. Fantastic. Okay. That's really cool. Kinda like Datadog. 
 
-[00:04:50] **Ryan MacLean:** I like that. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=290" target="_blank" class="transcript-timestamp">[00:04:50]</a> <span class="transcript-speaker">Ryan MacLean:</span> I like that. 
 
-[00:04:51] **Jason Hand:** It is kinda cool. But I didn't really wanna, that, that felt like, 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=291" target="_blank" class="transcript-timestamp">[00:04:51]</a> <span class="transcript-speaker">Jason Hand:</span> It is kinda cool. But I didn't really wanna, that, that felt like, 
 
-[00:04:54] **Ryan MacLean:** yeah. I'm gonna have, of course. Yeah. Go ham on that. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=294" target="_blank" class="transcript-timestamp">[00:04:54]</a> <span class="transcript-speaker">Ryan MacLean:</span> yeah. I'm gonna have, of course. Yeah. Go ham on that. 
 
-The other one I thought was interesting was [00:05:00] a little bit further up. Higher education degree. I thought this might be interesting. 
+The other one I thought was interesting was <a href="https://youtu.be/AcPDrBKy_Uw?t=300" target="_blank" class="transcript-timestamp">[00:05:00]</a> a little bit further up. Higher education degree. I thought this might be interesting. 
 
 Okay. Hey, this all kind of, this could be part of just the demographic as well. Okay. Interesting. Okay. 
 
-[00:05:11] **Jason Hand:** Anyway. Okay. So that's some about some of the demographics, 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=311" target="_blank" class="transcript-timestamp">[00:05:11]</a> <span class="transcript-speaker">Jason Hand:</span> Anyway. Okay. So that's some about some of the demographics, 
 
-[00:05:13] **Ryan MacLean:** They did a good job because they had things like versus yearly income as well.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=313" target="_blank" class="transcript-timestamp">[00:05:13]</a> <span class="transcript-speaker">Ryan MacLean:</span> They did a good job because they had things like versus yearly income as well.
 
 So they're actually comparing them to see how relevant it was, which I, this is actually super refreshing. As somebody who looks at a lot of these reports I didn't have a lot of high hopes let's just say, but this is refreshing. Yeah. And it's. The way it's displaying all of the people who've responded.
 
 That's great. 
 
-[00:05:32] **Jason Hand:** It is broken down. Yeah. In 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=332" target="_blank" class="transcript-timestamp">[00:05:32]</a> <span class="transcript-speaker">Jason Hand:</span> It is broken down. Yeah. In 
 
-[00:05:34] **Ryan MacLean:** nice way there. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=334" target="_blank" class="transcript-timestamp">[00:05:34]</a> <span class="transcript-speaker">Ryan MacLean:</span> nice way there. 
 
-[00:05:35] **Jason Hand:** If we look at the model providers, this is where I started to realize that okay I'm working my way through most of the popular ones, sort the pop culture ai. Exactly. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=335" target="_blank" class="transcript-timestamp">[00:05:35]</a> <span class="transcript-speaker">Jason Hand:</span> If we look at the model providers, this is where I started to realize that okay I'm working my way through most of the popular ones, sort the pop culture ai. Exactly. 
 
-[00:05:47] **Ryan MacLean:** The top 10. The top 40. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=347" target="_blank" class="transcript-timestamp">[00:05:47]</a> <span class="transcript-speaker">Ryan MacLean:</span> The top 10. The top 40. 
 
-[00:05:49] **Jason Hand:** Exactly. And ChatGPT. For sure feels like number one. A lot of it's just because of it's, got it, got to market first. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=349" target="_blank" class="transcript-timestamp">[00:05:49]</a> <span class="transcript-speaker">Jason Hand:</span> Exactly. And ChatGPT. For sure feels like number one. A lot of it's just because of it's, got it, got to market first. 
 
-[00:05:56] **Ryan MacLean:** It feels like the Kleenex of models or what have you. Yeah. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=356" target="_blank" class="transcript-timestamp">[00:05:56]</a> <span class="transcript-speaker">Ryan MacLean:</span> It feels like the Kleenex of models or what have you. Yeah. 
 
-[00:05:58] **Jason Hand:** Yep. And [00:06:00] Claude's right there. Number two, Claude to me is newer on the scene than Microsoft Copilot in terms of just brand awareness, but has in my mind, also jumped across many of them. And it makes sense here in this report in terms of. Awareness people, u people know about it and are using it here a lot more recently, and I think a lot of it has to do with some of their models that they put out are just so really good.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=358" target="_blank" class="transcript-timestamp">[00:05:58]</a> <span class="transcript-speaker">Jason Hand:</span> Yep. And <a href="https://youtu.be/AcPDrBKy_Uw?t=360" target="_blank" class="transcript-timestamp">[00:06:00]</a> Claude's right there. Number two, Claude to me is newer on the scene than Microsoft Copilot in terms of just brand awareness, but has in my mind, also jumped across many of them. And it makes sense here in this report in terms of. Awareness people, u people know about it and are using it here a lot more recently, and I think a lot of it has to do with some of their models that they put out are just so really good.
 
-[00:06:26] **Ryan MacLean:** Now, the other thing I'm noticing here is that, do we have access to those comments or is it just that there's 17 comments on the top right of chat, GBT? 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=386" target="_blank" class="transcript-timestamp">[00:06:26]</a> <span class="transcript-speaker">Ryan MacLean:</span> Now, the other thing I'm noticing here is that, do we have access to those comments or is it just that there's 17 comments on the top right of chat, GBT? 
 
-[00:06:32] **Jason Hand:** That's a great question. Let's go look. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=392" target="_blank" class="transcript-timestamp">[00:06:32]</a> <span class="transcript-speaker">Jason Hand:</span> That's a great question. Let's go look. 
 
-[00:06:35] **Ryan MacLean:** That this is really, I gotta say this website's pretty cool. Okay. Now 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=395" target="_blank" class="transcript-timestamp">[00:06:35]</a> <span class="transcript-speaker">Ryan MacLean:</span> That this is really, I gotta say this website's pretty cool. Okay. Now 
 
-[00:06:40] **Jason Hand:** we have to do a deep dive on their website.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=400" target="_blank" class="transcript-timestamp">[00:06:40]</a> <span class="transcript-speaker">Jason Hand:</span> we have to do a deep dive on their website.
 
 Yeah. 
 
-[00:06:41] **Ryan MacLean:** And this is what I wanted to see. Yeah. So it was first, which is what I thought, like first mover for me at least, chat CPD is what I use first, but it's worse than deep seek. And it depends what you're using it for. But I think from the code lens, this is exactly the kind of comment that I expect to see.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=401" target="_blank" class="transcript-timestamp">[00:06:41]</a> <span class="transcript-speaker">Ryan MacLean:</span> And this is what I wanted to see. Yeah. So it was first, which is what I thought, like first mover for me at least, chat CPD is what I use first, but it's worse than deep seek. And it depends what you're using it for. But I think from the code lens, this is exactly the kind of comment that I expect to see.
 
-The other thing I noticed is interesting is that this comment was in Danish, and there's another one down here in [00:07:00] Japanese. Which there's some multilingual. Re report. This is fantastic. Yeah, dude, because I feel like sometimes the comments might give you like the rest of the story or between the lines, what have you.
+The other thing I noticed is interesting is that this comment was in Danish, and there's another one down here in <a href="https://youtu.be/AcPDrBKy_Uw?t=420" target="_blank" class="transcript-timestamp">[00:07:00]</a> Japanese. Which there's some multilingual. Re report. This is fantastic. Yeah, dude, because I feel like sometimes the comments might give you like the rest of the story or between the lines, what have you.
 
 Definitely. Anyway, I'm gonna have to spend some time with this. This is cool. 
 
-[00:07:12] **Jason Hand:** Yeah. So there's none on this list that I haven't kicked the tires with which I think is, I. Unless you, until you, I guess here I've not used 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=432" target="_blank" class="transcript-timestamp">[00:07:12]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. So there's none on this list that I haven't kicked the tires with which I think is, I. Unless you, until you, I guess here I've not used 
 
-[00:07:22] **Ryan MacLean:** find or find, I assume find, 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=442" target="_blank" class="transcript-timestamp">[00:07:22]</a> <span class="transcript-speaker">Ryan MacLean:</span> find or find, I assume find, 
 
-[00:07:24] **Jason Hand:** yeah, I haven't, I was just about to say until I get past Llama and into Mistral and Phind, I'm guessing is what that is.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=444" target="_blank" class="transcript-timestamp">[00:07:24]</a> <span class="transcript-speaker">Jason Hand:</span> yeah, I haven't, I was just about to say until I get past Llama and into Mistral and Phind, I'm guessing is what that is.
 
-[00:07:29] **Ryan MacLean:** Yeah. I think I've used mixed Mixtral, which is there eight. Eight expert model. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=449" target="_blank" class="transcript-timestamp">[00:07:29]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. I think I've used mixed Mixtral, which is there eight. Eight expert model. 
 
-[00:07:35] **Jason Hand:** Oh, another thing I love about this report too is links are just right here, so you just pop right in. Take a look and see what this is. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=455" target="_blank" class="transcript-timestamp">[00:07:35]</a> <span class="transcript-speaker">Jason Hand:</span> Oh, another thing I love about this report too is links are just right here, so you just pop right in. Take a look and see what this is. 
 
-[00:07:41] **Ryan MacLean:** This is actually pretty good. I feel like this is ignoring the conclusions already.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=461" target="_blank" class="transcript-timestamp">[00:07:41]</a> <span class="transcript-speaker">Ryan MacLean:</span> This is actually pretty good. I feel like this is ignoring the conclusions already.
 
 I feel like this is how you want to present your results. Like gimme your data, gimme a query engine. Let me look at the comments. Gimme good demographics and why they matter. This is awesome. 
 
-[00:07:55] **Jason Hand:** I think I just planned out the rest of your afternoon for you. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=475" target="_blank" class="transcript-timestamp">[00:07:55]</a> <span class="transcript-speaker">Jason Hand:</span> I think I just planned out the rest of your afternoon for you. 
 
-[00:07:59] **Ryan MacLean:** It's gonna be a [00:08:00] busy day. This is phenomenal.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=479" target="_blank" class="transcript-timestamp">[00:07:59]</a> <span class="transcript-speaker">Ryan MacLean:</span> It's gonna be a <a href="https://youtu.be/AcPDrBKy_Uw?t=480" target="_blank" class="transcript-timestamp">[00:08:00]</a> busy day. This is phenomenal.
 
 Seriously Phind good job. I'm not 
 
-[00:08:02] **Jason Hand:** familiar with Phind. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=482" target="_blank" class="transcript-timestamp">[00:08:02]</a> <span class="transcript-speaker">Jason Hand:</span> familiar with Phind. 
 
-[00:08:04] **Ryan MacLean:** Oh, okay. So it, it looks to me like Perplexity.ai, but I could be wrong. Like the find out engine. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=484" target="_blank" class="transcript-timestamp">[00:08:04]</a> <span class="transcript-speaker">Ryan MacLean:</span> Oh, okay. So it, it looks to me like Perplexity.ai, but I could be wrong. Like the find out engine. 
 
-[00:08:10] **Jason Hand:** Yeah. Just another research searching type of tool. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=490" target="_blank" class="transcript-timestamp">[00:08:10]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. Just another research searching type of tool. 
 
-[00:08:14] **Ryan MacLean:** Okay. As opposed to a search engine. I feel like this is another category. If IDEs are one, then the other is like how to search properly.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=494" target="_blank" class="transcript-timestamp">[00:08:14]</a> <span class="transcript-speaker">Ryan MacLean:</span> Okay. As opposed to a search engine. I feel like this is another category. If IDEs are one, then the other is like how to search properly.
 
 Now. 
 
-[00:08:20] **Jason Hand:** true. That is true. Let's look at some of the other models here. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=500" target="_blank" class="transcript-timestamp">[00:08:20]</a> <span class="transcript-speaker">Jason Hand:</span> true. That is true. Let's look at some of the other models here. 
 
-[00:08:24] **Ryan MacLean:** I. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=504" target="_blank" class="transcript-timestamp">[00:08:24]</a> <span class="transcript-speaker">Ryan MacLean:</span> I. 
 
-[00:08:25] **Jason Hand:** These I've got less experience with. There are more in here that I have not touched. I have not touched Grok. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=505" target="_blank" class="transcript-timestamp">[00:08:25]</a> <span class="transcript-speaker">Jason Hand:</span> These I've got less experience with. There are more in here that I have not touched. I have not touched Grok. 
 
-[00:08:32] **Ryan MacLean:** I've, I have an old Twitter account. I've used it like once or twice. Every time they say they've got a new feature, I'll try it.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=512" target="_blank" class="transcript-timestamp">[00:08:32]</a> <span class="transcript-speaker">Ryan MacLean:</span> I've, I have an old Twitter account. I've used it like once or twice. Every time they say they've got a new feature, I'll try it.
 
-[00:08:37] **Jason Hand:** Yeah. There, there's a lot of reasons why has just not been a priority for me 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=517" target="_blank" class="transcript-timestamp">[00:08:37]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. There, there's a lot of reasons why has just not been a priority for me 
 
-[00:08:42] **Ryan MacLean:** as a Canadian. Yeah, the politics are why I try to stay off X personally. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=522" target="_blank" class="transcript-timestamp">[00:08:42]</a> <span class="transcript-speaker">Ryan MacLean:</span> as a Canadian. Yeah, the politics are why I try to stay off X personally. 
 
-[00:08:48] **Jason Hand:** And then Qwen, I've known about Qwen for a long time. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=528" target="_blank" class="transcript-timestamp">[00:08:48]</a> <span class="transcript-speaker">Jason Hand:</span> And then Qwen, I've known about Qwen for a long time. 
 
-[00:08:51] **Ryan MacLean:** Qwen, I think. Yeah. Or sorry, or Q depending on the person. Yeah. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=531" target="_blank" class="transcript-timestamp">[00:08:51]</a> <span class="transcript-speaker">Ryan MacLean:</span> Qwen, I think. Yeah. Or sorry, or Q depending on the person. Yeah. 
 
-[00:08:54] **Jason Hand:** And I still have not gone in here.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=534" target="_blank" class="transcript-timestamp">[00:08:54]</a> <span class="transcript-speaker">Jason Hand:</span> And I still have not gone in here.
 
-[00:08:56] **Ryan MacLean:** I've only used the coding. I think there's Qwen coder, I believe is what [00:09:00] I've used, but not this, I didn't even know how a website. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=536" target="_blank" class="transcript-timestamp">[00:08:56]</a> <span class="transcript-speaker">Ryan MacLean:</span> I've only used the coding. I think there's Qwen coder, I believe is what <a href="https://youtu.be/AcPDrBKy_Uw?t=540" target="_blank" class="transcript-timestamp">[00:09:00]</a> I've used, but not this, I didn't even know how a website. 
 
-[00:09:04] **Jason Hand:** Yeah. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=544" target="_blank" class="transcript-timestamp">[00:09:04]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. 
 
-[00:09:05] **Ryan MacLean:** Very interesting. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=545" target="_blank" class="transcript-timestamp">[00:09:05]</a> <span class="transcript-speaker">Ryan MacLean:</span> Very interesting. 
 
-[00:09:06] **Jason Hand:** Cursor, of course we use Yeah, a lot. And Github Copilot a little bit of views now code. I thought this is kinda 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=546" target="_blank" class="transcript-timestamp">[00:09:06]</a> <span class="transcript-speaker">Jason Hand:</span> Cursor, of course we use Yeah, a lot. And Github Copilot a little bit of views now code. I thought this is kinda 
 
-[00:09:13] **Ryan MacLean:** Codeium got renamed. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=553" target="_blank" class="transcript-timestamp">[00:09:13]</a> <span class="transcript-speaker">Ryan MacLean:</span> Codeium got renamed. 
 
-[00:09:14] **Jason Hand:** Yeah, exactly. I was like, wait, how old is this thing?
+<a href="https://youtu.be/AcPDrBKy_Uw?t=554" target="_blank" class="transcript-timestamp">[00:09:14]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah, exactly. I was like, wait, how old is this thing?
 
 Because, but then when you click on open, you open it up it you'll see pretty quickly that it takes you to the Windsurf page. 
 
-[00:09:22] **Ryan MacLean:** Yeah. I think there was a redirect there. I saw it just quickly like the domain redirect it as well. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=562" target="_blank" class="transcript-timestamp">[00:09:22]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. I think there was a redirect there. I saw it just quickly like the domain redirect it as well. 
 
-[00:09:27] **Jason Hand:** Formerly, actually, yeah. As I hover the tab here, Windsurf formerly Codeium, which we've talked about and played with Windsurf in a previous Absolutely episode.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=567" target="_blank" class="transcript-timestamp">[00:09:27]</a> <span class="transcript-speaker">Jason Hand:</span> Formerly, actually, yeah. As I hover the tab here, Windsurf formerly Codeium, which we've talked about and played with Windsurf in a previous Absolutely episode.
 
 So yeah, there's Qwen and Codeium, and then we have 
 
-[00:09:42] **Ryan MacLean:** I seeing Ollama on there, like the offline open source yeah. Yeah. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=582" target="_blank" class="transcript-timestamp">[00:09:42]</a> <span class="transcript-speaker">Ryan MacLean:</span> I seeing Ollama on there, like the offline open source yeah. Yeah. 
 
-[00:09:45] **Jason Hand:** We've, we haven't recorded, we haven't done an episode on Ollama, but each of us Oh, 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=585" target="_blank" class="transcript-timestamp">[00:09:45]</a> <span class="transcript-speaker">Jason Hand:</span> We've, we haven't recorded, we haven't done an episode on Ollama, but each of us Oh, 
 
-[00:09:48] **Ryan MacLean:** I should. Yeah. That'd be a big one. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=588" target="_blank" class="transcript-timestamp">[00:09:48]</a> <span class="transcript-speaker">Ryan MacLean:</span> I should. Yeah. That'd be a big one. 
 
-[00:09:51] **Jason Hand:** Yeah. I've been using a tool which I intended to share at some point.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=591" target="_blank" class="transcript-timestamp">[00:09:51]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. I've been using a tool which I intended to share at some point.
 
-n8n. And the version of n8n I'm using is the community edition, [00:10:00] which is actually the AI starter kit version. It comes with Ollama already packaged into the Docker container and everything. That way I can have a local model running.
+n8n. And the version of n8n I'm using is the community edition, <a href="https://youtu.be/AcPDrBKy_Uw?t=600" target="_blank" class="transcript-timestamp">[00:10:00]</a> which is actually the AI starter kit version. It comes with Ollama already packaged into the Docker container and everything. That way I can have a local model running.
 
-[00:10:10] **Ryan MacLean:** Now, one thing of interest here is this other answers is 61% and there's 231 comments. Which 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=610" target="_blank" class="transcript-timestamp">[00:10:10]</a> <span class="transcript-speaker">Ryan MacLean:</span> Now, one thing of interest here is this other answers is 61% and there's 231 comments. Which 
 
-[00:10:17] **Jason Hand:** should we check that? Oh, 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=617" target="_blank" class="transcript-timestamp">[00:10:17]</a> <span class="transcript-speaker">Jason Hand:</span> should we check that? Oh, 
 
-[00:10:18] **Ryan MacLean:** can we get I, yeah, I think we can just, 'cause there's a lot of them. Yeah. But I wonder what's that Plus two there? Yeah. Okay. All fair enough.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=618" target="_blank" class="transcript-timestamp">[00:10:18]</a> <span class="transcript-speaker">Ryan MacLean:</span> can we get I, yeah, I think we can just, 'cause there's a lot of them. Yeah. But I wonder what's that Plus two there? Yeah. Okay. All fair enough.
 
 Oh wow. Oh, some of these aren't programming really. 
 
-[00:10:37] **Jason Hand:** I don't wanna go too far into the comments. You never know what you're gonna find. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=637" target="_blank" class="transcript-timestamp">[00:10:37]</a> <span class="transcript-speaker">Jason Hand:</span> I don't wanna go too far into the comments. You never know what you're gonna find. 
 
-[00:10:41] **Ryan MacLean:** Okay. Moving on. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=641" target="_blank" class="transcript-timestamp">[00:10:41]</a> <span class="transcript-speaker">Ryan MacLean:</span> Okay. Moving on. 
 
-[00:10:43] **Jason Hand:** But I asked you before we got going here, right? If you're familiar with this V0. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=643" target="_blank" class="transcript-timestamp">[00:10:43]</a> <span class="transcript-speaker">Jason Hand:</span> But I asked you before we got going here, right? If you're familiar with this V0. 
 
-[00:10:47] **Ryan MacLean:** I am. Yeah. So I put this head to head with Bolt when I first started trying it out, and, I guess I had opinions specifically it seemed to be pretty tied to Vercel and I guess I just don't know a lot about Vercel, so I [00:11:00] get I get the, a little bit of a weird feeling because it's great if you're trying to deploy to Vercel is what I found out right away. And then I think what I got a little bit weary of is that what if I don't wanna host on Vercel kind of thing.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=647" target="_blank" class="transcript-timestamp">[00:10:47]</a> <span class="transcript-speaker">Ryan MacLean:</span> I am. Yeah. So I put this head to head with Bolt when I first started trying it out, and, I guess I had opinions specifically it seemed to be pretty tied to Vercel and I guess I just don't know a lot about Vercel, so I <a href="https://youtu.be/AcPDrBKy_Uw?t=660" target="_blank" class="transcript-timestamp">[00:11:00]</a> get I get the, a little bit of a weird feeling because it's great if you're trying to deploy to Vercel is what I found out right away. And then I think what I got a little bit weary of is that what if I don't wanna host on Vercel kind of thing.
 
 So I didn't really spend too long on it and maybe I should have. 
 
-[00:11:14] **Jason Hand:** Okay. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=674" target="_blank" class="transcript-timestamp">[00:11:14]</a> <span class="transcript-speaker">Jason Hand:</span> Okay. 
 
-[00:11:15] **Ryan MacLean:** But I'm sure Vercel is fine. I just don't know about it. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=675" target="_blank" class="transcript-timestamp">[00:11:15]</a> <span class="transcript-speaker">Ryan MacLean:</span> But I'm sure Vercel is fine. I just don't know about it. 
 
-[00:11:18] **Jason Hand:** Yeah. 11 outta 376 people are 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=678" target="_blank" class="transcript-timestamp">[00:11:18]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. 11 outta 376 people are 
 
-[00:11:21] **Ryan MacLean:** using it. I feel like that's significant. Yeah. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=681" target="_blank" class="transcript-timestamp">[00:11:21]</a> <span class="transcript-speaker">Ryan MacLean:</span> using it. I feel like that's significant. Yeah. 
 
-[00:11:23] **Jason Hand:** It's more than Amazon Q or maybe 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=683" target="_blank" class="transcript-timestamp">[00:11:23]</a> <span class="transcript-speaker">Jason Hand:</span> It's more than Amazon Q or maybe 
 
-[00:11:25] **Ryan MacLean:** I'm surprised Amazon Q's really even on here, and I apologize for that.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=685" target="_blank" class="transcript-timestamp">[00:11:25]</a> <span class="transcript-speaker">Ryan MacLean:</span> I'm surprised Amazon Q's really even on here, and I apologize for that.
 
 I'm sure there's some people using at work, but just in terms of for coding stuff I thought that was interesting. 
 
-[00:11:33] **Jason Hand:** There's just so many options out there. It's really hard to 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=693" target="_blank" class="transcript-timestamp">[00:11:33]</a> <span class="transcript-speaker">Jason Hand:</span> There's just so many options out there. It's really hard to 
 
-[00:11:36] **Ryan MacLean:** Yeah. They've gotten Nova, I think is their big model. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=696" target="_blank" class="transcript-timestamp">[00:11:36]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. They've gotten Nova, I think is their big model. 
 
-[00:11:39] **Jason Hand:** Yeah. Let's see. Okay. This pain points I thought was an interesting here.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=699" target="_blank" class="transcript-timestamp">[00:11:39]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. Let's see. Okay. This pain points I thought was an interesting here.
 
-Yeah. Which pain points have you encountered when using AI models? This is definitely something we, as just, I guess people in the, in Datadog in the monitoring and observability space hear all the time around hallucination in inaccuracies is like number one on the [00:12:00] list. 
+Yeah. Which pain points have you encountered when using AI models? This is definitely something we, as just, I guess people in the, in Datadog in the monitoring and observability space hear all the time around hallucination in inaccuracies is like number one on the <a href="https://youtu.be/AcPDrBKy_Uw?t=720" target="_blank" class="transcript-timestamp">[00:12:00]</a> list. 
 
-[00:12:01] **Ryan MacLean:** Yeah. This is great.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=721" target="_blank" class="transcript-timestamp">[00:12:01]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. This is great.
 
-[00:12:03] **Jason Hand:** I wonder what the comments have to say. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=723" target="_blank" class="transcript-timestamp">[00:12:03]</a> <span class="transcript-speaker">Jason Hand:</span> I wonder what the comments have to say. 
 
-[00:12:06] **Ryan MacLean:** That's a lot of comments.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=726" target="_blank" class="transcript-timestamp">[00:12:06]</a> <span class="transcript-speaker">Ryan MacLean:</span> That's a lot of comments.
 
 They're all similar. 
 
-[00:12:10] **Jason Hand:** Yeah. Hey, is this thing hallucinating saying it's repeating things? And then context and memory limitation, that was another thing. I was like that's, that was number two on the list, but honestly, is that. That's not that much of a problem, the context of this anymore.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=730" target="_blank" class="transcript-timestamp">[00:12:10]</a> <span class="transcript-speaker">Jason Hand:</span> Yeah. Hey, is this thing hallucinating saying it's repeating things? And then context and memory limitation, that was another thing. I was like that's, that was number two on the list, but honestly, is that. That's not that much of a problem, the context of this anymore.
 
-[00:12:26] **Ryan MacLean:** Anymore. Yeah. So I do wonder if this sort of lines up with the Ollama users or something like that. But the Deepseek users probably don't have this issue. The cloud users probably don't maybe Deepseek for different older versions kind of thing. Older models. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=746" target="_blank" class="transcript-timestamp">[00:12:26]</a> <span class="transcript-speaker">Ryan MacLean:</span> Anymore. Yeah. So I do wonder if this sort of lines up with the Ollama users or something like that. But the Deepseek users probably don't have this issue. The cloud users probably don't maybe Deepseek for different older versions kind of thing. Older models. 
 
-[00:12:39] **Jason Hand:** Yep. And then the next one was poor generated code quality.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=759" target="_blank" class="transcript-timestamp">[00:12:39]</a> <span class="transcript-speaker">Jason Hand:</span> Yep. And then the next one was poor generated code quality.
 
 Which again, I feel like, yeah, you can make the argument in certain circumstances on certain models, but lately they have gotten quite a bit better. But also when you just look at the numbers we're looking, we, it's 12%. The respond. So that's low. 
 
-[00:12:58] **Ryan MacLean:** Other thing I'm noticing is that like I'll [00:13:00] think that the code quality for things like front end is phenomenal, but when I'm working on code that I know, let's say it's Python or Bash or even some Java, I'll be like the code's okay, but it could be better kind of thing.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=778" target="_blank" class="transcript-timestamp">[00:12:58]</a> <span class="transcript-speaker">Ryan MacLean:</span> Other thing I'm noticing is that like I'll <a href="https://youtu.be/AcPDrBKy_Uw?t=780" target="_blank" class="transcript-timestamp">[00:13:00]</a> think that the code quality for things like front end is phenomenal, but when I'm working on code that I know, let's say it's Python or Bash or even some Java, I'll be like the code's okay, but it could be better kind of thing.
 
 So I'm not gonna call it poor. Call it like maybe fair to mid, I guess would be the maritime response, but like average. I guess it's just not, especially if you've prompted and said, Hey, write this code like a staff engineer or something like that, and it gives you back code that frankly doesn't work.
 
@@ -410,49 +410,49 @@ Would never work, or it's hallucinated some package. I guess that's where I get 
 
 Yeah. 
 
-[00:13:47] **Jason Hand:** Skipping ahead here to the model providers there's a section for IDEs and editors. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=827" target="_blank" class="transcript-timestamp">[00:13:47]</a> <span class="transcript-speaker">Jason Hand:</span> Skipping ahead here to the model providers there's a section for IDEs and editors. 
 
-[00:13:52] **Ryan MacLean:** I am blown away that Zed is on this list at all. I 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=832" target="_blank" class="transcript-timestamp">[00:13:52]</a> <span class="transcript-speaker">Ryan MacLean:</span> I am blown away that Zed is on this list at all. I 
 
-[00:13:54] **Jason Hand:** was gonna say you're the only one I've ever talked to about Zed. I've still not used it. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=834" target="_blank" class="transcript-timestamp">[00:13:54]</a> <span class="transcript-speaker">Jason Hand:</span> was gonna say you're the only one I've ever talked to about Zed. I've still not used it. 
 
-[00:13:59] **Ryan MacLean:** Yeah I think I [00:14:00] know it because I'm Canadian and Zed has a, particular meaning to us so I'll remember it.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=839" target="_blank" class="transcript-timestamp">[00:13:59]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah I think I <a href="https://youtu.be/AcPDrBKy_Uw?t=840" target="_blank" class="transcript-timestamp">[00:14:00]</a> know it because I'm Canadian and Zed has a, particular meaning to us so I'll remember it.
 
 But this is not like I, I've never used z I've only heard of it. I've never seen it. I find it interesting that it's in light mode, for example, on this website. Okay, there we go. The tool's not and maybe it's just to grab your attention, but normally programming websites are dark. 
 
-[00:14:22] **Jason Hand:** It's to burn out your eyeballs.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=862" target="_blank" class="transcript-timestamp">[00:14:22]</a> <span class="transcript-speaker">Jason Hand:</span> It's to burn out your eyeballs.
 
-[00:14:23] **Ryan MacLean:** Exactly. Yeah. Turn off the lights. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=863" target="_blank" class="transcript-timestamp">[00:14:23]</a> <span class="transcript-speaker">Ryan MacLean:</span> Exactly. Yeah. Turn off the lights. 
 
-[00:14:25] **Jason Hand:** So Zed's in there, which is I find interesting. And then Windsurf is mentioned 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=865" target="_blank" class="transcript-timestamp">[00:14:25]</a> <span class="transcript-speaker">Jason Hand:</span> So Zed's in there, which is I find interesting. And then Windsurf is mentioned 
 
-[00:14:29] **Ryan MacLean:** as an editor. Yeah. I've not heard a Void either. As an editor. Yeah. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=869" target="_blank" class="transcript-timestamp">[00:14:29]</a> <span class="transcript-speaker">Ryan MacLean:</span> as an editor. Yeah. I've not heard a Void either. As an editor. Yeah. 
 
-[00:14:33] **Jason Hand:** I'm not familiar with this one either. So it's an open source one. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=873" target="_blank" class="transcript-timestamp">[00:14:33]</a> <span class="transcript-speaker">Jason Hand:</span> I'm not familiar with this one either. So it's an open source one. 
 
-[00:14:38] **Ryan MacLean:** Yeah. I see that. Open source Cursor alternative.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=878" target="_blank" class="transcript-timestamp">[00:14:38]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. I see that. Open source Cursor alternative.
 
 So that's what they're, alright. 
 
-[00:14:45] **Jason Hand:** Everything's powered by FYI. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=885" target="_blank" class="transcript-timestamp">[00:14:45]</a> <span class="transcript-speaker">Jason Hand:</span> Everything's powered by FYI. 
 
-[00:14:49] **Ryan MacLean:** Pardon me? 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=889" target="_blank" class="transcript-timestamp">[00:14:49]</a> <span class="transcript-speaker">Ryan MacLean:</span> Pardon me? 
 
-[00:14:50] **Jason Hand:** I said everything's powered by VS Code yeah, that's 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=890" target="_blank" class="transcript-timestamp">[00:14:50]</a> <span class="transcript-speaker">Jason Hand:</span> I said everything's powered by VS Code yeah, that's 
 
-[00:14:52] **Ryan MacLean:** what I figured. Okay. Yeah. Because they say they're a Cursor competitor, so that makes sense. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=892" target="_blank" class="transcript-timestamp">[00:14:52]</a> <span class="transcript-speaker">Ryan MacLean:</span> what I figured. Okay. Yeah. Because they say they're a Cursor competitor, so that makes sense. 
 
-[00:14:58] **Jason Hand:** But yeah, so very cool. [00:15:00] Another one I've not heard of really. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=898" target="_blank" class="transcript-timestamp">[00:14:58]</a> <span class="transcript-speaker">Jason Hand:</span> But yeah, so very cool. <a href="https://youtu.be/AcPDrBKy_Uw?t=900" target="_blank" class="transcript-timestamp">[00:15:00]</a> Another one I've not heard of really. 
 
-[00:15:02] **Ryan MacLean:** Yeah. And Y Combinator backed, which is alright, all.
+<a href="https://youtu.be/AcPDrBKy_Uw?t=902" target="_blank" class="transcript-timestamp">[00:15:02]</a> <span class="transcript-speaker">Ryan MacLean:</span> Yeah. And Y Combinator backed, which is alright, all.
 
-[00:15:08] **Jason Hand:** Down here is some other ones that I was not familiar with. Oh, Trae, let's see here. Coming in at 15%. What other, I'm sorry. I've not heard of Trae. Yeah. What 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=908" target="_blank" class="transcript-timestamp">[00:15:08]</a> <span class="transcript-speaker">Jason Hand:</span> Down here is some other ones that I was not familiar with. Oh, Trae, let's see here. Coming in at 15%. What other, I'm sorry. I've not heard of Trae. Yeah. What 
 
-[00:15:19] **Ryan MacLean:** at 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=919" target="_blank" class="transcript-timestamp">[00:15:19]</a> <span class="transcript-speaker">Ryan MacLean:</span> at 
 
-[00:15:19] **Jason Hand:** All Rock have we been living out there under? 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=919" target="_blank" class="transcript-timestamp">[00:15:19]</a> <span class="transcript-speaker">Jason Hand:</span> All Rock have we been living out there under? 
 
-[00:15:23] **Ryan MacLean:** Wow. 
+<a href="https://youtu.be/AcPDrBKy_Uw?t=923" target="_blank" class="transcript-timestamp">[00:15:23]</a> <span class="transcript-speaker">Ryan MacLean:</span> Wow. 
 
 [00:15:24] **Jason Hand:** This, it looks like a Windows only maybe. Or it's 
 
@@ -872,12 +872,6 @@ Cool. All right thanks again and we'll see you on the next one.
 
 [00:45:42] **Ryan MacLean:** Later
 
-
-<!-- Format for transcript entries:
-<span class="transcript-timestamp">[00:00:00]</span> <span class="transcript-speaker">Speaker Name:</span> Text of what was said
-
-<span class="transcript-timestamp">[00:00:30]</span> <span class="transcript-speaker">Other Speaker:</span> Response or continuation
--->
                 </pre>
             </div>
         </div>
@@ -894,7 +888,7 @@ Cool. All right thanks again and we'll see you on the next one.
                         <h3>Enhancing CSS Editing with LLMs: Using Puppeteer for Visual Context</h3>
                         <div class="video-container">
                             <a href="ep16.html">
-                                <img src="../images/thumbnails/ep16.png" alt="Episode 16 Thumbnail" style="max-width: 240px; height: auto;">
+                                <img src="../images/thumbnails/ep16.png" alt="Episode 16 Thumbnail">
                                 <span class="play-icon"></span>
                             </a>
                         </div>
@@ -902,6 +896,19 @@ Cool. All right thanks again and we'll see you on the next one.
                     </div>
                 </div>
                 
+                <div class="nav-item">
+                    <span class="nav-direction">Next Episode:</span>
+                    <div class="recording-card">
+                        <h3>YOLO Coding: Migrating from Static HTML to Astro with AI Tools</h3>
+                        <div class="video-container">
+                            <a href="ep20.html">
+                                <img src="../images/thumbnails/ep20.png" alt="Episode 20 Thumbnail">
+                                <span class="play-icon"></span>
+                            </a>
+                        </div>
+                        <a href="ep20.html" class="btn">Watch Episode</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
