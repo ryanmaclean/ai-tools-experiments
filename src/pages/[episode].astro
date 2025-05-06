@@ -2,6 +2,29 @@
 // Dynamic episode template that loads HTML content directly without manipulation
 import MainLayout from '../layouts/MainLayout.astro';
 import { getCollection } from 'astro:content';
+import fs from 'fs';
+import path from 'path';
+
+// Define static paths for all available episodes
+export async function getStaticPaths() {
+  // Find all episode HTML files in the content directory
+  const contentDir = path.resolve('./src/content/imported/episodes');
+  const episodes: { params: { episode: string } }[] = [];
+  
+  try {
+    const files = fs.readdirSync(contentDir);
+    for (const file of files) {
+      if (file.match(/^ep\d+\.html$/)) {
+        const episodeId = file.replace('.html', '');
+        episodes.push({ params: { episode: episodeId } });
+      }
+    }
+  } catch (error) {
+    console.error('Error reading episode files:', error);
+  }
+  
+  return episodes;
+}
 
 // Get the episode parameter from the URL
 const { episode } = Astro.params;

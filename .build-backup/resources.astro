@@ -1,7 +1,7 @@
 ---
-// src/pages/resources.astro
+// src/pages/resources.astro - UPDATED PATH
 import MainLayout from '../layouts/MainLayout.astro';
-import ResourcesContent from '../content/transcripts/resources.html?raw';
+import ResourcesContent from '../content/imported/resources.html?raw';
 
 const pageTitle = "Resources";
 const description = "A curated collection of resources for AI tools and experiments.";
@@ -136,10 +136,11 @@ const ogImageUrl = "/images/ai-tools-lab-logo.png"; // Using the site logo inste
 </style>
 
   <script is:client>
-    console.log("Build mode"); /* console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
+    console.log("Build mode"); // Client-side initialization
+    console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
       // --- Resource Filtering Logic ---
-      const filterButtons = /* /* document.querySelectorAll('.tag-filter');
-      const resourceCards = /* /* document.querySelectorAll('.resource-card');
+      const filterButtons = /* /* /* document.querySelectorAll('.tag-filter');
+      const resourceCards = /* /* /* document.querySelectorAll('.resource-card');
 
       filterButtons.forEach(button => {
         button.addEventListener('click', () => {

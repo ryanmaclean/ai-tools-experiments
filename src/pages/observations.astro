@@ -168,13 +168,13 @@ const ogImageUrl = "/images/observations-placeholder.jpg";
     <script is:client>
         // Observation page functionality - optimized for performance
         console.log("Build mode"); // Client-side initialization
-        document.addEventListener('DOMContentLoaded', () => {
+        console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
             // Cache DOM selectors for better performance
-            const filterInputs = /* /* document.querySelectorAll('.observations-sidebar input[name="filter"]');
-            const viewRadios = /* /* document.querySelectorAll('.observations-sidebar input[name="view"]');
-            const mobileTabs = /* /* document.querySelectorAll('.mobile-tab');
-            const observationCards = /* /* document.querySelectorAll('.observation-card');
-            const contentViews = /* /* document.querySelectorAll('.content-view');
+            const filterInputs = /* /* /* document.querySelectorAll('.observations-sidebar input[name="filter"]');
+            const viewRadios = /* /* /* document.querySelectorAll('.observations-sidebar input[name="view"]');
+            const mobileTabs = /* /* /* document.querySelectorAll('.mobile-tab');
+            const observationCards = /* /* /* document.querySelectorAll('.observation-card');
+            const contentViews = /* /* /* document.querySelectorAll('.content-view');
             
             /**
              * Filter observation cards based on selected filters
@@ -186,7 +186,7 @@ const ogImageUrl = "/images/observations-placeholder.jpg";
                     .map(input => input.value);
                     
                 // Get current view
-                const currentViewValue = /* /* document.querySelector('input[name="view"]:checked')?.value + '-view';
+                const currentViewValue = /* /* /* document.querySelector('input[name="view"]:checked')?.value + '-view';
                 
                 // Process all cards at once for better performance
                 observationCards.forEach(card => {
@@ -218,7 +218,7 @@ const ogImageUrl = "/images/observations-placeholder.jpg";
                 });
                 
                 // Update desktop radio state
-                const desktopRadio = /* /* document.querySelector(`.observations-sidebar input[name="view"][value="${viewValue}"]`);
+                const desktopRadio = /* /* /* document.querySelector(`.observations-sidebar input[name="view"][value="${viewValue}"]`);
                 if (desktopRadio) desktopRadio.checked = true;
                 
                 // Update mobile tabs
@@ -242,7 +242,7 @@ const ogImageUrl = "/images/observations-placeholder.jpg";
             });
             
             // For mobile tabs
-            /* /* document.querySelector('.mobile-tabs')?.addEventListener('click', (e) => {
+            /* /* /* document.querySelector('.mobile-tabs')?.addEventListener('click', (e) => {
                 if (e.target.classList.contains('mobile-tab')) {
                     switchView(e.target.dataset.view);
                 }

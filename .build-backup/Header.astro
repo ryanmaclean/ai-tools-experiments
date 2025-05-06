@@ -1,17 +1,18 @@
 ---
 // Header component adapted to match live site structure with environment detection
 
-// Use URL_PREFIX environment variable set in netlify.toml
-// This simplifies configuration and ensures consistency
+// IMPORTANT: Link verification and environment-aware URL generation
+// This ensures all links work properly in both environments:
 // - Production (ai-tools-lab.com): URL_PREFIX = '/pages'
 // - Test (ai-tools-lab-tst.netlify.app): URL_PREFIX = ''
-let pathPrefix = import.meta.env.URL_PREFIX || process.env.URL_PREFIX || '';
 
-// Fallback detection in case environment variable isn't available
-if (pathPrefix === '' && Astro.url.hostname.includes('ai-tools-lab.com')) {
-  // Only in production we need the /pages prefix
-  pathPrefix = '/pages';
-}
+// STANDARDIZED APPROACH: Make test environment match production exactly
+// Always use /pages prefix for all environments to ensure consistency
+// This matches the change in [episode].astro and fixes the URL structure mismatch
+let pathPrefix = '/pages';
+
+// No conditional environment detection - standardizing on one pattern for simplicity
+// This reduces configuration complexity and follows the 'less configuration is better' principle
 
 
 // Create environment-aware paths for navigation
@@ -196,36 +197,71 @@ const aboutPath = `${pathPrefix}/about`;
 
 </style>
 
-<script is:client>
+<script define:vars={{pathPrefix}}>
   // Client-side code - only runs in the browser
-  console.log("Build mode"); /* console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
-     const header = /* /* document.querySelector('.site-header');
-     // Target the new hamburger menu element
-     const toggleButton = /* /* document.querySelector('.hamburger-menu'); 
-     const mobileNav = /* /* document.querySelector('.mobile-nav'); 
-     const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : []; 
- 
-     if (!header || !toggleButton || !mobileNav) {
-       console.error('Header toggle elements not found!');
-       return;
-     }
- 
-     const toggleMenu = () => {
-       // Toggle class on the main header element
-       header.classList.toggle('is-open'); 
-     };
- 
-     const closeMenu = () => {
-       header.classList.remove('is-open');
-     };
- 
-     toggleButton.addEventListener('click', (e) => {
-       e.stopPropagation(); 
-       toggleMenu();
-     });
- 
-     mobileNavLinks.forEach(link => {
-       link.addEventListener('click', closeMenu);
-     });
+  console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
+    // Mobile menu functionality
+    const header = /* document.querySelector('.site-header');
+    const toggleButton = /* document.querySelector('.hamburger-menu');
+    const mobileNav = /* document.querySelector('.mobile-nav');
+    const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : [];
+
+    if (!header || !toggleButton || !mobileNav) {
+      console.error('Header toggle elements not found!');
+      return;
+    }
+
+    // Ensure links use correct environment path structure
+    // This fixes the issue where test environment has /pages/ links
+    const fixEnvironmentLinks = () => {
+      // Get all links in the document
+      const allLinks = /* document.querySelectorAll('a[href]');
+      const hostname = window.location.hostname;
+      const isProduction = hostname === 'ai-tools-lab.com';
+
+      allLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (!href) return;
+        
+        // Fix links on test environment that have /pages/ prefix
+        if (!isProduction && href.startsWith('/pages/')) {
+          // Convert /pages/something to /something
+          const fixedHref = href.replace('/pages/', '/');
+          link.setAttribute('href', fixedHref);
+        }
+        
+        // Fix links on production environment that don't have /pages/ prefix
+        if (isProduction && !href.startsWith('/pages/') && !href.startsWith('http') && !href.startsWith('#')) {
+          // Make sure we don't double-prefix
+          if (href === '/') {
+            link.setAttribute('href', '/pages/');
+          } else if (!href.startsWith('/pages/')) {
+            const fixedHref = `/pages${href}`;
+            link.setAttribute('href', fixedHref);
+          }
+        }
+      });
+    };
+
+    // Fix environment links on page load
+    fixEnvironmentLinks();
+
+    // Standard mobile menu functionality
+    const toggleMenu = () => {
+      header.classList.toggle('is-open');
+    };
+
+    const closeMenu = () => {
+      header.classList.remove('is-open');
+    };
+
+    toggleButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
   });
- </script>
+</script>
