@@ -1,0 +1,11 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const rawContent = await import('../content/index_content.html?raw').then(m => m.default);
+const mainMatch = rawContent.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
+const content = mainMatch ? mainMatch[1] : rawContent;
+---
+
+<MainLayout title="Home">
+  <article set:html={content} />
+</MainLayout> 

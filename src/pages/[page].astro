@@ -1,0 +1,39 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const pages = await import.meta.glob('../content/pages/*.html', { 
+    query: '?raw',
+    import: 'default'
+  });
+  return Object.entries(pages).map(([path, importFn]) => {
+    const pageName = path.split('/').pop()?.replace('.html', '') || '';
+    return {
+      params: { page: pageName },
+      props: { importFn },
+    };
+  });
+}
+
+const { importFn } = Astro.props;
+const rawContent = await importFn() as string;
+
+// Extract title from the HTML content
+const titleMatch = rawContent.match(/<title>(.*?)<\/title>/i);
+const title = titleMatch ? titleMatch[1].split('|')[0].trim() : Astro.params.page;
+
+// Extract main content
+const mainContentMatch = rawContent.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
+const content = mainContentMatch ? mainContentMatch[1] : rawContent;
+---
+
+<MainLayout title={title}>
+  <article set:html={content} />
+</MainLayout>
+
+<style>
+  article {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+</style> 

@@ -1,0 +1,213 @@
+---
+// Header component adapted to match live site structure
+---
+<!-- Header with site-header class for Datadog test detection -->
+<header class="site-header">
+  <!-- Bubble elements from live site -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="container header-content-container"> {/* Renamed class to avoid conflict */} 
+    <div class="logo">
+      <!-- Structure matching live site -->
+      <a href="/" class="logo-link" aria-label="AI Tools Lab Home">
+        <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo" width="48" height="48">
+        <span>AI Tools Lab</span>
+      </a>
+    </div>
+    
+    <!-- Desktop Navigation -->
+    <nav class="main-nav" role="navigation" aria-label="Main navigation">
+      <ul>
+        <li><a href="/" class:list={{ active: Astro.url.pathname === '/' }}>Home</a></li>
+        <li><a href="/resources" class:list={{ active: Astro.url.pathname === '/resources' || Astro.url.pathname.startsWith('/resources/') }}>Resources</a></li>
+        <li><a href="/observations" class:list={{ active: Astro.url.pathname === '/observations' || Astro.url.pathname.startsWith('/observations/') }}>Observations</a></li>
+        <li><a href="/about" class:list={{ active: Astro.url.pathname === '/about' }}>About</a></li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Toggle (using structure from live site) -->
+    <div class="hamburger-menu" role="button" tabindex="0" aria-label="Toggle navigation menu">
+      <img src="/images/ai-tools-lab-logo.webp" width="24" height="24" alt="Menu">
+    </div>
+
+    <!-- Mobile Navigation (adapting structure from previous local version) --> 
+    <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+      <ul>
+        <li><a href="/pages/">Home</a></li>
+        <li><a href="/pages/resources">Resources</a></li>
+        <li><a href="/pages/observations">Observations</a></li>
+        <li><a href="/pages/about">About</a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+<style>
+  /* Simplified styles for the Astro component scope */
+  /* Basic layout and desktop/mobile visibility */
+  .site-header {
+    position: relative; /* Needed for bubble absolute positioning */
+    background-color: var(--secondary-color, #93ACB5); /* Ensure consistent background color matching production */
+    color: white;
+    padding: 1.5rem 0 0 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0;
+    overflow: visible;
+    border-bottom: none;
+    z-index: 2;
+  }
+
+  .header-content-container { /* Updated class name */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Padding etc. from global styles.css */
+    position: relative; /* Ensure content is above bubbles */
+    z-index: 2;
+  }
+
+  /* Logo styles matching live site classes */
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  .logo .site-logo {
+    /* Dimensions should come from global */
+    margin-right: 1rem;
+    vertical-align: middle;
+  }
+  .logo a {
+    /* Styling from global */
+    text-decoration: none; /* Ensure no underline */
+    font-size: 3rem; /* Match live site inline style */
+  }
+
+  /* Desktop Nav visibility */
+  .main-nav {
+    display: none; /* Hidden by default */
+  }
+  .main-nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    gap: 1.5rem; /* Adjust gap as needed, matching live site visually */
+  }
+  .main-nav a {
+    /* Styling from global */
+    text-decoration: none;
+  }
+  .main-nav a.active {
+    /* Active state styling from global */
+    font-weight: bold; /* Example, adjust in global */
+  }
+
+  /* Mobile Menu Toggle visibility */
+  .hamburger-menu {
+    display: block; /* Visible by default */
+    cursor: pointer;
+    /* Needs width/height/styling from global */
+  }
+  .hamburger-menu img {
+    display: block; /* Prevent extra space below image */
+  }
+
+  /* Mobile Nav styles */
+  .mobile-nav {
+    display: none; /* Hidden by default */
+    position: fixed; 
+    top: 0;
+    right: 0;
+    width: 250px; 
+    height: 100%;
+    background-color: var(--primary-color, #6C756B); 
+    padding: 20px; 
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+  }
+  .mobile-nav ul {
+    list-style: none;
+    padding: 40px 0 0 0; /* Add padding to clear header */
+    margin: 0;
+  }
+  .mobile-nav li {
+    margin-bottom: 15px;
+  }
+  .mobile-nav a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    display: block; 
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+  }
+   .mobile-nav a:hover {
+     background-color: rgba(255, 255, 255, 0.1);
+   }
+
+   /* Show mobile nav when header has .is-open class */ 
+   .site-header.is-open .mobile-nav {
+     display: block !important; 
+   }
+
+   /* --- Desktop Styles --- */
+   @media (min-width: 769px) { 
+     .main-nav {
+       display: block; /* Show main nav on desktop */
+     }
+     .hamburger-menu,
+     .mobile-nav {  
+       display: none; /* Hide mobile elements on desktop */
+     }
+   }
+
+  /* Bubble styles should be defined in global styles.css */
+  .bubble {
+    /* Placeholder - Define in global styles.css */
+    /* Example: position: absolute; background: white; border-radius: 50%; */ 
+  }
+
+</style>
+
+<script is:client>
+  // Client-side code - only runs in the browser
+  console.log("Build mode");
+  document.addEventListener('DOMContentLoaded', () => {
+     const header = document.querySelector('.site-header');
+     // Target the new hamburger menu element
+     const toggleButton = document.querySelector('.hamburger-menu'); 
+     const mobileNav = document.querySelector('.mobile-nav'); 
+     const mobileNavLinks = mobileNav ? mobileNav.querySelectorAll('a') : []; 
+ 
+     if (!header || !toggleButton || !mobileNav) {
+       console.error('Header toggle elements not found!');
+       return;
+     }
+ 
+     const toggleMenu = () => {
+       // Toggle class on the main header element
+       header.classList.toggle('is-open'); 
+     };
+ 
+     const closeMenu = () => {
+       header.classList.remove('is-open');
+     };
+ 
+     toggleButton.addEventListener('click', (e) => {
+       e.stopPropagation(); 
+       toggleMenu();
+     });
+ 
+     mobileNavLinks.forEach(link => {
+       link.addEventListener('click', closeMenu);
+     });
+  });
+ </script>

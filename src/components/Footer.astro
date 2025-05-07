@@ -1,0 +1,98 @@
+---
+const currentYear = new Date().getFullYear();
+---
+<!-- Footer with site-footer class for Datadog test detection -->
+<footer class="site-footer">
+  <!-- Bubble elements for footer -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <div class="container">
+    <div class="footer-content">
+      
+      <div class="footer-logo">
+        <!-- Using live site logo path - assuming it exists locally -->
+        <a href="/pages/" class="logo-link" aria-label="AI Tools Lab Home">
+          <img src="/images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="footer-logo-img" width="48" height="48">
+          <div>
+            <h2>AI Tools Lab</h2>
+            <p>Exploring the landscape of AI tools and technologies</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- Consolidated links under one heading -->
+      <div class="footer-links" role="navigation" aria-label="Footer navigation">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="/pages/">Home</a></li>
+          <li><a href="/pages/resources">Resources</a></li>
+          <li><a href="/pages/observations">Observations</a></li>
+          <li><a href="/pages/about">About</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <!-- Added Pi symbol span, kept dynamic year -->
+      <p>&copy; {currentYear} AI Tools Lab. All rights reserved. <span id="easter-egg" class="easter-egg" role="button" tabindex="0" aria-label="Easter egg">π</span></p> 
+      <!-- Maybe add privacy/terms links -->
+      <!-- <p><a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p> -->
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  /* Minimal component-specific styles if needed */
+  /* Most styles should come from global styles.css */
+  footer { /* Updated selector */
+    /* Gradient background is in global styles.css */
+  }
+  .footer-content {
+     /* Layout styles (flex, grid) should be in global styles.css */
+     /* Example: */
+     /* display: flex; 
+     flex-wrap: wrap;
+     justify-content: space-between; 
+     margin-bottom: 2rem; 
+     position: relative; 
+     z-index: 3; */
+  }
+  .footer-links h3 {
+     /* Color: var(--accent-color); from global */
+     margin-bottom: 1rem; 
+  }
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-links li {
+    margin-bottom: 0.75rem;
+  }
+  .footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover {
+    color: var(--accent-color); 
+    text-decoration: none;
+  }
+  .footer-bottom {
+    /* Styles from global styles.css */
+  }
+  /* Added basic style for easter egg */
+  .easter-egg {
+      cursor: pointer;
+      margin-left: 5px; 
+      display: inline-block; 
+  }
+</style>
