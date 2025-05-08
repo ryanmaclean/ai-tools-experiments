@@ -54,7 +54,8 @@ img {
 .site-header {
     background-color: var(--secondary-color);
     color: white;
-    padding: 1.5rem 0 0 0;
+    padding: 0;
+    height: 120px; /* Fixed height for header */
     box-shadow: none;
     margin-bottom: 0;
     position: relative; /* Change back from fixed to relative */
@@ -62,6 +63,8 @@ img {
     border-bottom: none;
     z-index: 2; /* Change back to original z-index */
     /* Remove width, top and left properties */
+    display: flex;
+    align-items: center;
 }
 
 /* Header bubble effects */
@@ -117,7 +120,8 @@ img {
     align-items: center;
     position: relative;
     z-index: 2;
-    padding-bottom: 1rem;
+    padding: 0;
+    height: 100%;
 }
 
 /* Create multiple bubble elements with different animations */
@@ -207,8 +211,8 @@ img {
 }
 
 .logo .site-logo {
-    width: 100px;
-    height: 100px;
+    width: auto;
+    height: 240px; /* Doubled in size to make it much larger */
     margin-right: 1rem;
 }
 
@@ -1855,7 +1859,8 @@ code {
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
     .site-header {
-        padding: 0.75rem 0;
+        padding: 0;
+        height: 90px; /* Fixed smaller height for mobile */
     }
     
     /* Override desktop navigation styles completely for mobile */
@@ -1897,7 +1902,9 @@ code {
     }
     
     .logo .site-logo {
-        display: none;
+        display: block;
+        width: auto;
+        height: 100px; /* Doubled in size for mobile */
     }
     
     .logo a {
@@ -2244,7 +2251,12 @@ code {
 @media (max-width: 480px) {
     /* Smaller header elements for very small screens */
     .site-header {
-        padding: 0.5rem 0;
+        padding: 0;
+        height: 70px; /* Even smaller fixed height for the smallest screens */
+    }
+    
+    .logo .site-logo {
+        height: 65px; /* Sized to fit within the 70px header height */
     }
     
     .logo a {
@@ -2447,8 +2459,8 @@ code {
     }
     
     .site-header .logo .site-logo {
-        width: 60px;
-        height: 60px;
+        width: auto;
+        height: 140px; /* Doubled in size for tablet/small devices */
     }
     
     h2 {
