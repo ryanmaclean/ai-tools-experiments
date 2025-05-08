@@ -1889,30 +1889,34 @@ code {
         flex-direction: row;
         justify-content: space-between;
         position: relative;
-        padding: 0 25px; /* Increased padding for equal spacing */
+        padding: 0 45px 0 10px; /* Increased right padding to make room for hamburger */
     }
     
     .logo {
         display: flex;
         align-items: center;
-        width: 100%;
+        width: auto; /* Change to auto width to prevent stretching */
         justify-content: flex-start;
-        padding-right: 50%;
+        padding-right: 0; /* Remove padding completely */
         position: relative;
+        max-width: 75%; /* Limit width to prevent overlap with hamburger */
     }
     
     .logo .site-logo {
         display: block;
         width: auto;
-        height: 100px; /* Doubled in size for mobile */
+        height: 22px; /* Even smaller size */
+        margin-right: 0.4rem;
+        margin-left: 0; /* Remove negative margin */
     }
     
     .logo a {
-        font-size: 2.2rem !important; /* Slightly larger font size for mobile */
+        font-size: 1.4rem !important; /* Smaller font size to prevent wrapping */
         text-align: left;
         margin-left: 0;
         color: white;
         text-decoration: none;
+        white-space: nowrap; /* Prevent text wrapping */
     }
     
     .hamburger-menu {
@@ -2207,13 +2211,13 @@ code {
         font-size: 32px;
         z-index: 1001;
         position: absolute;
-        right: 25px; /* Fixed position from right edge */
+        right: 10px; /* Position from right edge */
         top: 50%;
         transform: translateY(-50%);
         background-color: rgba(255, 255, 255, 0.3);
         border-radius: 50%; /* Make it circular */
-        width: 100px;   /* Fixed width */
-        height: 100px;  /* Fixed height */
+        width: 35px;   /* Smaller size */
+        height: 35px;  /* Smaller size */
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -2256,11 +2260,12 @@ code {
     }
     
     .logo .site-logo {
-        height: 65px; /* Sized to fit within the 70px header height */
+        height: 18px; /* Even smaller logo for small screens */
+        margin-left: 0; /* No negative margin */
     }
     
     .logo a {
-        font-size: 2rem !important;
+        font-size: 1.1rem !important; /* Smaller font for very small screens */
     }
     
     .hamburger-menu {
@@ -2366,10 +2371,10 @@ code {
     }
     
     .hamburger-menu {
-        right: calc(25% - 40px);
-        width: 80px;
-        height: 80px;
-        margin-right: 15px; /* Add spacing for the menu button */
+        right: 10px; /* Position from the right edge */
+        width: 35px;
+        height: 35px;
+        margin-right: 0; /* Remove margin */
     }
     
     .hamburger-menu img {

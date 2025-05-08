@@ -650,18 +650,14 @@ document.addEventListener('DOMContentLoaded', function() {
         hamburgerMenu.setAttribute('tabindex', '0');
         hamburgerMenu.setAttribute('aria-label', 'Toggle navigation menu');
         
-        // Create hamburger icon
-        const logoImg = document.createElement('img');
-        logoImg.src = '../images/ai-tools-lab-logo.png';
-        if (!logoImg.src || logoImg.src.includes('undefined')) {
-            logoImg.src = './images/ai-tools-lab-logo.png';
-        }
-        logoImg.width = 24;
-        logoImg.height = 24;
-        logoImg.alt = "Menu";
+        // Create hamburger icon (using text instead of image)
+        const menuIcon = document.createElement('span');
+        menuIcon.textContent = '☰'; // Hamburger icon as text
+        menuIcon.style.fontSize = '24px';
+        menuIcon.style.color = 'white';
         
         // Add icon to hamburger menu
-        hamburgerMenu.appendChild(logoImg);
+        hamburgerMenu.appendChild(menuIcon);
         
         // Add hamburger menu to header
         headerContainer.appendChild(hamburgerMenu);
