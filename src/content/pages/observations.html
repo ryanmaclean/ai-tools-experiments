@@ -18,16 +18,14 @@
     <link rel="shortcut icon" href="../images/ai-tools-lab-logo.png" type="image/png">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Revalia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <!-- Using fonts defined in main styles.css -->
     
     <!-- Custom styles for improved observations page -->
     <style>
         /* Header logo font styling */
         .logo a {
-            font-family: 'Revalia', cursive;
-            font-size: 1.6rem;
+            font-size: 3rem;
         }
         
         /* Main layout improvements */
@@ -378,7 +376,7 @@
         <div class="container">
             <div class="logo">
                 <img src="../images/ai-tools-lab-logo.png" alt="AI Tools Lab Logo" class="site-logo">
-                <a href='/pages/' style='font-size: 1.6rem;'>AI Tools Lab</a>
+                <a href='/pages/'>AI Tools Lab</a>
             </div>
             <nav>
                 <ul>
@@ -417,7 +415,23 @@
                     <div class="filters-container" id="toolFilters">
                         <div class="filter-item active" data-filter="tool" data-value="all">
                             <span>All Tools</span>
-                            <span class="count">18</span>
+                            <span class="count">21</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="tmux">
+                            <span>Tmux</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="claude-code">
+                            <span>Claude Code</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="terminal">
+                            <span>Terminal</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="helix">
+                            <span>Helix</span>
+                            <span class="count">1</span>
                         </div>
                         <div class="filter-item" data-filter="tool" data-value="astro">
                             <span>Astro</span>
@@ -425,7 +439,7 @@
                         </div>
                         <div class="filter-item" data-filter="tool" data-value="stateofai">
                             <span>State of AI</span>
-                            <span class="count">1</span>
+                            <span class="count">2</span>
                         </div>
                         <div class="filter-item" data-filter="tool" data-value="notebooklm">
                             <span>Notebook LM</span>
@@ -445,7 +459,7 @@
                         </div>
                         <div class="filter-item" data-filter="tool" data-value="claude">
                             <span>Claude</span>
-                            <span class="count">10</span>
+                            <span class="count">11</span>
                         </div>
                         <div class="filter-item" data-filter="tool" data-value="chatgpt">
                             <span>ChatGPT</span>
@@ -471,6 +485,18 @@
                             <span>Gradio</span>
                             <span class="count">1</span>
                         </div>
+                        <div class="filter-item" data-filter="tool" data-value="n8n">
+                            <span>N8N</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="airtable">
+                            <span>Airtable</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="workflow">
+                            <span>Workflow</span>
+                            <span class="count">1</span>
+                        </div>
                     </div>
                 </div>
                 
@@ -479,7 +505,23 @@
                     <div class="filters-container" id="conceptFilters">
                         <div class="filter-item active" data-filter="concept" data-value="all">
                             <span>All Concepts</span>
-                            <span class="count">18</span>
+                            <span class="count">21</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="terminal-tools">
+                            <span>Terminal Tools</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="ray-tracing">
+                            <span>Ray Tracing</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="test-coverage">
+                            <span>Test Coverage</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="ai-coding">
+                            <span>AI Coding</span>
+                            <span class="count">1</span>
                         </div>
                         <div class="filter-item" data-filter="concept" data-value="yolo-mode">
                             <span>YOLO Mode</span>
@@ -495,7 +537,7 @@
                         </div>
                         <div class="filter-item" data-filter="concept" data-value="survey-data">
                             <span>Survey Data</span>
-                            <span class="count">1</span>
+                            <span class="count">2</span>
                         </div>
                         <div class="filter-item" data-filter="concept" data-value="css">
                             <span>CSS</span>
@@ -525,6 +567,30 @@
                             <span>App Development</span>
                             <span class="count">2</span>
                         </div>
+                        <div class="filter-item" data-filter="concept" data-value="report-analysis">
+                            <span>Report Analysis</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="data-visualization">
+                            <span>Data Visualization</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="infographics">
+                            <span>Infographics</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="content-creation">
+                            <span>Content Creation</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="automation">
+                            <span>Automation</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="workflow">
+                            <span>Workflow</span>
+                            <span class="count">1</span>
+                        </div>
                     </div>
                 </div>
                 
@@ -535,6 +601,98 @@
             <!-- Main content area -->
             <div class="observations-content">
                 <div class="takeaway-cards">
+                    <!-- Episode 27 Card -->
+                    <div class="takeaway-card" data-episode="27" data-tools="tmux,claude-code,terminal,helix" data-concepts="terminal-tools,ray-tracing,test-coverage,ai-coding">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep27.png" alt="Episode 27 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 27</div>
+                                <h3>Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Tmux</span>
+                                <span class="takeaway-tag">Claude Code</span>
+                                <span class="takeaway-tag">Terminal</span>
+                                <span class="takeaway-tag">Helix</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Embrace new technologies like terminal-based editing tools that increase productivity</li>
+                                    <li>Claude Code facilitates complex project completion through effective use of AI</li>
+                                    <li>Creating an elaborate setup leads to better management of large projects</li>
+                                    <li>Using detailed project logs can assist in identifying errors and improving workflow</li>
+                                    <li>The utility of test coverage checks helps maintain code reliability during development</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep27' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 26 Card -->
+                    <div class="takeaway-card" data-episode="26" data-tools="n8n,automation,airtable,workflow" data-concepts="content-creation,automation,workflow">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep26.png" alt="Episode 26 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 26</div>
+                                <h3>Streamlining AI Content Creation with Automation: A Deep Dive into N8N Workflows</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">N8N</span>
+                                <span class="takeaway-tag">Automation</span>
+                                <span class="takeaway-tag">Airtable</span>
+                                <span class="takeaway-tag">Workflow</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>N8N automation can significantly streamline workflow processes in content creation</li>
+                                    <li>Using Airtable for tracking and managing data from interviews enhances the content's depth and accuracy</li>
+                                    <li>Automation can help in maintaining consistency and quality in content output through structured frameworks</li>
+                                    <li>Experimenting with different AI models can offer insights into performance and cost-effectiveness</li>
+                                    <li>Continual workflow adjustments are crucial to meet evolving project needs and technological advancements</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep26' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Episode 24 Card -->
+                    <div class="takeaway-card" data-episode="24" data-tools="claude,stateofai,productivity" data-concepts="report-analysis,data-visualization,infographics">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep24.png" alt="Episode 24 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 24</div>
+                                <h3>Streamlining AI Report Analysis: Figma AI 2025 Insights</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">Claude</span>
+                                <span class="takeaway-tag">State of AI</span>
+                                <span class="takeaway-tag">Productivity</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>Efficiently summarizing large reports can save time and reveal essential insights</li>
+                                    <li>Tools like Claude can help create visual aids such as infographics for presenting data</li>
+                                    <li>Critical analysis and comparison of reports can uncover unique insights and trends</li>
+                                    <li>Effective data presentation in professional settings requires clarity and precision</li>
+                                    <li>Integrating findings from multiple reports provides a comprehensive view of industry trends</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep24' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
                     <!-- Episode 20 Card -->
                     <div class="takeaway-card" data-episode="20" data-tools="puppeteer,mcp,gemini,claude,astro" data-concepts="yolo-mode,code-editing">
                         <div class="takeaway-card-header">

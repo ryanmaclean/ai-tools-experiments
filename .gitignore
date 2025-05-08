@@ -13,3 +13,5 @@ node_modules
 .netlify/
 .idea
 vitest-link-report.txt
+.env*
+.DS_Store

@@ -7,6 +7,7 @@
     "check": "astro check",
     "sync": "astro sync",
     "dev": "astro dev",
+    "prebuild": "rm -rf node_modules/.vite",
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run test/link-checker.test.js"
@@ -29,7 +30,8 @@
   "dependencies": {
     "@datadog/browser-rum": "^4.31.0",
     "astro": "^5.7.10",
-    "node-fetch": "^2.6.7"
+    "node-fetch": "^2.6.7",
+    "puppeteer": "^24.8.2"
   },
   "devDependencies": {
     "cheerio": "^1.0.0",

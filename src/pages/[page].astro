@@ -1,6 +1,4 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-
 export async function getStaticPaths() {
   const pages = await import.meta.glob('../content/pages/*.html', { 
     query: '?raw',
@@ -16,24 +14,13 @@ export async function getStaticPaths() {
 }
 
 const { importFn } = Astro.props;
-const rawContent = await importFn() as string;
+let rawContent = await importFn() as string;
 
-// Extract title from the HTML content
-const titleMatch = rawContent.match(/<title>(.*?)<\/title>/i);
-const title = titleMatch ? titleMatch[1].split('|')[0].trim() : Astro.params.page;
-
-// Extract main content
-const mainContentMatch = rawContent.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
-const content = mainContentMatch ? mainContentMatch[1] : rawContent;
+// Fix relative paths in the HTML content
+// More comprehensive path fixing for various resources
+rawContent = rawContent.replace(/\.\.\/(images)/g, '/$1');
+rawContent = rawContent.replace(/\.\.\/script\.js/g, '/script.js');
+rawContent = rawContent.replace(/\.\.\/styles\.css/g, '/styles.css');
 ---
 
-<MainLayout title={title}>
-  <article set:html={content} />
-</MainLayout>
-
-<style>
-  article {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style> 
+<Fragment set:html={rawContent} />

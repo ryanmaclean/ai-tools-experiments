@@ -1,11 +1,6 @@
 ---
-import MainLayout from '../layouts/MainLayout.astro';
-
-const rawContent = await import('../content/index_content.html?raw').then(m => m.default);
-const mainMatch = rawContent.match(/<main[^>]*>([\s\S]*?)<\/main>/i);
-const content = mainMatch ? mainMatch[1] : rawContent;
+const indexHtml = await import.meta.glob('../content/pages/index.html', { query: '?raw', import: 'default' });
+const rawHtml = await Object.values(indexHtml)[0]();
 ---
 
-<MainLayout title="Home">
-  <article set:html={content} />
-</MainLayout> 
+<Fragment set:html={rawHtml} />

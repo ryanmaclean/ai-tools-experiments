@@ -1,5 +1,8 @@
 [build]
   functions = "proxy"
+  command = "npm run build"
+  publish = "dist"
+  environment = { NODE_VERSION = "20", NPM_FLAGS = "--no-optional" }
 
 [dev]
   functions = "proxy"
@@ -9,3 +12,41 @@
   to = "/.netlify/functions/datadog-proxy"
   status = 200
   force = true
+
+# Specific episode redirects (these take precedence)
+[[redirects]]
+  from = "/pages/ep*"
+  to = "/ep:splat.html"
+  status = 200
+  force = true
+
+# All other specific page redirects
+[[redirects]]
+  from = "/pages/about"
+  to = "/about.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pages/resources"
+  to = "/resources.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pages/observations"
+  to = "/observations.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/pages/"
+  to = "/index.html"
+  status = 200
+  force = true
+
+# Final fallback for 404 pages
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404
