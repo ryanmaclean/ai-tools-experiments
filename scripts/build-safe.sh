@@ -7,18 +7,13 @@ echo "Running safe build process"
 
 # Detect environment for consistent URL paths
 if [[ "${NETLIFY}" == "true" ]]; then
-  # We're in a Netlify environment
-  if [[ "${CONTEXT}" == "production" ]]; then
-    echo "Detected production environment, using /pages prefix"
-    export URL_PREFIX="/pages"
-  else
-    echo "Detected test environment, using direct routes without prefix"
-    export URL_PREFIX=""
-  fi
+  # We're in a Netlify environment - ALL environments use /pages prefix to match production
+  echo "Detected Netlify environment, using /pages prefix for all environments to match production"
+  export URL_PREFIX="/pages"
 else
-  # Local development
-  echo "Detected local development, using direct routes without prefix"
-  export URL_PREFIX=""
+  # Local development - still use /pages prefix to match production
+  echo "Detected local development, using /pages prefix to match production"
+  export URL_PREFIX="/pages"
 fi
 
 # 1. Create backup of files that cause SSR issues

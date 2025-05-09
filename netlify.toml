@@ -85,8 +85,8 @@
 
 # Test environment redirects
 [[redirects]]
-  from = "/pages/*"
-  to = "/:splat"
+  from = "/"
+  to = "/pages/"
   status = 301
   force = true
   conditions = { host = "ai-tools-lab-tst.netlify.app" }
@@ -122,26 +122,26 @@
   status = 200
   force = false
 
-# Test environment direct routes
+# Test environment routes matching production
 [[redirects]]
   from = "/resources"
-  to = "/resources/index.html"
-  status = 200
-  force = false
+  to = "/pages/resources"
+  status = 301
+  force = true
   conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 [[redirects]]
   from = "/observations"
-  to = "/observations/index.html"
-  status = 200
-  force = false
+  to = "/pages/observations"
+  status = 301
+  force = true
   conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 [[redirects]]
   from = "/about"
-  to = "/about/index.html"
-  status = 200
-  force = false
+  to = "/pages/about"
+  status = 301
+  force = true
   conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 # Security fixes
