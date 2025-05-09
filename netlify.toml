@@ -83,13 +83,19 @@
   force = false
   conditions = { host = "ai-tools-lab.com" }
 
-# Test environment redirects
+# Test environment redirects to match production exactly
 [[redirects]]
   from = "/"
   to = "/pages/"
   status = 301
   force = true
   conditions = { host = "ai-tools-lab-tst.netlify.app" }
+
+[[redirects]]
+  from = "/pages"
+  to = "/pages/"
+  status = 301
+  force = true
 
 # Episode URL handling
 [[redirects]]
@@ -122,27 +128,31 @@
   status = 200
   force = false
 
-# Test environment routes matching production
+# Test environment routes matching production exactly
 [[redirects]]
   from = "/resources"
   to = "/pages/resources"
   status = 301
   force = true
-  conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 [[redirects]]
   from = "/observations"
   to = "/pages/observations"
   status = 301
   force = true
-  conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 [[redirects]]
   from = "/about"
   to = "/pages/about"
   status = 301
   force = true
-  conditions = { host = "ai-tools-lab-tst.netlify.app" }
+
+# Episode access patterns - make sure we can access episodes at /pages/epXX
+[[redirects]]
+  from = "/pages/ep:id"
+  to = "/ep:id.html"
+  status = 200
+  force = true
 
 # Security fixes
 [[redirects]]
