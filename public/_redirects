@@ -1,13 +1,18 @@
-# Handle dual URL structure for consistency with production
-/pages/about      /about              301
-/pages/resources  /resources          301
-/pages/observations /observations     301
+# Main redirects to ensure we match production exactly
+/                    /pages/index.html      301!
+/pages               /pages/index.html      301!
 
-# Provide backward compatibility for direct navigation
-/about            /pages/about        200!
-/resources        /pages/resources    200!
-/observations     /pages/observations  200!
+# Content page redirects
+/about              /pages/about.html      301!
+/resources          /pages/resources.html  301!
+/observations       /pages/observations.html 301!
 
-# For completeness, also support the reverse mappings
-/resources               /pages/resources     200!
-/observations            /pages/observations  200!
+# Episode pages
+/ep:id              /pages/ep:id          301!
+/pages/ep:id        /episodes/ep:id.html   200!
+
+# Ensure /pages/ directory structure works like production
+/pages/*            /:splat               200!
+
+# Handle API endpoints
+/api/*              /.netlify/functions/:splat  200

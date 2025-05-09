@@ -1,9 +1,11 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 
+import mcp from 'astro-mcp';
+
 // https://docs.astro.build/en/reference/configuration-reference/
 export default defineConfig({
-  integrations: [mdx()],
+  integrations: [mdx(), mcp()],
   devToolbar: {
     enabled: false,
   },

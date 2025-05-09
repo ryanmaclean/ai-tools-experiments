@@ -134,6 +134,11 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Upgrade Astro to v5 following the [official migration guide](https://docs.astro.build/en/guides/upgrade-to/v5/)
 - [ ] Update configuration in astro.config.mjs for v5 compatibility
 - [ ] Refactor code to use new Astro v5 APIs and features
+- [ ] Fix MCP integration issues:
+  - [ ] Investigate why MCP endpoint `http://localhost:4321/__mcp/sse` is not accessible
+  - [ ] Update astro-mcp package to latest version if needed
+  - [ ] Ensure Astro server properly exposes MCP endpoints
+  - [ ] Run and pass the MCP integration verification test (`node tests/verify-mcp-integration.js`)
 - [ ] Test all components with Astro v5's new rendering system
 - [ ] Implement [Astro v5 View Transitions](https://docs.astro.build/en/guides/view-transitions/) for improved UX
 - [ ] Adopt Astro's zero-JavaScript approach for content-focused pages to reduce client-side load, as highlighted in [Astro for Docs](https://astrofordocs.vercel.app/)

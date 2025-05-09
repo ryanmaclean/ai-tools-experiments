@@ -1,0 +1,178 @@
+---
+// MCP Tools Demo Page
+// Shows how to use MCP tools to interact with the Astro project
+
+// Import layout components if needed
+// import MainLayout from '../layouts/MainLayout.astro';
+
+// This page demonstrates how Model Context Protocol (MCP) can be used
+// to interact with your Astro project
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MCP Tools Demo | AI Tools Lab</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        line-height: 1.6;
+      }
+      h1, h2, h3 {
+        color: var(--primary-color, #6C756B);
+      }
+      .demo-section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+      }
+      pre {
+        background-color: #f0f0f0;
+        padding: 1rem;
+        border-radius: 4px;
+        overflow-x: auto;
+        font-size: 0.9rem;
+      }
+      code {
+        background-color: #f0f0f0;
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-family: monospace;
+      }
+      .tool-example {
+        margin-top: 1rem;
+        border-left: 4px solid var(--secondary-color, #93ACB5);
+        padding-left: 1rem;
+      }
+      .url {
+        font-weight: bold;
+        padding: 0.5rem;
+        background-color: #e9f2f7;
+        border-radius: 4px;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Model Context Protocol (MCP) Tools</h1>
+    
+    <p>
+      This page demonstrates the <a href="https://modelcontextprotocol.io" target="_blank">Model Context Protocol (MCP)</a> 
+      integration with your Astro project. MCP allows AI assistants to interact 
+      directly with your Astro project through specialized tools.
+    </p>
+
+    <div class="demo-section">
+      <h2>MCP Server Connection</h2>
+      <p>The MCP server for this Astro project is running at:</p>
+      <p class="url">http://localhost:4321/__mcp/sse</p>
+      <p>
+        AI assistants (like Claude in Cursor or Visual Studio Code) can connect to this endpoint
+        to access tools specific to your Astro project.
+      </p>
+    </div>
+
+    <div class="demo-section">
+      <h2>Available MCP Tools</h2>
+      <p>The following tools are provided by the astro-mcp integration:</p>
+
+      <h3>get-astro-config</h3>
+      <p>Retrieves the complete Astro configuration object, including:</p>
+      <ul>
+        <li>File paths (root, src, public, output)</li>
+        <li>Site URL</li>
+        <li>Build options</li>
+        <li>Server settings</li>
+        <li>Enabled integrations</li>
+        <li>And more configuration details</li>
+      </ul>
+      <div class="tool-example">
+        <p><strong>Example usage:</strong> Ask an AI assistant connected to this MCP server:</p>
+        <pre>"Can you use the get-astro-config tool to show me the build configuration for this project?"</pre>
+      </div>
+
+      <h3>list-astro-routes</h3>
+      <p>Lists all routes in your Astro project, including:</p>
+      <ul>
+        <li>File entrypoints</li>
+        <li>URL patterns</li>
+        <li>Dynamic parameters</li>
+        <li>Pre-rendering status</li>
+        <li>Route types (page, endpoint, etc.)</li>
+      </ul>
+      <div class="tool-example">
+        <p><strong>Example usage:</strong> Ask an AI assistant connected to this MCP server:</p>
+        <pre>"Use the list-astro-routes tool to show me all routes in this project."</pre>
+      </div>
+
+      <h3>get-astro-server-address</h3>
+      <p>Retrieves the current server address information, including:</p>
+      <ul>
+        <li>Network address</li>
+        <li>IP protocol family</li>
+        <li>Port number</li>
+      </ul>
+      <div class="tool-example">
+        <p><strong>Example usage:</strong> Ask an AI assistant connected to this MCP server:</p>
+        <pre>"Can you use the get-astro-server-address tool to show me the current server configuration?"</pre>
+      </div>
+
+      <h3>list-astro-integrations</h3>
+      <p>Lists all Astro integrations available in the ecosystem.</p>
+      <div class="tool-example">
+        <p><strong>Example usage:</strong> Ask an AI assistant connected to this MCP server:</p>
+        <pre>"Use the list-astro-integrations tool to show me what integrations are available."</pre>
+      </div>
+
+      <h3>get-astro-integration</h3>
+      <p>Gets detailed information about a specific Astro integration.</p>
+      <div class="tool-example">
+        <p><strong>Example usage:</strong> Ask an AI assistant connected to this MCP server:</p>
+        <pre>"Use the get-astro-integration tool to tell me about the @astrojs/mdx integration."</pre>
+      </div>
+
+      <h3>search-astro-docs</h3>
+      <p>Searches the Astro documentation for specific topics, concepts, or features.</p>
+      <div class="tool-example">
+        <p><strong>Example usage:</strong> Ask an AI assistant connected to this MCP server:</p>
+        <pre>"Use the search-astro-docs tool to find information about Astro content collections."</pre>
+      </div>
+
+      <h3>get-vite-config</h3>
+      <p>Retrieves the Vite configuration used by Astro.</p>
+      <div class="tool-example">
+        <p><strong>Example usage:</strong> Ask an AI assistant connected to this MCP server:</p>
+        <pre>"Use the get-vite-config tool to show me the Vite configuration for this project."</pre>
+      </div>
+    </div>
+
+    <div class="demo-section">
+      <h2>Using MCP in Your Project</h2>
+      <p>
+        The MCP integration enables AI assistants to have deeper context and capabilities when working with your Astro project.
+        This allows for more effective assistance with tasks like:
+      </p>
+      <ul>
+        <li>Understanding the project structure</li>
+        <li>Diagnosing build issues</li>
+        <li>Exploring available routes</li>
+        <li>Accessing configuration details</li>
+        <li>Finding documentation</li>
+        <li>Working with integrations</li>
+      </ul>
+      <p>
+        To use these capabilities, simply start your Astro development server with <code>npm run dev</code>,
+        ensure your AI assistant is configured to use the MCP server at <span class="url">http://localhost:4321/__mcp/sse</span>,
+        and then ask it to perform tasks using the tools mentioned above.
+      </p>
+    </div>
+
+    <a href="/">← Back to Home</a>
+  </body>
+</html>

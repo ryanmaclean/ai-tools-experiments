@@ -199,7 +199,8 @@ const aboutPath = `${pathPrefix}/about`;
 
 <script define:vars={{pathPrefix}}>
   // Client-side code - only runs in the browser
-  console.log("Build mode"); /* console.log("Build mode"); /* console.log("Build mode"); /* console.log("Build mode"); /* console.log("Build mode"); /* console.log("Build mode"); /* console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
+  // Console log removed to fix multi-line comment issue
+  document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu functionality
     const header = /* document.querySelector('.site-header');
     const toggleButton = /* document.querySelector('.hamburger-menu');

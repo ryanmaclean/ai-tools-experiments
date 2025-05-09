@@ -83,17 +83,17 @@
   force = false
   conditions = { host = "ai-tools-lab.com" }
 
-# Test environment redirects to match production exactly
+# Test environment redirects - fixed to prevent redirect loops
 [[redirects]]
   from = "/"
-  to = "/pages/"
+  to = "/pages/index.html"
   status = 301
   force = true
   conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 [[redirects]]
   from = "/pages"
-  to = "/pages/"
+  to = "/pages/index.html"
   status = 301
   force = true
 
@@ -131,27 +131,33 @@
 # Test environment routes matching production exactly
 [[redirects]]
   from = "/resources"
-  to = "/pages/resources"
+  to = "/pages/resources.html"
   status = 301
   force = true
 
 [[redirects]]
   from = "/observations"
-  to = "/pages/observations"
+  to = "/pages/observations.html"
   status = 301
   force = true
 
 [[redirects]]
   from = "/about"
-  to = "/pages/about"
+  to = "/pages/about.html"
   status = 301
   force = true
 
 # Episode access patterns - make sure we can access episodes at /pages/epXX
 [[redirects]]
   from = "/pages/ep:id"
-  to = "/ep:id.html"
+  to = "/episodes/ep:id.html"
   status = 200
+  force = true
+
+[[redirects]]
+  from = "/ep:id"
+  to = "/pages/ep:id"
+  status = 301
   force = true
 
 # Security fixes
