@@ -1,0 +1,46 @@
+{
+  "tests": [
+    {
+      "name": "dd-trace package is installed",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    },
+    {
+      "name": "Tracer initialization file is properly configured",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    },
+    {
+      "name": "Docker configuration has APM enabled",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    },
+    {
+      "name": "Environment variables are documented",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    },
+    {
+      "name": "README has APM documentation",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    },
+    {
+      "name": "Trace generation test",
+      "status": "passed",
+      "error": null,
+      "duration": 6620
+    }
+  ],
+  "passed": 6,
+  "failed": 0,
+  "startTime": 1746761792335,
+  "endTime": 1746761798960,
+  "totalDuration": 6625,
+  "summary": "6 passed, 0 failed"
+}

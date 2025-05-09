@@ -33,5 +33,13 @@ check_api_keys() {
 # Run the check
 check_api_keys
 
+# Run npm audit before committing
+echo "Running npm audit to check for vulnerabilities..."
+npm audit
+if [ $? -ne 0 ]; then
+  echo "npm audit found vulnerabilities. Please address them before committing."
+  exit 1
+fi
+
 # If you need to bypass this check in special cases, use:
 # git commit --no-verify

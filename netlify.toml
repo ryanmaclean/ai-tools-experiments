@@ -1,71 +1,97 @@
 [build]
-  command = "./scripts/build-safe.sh"
+  command = "npm run build"
   publish = "dist"
-  functions = "proxy"
-  
-  # Add environment variables to fix the dependency installation
-  environment = { NODE_VERSION = "22", NPM_FLAGS = "--platform=linux --arch=arm64", NETLIFY = "true" }
-  
-  # Define pre and post install/build hooks
-  [build.lifecycle]
-    onPreDependencies = "./scripts/docker-entrypoint.sh && node ./scripts/netlify-arm64-verify.js"
-    onPostBuild = "node ./scripts/netlify-postbuild.js"
+  functions = "netlify/functions"
 
-# Environment-specific settings
+[build.environment]
+  NODE_VERSION = "22"
+  NPM_FLAGS = "--platform=linux --arch=arm64"
+  NETLIFY = "true"
+  DD_SITE = "datadoghq.com"
+  DD_ENV = "development"
+  DD_VERSION = "1.0.0"
+
+[build.lifecycle]
+  onPreDependencies = "./scripts/docker-entrypoint.sh && node ./scripts/netlify-arm64-verify.js"
+  onPostBuild = "node ./scripts/netlify-postbuild.js"
+
 [context.production]
-  command = "./scripts/build-safe.sh"
+  command = "npm run build"
   publish = "dist"
-  environment = { CONTEXT = "production", URL_PREFIX = "/pages" }
 
-# Test environment settings - use same URL_PREFIX as production for consistency
+[context.production.environment]
+  CONTEXT = "production"
+  URL_PREFIX = "/pages"
+  DD_ENV = "production"
+  NETLIFY = "true"
+
 [context.test]
   command = "./scripts/build-safe.sh"
   publish = "dist"
-  environment = { CONTEXT = "test", URL_PREFIX = "/pages" }
 
-# Development settings
+[context.test.environment]
+  CONTEXT = "test"
+  URL_PREFIX = "/pages"
+  DD_ENV = "test"
+  NETLIFY = "true"
+
+[context.deploy-preview]
+  command = "npm run build"
+
+[context.deploy-preview.environment]
+  DD_ENV = "test"
+  NETLIFY = "true"
+  CONTEXT = "deploy-preview"
+
+[context.branch-deploy]
+  command = "npm run build"
+
+[context.branch-deploy.environment]
+  DD_ENV = "development"
+  NETLIFY = "true"
+  CONTEXT = "branch-deploy"
+
 [dev]
   functions = "proxy"
-  
-# Simplified URL redirects - only keep what's essential
-# In production, both /observations and /pages/observations will work
-# In test, we focus on direct routes without /pages prefix
 
-# For Production: Ensure direct routes work by redirecting to /pages/
+[[build.plugins]]
+  package = "./netlify/plugins/datadog-build-plugin"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["@datadog/browser-rum", "@datadog/browser-synthetics"]
+
+# Production redirects
 [[redirects]]
   from = "/about"
   to = "/pages/about"
   status = 200
   force = false
-  conditions = {host = ["ai-tools-lab.com"]}
+  conditions = { host = "ai-tools-lab.com" }
 
 [[redirects]]
   from = "/resources"
   to = "/pages/resources"
   status = 200
   force = false
-  conditions = {host = ["ai-tools-lab.com"]}
+  conditions = { host = "ai-tools-lab.com" }
 
 [[redirects]]
   from = "/observations"
   to = "/pages/observations"
   status = 200
   force = false
-  conditions = {host = ["ai-tools-lab.com"]}
+  conditions = { host = "ai-tools-lab.com" }
 
-# For Test: Ensure /pages routes redirect to direct routes
-# This fixes the primary issue found in link verification
+# Test environment redirects
 [[redirects]]
   from = "/pages/*"
   to = "/:splat"
   status = 301
   force = true
-  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+  conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
-# STANDARDIZED URL STRUCTURE: Make both environments use the same format
-# All episode content is accessed using the /pages/ep01 format in both environments
-
-# Handle legacy /episodes/ep1 format in both environments
+# Episode URL handling
 [[redirects]]
   from = "/episodes/ep:id([0-9])"
   to = "/pages/ep0:id"
@@ -77,8 +103,7 @@
   to = "/pages/ep:id"
   status = 301
   force = true
-  
-# Handle old episode URL format in production
+
 [[redirects]]
   from = "/pages/episodes/ep:id([0-9])"
   to = "/pages/ep0:id"
@@ -90,54 +115,137 @@
   to = "/pages/ep:id"
   status = 301
   force = true
-  
-# Ensure direct access to episode pages works
+
 [[redirects]]
   from = "/pages/ep:id([0-9][0-9])"
   to = "/pages/ep:id/index.html"
   status = 200
   force = false
 
-# For Test: Make sure direct routes work properly
+# Test environment direct routes
 [[redirects]]
   from = "/resources"
   to = "/resources/index.html"
   status = 200
   force = false
-  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+  conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 [[redirects]]
   from = "/observations"
   to = "/observations/index.html"
   status = 200
   force = false
-  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+  conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
 [[redirects]]
   from = "/about"
   to = "/about/index.html"
   status = 200
   force = false
-  conditions = {host = ["ai-tools-lab-tst.netlify.app"]}
+  conditions = { host = "ai-tools-lab-tst.netlify.app" }
 
-
-# Fix the javascript:history.back() issue found in production
+# Security fixes
 [[redirects]]
   from = "/pages/javascript:*"
   to = "/pages/"
   status = 301
   force = true
-  conditions = {host = ["ai-tools-lab.com"]}
+  conditions = { host = "ai-tools-lab.com" }
 
-# Datadog API proxy
+# API and monitoring
 [[redirects]]
-  from = "/api/datadog/*"
-  to = "/.netlify/functions/datadog-proxy"
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/.netlify/functions/datadog-monitor"
+  to = "/.netlify/functions/datadog-monitor"
   status = 200
   force = true
-  
-# Custom 404 page
+
+# Error handling
 [[redirects]]
   from = "/*"
   to = "/404.html"
   status = 404
+
+# Security headers for all environments
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # CORS Configuration
+    Access-Control-Allow-Origin = "https://ai-tools-lab.com"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization"
+    Access-Control-Max-Age = "86400"
+
+    # Security Headers
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-XSS-Protection = "1; mode=block"
+    X-Permitted-Cross-Domain-Policies = "none"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+    # Content Security Policy
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.datadoghq-browser-agent.com;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      connect-src 'self' https://*.datadoghq.com https://*.datadoghq.eu;
+      font-src 'self';
+      object-src 'none';
+      media-src 'self';
+      frame-src 'self';
+      worker-src 'self';
+      form-action 'self';
+      base-uri 'self';
+      frame-ancestors 'none'
+    """
+
+# Production-specific security headers
+[[headers]]
+  for = "/*"
+  conditions = { host = "ai-tools-lab.com" }
+  [headers.values]
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.datadoghq-browser-agent.com;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      connect-src 'self' https://*.datadoghq.com;
+      font-src 'self';
+      object-src 'none';
+      media-src 'self';
+      frame-src 'self';
+      worker-src 'self';
+      form-action 'self';
+      base-uri 'self';
+      frame-ancestors 'none';
+      upgrade-insecure-requests
+    """
+
+# Test environment security headers
+[[headers]]
+  for = "/*"
+  conditions = { host = "ai-tools-lab-tst.netlify.app" }
+  [headers.values]
+    Content-Security-Policy = """
+      default-src 'self';
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.datadoghq-browser-agent.com;
+      style-src 'self' 'unsafe-inline';
+      img-src 'self' data: https:;
+      connect-src 'self' https://*.datadoghq.com https://*.datadoghq.eu;
+      font-src 'self';
+      object-src 'none';
+      media-src 'self';
+      frame-src 'self';
+      worker-src 'self';
+      form-action 'self';
+      base-uri 'self';
+      frame-ancestors 'none';
+      report-uri https://ai-tools-lab-tst.netlify.app/.netlify/functions/csp-report
+    """ 

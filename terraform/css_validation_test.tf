@@ -1,5 +1,6 @@
-# CSS Validation Test for AI Tools Lab
-# This test specifically checks CSS properties, not just element presence
+# Enhanced CSS Validation Test for AI Tools Lab
+# This test thoroughly validates CSS properties, color schemes, typography, and layout
+# ensuring visual consistency across the application
 
 resource "datadog_synthetics_test" "css_validation" {
   name      = "AI Tools Lab CSS Validation Test"
@@ -99,6 +100,25 @@ resource "datadog_synthetics_test" "css_validation" {
             !textColor.includes('#fff') && 
             !textColor.includes('#ffffff')) {
           throw new Error('Header text color should be white, but found: ' + textColor);
+        }
+        
+        // Check additional styling properties
+        const padding = styles.padding;
+        if (!padding.includes('1rem') && !padding.includes('16px')) {
+          throw new Error('Header padding should be 1rem, but found: ' + padding);
+        }
+        
+        // Check box shadow
+        const boxShadow = styles.boxShadow;
+        if (!boxShadow || boxShadow === 'none') {
+          throw new Error('Header should have a box shadow, but found: ' + boxShadow);
+        }
+        
+        // Check layout properties
+        const display = styles.display;
+        const flexDisplay = display === 'flex' || display === 'inline-flex';
+        if (!flexDisplay) {
+          throw new Error('Header should use flex layout, but found: ' + display);
         }
         
         return 'Header CSS validated successfully';

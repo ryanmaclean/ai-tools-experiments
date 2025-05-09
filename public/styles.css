@@ -1,3 +1,6 @@
+/* Roboto Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
 :root {
     --primary-color: #6C756B;
     --secondary-color: #93ACB5;
@@ -7,6 +10,7 @@
     --highlight-color: #A9D3FF;
     --shadow: 0 2px 10px rgba(108, 117, 107, 0.1);
     --soft-shadow: 0 4px 15px rgba(108, 117, 107, 0.15);
+    --main-font: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 * {
@@ -16,7 +20,7 @@
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--main-font);
     line-height: 1.6;
     color: #333;
     background-color: var(--light-color);
@@ -50,7 +54,8 @@ img {
 .site-header {
     background-color: var(--secondary-color);
     color: white;
-    padding: 1.5rem 0 0 0;
+    padding: 0;
+    height: 120px; /* Fixed height for header */
     box-shadow: none;
     margin-bottom: 0;
     position: relative; /* Change back from fixed to relative */
@@ -58,6 +63,8 @@ img {
     border-bottom: none;
     z-index: 2; /* Change back to original z-index */
     /* Remove width, top and left properties */
+    display: flex;
+    align-items: center;
 }
 
 /* Header bubble effects */
@@ -113,7 +120,8 @@ img {
     align-items: center;
     position: relative;
     z-index: 2;
-    padding-bottom: 1rem;
+    padding: 0;
+    height: 100%;
 }
 
 /* Create multiple bubble elements with different animations */
@@ -203,8 +211,8 @@ img {
 }
 
 .logo .site-logo {
-    width: 100px;
-    height: 100px;
+    width: auto;
+    height: 240px; /* Doubled in size to make it much larger */
     margin-right: 1rem;
 }
 
@@ -213,7 +221,7 @@ img {
     font-size: 3rem;
     font-weight: bold;
     text-decoration: none;
-    font-family: 'Revalia', cursive;
+    font-family: var(--main-font);
 }
 
 .site-header nav ul {
@@ -914,7 +922,7 @@ footer::before {
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 4px;
-    font-family: inherit;
+    font-family: var(--main-font);
     font-size: 1rem;
 }
 
@@ -958,7 +966,7 @@ footer::before {
     border: none;
     padding: 6px 14px;
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--main-font);
     color: #444;
     cursor: pointer;
     transition: all 0.3s;
@@ -1568,11 +1576,11 @@ pre {
     border-radius: 6px;
     overflow-x: auto;
     margin-bottom: 20px;
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace, var(--main-font);
 }
 
 code {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Courier New', Courier, monospace, var(--main-font);
     font-size: 0.9em;
 }
 
@@ -1753,7 +1761,7 @@ code {
 .transcript pre {
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: var(--main-font);
     line-height: 1.6;
     font-size: 0.95rem;
     padding: 1.5rem;
@@ -1851,7 +1859,8 @@ code {
 /* Mobile Navigation Styles */
 @media (max-width: 768px) {
     .site-header {
-        padding: 1.5rem 0 1.5rem 0;
+        padding: 0;
+        height: 90px; /* Fixed smaller height for mobile */
     }
     
     /* Override desktop navigation styles completely for mobile */
@@ -1880,28 +1889,34 @@ code {
         flex-direction: row;
         justify-content: space-between;
         position: relative;
-        padding: 0 25px; /* Increased padding for equal spacing */
+        padding: 0 45px 0 10px; /* Increased right padding to make room for hamburger */
     }
     
     .logo {
         display: flex;
         align-items: center;
-        width: 100%;
+        width: auto; /* Change to auto width to prevent stretching */
         justify-content: flex-start;
-        padding-right: 50%;
+        padding-right: 0; /* Remove padding completely */
         position: relative;
+        max-width: 75%; /* Limit width to prevent overlap with hamburger */
     }
     
     .logo .site-logo {
-        display: none;
+        display: block;
+        width: auto;
+        height: 22px; /* Even smaller size */
+        margin-right: 0.4rem;
+        margin-left: 0; /* Remove negative margin */
     }
     
     .logo a {
-        font-size: 3.5rem !important; /* Increased font size for mobile */
+        font-size: 1.4rem !important; /* Smaller font size to prevent wrapping */
         text-align: left;
         margin-left: 0;
         color: white;
         text-decoration: none;
+        white-space: nowrap; /* Prevent text wrapping */
     }
     
     .hamburger-menu {
@@ -1909,13 +1924,13 @@ code {
         cursor: pointer;
         z-index: 2000;
         position: absolute;
-        right: calc(25% - 50px);
+        right: 15px;
         top: 50%;
         transform: translateY(-50%);
         background-color: rgba(255, 255, 255, 0.3);
         border-radius: 50%;
-        width: 100px;
-        height: 100px;
+        width: 35px;
+        height: 35px;
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -2196,13 +2211,13 @@ code {
         font-size: 32px;
         z-index: 1001;
         position: absolute;
-        right: 25px; /* Fixed position from right edge */
+        right: 10px; /* Position from right edge */
         top: 50%;
         transform: translateY(-50%);
         background-color: rgba(255, 255, 255, 0.3);
         border-radius: 50%; /* Make it circular */
-        width: 100px;   /* Fixed width */
-        height: 100px;  /* Fixed height */
+        width: 35px;   /* Smaller size */
+        height: 35px;  /* Smaller size */
         display: flex !important;
         align-items: center;
         justify-content: center;
@@ -2238,6 +2253,26 @@ code {
 
 /* Mobile First - Small screens */
 @media (max-width: 480px) {
+    /* Smaller header elements for very small screens */
+    .site-header {
+        padding: 0;
+        height: 70px; /* Even smaller fixed height for the smallest screens */
+    }
+    
+    .logo .site-logo {
+        height: 18px; /* Even smaller logo for small screens */
+        margin-left: 0; /* No negative margin */
+    }
+    
+    .logo a {
+        font-size: 1.1rem !important; /* Smaller font for very small screens */
+    }
+    
+    .hamburger-menu {
+        width: 30px;
+        height: 30px;
+    }
+    
     .recording-grid, .resource-grid, .tools-list {
         grid-template-columns: 1fr;
     }
@@ -2336,10 +2371,10 @@ code {
     }
     
     .hamburger-menu {
-        right: calc(25% - 40px);
-        width: 80px;
-        height: 80px;
-        margin-right: 15px; /* Add spacing for the menu button */
+        right: 10px; /* Position from the right edge */
+        width: 35px;
+        height: 35px;
+        margin-right: 0; /* Remove margin */
     }
     
     .hamburger-menu img {
@@ -2429,8 +2464,8 @@ code {
     }
     
     .site-header .logo .site-logo {
-        width: 60px;
-        height: 60px;
+        width: auto;
+        height: 140px; /* Doubled in size for tablet/small devices */
     }
     
     h2 {

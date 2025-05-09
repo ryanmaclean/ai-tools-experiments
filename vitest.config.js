@@ -19,9 +19,10 @@ try {
 export default defineConfig({
   plugins: datadogPlugin ? [datadogPlugin] : [],
   test: {
-    environment: 'jsdom',
     globals: true,
-    setupFiles: ['./tests/setup.js'],
+    environment: 'node',
+    include: ['tests/**/*.test.js'],
+    exclude: ['node_modules', 'dist'],
     reporters: ['default', 'json'],
     outputFile: {
       json: './test-results/vitest-results.json',

@@ -1,0 +1,40 @@
+{
+  "tests": [
+    {
+      "name": "Docker is installed and running",
+      "status": "passed",
+      "error": null,
+      "duration": 902
+    },
+    {
+      "name": "Docker Compose files are properly configured",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    },
+    {
+      "name": "Dockerfile is configured for static output",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    },
+    {
+      "name": "HANDLE_404_WARNINGS functionality is properly implemented",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    },
+    {
+      "name": "npm audit check is included in pre-commit hook",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    }
+  ],
+  "passed": 5,
+  "failed": 0,
+  "startTime": 1746758355699,
+  "endTime": 1746758356608,
+  "totalDuration": 909,
+  "summary": "5 passed, 0 failed"
+}

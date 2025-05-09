@@ -1,0 +1,22 @@
+{
+  "tests": [
+    {
+      "name": "Custom network configuration is properly set up",
+      "status": "passed",
+      "error": null,
+      "duration": 26
+    },
+    {
+      "name": "Service network settings are properly configured",
+      "status": "passed",
+      "error": null,
+      "duration": 9
+    }
+  ],
+  "passed": 2,
+  "failed": 0,
+  "startTime": 1746758659900,
+  "endTime": 1746758659938,
+  "totalDuration": 38,
+  "summary": "2 passed, 0 failed"
+}

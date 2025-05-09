@@ -115,6 +115,9 @@ EXPOSE 4321
 # Set entrypoint
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
-# Command to run the preview server
-CMD ["node", "./dist/server/entry.mjs"]
+# Install a static file server
+RUN npm install -g serve@14.2.1
+
+# Command to run a static file server for the build output
+CMD ["serve", "-s", "./dist", "-l", "4321"]
 

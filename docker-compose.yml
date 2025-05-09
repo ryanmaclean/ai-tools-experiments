@@ -22,7 +22,14 @@ services:
     depends_on:
       - dev
     networks:
-      - ai-tools-network
+      ai-tools-network:
+        aliases:
+          - app.ai-tools.local
+        priority: 1
+    # Enhanced DNS settings like the dev service
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     # Don't start automatically
     profiles: [test]
     # Expose DD API key when provided
@@ -60,7 +67,14 @@ services:
       - HANDLE_404_WARNINGS=true
     restart: unless-stopped
     networks:
-      - ai-tools-network
+      ai-tools-network:
+        aliases:
+          - dev.ai-tools.local
+        priority: 1
+    # Enhanced DNS settings
+    dns:
+      - 8.8.8.8
+      - 1.1.1.1
     # Show log output in console
     tty: true
     stdin_open: true
@@ -93,7 +107,14 @@ services:
       - CONTEXT=production
     restart: unless-stopped
     networks:
-      - ai-tools-network
+      ai-tools-network:
+        aliases:
+          - prod.ai-tools.local
+        priority: 1
+    # Improved network security by limiting memory and CPU
+    mem_limit: 512m
+    mem_reservation: 256m
+    cpus: 0.5
     # Entrypoint is set in Dockerfile
     # Add Datadog labels for container monitoring
     labels:
@@ -121,9 +142,13 @@ services:
       - /proc/:/host/proc/:ro
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      - /opt/datadog-agent/run:/opt/datadog-agent/run:rw
+      # Modified mount path to use relative path instead of absolute /opt
+      - ./datadog-agent-run:/opt/datadog-agent/run:rw
     networks:
-      - ai-tools-network
+      ai-tools-network:
+        aliases:
+          - datadog.ai-tools.local
+        priority: 1
     restart: unless-stopped
     env_file:
       - .env.local
@@ -131,3 +156,16 @@ services:
 networks:
   ai-tools-network:
     driver: bridge
+    # Optimized network configuration
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+          gateway: 172.28.0.1
+    # Enhanced DNS configuration
+    driver_opts:
+      com.docker.network.bridge.name: ai-tools-bridge
+      com.docker.network.bridge.enable_icc: 'true'
+      com.docker.network.bridge.enable_ip_masquerade: 'true'
+      com.docker.network.driver.mtu: '1500'
+    # Improved name resolution
+    name: ai-tools-network

@@ -1,3 +1,5 @@
+**ALWAYS RUN ALL OF THE TESTS. IF YOU DON'T RUN THE TESTS, IT'S POINTLESS TO HAVE THEM.**
+
 # AI Tools Experiment Project TODO
 
 ## Environment Alignment and Upgrade Tasks
@@ -18,12 +20,12 @@ Our goal is to make the test environment match the production environment while 
 - [x] Ensure multi-stage builds are implemented where appropriate per [Docker docs](https://docs.docker.com/build/building/multi-stage/) (verified: 1.39GB production image vs 2.32GB dev image)
 - [x] Create development and production Docker Compose configurations that match Netlify environments (verified: NETLIFY=true and CONTEXT=production present)
 - [x] Verify Docker setup aligns with current engineering practices for local testing (verified: setup uses Node 22 images, multi-stage builds, and ARM64 compatibility fixes)
-- [ ] Verify proper Docker operations and container management
-- [ ] `HANDLE_404_WARNINGS` environment variable functionality
-- [ ] Further optimize container networking configuration
+- [x] Verify proper Docker operations and container management (verified with tests/verify-docker-configuration.js)
+- [x] `HANDLE_404_WARNINGS` environment variable functionality (verified with tests/verify-docker-configuration.js, controls 404 error handling in datadog-sequential-test.js)
+- [x] Further optimize container networking configuration (optimized with custom subnet, aliases, DNS settings, and resource limits; verified with tests/verify-network-optimization.js)
 
 ### GitHub Actions and CI/CD Workflow
-- [ ] Fix lint errors related to DD_API_KEY secret context handling
+- [x] Fix lint errors related to DD_API_KEY secret context handling (implemented standardized utils/api-key-validator.js with tests/verify-secret-handling.js verification)
 - [ ] Improve environment variable handling in conditional steps
 - [ ] Add visual comparison tests to CI/CD pipeline:
   - [x] Run visual-comparison-test.js as part of test:resources or add a new test:visual target
@@ -36,13 +38,14 @@ Our goal is to make the test environment match the production environment while 
 - [x] Create scripts to send Docker build logs to Datadog
 - [x] Implement log checking for deprecated package warnings
 - [x] Configure proper RUM (Real User Monitoring) based on [Datadog RUM documentation](https://docs.datadoghq.com/real_user_monitoring/browser/)
-- [ ] Set up API testing with Datadog synthetic monitoring per [official documentation](https://docs.datadoghq.com/synthetics/api_tests/)
-- [ ] Implement browser tests using proper CSS validation techniques
-- [ ] Configure Datadog APM for Node.js applications following [official instructions](https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/nodejs/)
-- [ ] Integrate Datadog API collection from Postman (https://www.postman.com/datadog/datadog-s-public-workspace/collection/yp38wxl/datadog-api-collection)
+- [x] Set up API testing with Datadog synthetic monitoring per [official documentation](https://docs.datadoghq.com/synthetics/api_tests/) (implemented with advanced API endpoint tests, multi-step workflows, and comprehensive verifications)
+- [x] Implement browser tests using proper CSS validation techniques (implemented comprehensive tests/datadog-synthetic/css-validation-tests.js with accessibility and responsive design validation)
+- [x] Configure Datadog APM for Node.js applications following [official instructions](https://docs.datadoghq.com/tracing/trace_collection/dd_libraries/nodejs/) (implemented with utils/datadog-tracer.js and tests/verify-apm-integration.js for verification)
+- [x] Integrate Datadog API collection from Postman (https://www.postman.com/datadog/datadog-s-public-workspace/collection/yp38wxl/datadog-api-collection) (implemented with utils/datadog-api-client.js and tests/verify-datadog-api-integration.js for verification)
 - [x] Verify RUM data is properly collected in Datadog dashboard
 
 ### Dependency Management
+- [x] Always handle npm/yarn/pnpm dependency vulnerabilities as part of the development workflow (verified with tests/verify-dependency-management.js)
 
 - [x] Update glob to v9.3.5
 - [x] Update rimraf to v6.0.1
@@ -95,8 +98,8 @@ Our goal is to make the test environment match the production environment while 
 
 #### Datadog Monitoring & Deployment Verification
 - [x] Set up basic Datadog API test to verify credentials and connectivity
-- [ ] Create Datadog synthetic test with visual CSS validation for Netlify site
-- [ ] Implement post-deployment hook to trigger Datadog synthetic tests
+- [x] Create Datadog synthetic test with visual CSS validation for Netlify site (implemented with terraform/netlify_css_validation_test.tf and scripts/deploy-netlify-css-test.js)
+- [x] Implement post-deployment hook to trigger Datadog synthetic tests (implemented with netlify/functions/datadog-monitor.js and scripts/netlify-postbuild.js)
 - [ ] Configure Datadog dashboard to visualize deployment success metrics
 - [ ] Set up alerting for native module dependency failures in Netlify
 - [x] Remove existing modules to prevent conflicts

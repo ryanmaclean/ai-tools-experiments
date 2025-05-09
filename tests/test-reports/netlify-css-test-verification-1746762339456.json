@@ -1,0 +1,40 @@
+{
+  "tests": [
+    {
+      "name": "Terraform configuration exists and is valid",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    },
+    {
+      "name": "Deployment script exists and is valid",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    },
+    {
+      "name": "CSS validation implementation is comprehensive",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    },
+    {
+      "name": "Integration with existing CSS tests",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    },
+    {
+      "name": "TODO list updated",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    }
+  ],
+  "passed": 5,
+  "failed": 0,
+  "startTime": 1746762339450,
+  "endTime": 1746762339456,
+  "totalDuration": 6,
+  "summary": "5 passed, 0 failed"
+}

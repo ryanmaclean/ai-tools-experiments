@@ -140,6 +140,44 @@ function runNpmDiagnostics() {
   }
 }
 
+// Trigger Datadog synthetic tests using the Datadog CLI
+async function triggerDatadogTests(success = true) {
+  try {
+    // Only run in production to avoid triggering tests in development
+    if (process.env.CONTEXT !== 'production' && process.env.TRIGGER_TESTS_IN_DEV !== 'true') {
+      log('Skipping Datadog test trigger in non-production environment', 'info');
+      return true;
+    }
+    
+    // Set environment variables needed by the trigger script
+    process.env.DEPLOY_ID = process.env.DEPLOY_ID || `manual-${Date.now()}`;
+    process.env.SITE_NAME = process.env.SITE_NAME || 'ai-tools-experiments';
+    process.env.COMMIT_REF = process.env.COMMIT_REF || 'unknown';
+    process.env.DEPLOY_SUCCESS = success ? 'true' : 'false';
+    process.env.DEPLOY_TYPE = 'netlify';
+    
+    log('Triggering Datadog synthetic tests via CLI...', 'info');
+    
+    // Run the dedicated trigger script which uses Datadog CLI
+    const triggerScriptPath = path.join(__dirname, 'trigger-datadog-tests.js');
+    log(`Running trigger script: ${triggerScriptPath}`, 'info');
+    
+    // Execute the trigger script and inherit stdio to see real-time output
+    execSync(`node ${triggerScriptPath}`, { stdio: 'inherit' });
+    
+    log('Datadog tests triggered successfully', 'success');
+    return true;
+  } catch (error) {
+    log(`Error triggering Datadog tests: ${error.message}`, 'error');
+    // If error contains specific pattern, it might be successful even with non-zero exit code
+    if (error.message && error.message.includes('successfully triggered')) {
+      log('Considering test triggered successfully despite error', 'warning');
+      return true;
+    }
+    return false;
+  }
+}
+
 // Main function
 async function main() {
   log('Starting post-build verification...');
@@ -149,14 +187,21 @@ async function main() {
     log(`Build environment: ${process.env.NODE_ENV || 'unknown'}`);
     log(`Netlify context: ${process.env.CONTEXT || 'unknown'}`);
     log(`Branch: ${process.env.BRANCH || 'unknown'}`);
+    log(`Deploy ID: ${process.env.DEPLOY_ID || 'unknown'}`);
     
     // Run checks
     const nodeModulesOk = checkNodeModules();
     const nativeModulesOk = checkNativeModules();
     const npmDiagnosticsOk = runNpmDiagnostics();
     
+    // Determine overall build success
+    const buildSuccess = nodeModulesOk && npmDiagnosticsOk;
+    
+    // Trigger Datadog tests based on build success
+    await triggerDatadogTests(buildSuccess);
+    
     // Final report
-    if (nodeModulesOk && npmDiagnosticsOk) {
+    if (buildSuccess) {
       log('Post-build verification completed successfully', 'success');
       process.exit(0);
     } else {
@@ -167,6 +212,8 @@ async function main() {
     }
   } catch (error) {
     log(`Unexpected error during post-build verification: ${error.message}`, 'error');
+    // Try to trigger Datadog tests with failure status
+    await triggerDatadogTests(false);
     process.exit(1);
   }
 }

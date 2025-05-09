@@ -1,0 +1,43 @@
+{
+  "tests": [
+    {
+      "name": "Required files exist",
+      "status": "passed",
+      "error": null,
+      "duration": 1
+    },
+    {
+      "name": "Monitor function implementation check",
+      "status": "passed",
+      "error": null,
+      "duration": 0
+    },
+    {
+      "name": "Post-build script implementation check",
+      "status": "failed",
+      "error": {
+        "message": "Missing required component in netlify-postbuild.js: Call to Datadog monitor function",
+        "stack": "AssertionError [ERR_ASSERTION]: Missing required component in netlify-postbuild.js: Call to Datadog monitor function\n    at /Users/studio/ai-tools/ai-tools-experiments/tests/verify-post-deployment-hook.js:192:12\n    at Array.forEach (<anonymous>)\n    at verifyPostBuildScriptImplementation (/Users/studio/ai-tools/ai-tools-experiments/tests/verify-post-deployment-hook.js:191:22)\n    at runTest (/Users/studio/ai-tools/ai-tools-experiments/tests/verify-post-deployment-hook.js:46:5)\n    at runAllTests (/Users/studio/ai-tools/ai-tools-experiments/tests/verify-post-deployment-hook.js:305:3)\n    at Object.<anonymous> (/Users/studio/ai-tools/ai-tools-experiments/tests/verify-post-deployment-hook.js:320:1)\n    at Module._compile (node:internal/modules/cjs/loader:1734:14)\n    at Object..js (node:internal/modules/cjs/loader:1899:10)\n    at Module.load (node:internal/modules/cjs/loader:1469:32)\n    at Function._load (node:internal/modules/cjs/loader:1286:12)"
+      },
+      "duration": 1
+    },
+    {
+      "name": "Datadog API client check",
+      "status": "passed",
+      "error": null,
+      "duration": 599
+    },
+    {
+      "name": "Netlify function local test",
+      "status": "passed",
+      "error": null,
+      "duration": 253
+    }
+  ],
+  "passed": 4,
+  "failed": 1,
+  "startTime": 1746762754057,
+  "endTime": 1746762754914,
+  "totalDuration": 857,
+  "summary": "4 passed, 1 failed"
+}
