@@ -10,6 +10,14 @@ _Advanced Monitoring and Testing Platform for AI Tools Experimentation_
 
 ## Recent Improvements
 
+### YouTube Embed Functionality Integration
+
+- **YouTube Video Embeds** have been successfully integrated for episodes with video content
+- **In-Place Video Playback** allows users to watch videos directly on the episode cards without navigating away
+- **Close Button** enables returning to the thumbnail view after watching videos
+- **Episode Support** includes YouTube embeds for episodes 01, 04, 06, 08, and 20
+- **Production-Matching Layout** ensures the site maintains the exact same visual appearance as ai-tools-lab.com
+
 ### Datadog RUM Integration and Synthetic Tests
 
 - **Datadog RUM** (Real User Monitoring) has been successfully integrated using the CDN approach for better cross-platform compatibility
@@ -220,12 +228,16 @@ DD_APM_TRACING_ENABLED=false DD_APPSEC_ENABLED=true npm run dev
 
 This repository contains the configuration and verification scripts for Datadog synthetic tests across multiple environments.
 
-## Environments
+## Environments and Deployment
+
+The project uses a branch-based deployment strategy with three environments:
 
 ### Development (DEV)
-- URL: https://ai-tools-lab-dev.netlify.app
-- Build Command: `npm run build`
-- Environment Variables:
+- **URL**: https://ai-tools-lab-dev.netlify.app  
+- **Branch**: `dev`
+- **Purpose**: Development and testing of new features
+- **Build Command**: `npm run build`
+- **Environment Variables**:
   ```bash
   DD_SITE=datadoghq.com
   DD_ENV=development
@@ -241,33 +253,37 @@ This repository contains the configuration and verification scripts for Datadog 
   ```
 
 ### Test (TST)
-- URL: https://ai-tools-lab-tst.netlify.app
-- Build Command: `npm run build`
-- Environment Variables:
+- **URL**: https://ai-tools-lab-tst.netlify.app
+- **Branch**: `TEST`
+- **Purpose**: Pre-production testing and quality assurance
+- **Build Command**: `npm run build`
+- **Environment Variables**:
   ```bash
   DD_SITE=datadoghq.com
-  DD_ENV=test
+  DD_ENV=staging
   DD_VERSION=1.0.0
   ```
-- Build Flags:
+- **Build Flags**:
   ```bash
-  netlify build --context=deploy-preview \
+  netlify build --context=staging \
     --build-command="npm run build" \
     --publish-dir="dist" \
     --functions-dir="netlify/functions" \
-    --environment="DD_ENV=test"
+    --environment="DD_ENV=staging"
   ```
 
-### Production (PRD)
-- URL: https://ai-tools-lab.com
-- Build Command: `npm run build`
-- Environment Variables:
+### Production (PROD)
+- **URL**: https://ai-tools-lab.com
+- **Branch**: `main`
+- **Purpose**: Live production environment for end users
+- **Build Command**: `npm run build`
+- **Environment Variables**:
   ```bash
   DD_SITE=datadoghq.com
   DD_ENV=production
   DD_VERSION=1.0.0
   ```
-- Build Flags:
+- **Build Flags**:
   ```bash
   netlify build --context=production \
     --build-command="npm run build" \

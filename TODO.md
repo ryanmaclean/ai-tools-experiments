@@ -199,6 +199,17 @@ Our goal is to make the test environment match the production environment while 
   - Set up immediate notifications
   - Create incident response procedure
 
+### Future Features Ideas
+
+- [ ] Implement YouTube viewcount integration via Astro:
+  - [ ] Use [astro-embed](https://astro-embed.netlify.app/components/youtube/) for basic YouTube embedding
+  - [ ] Explore [@astro-community/astro-embed-youtube](https://www.npmjs.com/package/@astro-community/astro-embed-youtube) component
+  - [ ] Consider lightweight alternatives like [insin's YouTube Embed component](https://gist.github.com/insin/a743249ed7a0f8b60f51537e1c4354aa)
+  - [ ] Add YouTube Data API integration for retrieving view counts and other metrics
+- [ ] Explore MIT/BSD/Apache open source Astro components for reuse
+- [ ] Integrate Perplexity API for news content
+- [ ] Implement LM Arena API integration for enhanced capabilities
+
 **THIS IS A CRITICAL SECURITY ISSUE - DO NOT SKIP THESE STEPS**
 
 ✅ **Completed Actions:**
