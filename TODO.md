@@ -260,10 +260,17 @@ Our goal is to make the test environment match the production environment while 
   - [ ] Create a centralized resource path handler for all assets (CSS, images, scripts)
   - [ ] Refactor inline styles to use external stylesheets with environment-aware paths
 - [ ] Fix content mismatch between production and test environments:
-  - [ ] Compare and sync HTML content from production site
+  - [x] Compare and sync HTML content from production site
   - [x] Verify all pages and routes match
-  - [ ] Re-run all tests to ensure functionality
-  - [x] Update Astro v5 templates to match production styling
+  - [x] Re-run all tests to ensure functionality
+  - [x] Imported missing episodes (ep18, ep19, ep20) from production to test environment
+  - [x] Missing specific episodes identified using browser MCP that need to be imported:
+    - [x] ep20: "YOLO Coding: Migrating from Static HTML to Astro with AI Tools"
+    - [x] ep24: "Streamlining AI Report Analysis: Figma AI 2025 Insights"
+    - [x] ep26: "Automating Content Transformation with N8N and AI Tools Lab"
+    - [x] ep27: "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing"
+    - [x] ep28: "Exploring eBPF with AI Tools: Insights and Applications" (newest episode)
+  - [ ] Note: Episodes 21-23 and 25 do not exist in production (confirmed 404 responses)
 
 ## Decision
 - [ ] Create new repository `build-perf-testing` for isolated build performance testing
