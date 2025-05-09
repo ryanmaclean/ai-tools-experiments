@@ -415,7 +415,19 @@
                     <div class="filters-container" id="toolFilters">
                         <div class="filter-item active" data-filter="tool" data-value="all">
                             <span>All Tools</span>
-                            <span class="count">21</span>
+                            <span class="count">22</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="ebpf">
+                            <span>eBPF</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="chatgpt">
+                            <span>ChatGPT</span>
+                            <span class="count">2</span>
+                        </div>
+                        <div class="filter-item" data-filter="tool" data-value="github-copilot">
+                            <span>GitHub Copilot</span>
+                            <span class="count">1</span>
                         </div>
                         <div class="filter-item" data-filter="tool" data-value="tmux">
                             <span>Tmux</span>
@@ -461,10 +473,6 @@
                             <span>Claude</span>
                             <span class="count">11</span>
                         </div>
-                        <div class="filter-item" data-filter="tool" data-value="chatgpt">
-                            <span>ChatGPT</span>
-                            <span class="count">1</span>
-                        </div>
                         <div class="filter-item" data-filter="tool" data-value="sora">
                             <span>Sora</span>
                             <span class="count">1</span>
@@ -505,7 +513,19 @@
                     <div class="filters-container" id="conceptFilters">
                         <div class="filter-item active" data-filter="concept" data-value="all">
                             <span>All Concepts</span>
-                            <span class="count">21</span>
+                            <span class="count">22</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="system-monitoring">
+                            <span>System Monitoring</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="kernel-interaction">
+                            <span>Kernel Interaction</span>
+                            <span class="count">1</span>
+                        </div>
+                        <div class="filter-item" data-filter="concept" data-value="ai-learning">
+                            <span>AI Learning</span>
+                            <span class="count">1</span>
                         </div>
                         <div class="filter-item" data-filter="concept" data-value="terminal-tools">
                             <span>Terminal Tools</span>
@@ -601,6 +621,37 @@
             <!-- Main content area -->
             <div class="observations-content">
                 <div class="takeaway-cards">
+                    <!-- Episode 28 Card -->
+                    <div class="takeaway-card" data-episode="28" data-tools="ebpf,chatgpt,github-copilot" data-concepts="system-monitoring,kernel-interaction,ai-learning">
+                        <div class="takeaway-card-header">
+                            <img src="../images/thumbnails/ep28.png" alt="Episode 28 Thumbnail">
+                            <div class="takeaway-card-header-content">
+                                <div class="episode-number">Episode 28</div>
+                                <h3>Exploring eBPF with AI Tools: Insights and Applications</h3>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-body">
+                            <div class="takeaway-card-tags">
+                                <span class="takeaway-tag">eBPF</span>
+                                <span class="takeaway-tag">ChatGPT</span>
+                                <span class="takeaway-tag">GitHub Copilot</span>
+                                <span class="takeaway-tag">System Monitoring</span>
+                            </div>
+                            <div class="takeaway-content">
+                                <ul>
+                                    <li>AI tools help non-developers explore complex technologies like eBPF through practical, hands-on experimentation</li>
+                                    <li>Learning through experimentation produces deeper understanding than theoretical study alone</li>
+                                    <li>System monitoring tools can be rapidly prototyped using generative AI, even with minimal programming experience</li>
+                                    <li>eBPF enables powerful observability capabilities for networking, memory access, and security monitoring</li>
+                                    <li>Using multiple AI models in sequence (like ChatGPT for initial code and GitHub Copilot for refinement) creates better solutions than a single tool</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="takeaway-card-footer">
+                            <a href='/pages/ep28' target='_blank'>View Full Episode →</a>
+                        </div>
+                    </div>
+                    
                     <!-- Episode 27 Card -->
                     <div class="takeaway-card" data-episode="27" data-tools="tmux,claude-code,terminal,helix" data-concepts="terminal-tools,ray-tracing,test-coverage,ai-coding">
                         <div class="takeaway-card-header">
