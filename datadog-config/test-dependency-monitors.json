@@ -1,0 +1,176 @@
+[
+  {
+    "name": "[PRODUCTION] Native Module Dependency Failures - ai-tools-experiments",
+    "type": "log alert",
+    "query": "logs(\"source:netlify @site:ai-tools-experiments @env:production \"native module\" OR \"Failed at the\" -\"successfully installed\"\").index(\"*\").rollup(\"count\").last(\"15m\") > 0",
+    "message": "Native module dependency failure detected in ai-tools-experiments Netlify build.\n\nThis could indicate an issue with architecture-specific binaries or missing build dependencies.\n\nRecommended actions:\n1. Check build logs for specific module failures\n2. Verify NODE_VERSION and architecture settings in netlify.toml\n3. Ensure proper installation of development dependencies\n\n{{#is_alert}}\nAlert details: {{value}} failure(s) detected in the last 15 minutes.\n{{/is_alert}}\n\n{{#is_recovery}}\nAlert has recovered.\n{{/is_recovery}}\n\n@@slack-datadog-alerts",
+    "tags": [
+      "env:production",
+      "site:ai-tools-experiments",
+      "type:dependency",
+      "netlify:true"
+    ],
+    "priority": 3,
+    "options": {
+      "thresholds": {
+        "critical": 0
+      },
+      "notify_audit": true,
+      "require_full_window": false,
+      "notify_no_data": false,
+      "renotify_interval": 60,
+      "include_tags": true,
+      "evaluation_delay": 60
+    }
+  },
+  {
+    "name": "[PRODUCTION] esbuild Dependency Failure - ai-tools-experiments",
+    "type": "log alert",
+    "query": "logs(\"source:netlify @site:ai-tools-experiments @env:production \"Failed at the esbuild\" OR \"esbuild@\" \"ERR!\" -\"successfully installed\"\").index(\"*\").rollup(\"count\").last(\"15m\") > 0",
+    "message": "esbuild dependency failure detected in ai-tools-experiments Netlify build.\n\nThis could indicate an issue with architecture-specific binaries or missing build dependencies.\n\nRecommended actions:\n1. Check if esbuild requires specific OS packages\n2. Verify NODE_VERSION and architecture settings in netlify.toml\n3. Consider adding a pre-build step to ensure correct architecture\n\n{{#is_alert}}\nAlert details: {{value}} failure(s) detected in the last 15 minutes.\n{{/is_alert}}\n\n{{#is_recovery}}\nAlert has recovered.\n{{/is_recovery}}\n\n@@slack-datadog-alerts",
+    "tags": [
+      "env:production",
+      "site:ai-tools-experiments",
+      "type:dependency",
+      "netlify:true",
+      "module:esbuild"
+    ],
+    "priority": 3,
+    "options": {
+      "thresholds": {
+        "critical": 0
+      },
+      "notify_audit": true,
+      "require_full_window": false,
+      "notify_no_data": false,
+      "renotify_interval": 60,
+      "include_tags": true,
+      "evaluation_delay": 60
+    }
+  },
+  {
+    "name": "[PRODUCTION] sharp Dependency Failure - ai-tools-experiments",
+    "type": "log alert",
+    "query": "logs(\"source:netlify @site:ai-tools-experiments @env:production \"Failed at the sharp\" OR \"sharp@\" \"ERR!\" -\"successfully installed\"\").index(\"*\").rollup(\"count\").last(\"15m\") > 0",
+    "message": "sharp dependency failure detected in ai-tools-experiments Netlify build.\n\nThis could indicate an issue with architecture-specific binaries or missing build dependencies.\n\nRecommended actions:\n1. Check if sharp requires specific OS packages\n2. Verify NODE_VERSION and architecture settings in netlify.toml\n3. Consider adding a pre-build step to ensure correct architecture\n\n{{#is_alert}}\nAlert details: {{value}} failure(s) detected in the last 15 minutes.\n{{/is_alert}}\n\n{{#is_recovery}}\nAlert has recovered.\n{{/is_recovery}}\n\n@@slack-datadog-alerts",
+    "tags": [
+      "env:production",
+      "site:ai-tools-experiments",
+      "type:dependency",
+      "netlify:true",
+      "module:sharp"
+    ],
+    "priority": 3,
+    "options": {
+      "thresholds": {
+        "critical": 0
+      },
+      "notify_audit": true,
+      "require_full_window": false,
+      "notify_no_data": false,
+      "renotify_interval": 60,
+      "include_tags": true,
+      "evaluation_delay": 60
+    }
+  },
+  {
+    "name": "[PRODUCTION] canvas Dependency Failure - ai-tools-experiments",
+    "type": "log alert",
+    "query": "logs(\"source:netlify @site:ai-tools-experiments @env:production \"Failed at the canvas\" OR \"canvas@\" \"ERR!\" -\"successfully installed\"\").index(\"*\").rollup(\"count\").last(\"15m\") > 0",
+    "message": "canvas dependency failure detected in ai-tools-experiments Netlify build.\n\nThis could indicate an issue with architecture-specific binaries or missing build dependencies.\n\nRecommended actions:\n1. Check if canvas requires specific OS packages\n2. Verify NODE_VERSION and architecture settings in netlify.toml\n3. Consider adding a pre-build step to ensure correct architecture\n\n{{#is_alert}}\nAlert details: {{value}} failure(s) detected in the last 15 minutes.\n{{/is_alert}}\n\n{{#is_recovery}}\nAlert has recovered.\n{{/is_recovery}}\n\n@@slack-datadog-alerts",
+    "tags": [
+      "env:production",
+      "site:ai-tools-experiments",
+      "type:dependency",
+      "netlify:true",
+      "module:canvas"
+    ],
+    "priority": 3,
+    "options": {
+      "thresholds": {
+        "critical": 0
+      },
+      "notify_audit": true,
+      "require_full_window": false,
+      "notify_no_data": false,
+      "renotify_interval": 60,
+      "include_tags": true,
+      "evaluation_delay": 60
+    }
+  },
+  {
+    "name": "[PRODUCTION] node-sass Dependency Failure - ai-tools-experiments",
+    "type": "log alert",
+    "query": "logs(\"source:netlify @site:ai-tools-experiments @env:production \"Failed at the node-sass\" OR \"node-sass@\" \"ERR!\" -\"successfully installed\"\").index(\"*\").rollup(\"count\").last(\"15m\") > 0",
+    "message": "node-sass dependency failure detected in ai-tools-experiments Netlify build.\n\nThis could indicate an issue with architecture-specific binaries or missing build dependencies.\n\nRecommended actions:\n1. Check if node-sass requires specific OS packages\n2. Verify NODE_VERSION and architecture settings in netlify.toml\n3. Consider adding a pre-build step to ensure correct architecture\n\n{{#is_alert}}\nAlert details: {{value}} failure(s) detected in the last 15 minutes.\n{{/is_alert}}\n\n{{#is_recovery}}\nAlert has recovered.\n{{/is_recovery}}\n\n@@slack-datadog-alerts",
+    "tags": [
+      "env:production",
+      "site:ai-tools-experiments",
+      "type:dependency",
+      "netlify:true",
+      "module:node-sass"
+    ],
+    "priority": 3,
+    "options": {
+      "thresholds": {
+        "critical": 0
+      },
+      "notify_audit": true,
+      "require_full_window": false,
+      "notify_no_data": false,
+      "renotify_interval": 60,
+      "include_tags": true,
+      "evaluation_delay": 60
+    }
+  },
+  {
+    "name": "[PRODUCTION] bcrypt Dependency Failure - ai-tools-experiments",
+    "type": "log alert",
+    "query": "logs(\"source:netlify @site:ai-tools-experiments @env:production \"Failed at the bcrypt\" OR \"bcrypt@\" \"ERR!\" -\"successfully installed\"\").index(\"*\").rollup(\"count\").last(\"15m\") > 0",
+    "message": "bcrypt dependency failure detected in ai-tools-experiments Netlify build.\n\nThis could indicate an issue with architecture-specific binaries or missing build dependencies.\n\nRecommended actions:\n1. Check if bcrypt requires specific OS packages\n2. Verify NODE_VERSION and architecture settings in netlify.toml\n3. Consider adding a pre-build step to ensure correct architecture\n\n{{#is_alert}}\nAlert details: {{value}} failure(s) detected in the last 15 minutes.\n{{/is_alert}}\n\n{{#is_recovery}}\nAlert has recovered.\n{{/is_recovery}}\n\n@@slack-datadog-alerts",
+    "tags": [
+      "env:production",
+      "site:ai-tools-experiments",
+      "type:dependency",
+      "netlify:true",
+      "module:bcrypt"
+    ],
+    "priority": 3,
+    "options": {
+      "thresholds": {
+        "critical": 0
+      },
+      "notify_audit": true,
+      "require_full_window": false,
+      "notify_no_data": false,
+      "renotify_interval": 60,
+      "include_tags": true,
+      "evaluation_delay": 60
+    }
+  },
+  {
+    "name": "[PRODUCTION] Slow Dependency Installation - ai-tools-experiments",
+    "type": "metric alert",
+    "query": "avg(last_15m):avg:netlify.build.duration{site:ai-tools-experiments,env:production,step:installing_dependencies} > 300",
+    "message": "Dependency installation for ai-tools-experiments is taking longer than expected.\n\nThis could indicate an issue with npm/yarn cache or slow installation of native modules.\n\nRecommended actions:\n1. Check for large dependencies that may need optimization\n2. Consider using a package manager cache\n3. Review the build log for slow-installing packages\n\n{{#is_alert}}\nAlert details: Installation taking {{value}} seconds (threshold: 300s).\n{{/is_alert}}\n\n{{#is_recovery}}\nAlert has recovered. Installation time is now {{value}} seconds.\n{{/is_recovery}}\n\n@@slack-datadog-alerts",
+    "tags": [
+      "env:production",
+      "site:ai-tools-experiments",
+      "type:dependency",
+      "netlify:true",
+      "performance:true"
+    ],
+    "priority": 4,
+    "options": {
+      "thresholds": {
+        "critical": 300,
+        "warning": 240
+      },
+      "notify_audit": true,
+      "require_full_window": false,
+      "notify_no_data": false,
+      "renotify_interval": 0,
+      "include_tags": true
+    }
+  }
+]

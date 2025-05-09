@@ -100,8 +100,8 @@ Our goal is to make the test environment match the production environment while 
 - [x] Set up basic Datadog API test to verify credentials and connectivity
 - [x] Create Datadog synthetic test with visual CSS validation for Netlify site (implemented with terraform/netlify_css_validation_test.tf and scripts/deploy-netlify-css-test.js)
 - [x] Implement post-deployment hook to trigger Datadog synthetic tests (implemented with netlify/functions/datadog-monitor.js and scripts/netlify-postbuild.js)
-- [ ] Configure Datadog dashboard to visualize deployment success metrics
-- [ ] Set up alerting for native module dependency failures in Netlify
+- [x] Configure Datadog dashboard to visualize deployment success metrics (implemented with scripts/create-deployment-dashboard.js and terraform/deployment_dashboard.tf)
+- [x] Set up alerting for native module dependency failures in Netlify (implemented with scripts/create-dependency-alerts.js)
 - [x] Remove existing modules to prevent conflicts
 - [x] Install exact matching version with architecture-specific binaries
 - [x] Verify binary version matches package version

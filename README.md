@@ -546,6 +546,123 @@ node scripts/trigger-datadog-tests.js
 - **Visibility**: Test results and deployment events are properly linked in Datadog
 - **Extensibility**: Easy to add more test types to the trigger process
 
+### Deployment Metrics Dashboard
+
+This project includes a comprehensive Datadog dashboard for visualizing deployment success metrics using the Datadog CLI.
+
+#### Dashboard Features
+
+- **Deployment Success Rate**: Track percentage of successful deployments
+- **CSS Validation Results**: Monitor synthetic test pass/fail rates over time
+- **Visual Regression Detection**: Identify CSS styling issues by type
+- **Deployment Frequency**: Visualize deployment patterns over time
+- **API Response Times**: Monitor performance impacts of deployments
+- **Recent Deployments List**: View deployment history and events
+
+#### Creating the Dashboard
+
+```bash
+# Ensure environment variables are set
+export DD_API_KEY=your_api_key
+export DD_APP_KEY=your_app_key
+export DD_ENV=production
+
+# Create or update the dashboard
+npm run create:dashboard
+```
+
+#### Implementation Options
+
+The dashboard can be created in two ways:
+
+1. **Datadog CLI** (Recommended): Using the `scripts/create-deployment-dashboard.js` script
+2. **Terraform**: Using the `terraform/deployment_dashboard.tf` configuration
+
+The CLI approach is preferred for operational use, while the Terraform option is available for infrastructure-as-code environments.
+
+#### Verifying the Dashboard
+
+```bash
+npm run test:dashboard
+```
+
+### Native Module Dependency Alerts
+
+To help catch deployment issues related to native Node.js modules, this project includes automated Datadog alerts for dependency failures in Netlify builds.
+
+#### Alert Features
+
+- **Generic Native Module Monitor**: Detects any native module dependency failures
+- **Module-Specific Monitors**: Individual alerts for specific problematic modules:
+  - esbuild
+  - sharp
+  - canvas
+  - node-sass
+  - bcrypt
+- **Slow Installation Monitor**: Alerts when dependency installation takes too long
+
+#### Creating the Monitors
+
+```bash
+# Ensure environment variables are set
+export DD_API_KEY=your_api_key
+export DD_APP_KEY=your_app_key
+export DD_ENV=production
+export NOTIFY_LIST=email@example.com,@slack-channel # Optional
+
+# Create or update the monitors
+npm run create:alerts
+```
+
+#### Implementation Notes
+
+- Uses the Datadog CLI for monitor creation and updates
+- Designed to catch architecture-specific dependency failures
+- Includes actionable recommendations in alert notifications
+- Configure notification targets via the NOTIFY_LIST environment variable
+
+#### Verifying the Alerts
+
+```bash
+npm run test:alerts
+```
+
+### Visual Environment Comparison
+
+This project includes a Playwright-based tool for visually comparing test and production environments and reporting results to Datadog.
+
+#### Comparison Features
+
+- **Visual Regression Detection**: Identifies visual differences between environments using screenshot comparison
+- **Performance Metrics**: Compares page load times and DOM complexity between environments
+- **CSS Rule Analysis**: Finds differences in CSS rule counts and implementations
+- **Automatic Reporting**: Sends results to Datadog using the Datadog CLI
+- **Dashboard Integration**: Adds comparison widgets to the deployment dashboard
+
+#### Running the Comparison
+
+```bash
+# Set required environment variables
+export DD_API_KEY=your_api_key
+export DD_APP_KEY=your_app_key
+export PRODUCTION_URL=https://production.example.com
+export TEST_URL=https://test.example.com
+
+# Optionally customize pages to test (format: /path,pageName)
+export PAGES_TO_TEST="/,homepage,/about,about-page,/contact,contact-page"
+
+# Run the comparison
+npm run compare:environments
+```
+
+#### Implementation Details
+
+- Uses Playwright for consistent screenshots across environments
+- Creates a visual diff using image comparison techniques
+- Filters out volatile elements using CSS to improve test stability
+- Integrates with existing Datadog dashboard using the CLI
+- Generates detailed HTML reports with visual comparisons
+
 
 All synthetic tests are configured to:
 - Run at specified intervals
