@@ -1,7 +1,7 @@
 ---
 // src/pages/observations.astro - UPDATED PATH
 import MainLayout from '../layouts/MainLayout.astro';
-import ObservationsContent from '../content/imported/observations.html?raw';
+import ObservationsContent from '../content/imported/observations-content.html?raw';
 
 // Page metadata with optimized image reference
 const pageTitle = "Observations & Insights";
@@ -9,7 +9,7 @@ const description = "Discover patterns, insights, and key takeaways from our AI 
 const ogImageUrl = "/images/observations-placeholder.jpg";
 ---
 
-<MainLayout title={pageTitle} description={description} ogImage={ogImageUrl}>
+<MainLayout title={pageTitle} description={description}>
     <main class="container about-section">
         <div class="about-header">
             <h1>Observations & Insights</h1>
@@ -165,91 +165,17 @@ const ogImageUrl = "/images/observations-placeholder.jpg";
         }
     </style>
 
-    <script is:client>
-        // Observation page functionality - optimized for performance
+    <script is:inline>
+        // Observation page functionality - simplified for production matching
         console.log("Build mode"); // Client-side initialization
-        console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
-            // Cache DOM selectors for better performance
-            const filterInputs = /* /* /* document.querySelectorAll('.observations-sidebar input[name="filter"]');
-            const viewRadios = /* /* /* document.querySelectorAll('.observations-sidebar input[name="view"]');
-            const mobileTabs = /* /* /* document.querySelectorAll('.mobile-tab');
-            const observationCards = /* /* /* document.querySelectorAll('.observation-card');
-            const contentViews = /* /* /* document.querySelectorAll('.content-view');
+        document.addEventListener('DOMContentLoaded', () => {
+            // Log initialization
+            console.log("Observations page initialized");
             
-            /**
-             * Filter observation cards based on selected filters
-             */
-            function filterCards() {
-                // Create array of active filter values
-                const activeFilters = Array.from(filterInputs)
-                    .filter(input => input.checked)
-                    .map(input => input.value);
-                    
-                // Get current view
-                const currentViewValue = /* /* /* document.querySelector('input[name="view"]:checked')?.value + '-view';
-                
-                // Process all cards at once for better performance
-                observationCards.forEach(card => {
-                    const cardTags = card.dataset.tags ? card.dataset.tags.split(',') : [];
-                    const matchesFilters = activeFilters.length === 0 || 
-                                         activeFilters.some(filter => cardTags.includes(filter));
-                    const parentView = card.closest('.content-view');
-                    const parentViewId = parentView ? parentView.id : null;
-                    
-                    // Use direct classList manipulation instead of style changes when possible
-                    if (matchesFilters && parentViewId === currentViewValue) {
-                        card.classList.remove('hidden');
-                    } else {
-                        card.classList.add('hidden');
-                    }
-                });
+            // Datadog logging of page event
+            if (window.DD_RUM) {
+                window.DD_RUM.addAction("Viewed observations page");
             }
-            
-            /**
-             * Switch between different observation views
-             */
-            function switchView(viewValue) {
-                // Target view ID
-                const targetViewId = viewValue + '-view';
-                
-                // Batch DOM operations for better performance
-                contentViews.forEach(view => {
-                    view.classList.toggle('active', view.id === targetViewId);
-                });
-                
-                // Update desktop radio state
-                const desktopRadio = /* /* /* document.querySelector(`.observations-sidebar input[name="view"][value="${viewValue}"]`);
-                if (desktopRadio) desktopRadio.checked = true;
-                
-                // Update mobile tabs
-                mobileTabs.forEach(tab => {
-                    tab.classList.toggle('active', tab.dataset.view === viewValue);
-                });
-                
-                // Apply filters to the new view
-                filterCards();
-            }
-            
-            // Use event delegation where possible to reduce listeners
-            // For filter changes
-            filterInputs.forEach(input => {
-                input.addEventListener('change', filterCards);
-            });
-            
-            // For view switching
-            viewRadios.forEach(radio => {
-                radio.addEventListener('change', (e) => switchView(e.target.value));
-            });
-            
-            // For mobile tabs
-            /* /* /* document.querySelector('.mobile-tabs')?.addEventListener('click', (e) => {
-                if (e.target.classList.contains('mobile-tab')) {
-                    switchView(e.target.dataset.view);
-                }
-            });
-            
-            // Initial setup - use requestAnimationFrame for smoother rendering
-            requestAnimationFrame(() => switchView('takeaways'));
         });
     </script>
 

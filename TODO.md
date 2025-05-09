@@ -26,15 +26,16 @@ Our goal is to make the test environment match the production environment while 
 
 ### GitHub Actions and CI/CD Workflow
 - [x] Fix lint errors related to DD_API_KEY secret context handling (implemented standardized utils/api-key-validator.js with tests/verify-secret-handling.js verification)
-- [ ] Improve environment variable handling in conditional steps
-- [ ] Add visual comparison tests to CI/CD pipeline:
+- [x] Improve environment variable handling in conditional steps
+- [x] Add visual comparison tests to CI/CD pipeline:
   - [x] Run visual-comparison-test.js as part of test:resources or add a new test:visual target
-  - [ ] Add post-deployment visual verification step to the Netlify workflow
+  - [x] Add post-deployment visual verification step to the Netlify workflow
   - [x] Configure CI to fail on significant visual differences between environments
-  - [x] Add CSS style validation to ensure consistent fonts, colors, and layout elements
-
-### Monitoring and Datadog Integration
-
+  - [x] Document discrepancies between environments
+  - [x] Find all episodes available in production that are missing in test environment
+  - [x] Find any files with different content between environments
+  - [x] Check for styling and asset differences
+  - [x] Verified CSS styles are synchronized between environments
 - [x] Create scripts to send Docker build logs to Datadog
 - [x] Implement log checking for deprecated package warnings
 - [x] Configure proper RUM (Real User Monitoring) based on [Datadog RUM documentation](https://docs.datadoghq.com/real_user_monitoring/browser/)
