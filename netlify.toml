@@ -158,8 +158,9 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Monitoring endpoint
 [[redirects]]
-  from = "/.netlify/functions/datadog-monitor"
+  from = "/api/datadog-monitor"
   to = "/.netlify/functions/datadog-monitor"
   status = 200
   force = true

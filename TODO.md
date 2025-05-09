@@ -270,7 +270,10 @@ Our goal is to make the test environment match the production environment while 
     - [x] ep26: "Automating Content Transformation with N8N and AI Tools Lab"
     - [x] ep27: "Exploring Coding Efficiency: Utilizing Tmux and Claude Code for AI-Powered Ray Tracing"
     - [x] ep28: "Exploring eBPF with AI Tools: Insights and Applications" (newest episode)
-  - [ ] Note: Episodes 21-23 and 25 do not exist in production (confirmed 404 responses)
+  - [x] Note: Episodes 21-23 and 25 do not exist in production (confirmed 404 responses)
+  - [ ] Fix the Datadog key rotation function (removed due to deployment issues):
+    - [ ] Install @netlify/functions dependency or add to external_node_modules
+    - [ ] Create a new implementation that follows best practices
 
 ## Decision
 - [ ] Create new repository `build-perf-testing` for isolated build performance testing

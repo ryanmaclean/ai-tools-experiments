@@ -23,6 +23,9 @@ const DIST_DIR = path.join(__dirname, '../dist');
 const PAGES_DIR = path.join(DIST_DIR, 'pages');
 const EPISODES_DIR = path.join(DIST_DIR, 'episodes');
 
+// Also check the source transcripts for files not found in the build output
+const SRC_TRANSCRIPTS_DIR = path.join(__dirname, '../src/content/transcripts');
+
 // Ensure directories exist
 function ensureDirectoryExists(dirPath) {
   if (!fs.existsSync(dirPath)) {
@@ -68,15 +71,25 @@ function copyFiles() {
     logger.info('Setting up episode content with /pages/epXX structure...');
     
     // Create /pages directories for episodes
-    for (let i = 1; i <= 20; i++) {
+    // Include all episodes through ep28 (with gaps for missing episodes)
+    for (let i = 1; i <= 28; i++) {
       const paddedNum = i.toString().padStart(2, '0');
       const episodePage = `ep${paddedNum}`;
       const episodePageDir = path.join(PAGES_DIR, episodePage);
       ensureDirectoryExists(episodePageDir);
       
-      // First check if we have the proper episode HTML file
-      const episodeSource = path.join(EPISODES_DIR, `${episodePage}.html`);
+      // First check if we have the proper episode HTML file in the built episodes directory
+      let episodeSource = path.join(EPISODES_DIR, `${episodePage}.html`);
       const episodeTarget = path.join(episodePageDir, 'index.html');
+      
+      // If not in build output, check source transcripts directory
+      if (!fs.existsSync(episodeSource)) {
+        const srcTranscriptPath = path.join(SRC_TRANSCRIPTS_DIR, `${episodePage}.html`);
+        if (fs.existsSync(srcTranscriptPath)) {
+          episodeSource = srcTranscriptPath;
+          logger.info(`Using episode from source transcripts: ${episodePage}.html`);
+        }
+      }
       
       if (fs.existsSync(episodeSource)) {
         fs.copyFileSync(episodeSource, episodeTarget);
