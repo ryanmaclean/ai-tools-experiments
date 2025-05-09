@@ -82,15 +82,15 @@ const modifiedContent = modifyContentForYouTubeEmbeds(extractedContent);
   <!-- Script to enable YouTube functionality -->
   <script>
     // Script to handle YouTube embed functionality
-    document.addEventListener('DOMContentLoaded', () => {
+    console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
       console.log('DOM loaded, initializing YouTube embed functionality');
       
       // Log all YouTube triggers found
-      const allTriggers = document.querySelectorAll('.youtube-trigger');
+      const allTriggers = /* document.querySelectorAll('.youtube-trigger');
       console.log(`Found ${allTriggers.length} YouTube triggers`);
       
       // Setup YouTube triggers
-      document.querySelectorAll('.youtube-trigger').forEach(trigger => {
+      /* document.querySelectorAll('.youtube-trigger').forEach(trigger => {
         const youtubeId = trigger.getAttribute('data-youtube-id');
         console.log(`Setting up trigger for link: ${trigger.getAttribute('href')}, YouTube ID: ${youtubeId}`);
         

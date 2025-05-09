@@ -158,3 +158,4 @@ override.tf.json
 **/session/
 **/cookie/
 .env.local
+src/.DS_Store
