@@ -128,6 +128,11 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Document the correct HTML structure requirements
 - [ ] Add component validation to CI process
 - [ ] Update README with component validation instructions
+- [ ] Add a prominent link to the blog index page ("/blog") on the main homepage for easy discoverability of markdown-based blog posts
+- [ ] Add Astro routing and template changes for markdown blog support:
+    - Create src/pages/blog/[slug].astro to render markdown files from src/content/pages/
+    - Create src/pages/blog/index.astro to list all markdown blog posts
+    - Ensure markdown files in src/content/pages/ are discoverable and viewable as blog posts
 
 ### Astro v5 Migration and Content-Focused Features
 
@@ -142,7 +147,7 @@ Our goal is to make the test environment match the production environment while 
 - [ ] Test all components with Astro v5's new rendering system
 - [ ] Implement [Astro v5 View Transitions](https://docs.astro.build/en/guides/view-transitions/) for improved UX
 - [ ] Adopt Astro's zero-JavaScript approach for content-focused pages to reduce client-side load, as highlighted in [Astro for Docs](https://astrofordocs.vercel.app/)
-- [ ] Integrate Markdown files as pages using Astro’s MDX for documentation, per [Using MDX files](https://astrofordocs.vercel.app/docs/using-mdx-files)
+- [ ] Integrate Markdown files as pages using Astro's MDX for documentation, per [Using MDX files](https://astrofordocs.vercel.app/docs/using-mdx-files)
 - [ ] Utilize TailwindCSS with Astro for styling documentation pages, following [Using TailwindCSS](https://astrofordocs.vercel.app/docs/using-tailwindcss)
 - [ ] Design nested layouts for better developer experience in documentation, as described in [Nested Layouts](https://astrofordocs.vercel.app/docs/nested-layouts)
 - [ ] Ensure type safety in layouts to prevent runtime errors, per [Typesafety in Layouts](https://astrofordocs.vercel.app/docs/typesafety)
@@ -206,9 +211,26 @@ Our goal is to make the test environment match the production environment while 
   - [ ] Explore [@astro-community/astro-embed-youtube](https://www.npmjs.com/package/@astro-community/astro-embed-youtube) component
   - [ ] Consider lightweight alternatives like [insin's YouTube Embed component](https://gist.github.com/insin/a743249ed7a0f8b60f51537e1c4354aa)
   - [ ] Add YouTube Data API integration for retrieving view counts and other metrics
-- [ ] Explore MIT/BSD/Apache open source Astro components for reuse
-- [ ] Integrate Perplexity API for news content
-- [ ] Implement LM Arena API integration for enhanced capabilities
+  - [ ] Implement server-side API calls to YouTube to avoid client-side API key exposure
+  - [ ] Create Astro components that dynamically display view counts with proper caching
+  - [ ] Add view count history tracking and visualization with charts
+- [ ] Explore MIT/BSD/Apache open source Astro components for reuse:
+  - [ ] Research component libraries with permissive licenses (MIT/BSD/Apache)
+  - [ ] Evaluate Astro UI frameworks like [Astro Navbar](https://github.com/surjithctly/astro-navbar) and [Astro Icon](https://github.com/natemoo-re/astro-icon)
+  - [ ] Create documentation for approved components and usage patterns
+  - [ ] Set up component showcase page to demo available components
+- [ ] Integrate Perplexity API for news content:
+  - [ ] Create server endpoints for fetching news data via Perplexity API
+  - [ ] Implement news content components with appropriate caching strategies
+  - [ ] Design news feed layout with filtering and sorting capabilities
+  - [ ] Add auto-refresh functionality for regularly updated news content
+  - [ ] Create API key rotation system for Perplexity API credentials
+- [ ] Implement LM Arena API integration:
+  - [ ] Create server-side integration with LM Arena API for model benchmarking
+  - [ ] Design UI components for displaying model comparison results
+  - [ ] Add interactive elements for exploring different model capabilities
+  - [ ] Implement caching layer for API responses to minimize request volume
+  - [ ] Create visualization components for benchmarking metrics
 
 **THIS IS A CRITICAL SECURITY ISSUE - DO NOT SKIP THESE STEPS**
 
