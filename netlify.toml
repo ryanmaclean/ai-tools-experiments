@@ -2,7 +2,7 @@
   functions = "proxy"
   command = "npm run build"
   publish = "dist"
-  environment = { NODE_VERSION = "20", NPM_FLAGS = "--no-optional" }
+  environment = { NODE_VERSION = "20" }
 
 [dev]
   functions = "proxy"
