@@ -1,0 +1,69 @@
+# Minimal values.yaml for ai-tools-tiny Helm chart
+
+nginx:
+  image:
+    repository: nginx
+    tag: 1.25-alpine
+  service:
+    type: ClusterIP
+    port: 80
+  staticContent:
+    enabled: true
+    mountPath: /usr/share/nginx/html
+    # In production, use a PersistentVolume or baked-in image
+    localPath: ./dist
+
+node:
+  enabled: true
+  image:
+    repository: node
+    tag: 22.15-bullseye-slim
+  command: ["serve", "-s", "./dist", "-l", "4321"]
+  env:
+    NODE_ENV: production
+  ports:
+    - containerPort: 4321
+  resources:
+    limits:
+      cpu: 250m
+      memory: 256Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+
+datadog:
+  datadog:
+    site: datadoghq.com
+    apiKeyExistingSecret: datadog-api-key
+    logs:
+      enabled: true
+      containerCollectAll: true
+    apm:
+      enabled: true
+      socketEnabled: true
+    kubeStateMetricsEnabled: true
+    processAgent:
+      enabled: true
+    networkMonitoring:
+      enabled: true
+    dogstatsd:
+      useHostPort: true
+    # Example: full config from Ara Pulido's github (see _datadog-values.yaml)
+    # https://github.com/apulido/datadog-helm-examples/blob/main/values/values-kube-state-metrics.yaml
+
+kube-state-metrics:
+  rbac:
+    create: true
+  serviceAccount:
+    create: true
+  prometheusScrape: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+# Example Datadog API key secret (create this in your cluster)
+# kubectl create secret generic datadog-api-key --from-literal=api-key='<YOUR_DD_API_KEY>'

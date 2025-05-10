@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm install -g npm@11.3.0 && npm run build"
   publish = "dist"
   functions = "netlify/functions"
 
@@ -16,7 +16,7 @@
   onPostBuild = "node ./scripts/netlify-postbuild.js"
 
 [context.production]
-  command = "npm run build"
+  command = "npm install -g npm@11.3.0 && npm run build"
   publish = "dist"
 
 [context.production.environment]
@@ -26,7 +26,7 @@
   NETLIFY = "true"
 
 [context.test]
-  command = "./scripts/build-safe.sh"
+  command = "npm install -g npm@11.3.0 && ./scripts/build-safe.sh"
   publish = "dist"
 
 [context.test.environment]
@@ -36,7 +36,7 @@
   NETLIFY = "true"
 
 [context.deploy-preview]
-  command = "npm run build"
+  command = "npm install -g npm@11.3.0 && npm run build"
 
 [context.deploy-preview.environment]
   DD_ENV = "test"
@@ -44,7 +44,7 @@
   CONTEXT = "deploy-preview"
 
 [context.branch-deploy]
-  command = "npm run build"
+  command = "npm install -g npm@11.3.0 && npm run build"
 
 [context.branch-deploy.environment]
   DD_ENV = "development"

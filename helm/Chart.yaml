@@ -1,0 +1,13 @@
+apiVersion: v2
+name: ai-tools-tiny
+description: Minimal Helm chart for static site (Nginx), Node.js app, Datadog, and kube-state-metrics
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
+dependencies:
+  - name: datadog
+    version: 3.56.0
+    repository: https://helm.datadoghq.com
+  - name: kube-state-metrics
+    version: 5.16.0
+    repository: https://prometheus-community.github.io/helm-charts

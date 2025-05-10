@@ -1,43 +1,40 @@
-todo.md
-/instructions/
-/resources/
-/transcripts/
-/venv/
-/observations/
-update_episodes.ps1
-update_episodes.sh
+# .gitignore for Astro v5 + Node.js + Terraform + Netlify + Security Best Practices
 
-# Astro
-/dist/
-/.astro/
+# General
+.DS_Store
+.idea
+.vscode/
+*.swp
+*.swo
 
 # Node
-/node_modules/
+node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+package-lock.json.*
 
-# Env Files
-.env
-.env*.local
+# Astro
+dist/
+.astro/
 
-# Datadog configuration
-.env.datadog
-**/datadog.config.js
-**/*.env*
-!.env.example
+# Netlify
+.netlify/
 
-# JetBrains
-.idea
+# Output, logs, and temp
+logs/
+*.log
+*.tmp
+*.bak
+*.backup
+test-results/
+test-build/
+build-perf-testing/
+*.out
+*.pid
 
-# Apple System Files
-.DS_Store
-
-# Local Netlify folder
-.netlify
-
-# Tests - Comprehensive Exclusion
+# Test artifacts
 tests/__image_snapshots__/
 tests/screenshots/
 tests/episode-screenshots/
@@ -49,43 +46,47 @@ tests/performance-analysis/
 tests/a11y-reports/
 tests/*.json
 tests/*.png
-
-# Exclude comparison results but not the scripts themselves
 tests/llm-screenshots/
 tests/llm-reports/
 tests/*-results.json
 
 # Terraform
+.terraform/
 **/.terraform/*
 *.tfstate
 *.tfstate.*
-tf.json
-crash.*.log
 *.tfvars
 *.tfvars.json
+terraform.tfstate
+terraform.tfstate.*
+terraform.tfvars
+terraform.tfvars.json
+terraform.lock.hcl
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
+crash.*.log
 
-# Terraform
-.terraform/
-*.tfstate
-*.tfstate.backup
-*.tfvars
-.terraform.lock.hcl
+# Python/venv (if any)
+venv/
+__pycache__/
 
-# Never commit API keys or secrets
+# Env & secrets
+.env
+.env.*
+.env*.local
+.env.local
+.env.datadog
+**/*.env*
+!.env.example
 **/*/terraform.tfvars
 **/*/.env.local
 
-# Additional security patterns
+# Security: never commit secrets, keys, credentials, tokens, certs, etc.
 **/secrets/
 **/credentials/
 **/keys/
-**/config/secrets/
-**/config/credentials/
-**/config/keys/
 **/private/
 **/secure/
 **/auth/
@@ -118,8 +119,6 @@ override.tf.json
 **/hotp/
 **/yubikey/
 **/security/
-**/secure/
-**/auth/
 **/authentication/
 **/authorization/
 **/permission/
@@ -131,31 +130,19 @@ override.tf.json
 **/id/
 **/session/
 **/cookie/
-**/token/
-**/jwt/
-**/oauth/
-**/saml/
-**/sso/
-**/mfa/
-**/2fa/
-**/two-factor/
-**/two_factor/
-**/totp/
-**/hotp/
-**/yubikey/
-**/security/
-**/secure/
-**/auth/
-**/authentication/
-**/authorization/
-**/permission/
-**/role/
-**/user/
-**/account/
-**/profile/
-**/identity/
-**/id/
-**/session/
-**/cookie/
-.env.local
+
+# Misc project-specific
+todo.md
+done.md
+/instructions/
+/resources/
+/transcripts/
+/observations/
+update_episodes.ps1
+update_episodes.sh
 src/.DS_Store
+
+# Ignore backup and temp files everywhere
+*~
+*.orig
+*.rej

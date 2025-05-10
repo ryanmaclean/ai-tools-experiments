@@ -1,132 +1,23 @@
+version: "3.8"
+
 services:
-  # Testing service for running sequential web tests
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-      # Using Node official image for better compatibility
-      args:
-        - NODE_ENV=test
-    volumes:
-      - ./:/app
-      - /app/node_modules
-      - ./scripts:/app/scripts
-      # Use anonymous volume to protect node_modules from being overridden by host
-    environment:
-      - NODE_ENV=test
-      - DEBUG=false
-      # Proper networking configuration for Docker (uses Docker's internal hostname)
-      - TEST_URL=http://dev:4321
-      # Address potential 404 warnings in the tests rather than suppressing them
-      - HANDLE_404_WARNINGS=true
-    depends_on:
-      - dev
-    networks:
-      ai-tools-network:
-        aliases:
-          - app.ai-tools.local
-        priority: 1
-    # Enhanced DNS settings like the dev service
-    dns:
-      - 8.8.8.8
-      - 1.1.1.1
-    # Don't start automatically
-    profiles: [test]
-    # Expose DD API key when provided
-    env_file:
-      - .env.local
-    # Use entrypoint script to fix Rollup ARM64 module issue before starting tests
-    entrypoint: ["./scripts/docker-entrypoint.sh"]
-    # Add Datadog labels for container monitoring
-    labels:
-      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-test"}]'
-      com.datadoghq.tags.service: 'ai-tools-test'
-      com.datadoghq.tags.env: 'test'
-      com.datadoghq.tags.issue: 'rollup-arm64-fix'
-
-  # Development service with hot-reloading
-  dev:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-      # Using Node official image for better compatibility
-      # This ensures proper support for Puppeteer and canvas dependencies
-      args:
-        - NODE_ENV=development
+  # Minimal production-like service: build app, serve dist/ with Nginx
+  nginx:
+    image: nginx:1.25-alpine
+    container_name: ai-tools-nginx
     ports:
-      - "4321-4325:4321-4325"  # Expose multiple ports for Astro's automatic port shifting
+      - "8080:80"
     volumes:
-      # Mount everything needed for development with hot-reloading
-      - ./:/app
-      - /app/node_modules
-      - ./scripts:/app/scripts
-      # Use anonymous volume to protect node_modules from being overridden by host
+      - ./dist:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
     environment:
-      - NODE_ENV=development
-      # Address potential 404 warnings in the tests rather than suppressing them
-      - HANDLE_404_WARNINGS=true
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
     restart: unless-stopped
     networks:
-      ai-tools-network:
-        aliases:
-          - dev.ai-tools.local
-        priority: 1
-    # Enhanced DNS settings
-    dns:
-      - 8.8.8.8
-      - 1.1.1.1
-    # Show log output in console
-    tty: true
-    stdin_open: true
-    # Use entrypoint script to fix Rollup ARM64 module issue before starting dev server
-    entrypoint: ["./scripts/docker-entrypoint.sh"]
-    command: ["sh", "-c", "cd /app && npm run dev -- --host 0.0.0.0"]
-    # Add Datadog labels for container monitoring
-    labels:
-      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-dev"}]'
-      com.datadoghq.tags.service: 'ai-tools-dev'
-      com.datadoghq.tags.env: 'development'
-      com.datadoghq.tags.issue: 'rollup-arm64-fix'
+      - ai-tools-network
 
-  # Production service using multi-stage optimized build (matches Netlify production)
-  prod:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - NODE_ENV=production
-        - DD_API_KEY=${DD_API_KEY:-}
-    ports:
-      - "4321:4321"
-    # No volumes needed - uses built artifacts from multi-stage build
-    environment:
-      - NODE_ENV=production
-      - PORT=4321
-      # Netlify-specific environment variables
-      - NETLIFY=true
-      - CONTEXT=production
-    restart: unless-stopped
-    networks:
-      ai-tools-network:
-        aliases:
-          - prod.ai-tools.local
-        priority: 1
-    # Improved network security by limiting memory and CPU
-    mem_limit: 512m
-    mem_reservation: 256m
-    cpus: 0.5
-    # Entrypoint is set in Dockerfile
-    # Add Datadog labels for container monitoring
-    labels:
-      com.datadoghq.ad.logs: '[{"source":"nodejs", "service":"ai-tools-prod"}]'
-      com.datadoghq.tags.service: 'ai-tools-prod'
-      com.datadoghq.tags.env: 'production'
-      com.datadoghq.tags.version: '${VERSION:-1.0.0}'
-      com.datadoghq.tags.issue: 'rollup-arm64-fix'
-    env_file:
-      - .env.local
-
-  # Datadog Agent for monitoring all Docker containers
+  # Optional: Datadog agent for container monitoring (can be removed for k8s)
   datadog-agent:
     image: datadog/agent:latest
     environment:
@@ -142,13 +33,9 @@ services:
       - /proc/:/host/proc/:ro
       - /sys/fs/cgroup/:/host/sys/fs/cgroup:ro
       - /var/lib/docker/containers:/var/lib/docker/containers:ro
-      # Modified mount path to use relative path instead of absolute /opt
       - ./datadog-agent-run:/opt/datadog-agent/run:rw
     networks:
-      ai-tools-network:
-        aliases:
-          - datadog.ai-tools.local
-        priority: 1
+      - ai-tools-network
     restart: unless-stopped
     env_file:
       - .env.local
@@ -156,16 +43,13 @@ services:
 networks:
   ai-tools-network:
     driver: bridge
-    # Optimized network configuration
     ipam:
       config:
         - subnet: 172.28.0.0/16
           gateway: 172.28.0.1
-    # Enhanced DNS configuration
     driver_opts:
       com.docker.network.bridge.name: ai-tools-bridge
       com.docker.network.bridge.enable_icc: 'true'
       com.docker.network.bridge.enable_ip_masquerade: 'true'
       com.docker.network.driver.mtu: '1500'
-    # Improved name resolution
     name: ai-tools-network

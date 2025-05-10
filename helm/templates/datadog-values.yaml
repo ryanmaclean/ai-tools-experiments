@@ -1,0 +1,52 @@
+# Example Datadog values.yaml (template) based on Ara Pulido's config
+# Reference: https://github.com/apulido/datadog-helm-examples/blob/main/values/values-kube-state-metrics.yaml
+
+datadog:
+  apiKeyExistingSecret: datadog-api-key
+  site: datadoghq.com
+  logs:
+    enabled: true
+    containerCollectAll: true
+  apm:
+    enabled: true
+    socketEnabled: true
+  processAgent:
+    enabled: true
+  networkMonitoring:
+    enabled: true
+  kubeStateMetricsEnabled: true
+  dogstatsd:
+    useHostPort: true
+  leaderElection: true
+  clusterName: "ai-tools-demo"
+  tags:
+    - env:demo
+    - team:ai-tools
+  # Add more config as needed from Ara Pulido's example
+
+agents:
+  containers:
+    agent:
+      resources:
+        limits:
+          cpu: 200m
+          memory: 256Mi
+        requests:
+          cpu: 100m
+          memory: 128Mi
+    process-agent:
+      enabled: true
+    trace-agent:
+      enabled: true
+
+kube-state-metrics:
+  enabled: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+# To use: helm install ai-tools-tiny . -f values.yaml -f templates/datadog-values.yaml
