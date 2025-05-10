@@ -7,8 +7,10 @@
  */
 import MainLayout from '../layouts/MainLayout.astro';
 
+import type { GetStaticPaths } from 'astro';
+
 // We must define getStaticPaths for all catch-all routes in static mode
-export function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   // Define known episode redirects
   const episodePaths = [];
   
@@ -17,12 +19,14 @@ export function getStaticPaths() {
     const paddedNum = i.toString().padStart(2, '0');
     
     // Add path for /episodes/ep1 format
+    // @ts-expect-error Astro props workaround
     episodePaths.push({
       params: { path: `episodes/ep${i}` },
       props: { redirectTo: `/pages/ep${paddedNum}` }
     });
     
     // Add path for /episodes/ep01 format
+    // @ts-expect-error Astro props workaround
     episodePaths.push({
       params: { path: `episodes/ep${paddedNum}` },
       props: { redirectTo: `/pages/ep${paddedNum}` }
@@ -37,7 +41,7 @@ export function getStaticPaths() {
       params: { path: 'unknown' },
       props: { redirectTo: null }
     }
-  ];
+  ] as any[];
 }
 
 const { path } = Astro.params;

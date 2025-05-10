@@ -2,7 +2,6 @@
 // Import components
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { DATADOG_CONFIG } from '../js/datadog-config.js';
 
 // Define props interface
 interface Props {
@@ -85,17 +84,7 @@ const { title, description = 'AI Tools and Experiments Showcase' } = Astro.props
 	<script is:inline>
 		// Simple script to ensure header and footer are accessible
 		console.log("Build mode");
-		console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
-			// Toggle mobile menu if elements exist
-			const hamburger = /* document.querySelector('.hamburger-menu');
-			const mobileNav = /* document.querySelector('.mobile-nav');
-			
-			if (hamburger && mobileNav) {
-				hamburger.addEventListener('click', () => {
-					mobileNav.classList.toggle('open');
-				});
-			}
-		});
+		// (Client-side mobile menu logic is currently disabled)
 	</script>
  </body>
  </html>

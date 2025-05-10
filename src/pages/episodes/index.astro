@@ -8,24 +8,13 @@
 import MainLayout from '../../layouts/MainLayout.astro';
 
 // Import episodes index content directly
-let episodesContent;
-try {
-  episodesContent = await import('../../content/imported/episodes.html?raw');
-} catch (e) {
-  // Fallback content if episodes index not found
-  episodesContent = { 
-    default: `<div class="episodes-container">
-      <h1>Episodes</h1>
-      <p>Episodes content will be available soon.</p>
-    </div>`
-  };
-}
+import episodesContent from '../../imported/episodes2.html?raw';
 ---
 
 <MainLayout title="Episodes | AI Tools Lab">
   <div class="episodes-page">
     <!-- Use the imported episode index content -->
-    <div set:html={episodesContent.default} />
+    <div set:html={episodesContent} />
   </div>
 </MainLayout>
 

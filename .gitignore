@@ -132,14 +132,6 @@ __pycache__/
 **/cookie/
 
 # Misc project-specific
-todo.md
-done.md
-/instructions/
-/resources/
-/transcripts/
-/observations/
-update_episodes.ps1
-update_episodes.sh
 src/.DS_Store
 
 # Ignore backup and temp files everywhere

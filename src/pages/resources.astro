@@ -2,7 +2,7 @@
 // src/pages/resources.astro - UPDATED PATH
 import MainLayout from '../layouts/MainLayout.astro';
 // Import resources HTML directly to preserve base64 images
-import ResourcesContent from '../content/imported/resources.html?raw';
+import ResourcesContent from '../../content/imported/resources.html?raw';
 
 const pageTitle = "Resources";
 const description = "A curated collection of resources for AI tools and experiments.";
@@ -139,31 +139,8 @@ const ogImageUrl = "/images/ai-tools-lab-logo.png"; // Using the site logo inste
 
   <script is:inline>
     // Client-side initialization
-    console.log("Build mode"); /* document.addEventListener('DOMContentLoaded', () => {
-      // --- Resource Filtering Logic ---
-      const filterButtons = /* document.querySelectorAll('.tag-filter');
-      const resourceCards = /* document.querySelectorAll('.resource-card');
-
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          const selectedTag = button.getAttribute('data-tag');
-
-          // Update active button state
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-
-          // Filter cards
-          resourceCards.forEach(card => {
-            const cardTags = card.getAttribute('data-tags')?.split(',') || [];
-            if (selectedTag === 'all' || cardTags.includes(selectedTag)) {
-              card.style.display = ''; // Show card
-            } else {
-              card.style.display = 'none'; // Hide card
-            }
-          });
-        });
-      });
-  });
-</script>
+    console.log("Build mode");
+    // (Client-side resource filtering logic is currently disabled)
+  </script>
 
 </MainLayout>
